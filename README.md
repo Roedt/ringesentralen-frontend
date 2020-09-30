@@ -2,7 +2,9 @@
 
 # ringesentralen-frontend
 
-Frontend for ringesentralen
+Frontend for ringesentralen.
+
+Se demoversjon på [ringesentralen.raudt.party](https://ringesentralen.raudt.party/)
 
 ## Utvikling
 
