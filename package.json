@@ -1,0 +1,49 @@
+{
+  "name": "ringesentralen-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for ringesentralen",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "standard && jest",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roedt/ringesentralen-frontend.git"
+  },
+  "keywords": [],
+  "author": "Geir Gåsodden <geir.gasodden@pythonia.no> (https://github.com/zrrrzzt)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Roedt/ringesentralen-frontend/issues"
+  },
+  "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
+  "dependencies": {
+    "next": "9.5.3",
+    "postcss-preset-env": "6.7.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "run": "1.4.0",
+    "tailwindcss": "1.8.10"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "7.24.2",
+    "@testing-library/jest-dom": "5.11.4",
+    "@testing-library/react": "11.0.4",
+    "babel-jest": "26.3.0",
+    "jest": "26.4.2",
+    "msw": "0.21.2",
+    "standard": "14.3.4"
+  },
+  "standard": {
+    "env": "jest"
+  },
+  "engines": {
+    "node": ">=12.18.4"
+  }
+}
