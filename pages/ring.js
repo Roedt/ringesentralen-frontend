@@ -1,13 +1,16 @@
+import Head from 'next/head'
+import Layout from '../components/layout'
+
 const Ring = () => {
   return (
-    <>
+    <Layout>
+      <Head>
+        Ring
+      </Head>
       <div className='flex flex-col items-center'>
-        <h1 className='text-4xl font-mono'>Ringesentralen</h1>
-        <div>
-          Ring noen
-        </div>
+        Ring neste
       </div>
-    </>
+    </Layout>
   )
 }
 

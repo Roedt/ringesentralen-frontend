@@ -1,17 +1,17 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
 
-const HomePage = () => {
+const Nummeroppslag = () => {
   return (
     <Layout>
       <Head>
-        Ringesentralen
+        Nummeroppslag
       </Head>
       <div className='flex flex-col items-center'>
-        <h1 className='text-4xl font-mono'>Ringesentralen</h1>
+        Slå opp nummer
       </div>
     </Layout>
   )
 }
 
-export default HomePage
+export default Nummeroppslag
