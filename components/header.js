@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <header>
+    <header className='h-10'>
       <nav className='flex justify-center'>
         <div className='flex space-x-2'>
           <Link href='/'><a>Ringesentralen</a></Link>
