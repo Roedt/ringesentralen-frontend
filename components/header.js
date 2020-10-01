@@ -3,16 +3,16 @@ import Link from 'next/link'
 const Header = () => {
   return (
     <header>
-      <nav>
-        <ul>
-          <li><Link href='/'><a>Ringesentralen</a></Link></li>
-          <li><Link href='/ring'><a>Ring neste</a></Link></li>
-          <li><Link href='/nummeroppslag'><a>Nummeroppslag</a></Link></li>
-          <li><Link href='/hjelp'><a>Hjelp</a></Link></li>
-          <li><Link href='/brukere'><a>Brukere</a></Link></li>
-          <li><Link href='/statistikk'><a>Statistikk</a></Link></li>
-          <li><Link href='/administrasjon'><a>Administrasjon</a></Link></li>
-        </ul>
+      <nav className='flex justify-center'>
+        <div className='flex space-x-2'>
+          <Link href='/'><a>Ringesentralen</a></Link>
+          <Link href='/ring'><a>Ring neste</a></Link>
+          <Link href='/nummeroppslag'><a>Nummeroppslag</a></Link>
+          <Link href='/hjelp'><a>Hjelp</a></Link>
+          <Link href='/brukere'><a>Brukere</a></Link>
+          <Link href='/statistikk'><a>Statistikk</a></Link>
+          <Link href='/administrasjon'><a>Administrasjon</a></Link>
+        </div>
       </nav>
     </header>
   )
