@@ -5,7 +5,7 @@ const Hjelp = () => {
   return (
     <Layout>
       <Head>
-        Hjelpeside
+        <title>Hjelpeside</title>
       </Head>
       <div className='flex flex-col items-center'>
         Hjelpesiden

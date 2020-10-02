@@ -5,7 +5,7 @@ const Brukere = () => {
   return (
     <Layout>
       <Head>
-        Brukere
+        <title>Brukere</title>
       </Head>
       <div className='flex flex-col items-center'>
         Brukerhåndtering

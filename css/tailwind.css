@@ -3,3 +3,7 @@
 /* purgecss end ignore */
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+body {
+  font-family: GT Walsheim, Helvetica, sans-serif;
+}

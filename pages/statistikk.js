@@ -5,7 +5,7 @@ const Statistikk = () => {
   return (
     <Layout>
       <Head>
-        Statistikk
+        <title>Statistikk</title>
       </Head>
       <div className='flex flex-col items-center'>
         Statistikk

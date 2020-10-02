@@ -5,7 +5,7 @@ const Nummeroppslag = () => {
   return (
     <Layout>
       <Head>
-        Nummeroppslag
+        <title>Nummeroppslag</title>
       </Head>
       <div className='flex flex-col items-center'>
         Slå opp nummer

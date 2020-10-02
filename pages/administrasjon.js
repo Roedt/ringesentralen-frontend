@@ -5,7 +5,7 @@ const Administrasjon = () => {
   return (
     <Layout>
       <Head>
-        Administrasjonssiden
+        <title>Administrasjonssiden</title>
       </Head>
       <div className='flex flex-col items-center'>
         Administrasjon
