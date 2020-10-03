@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className='h-10'>
       <nav className='flex justify-center'>
-        <div className='flex space-x-2'>
+        <div className='flex space-x-3 text-xl'>
           <Link href='/'><a>Ringesentralen</a></Link>
           <Link href='/ring'><a>Ring neste</a></Link>
           <Link href='/nummeroppslag'><a>Nummeroppslag</a></Link>
@@ -14,6 +14,16 @@ const Header = () => {
           <Link href='/administrasjon'><a>Administrasjon</a></Link>
         </div>
       </nav>
+      <style jsx>
+        {`
+          a {
+            color: #2e3c46;
+          }
+          a:hover {
+            color: #e52437;
+          }
+        `}
+      </style>
     </header>
   )
 }
