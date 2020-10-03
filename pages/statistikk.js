@@ -7,7 +7,7 @@ const Statistikk = () => {
       <Head>
         <title>Statistikk</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         Statistikk
       </div>
     </Layout>

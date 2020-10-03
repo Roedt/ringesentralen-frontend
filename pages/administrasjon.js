@@ -7,7 +7,7 @@ const Administrasjon = () => {
       <Head>
         <title>Administrasjonssiden</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         Administrasjon
       </div>
     </Layout>

@@ -7,7 +7,7 @@ const Brukere = () => {
       <Head>
         <title>Brukere</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         Brukerhåndtering
       </div>
     </Layout>

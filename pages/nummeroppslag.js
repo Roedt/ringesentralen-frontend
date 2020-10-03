@@ -7,7 +7,7 @@ const Nummeroppslag = () => {
       <Head>
         <title>Nummeroppslag</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         Slå opp nummer
       </div>
     </Layout>

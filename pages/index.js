@@ -7,7 +7,7 @@ const HomePage = () => {
       <Head>
         <title>Ringesentralen</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         <h1>Ringesentralen</h1>
       </div>
     </Layout>

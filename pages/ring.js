@@ -7,7 +7,7 @@ const Ring = () => {
       <Head>
         <title>Ring</title>
       </Head>
-      <div className='flex flex-col items-center'>
+      <div>
         Ring neste
       </div>
     </Layout>
