@@ -31,11 +31,11 @@
     "tailwindcss": "1.8.12"
   },
   "devDependencies": {
-    "@testing-library/dom": "7.24.2",
+    "@testing-library/dom": "7.24.5",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.0.4",
-    "babel-jest": "26.3.0",
-    "jest": "26.4.2",
+    "babel-jest": "26.5.2",
+    "jest": "26.5.2",
     "msw": "0.21.2",
     "standard": "14.3.4"
   },
