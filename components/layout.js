@@ -3,8 +3,8 @@ import Footer from './footer'
 
 export default function Layout ({ children }) {
   return (
-    <div className='flex flex-row justify-center'>
-      <div className='flex flex-col h-screen justify-between container-xl'>
+    <div className='flex flex-row justify-center container mx-auto'>
+      <div className='flex flex-col h-screen justify-between'>
         <Header />
         <main className='mb-auto'>
           {children}
