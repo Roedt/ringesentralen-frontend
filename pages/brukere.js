@@ -10,6 +10,15 @@ const Brukere = () => {
       <div>
         Brukerhåndtering
       </div>
+      <div>
+        Godkjenn nye brukere
+      </div>
+      <div>
+        Registrerte brukere
+      </div>
+      <div>
+        Deaktiverte/Ikke godkjente brukere
+      </div>
     </Layout>
   )
 }
