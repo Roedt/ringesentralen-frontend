@@ -28,7 +28,7 @@
     "postcss-preset-env": "6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tailwindcss": "1.8.10"
+    "tailwindcss": "1.8.12"
   },
   "devDependencies": {
     "@testing-library/dom": "7.24.2",
