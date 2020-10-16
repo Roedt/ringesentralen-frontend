@@ -4,11 +4,13 @@ import Layout from '../components/layout'
 
 const RingerPanel = props => {
   return (
-    <div>
-      Velkommen, G g (95552759)!
-      Du har så langt ringt 0 ganger.
-      Det er 0 folk igjen å ringe i ditt lokallag.
-      Takk for din innsats!
+    <div className='max-w-sm rounded overflow-hidden shadow-lg'>
+      <div className='p-4'>
+        <p>Velkommen, Grei Kamerat (12345678)!</p>
+        <p>Du har så langt ringt 0 ganger.</p>
+        <p>Det er 0 folk igjen å ringe i ditt lokallag.</p>
+        <p>Takk for din innsats!</p>
+      </div>
     </div>
   )
 }
@@ -68,7 +70,9 @@ const Ring = () => {
       <Head>
         <title>Ring neste</title>
       </Head>
-      <RingerPanel />
+      <div className='flex justify-end'>
+        <RingerPanel />
+      </div>
       <SamtalePanel />
     </Layout>
   )
