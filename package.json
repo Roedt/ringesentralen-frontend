@@ -24,18 +24,18 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
-    "next": "9.5.4",
+    "next": "9.5.5",
     "postcss-preset-env": "6.7.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "tailwindcss": "1.8.12"
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "tailwindcss": "1.9.2"
   },
   "devDependencies": {
-    "@testing-library/dom": "7.24.5",
+    "@testing-library/dom": "7.26.0",
     "@testing-library/jest-dom": "5.11.4",
-    "@testing-library/react": "11.0.4",
+    "@testing-library/react": "11.1.0",
     "babel-jest": "26.5.2",
-    "jest": "26.5.2",
+    "jest": "26.5.3",
     "msw": "0.21.2",
     "standard": "14.3.4"
   },
