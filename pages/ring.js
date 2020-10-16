@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState } from 'react'
 import Layout from '../components/layout'
 
 const RingerPanel = props => {
@@ -12,7 +13,20 @@ const RingerPanel = props => {
   )
 }
 
+const Manus = () => {
+  return (
+    <div>
+      Dette er verdens beste manus!
+      <hr className='mt-2 mb-2' />
+    </div>
+  )
+}
+
 const SamtalePanel = props => {
+  const [showManus, setShowManus] = useState()
+  const handleManusToggle = () => {
+    setShowManus(!showManus)
+  }
   return (
     <>
       <div>
@@ -26,8 +40,11 @@ const SamtalePanel = props => {
         Hopp over
       </div>
       <div>
-        Vis/skjul manus
+        <button onClick={handleManusToggle} className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
+          {showManus ? 'Skjul' : 'Vis'} manus
+        </button>
       </div>
+      {showManus && <Manus />}
       <div>
         Hva ble resultatet
         ikke svar
@@ -49,7 +66,7 @@ const Ring = () => {
   return (
     <Layout>
       <Head>
-        <title>Ring</title>
+        <title>Ring neste</title>
       </Head>
       <RingerPanel />
       <SamtalePanel />
