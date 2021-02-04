@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
+    "axios": "0.21.1",
     "next": "10.0.6",
     "postcss-preset-env": "6.7.0",
     "react": "17.0.1",
