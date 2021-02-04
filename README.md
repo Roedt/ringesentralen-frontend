@@ -14,6 +14,12 @@ Du trenger [Node.js](https://nodejs.org/) >= 12
 - installer avhengigheter `npm i`
 - start dev server `npm run dev`
 - besøk appen på [http://localhost:3000](http://localhost:3000)
+- sett opp en lokal `.env`
+
+```
+API_URL=url til APIet
+API_AUTH_KEY=Nøkkel for loginkallet
+```
 
 ## Lisens
 
