@@ -20,14 +20,16 @@ function Login () {
           </h2>
           <form className='mt-10' id='login-form' onSubmit={handleSubmit}>
             <label htmlFor='brukarnamn' className='block text-xs font-semibold text-gray-600 uppercase'>
-              E-mail
+              E-postadresse
             </label>
             <input
               id='brukarnamn' type='email' name='brukarnamn' placeholder='E-postadresse' autoComplete='email'
               className='block w-full py-3 px-1 mt-2 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
               required
             />
-            <label htmlFor='passord' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>Password</label>
+            <label htmlFor='passord' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
+              Passord
+            </label>
             <input
               id='passord' type='password' name='passord' placeholder='Passord' autoComplete='current-password'
               className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
