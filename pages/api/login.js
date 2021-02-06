@@ -1,5 +1,5 @@
 import axios from 'axios'
-import cookie from 'js-cookie'
+import Cookie from 'cookies'
 
 async function login (request, response) {
   const url = `${process.env.API_URL}/token/login`
@@ -11,7 +11,12 @@ async function login (request, response) {
   }
   try {
     const { data } = await axios.post(url, payload)
-    cookie.set('ringesentralen', { token: data, isAuthenticated: true }, { expires: 1 })
+    const cookies = new Cookie(request, response)
+    cookies.set()
+    cookies.set('ringesentralen', data, {
+      httpOnly: true,
+      sameSite: 'lax'
+    })
     return response.json({ accessToken: data })
   } catch (error) {
     console.error(error)

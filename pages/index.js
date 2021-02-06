@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import Login from '../components/login'
 
 const HomePage = () => {
   return (
@@ -11,7 +10,6 @@ const HomePage = () => {
       <div>
         <h1>Ringesentralen</h1>
       </div>
-      <Login />
     </Layout>
   )
 }
