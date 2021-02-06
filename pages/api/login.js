@@ -13,7 +13,6 @@ async function login (request, response) {
     const { data: token } = await axios.post(url, payload)
     const cookie = {
       token,
-      isAuthenticated: true,
       expires: new Date().getTime() + 36000000
     }
     const cookies = new Cookie(request, response)
