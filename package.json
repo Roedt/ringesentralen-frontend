@@ -25,7 +25,9 @@
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
     "axios": "0.21.1",
+    "js-cookie": "2.2.1",
     "next": "10.0.6",
+    "next-cookies": "2.0.3",
     "postcss-preset-env": "6.7.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",

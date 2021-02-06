@@ -1,7 +1,10 @@
+import { AuthProvider } from '../lib/auth-provider'
 import '../css/tailwind.css'
 
 export default function MyApp ({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
   )
 }

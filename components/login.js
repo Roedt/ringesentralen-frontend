@@ -1,15 +1,15 @@
 /* eslint-env browser */
-import axios from 'axios'
 import serializeForm from '../lib/serialize-form'
+import { useSession } from '../lib/auth-provider'
 
 function Login () {
+  const { login } = useSession()
   const handleSubmit = async event => {
     event.preventDefault()
     const form = document.getElementById('login-form')
     const data = new FormData(form)
     const payload = serializeForm(data)
-    const { data: result } = await axios.post('/api/auth', payload)
-    console.log(result)
+    login(payload)
     form.reset()
   }
 
