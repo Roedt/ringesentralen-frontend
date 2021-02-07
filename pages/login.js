@@ -1,12 +1,18 @@
 import axios from 'axios'
+import { useState } from 'react'
 import generatePayload from '../lib/generate-payload'
+import Button from '../components/ui/button'
 
 function Login () {
+  const [loading, setLoading] = useState()
+
   const handleSubmit = async event => {
     event.preventDefault()
+    setLoading(true)
     const form = document.getElementById('login-form')
     await axios.post('/api/login', generatePayload(form))
     const { data: result } = await axios.get('/api/auth-status')
+    setLoading(false)
     console.log(result)
     form.reset()
   }
@@ -35,12 +41,12 @@ function Login () {
               className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
               required
             />
-            <button
+            <Button
               type='submit'
-              className='w-full py-3 mt-10 bg-gray-800 rounded-sm font-medium text-white uppercase focus:outline-none hover:bg-gray-700 hover:shadow-none'
+              loading={loading}
             >
               Logg inn
-            </button>
+            </Button>
           </form>
         </div>
       </div>
