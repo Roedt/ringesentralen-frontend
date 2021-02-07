@@ -1,0 +1,29 @@
+steps:
+  # Create docker image
+  - name: gcr.io/cloud-builders/docker
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        docker build -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
+
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/ringesentralen-frontend']
+
+  # Start up a cloud instance
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+      'beta',
+      'run',
+      'deploy',
+      'ringesentralen-frontend',
+      '--image', 'gcr.io/$PROJECT_ID/ringesentralen-frontend',
+      '--allow-unauthenticated',
+      '--platform=managed',
+      '--region=europe-north1'
+      ]
+
+# Image name
+images: ['gcr.io/$PROJECT_ID/ringesentralen-frontend']
