@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Cookie from 'cookies'
+import { encrypt } from '../../lib/crypto'
 
 async function login (request, response) {
   const url = `${process.env.API_URL}/token/login`
@@ -16,8 +17,7 @@ async function login (request, response) {
       expires: new Date().getTime() + 36000000
     }
     const cookies = new Cookie(request, response)
-    cookies.set()
-    cookies.set('ringesentralen', JSON.stringify(cookie), {
+    cookies.set('ringesentralen', encrypt(cookie), {
       httpOnly: true,
       sameSite: 'lax'
     })
