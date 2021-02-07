@@ -17,7 +17,7 @@ async function login (request, response) {
       expires: new Date().getTime() + 36000000
     }
     const cookies = new Cookie(request, response)
-    cookies.set('ringesentralen', encrypt(cookie), {
+    cookies.set(process.env.COOKIE_NAME, encrypt(cookie), {
       httpOnly: true,
       sameSite: 'lax'
     })
