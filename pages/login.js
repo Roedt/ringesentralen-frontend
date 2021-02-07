@@ -1,20 +1,25 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+
 import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 
 function Login () {
   const [loading, setLoading] = useState()
+  const router = useRouter()
 
   const handleSubmit = async event => {
     event.preventDefault()
     setLoading(true)
     const form = document.getElementById('login-form')
     await axios.post('/api/login', generatePayload(form))
-    const { data: result } = await axios.get('/api/auth-status')
+    // const { data: result } = await axios.get('/api/auth-status')
+    await axios.get('/api/auth-status')
     setLoading(false)
-    console.log(result)
+    // console.log(result)
     form.reset()
+    router.push('/')
   }
 
   return (
