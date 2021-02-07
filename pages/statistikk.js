@@ -3,13 +3,10 @@ import Layout from '../components/layout'
 
 const Statistikk = () => {
   return (
-    <Layout>
+    <Layout pageTitle='Statistikk'>
       <Head>
         <title>Statistikk</title>
       </Head>
-      <div>
-        Statistikk
-      </div>
     </Layout>
   )
 }

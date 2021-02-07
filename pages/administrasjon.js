@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 
 const Administrasjon = () => {
   return (
-    <Layout>
+    <Layout pageTitle='Administrasjon'>
       <Head>
         <title>Administrasjonssiden</title>
       </Head>

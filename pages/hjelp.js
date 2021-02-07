@@ -3,13 +3,10 @@ import Layout from '../components/layout'
 
 const Hjelp = () => {
   return (
-    <Layout>
+    <Layout pageTitle='Hjelp'>
       <Head>
         <title>Hjelpeside</title>
       </Head>
-      <div>
-        Hjelpesiden
-      </div>
     </Layout>
   )
 }

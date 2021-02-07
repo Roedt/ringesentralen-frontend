@@ -66,7 +66,7 @@ const SamtalePanel = props => {
 
 const Ring = () => {
   return (
-    <Layout>
+    <Layout pageTitle='Ringesiden'>
       <Head>
         <title>Ring neste</title>
       </Head>

@@ -1,29 +1,11 @@
-import Link from 'next/link'
-
-const Header = () => {
+function Header ({ pageTitle }) {
   return (
-    <header className='h-10'>
-      <nav className='flex justify-center'>
-        <div className='flex space-x-3 text-xl'>
-          <Link href='/'><a>Ringesentralen</a></Link>
-          <Link href='/ring'><a>Ring neste</a></Link>
-          <Link href='/nummeroppslag'><a>Nummeroppslag</a></Link>
-          <Link href='/hjelp'><a>Hjelp</a></Link>
-          <Link href='/brukere'><a>Brukere</a></Link>
-          <Link href='/statistikk'><a>Statistikk</a></Link>
-          <Link href='/administrasjon'><a>Administrasjon</a></Link>
-        </div>
-      </nav>
-      <style jsx>
-        {`
-          a {
-            color: #2e3c46;
-          }
-          a:hover {
-            color: #e52437;
-          }
-        `}
-      </style>
+    <header className='bg-white shadow-sm'>
+      <div className='max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8'>
+        <h1 className='text-lg leading-6 font-semibold text-gray-900'>
+          {pageTitle}
+        </h1>
+      </div>
     </header>
   )
 }

@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 
 const Nummeroppslag = () => {
   return (
-    <Layout>
+    <Layout pageTitle='Nummeroppslag'>
       <Head>
         <title>Nummeroppslag</title>
       </Head>

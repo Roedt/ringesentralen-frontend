@@ -34,7 +34,7 @@ const Brukere = () => {
   }
 
   return (
-    <Layout>
+    <Layout pageTitle='Brukere'>
       <Head>
         <title>Brukere</title>
       </Head>
