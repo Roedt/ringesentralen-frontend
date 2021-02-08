@@ -19,6 +19,8 @@ Du trenger [Node.js](https://nodejs.org/) >= 12
 ```
 API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
+ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
+COOKIE_NAME=Navn på cookie
 ```
 
 ## Lisens
