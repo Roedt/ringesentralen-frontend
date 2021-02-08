@@ -1,7 +1,19 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+function MainLink ({ href, title, pathname }) {
+  const menuMainSelected = 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
+  const menuMain = 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+  return (
+    <Link href={href}>
+      <a className={pathname === href ? menuMainSelected : menuMain}>{title}</a>
+    </Link>
+  )
+}
 
 function Nav () {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   return (
     <nav className='bg-gray-800'>
@@ -13,27 +25,13 @@ function Nav () {
             </div>
             <div className='hidden md:block'>
               <div className='ml-10 flex items-baseline space-x-4'>
-                <Link href='/'>
-                  <a className='bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'>Ringesentralen</a>
-                </Link>
-                <Link href='/ring'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Ring neste</a>
-                </Link>
-                <Link href='/nummeroppslag'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Nummeroppslag</a>
-                </Link>
-                <Link href='/hjelp'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Hjelp</a>
-                </Link>
-                <Link href='/brukere'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Brukere</a>
-                </Link>
-                <Link href='/statistikk'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Statistikk</a>
-                </Link>
-                <Link href='/administrasjon'>
-                  <a className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Administrasjon</a>
-                </Link>
+                <MainLink href='/' title='Ringesentralen' pathname={router.pathname} />
+                <MainLink href='/ring' title='Ring neste' pathname={router.pathname} />
+                <MainLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />
+                <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
+                <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />
+                <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
+                <MainLink href='/administrasjon' title='Administrasjon' pathname={router.pathname} />
               </div>
             </div>
           </div>
