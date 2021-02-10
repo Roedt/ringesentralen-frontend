@@ -38,6 +38,7 @@ function Nav () {
                 <MainLink href='/' title='Ringesentralen' pathname={router.pathname} />
                 <MainLink href='/ring' title='Ring neste' pathname={router.pathname} />
                 <MainLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />
+                <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
                 <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />
                 <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
