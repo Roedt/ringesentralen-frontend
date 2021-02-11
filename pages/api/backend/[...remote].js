@@ -2,7 +2,7 @@ import axios from 'axios'
 import parseCookie from '../../../lib/parse-cookie'
 
 async function backendProxy (request, response) {
-  const { query: { remote }} = request
+  const { query: { remote } } = request
   const method = request.method.toLowerCase()
   const payload = await request.body
   const cookie = parseCookie(request, response)
