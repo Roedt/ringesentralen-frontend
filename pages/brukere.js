@@ -22,7 +22,7 @@ const Brukere = () => {
 
   async function handleBrukere () {
     try {
-      const { data } = await axios.get('/api/brukere', { withCredentials: true })
+      const { data } = await axios.get('/api/backend/brukere/brukere', { withCredentials: true })
       setBrukere(data)
     } catch (error) {
       if (is401(error)) {
