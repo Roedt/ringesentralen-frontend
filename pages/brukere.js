@@ -29,7 +29,7 @@ const Bruker = ({ fornavn, etternavn, epost }) => {
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-          Active
+          Godkjent
         </span>
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
@@ -53,7 +53,7 @@ function BrukerListe ({ brukere }) {
               <thead className='bg-gray-50'>
                 <tr>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Name
+                    Navn
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Title
@@ -102,17 +102,21 @@ const Brukere = () => {
       <Head>
         <title>Brukere</title>
       </Head>
-      <div>
-        Brukerhåndtering
-      </div>
-      <div>
-        Godkjenn nye brukere
-      </div>
-      <div>
-        <button onClick={() => handleBrukere()}>Registrerte brukere</button>
-      </div>
-      <div>
-        Deaktiverte/Ikke godkjente brukere
+      <div className='flex mb-8'>
+        <span className='relative z-0 inline-flex shadow-sm rounded-md'>
+          <button type='button' className='relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500'>
+            Brukerhåndtering
+          </button>
+          <button type='button' className='-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500'>
+            Godkjenn nye brukere
+          </button>
+          <button onClick={() => handleBrukere()} type='button' className='-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500'>
+            Registrerte brukere
+          </button>
+          <button type='button' className='-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500'>
+            Deaktiverte/Ikke godkjente brukere
+          </button>
+        </span>
       </div>
       <BrukerListe brukere={brukere} />
     </Layout>
