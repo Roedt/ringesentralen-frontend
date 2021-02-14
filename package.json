@@ -31,7 +31,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "simple-encryptor": "4.0.0",
-    "tailwindcss": "2.0.2"
+    "tailwindcss": "2.0.3"
   },
   "devDependencies": {
     "@testing-library/dom": "7.29.4",
@@ -39,7 +39,7 @@
     "@testing-library/react": "11.2.5",
     "babel-jest": "26.6.3",
     "jest": "26.6.3",
-    "msw": "0.26.1",
+    "msw": "0.26.2",
     "standard": "16.0.3"
   },
   "standard": {
