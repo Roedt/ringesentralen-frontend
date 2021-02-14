@@ -8,7 +8,7 @@ const is401 = error => {
   return /401/.test(error.message)
 }
 
-const Bruker = ({ fornavn, etternavn, epost }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag }) => {
   return (
     <tr>
       <td className='px-6 py-4 whitespace-nowrap'>
@@ -24,8 +24,8 @@ const Bruker = ({ fornavn, etternavn, epost }) => {
         </div>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
-        <div className='text-sm text-gray-900'>Regional Paradigm Technician</div>
-        <div className='text-sm text-gray-500'>Optimization</div>
+        <div className='text-sm text-gray-900'>{lokallag.navn}</div>
+        <div className='text-sm text-gray-500'>{rolle.join(', ')}</div>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
@@ -56,10 +56,10 @@ function BrukerListe ({ brukere }) {
                     Navn
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Title
+                    E-post
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Status
+                    Lokallag
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Role
