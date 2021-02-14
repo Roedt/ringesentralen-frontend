@@ -7,21 +7,35 @@ import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 import Layout from '../components/layout'
 
+function ShowErrors (errors) {
+  return (
+    <div>
+      {JSON.stringfy(errors)}
+    </div>
+  )
+}
+
 function Login () {
   const [loading, setLoading] = useState()
+  const [errors, setErrors] = useState()
   const router = useRouter()
 
   const handleSubmit = async event => {
     event.preventDefault()
     setLoading(true)
     const form = document.getElementById('login-form')
-    await axios.post('/api/login', generatePayload(form))
-    // const { data: result } = await axios.get('/api/auth-status')
-    await axios.get('/api/auth-status')
-    setLoading(false)
-    // console.log(result)
-    form.reset()
-    router.push('/')
+    try {
+      await axios.post('/api/login', generatePayload(form))
+      // const { data: result } = await axios.get('/api/auth-status')
+      await axios.get('/api/auth-status')
+      setLoading(false)
+      // console.log(result)
+      form.reset()
+      router.push('/')
+    } catch (error) {
+      setLoading(false)
+      setErrors(errors)
+    }
   }
 
   return (
@@ -62,6 +76,7 @@ function Login () {
           </div>
         </div>
       </div>
+      {errors && <ShowErrors errors={errors} />}
     </Layout>
   )
 }
