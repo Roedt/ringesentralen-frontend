@@ -24,7 +24,7 @@ async function login (request, response) {
     return response.json(cookie)
   } catch (error) {
     console.error(error)
-    return error
+    throw error
   }
 }
 

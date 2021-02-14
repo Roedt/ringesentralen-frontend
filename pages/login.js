@@ -10,7 +10,7 @@ import Layout from '../components/layout'
 function ShowErrors (errors) {
   return (
     <div>
-      {JSON.stringfy(errors)}
+      {errors.toString()}
     </div>
   )
 }
@@ -34,7 +34,7 @@ function Login () {
       router.push('/')
     } catch (error) {
       setLoading(false)
-      setErrors(errors)
+      setErrors(error)
     }
   }
 
