@@ -35,8 +35,8 @@ function Nav () {
             </div>
             <div className='hidden md:block'>
               <div className='ml-10 flex items-baseline space-x-4'>
-                <MainLink href='/' title='Ringesentralen' pathname={router.pathname} />
-                <MainLink href='/ring' title='Ring neste' pathname={router.pathname} />
+                <MainLink href='/' title='Forsiden' pathname={router.pathname} />
+                <MainLink href='/ring' title='Ring' pathname={router.pathname} />
                 <MainLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
@@ -64,8 +64,8 @@ function Nav () {
       </div>
       <div className={`${isOpen ? '' : 'hidden'} md:hidden`}>
         <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
-          <BurgerLink href='/' title='Ringesentralen' pathname={router.pathname} />
-          <BurgerLink href='/ring' title='Ring neste' pathname={router.pathname} />
+          <BurgerLink href='/' title='Forsiden' pathname={router.pathname} />
+          <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
           <BurgerLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
           <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />
