@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "bump": "npx npm-check-updates --target minor -u && npm i",
     "start": "next start",
     "test": "standard && jest --passWithNoTests",
     "lint": "standard",
