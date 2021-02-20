@@ -107,11 +107,8 @@ function ResultatSkjema () {
           <div>
             <div>
               <h3 className='text-lg leading-6 font-medium text-gray-900'>
-                Resultat av samtalen
+                Samtalereferat
               </h3>
-              <p className='mt-1 text-sm text-gray-500'>
-                This information will be displayed publicly so be careful what you share.
-              </p>
             </div>
             <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
               <div className='sm:col-span-6'>
@@ -131,27 +128,26 @@ function ResultatSkjema () {
               <fieldset className='mt-6'>
                 <div>
                   <legend className='text-base font-medium text-gray-900'>
-                    Push Notifications
+                    Resultat av oppringing
                   </legend>
-                  <p className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</p>
                 </div>
                 <div className='mt-4 space-y-4'>
                   <div className='flex items-center'>
                     <input id='push_everything' name='push_notifications' type='radio' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
                     <label for='push_everything' className='ml-3 block text-sm font-medium text-gray-700'>
-                      Everything
+                      Svarte
                     </label>
                   </div>
                   <div className='flex items-center'>
                     <input id='push_email' name='push_notifications' type='radio' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
                     <label for='push_email' className='ml-3 block text-sm font-medium text-gray-700'>
-                      Same as email
+                      Passet ikke
                     </label>
                   </div>
                   <div className='flex items-center'>
                     <input id='push_nothing' name='push_notifications' type='radio' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
                     <label for='push_nothing' className='ml-3 block text-sm font-medium text-gray-700'>
-                      No push notifications
+                      Svarte ikke
                     </label>
                   </div>
                 </div>
@@ -164,17 +160,15 @@ function ResultatSkjema () {
           <div className='mt-6'>
             <fieldset>
               <legend className='text-base font-medium text-gray-900'>
-                By Email
+                Ønsker
               </legend>
-              <p className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</p>
               <div className='mt-4 space-y-4'>
                 <div className='relative flex items-start'>
                   <div className='flex items-center h-5'>
                     <input id='comments' name='comments' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='comments' className='font-medium text-gray-700'>Comments</label>
-                    <p className='text-gray-500'>Get notified when someones posts a comment on a posting.</p>
+                    <label for='comments' className='font-medium text-gray-700'>Vil ha korona-program på epost</label>
                   </div>
                 </div>
                 <div className='relative flex items-start'>
@@ -182,8 +176,7 @@ function ResultatSkjema () {
                     <input id='candidates' name='candidates' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='candidates' className='font-medium text-gray-700'>Candidates</label>
-                    <p className='text-gray-500'>Get notified when a candidate applies for a job.</p>
+                    <label for='candidates' className='font-medium text-gray-700'>Vil ha valgkampsbrev med informasjon om valgkampen</label>
                   </div>
                 </div>
                 <div className='relative flex items-start'>
@@ -191,8 +184,15 @@ function ResultatSkjema () {
                     <input id='offers' name='offers' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='offers' className='font-medium text-gray-700'>Offers</label>
-                    <p className='text-gray-500'>Get notified when a candidate accepts or rejects an offer.</p>
+                    <label for='offers' className='font-medium text-gray-700'>Kan tenke seg å være mer aktiv i Rødt framover</label>
+                  </div>
+                </div>
+                <div className='relative flex items-start'>
+                  <div className='flex items-center h-5'>
+                    <input id='ikke-ring' name='ikke-ring' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
+                  </div>
+                  <div className='ml-3 text-sm'>
+                    <label for='ikke-ring' className='font-medium text-gray-700'>Vil ikke bli ringt</label>
                   </div>
                 </div>
               </div>
