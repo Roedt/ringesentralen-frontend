@@ -28,20 +28,22 @@
     "axios": "0.21.1",
     "cookies": "0.8.0",
     "next": "10.0.7",
-    "postcss-preset-env": "6.7.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "simple-encryptor": "4.0.0",
-    "tailwindcss": "2.0.3"
+    "simple-encryptor": "4.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "0.2.1",
     "@testing-library/dom": "7.29.6",
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.5",
+    "autoprefixer": "10.2.4",
     "babel-jest": "26.6.3",
     "jest": "26.6.3",
     "msw": "0.26.2",
-    "standard": "16.0.3"
+    "postcss": "8.2.6",
+    "standard": "16.0.3",
+    "tailwindcss": "2.0.3"
   },
   "standard": {
     "env": "jest"

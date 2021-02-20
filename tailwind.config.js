@@ -1,8 +1,4 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
-  },
   purge: ['./components/**/*.js', './pages/**/*.js'],
   theme: {
     extend: {
@@ -14,5 +10,7 @@ module.exports = {
   variants: {
     animation: ['responsive', 'motion-safe', 'motion-reduce']
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/forms')
+  ]
 }
