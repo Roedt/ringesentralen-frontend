@@ -7,10 +7,10 @@ import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 import Layout from '../components/layout'
 
-function ShowErrors (errors) {
+function ShowErrors ({ error }) {
   return (
     <div>
-      {errors.toString()}
+      {error.message}
     </div>
   )
 }
@@ -33,6 +33,7 @@ function Login () {
       form.reset()
       router.push('/')
     } catch (error) {
+      console.error(error)
       setLoading(false)
       setErrors(error)
     }
@@ -76,7 +77,7 @@ function Login () {
           </div>
         </div>
       </div>
-      {errors && <ShowErrors errors={errors} />}
+      {errors && <ShowErrors error={errors} />}
     </Layout>
   )
 }
