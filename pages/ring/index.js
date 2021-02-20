@@ -73,17 +73,69 @@ const SamtalePanel = props => {
 }
 */
 
+function ResultatSkjema () {
+  const SendKnapp = () => {
+    return (
+      <button type='button' onClick={() => window.alert('Ikke implementert')} className='relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
+          <path d='M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z' />
+        </svg>
+        <span>
+          Lagre oppsummering
+        </span>
+      </button>
+    )
+  }
+
+  return (
+    <>
+      <div>Fyll ut resultat av samtalen</div>
+      <SendKnapp />
+    </>
+  )
+}
+
 function Samtale ({ data, setPerson }) {
   const [samtale, setSamtale] = useState()
 
-  async function avslaaSamtale (id) {
-    // await axios.put('/api/backend/samtale', {}, { withCredentials: true })
+  async function avslaaSamtale () {
     setPerson(false)
   }
 
   async function startSamtale (id) {
     await axios.post('/api/backend/samtale/startSamtale', { skalRingesID: id }, { withCredentials: true })
-    setSamtale()
+    setSamtale('paagaaende')
+  }
+
+  async function avsluttSamtale (id) {
+    await axios.post('/api/backend/samtale/startSamtale', { skalRingesID: id }, { withCredentials: true })
+    setSamtale('avsluttet')
+  }
+
+  const StartKnapp = () => {
+    return (
+      <button type='button' onClick={() => startSamtale(id)} className='relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
+          <path d='M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z' />
+        </svg>
+        <span>
+          Start samtale
+        </span>
+      </button>
+    )
+  }
+
+  const StoppKnapp = () => {
+    return (
+      <button type='button' onClick={() => avsluttSamtale(id)} className='relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
+          <path d='M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z' />
+        </svg>
+        <span>
+          Avslutt samtale
+        </span>
+      </button>
+    )
   }
 
   if (!data) return null
@@ -105,15 +157,9 @@ function Samtale ({ data, setPerson }) {
           </div>
         </div>
         <div className='ml-4 mt-4 flex-shrink-0 flex'>
-          <button type='button' onClick={() => startSamtale(id)} className='relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-            <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
-              <path d='M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z' />
-            </svg>
-            <span>
-              Start samtale
-            </span>
-          </button>
-          <button type='button' onClick={() => avslaaSamtale(id)} className='ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+          {!samtale && <StartKnapp />}
+          {samtale === 'paagaaende' && <StoppKnapp />}
+          <button type='button' disabled={samtale} onClick={() => avslaaSamtale()} className='ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
             <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
               <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z' />
             </svg>
@@ -123,7 +169,7 @@ function Samtale ({ data, setPerson }) {
           </button>
         </div>
       </div>
-      {samtale && <div>Samtale pågår</div>}
+      {samtale === 'avsluttet' && <ResultatSkjema />}
     </div>
   )
 }
