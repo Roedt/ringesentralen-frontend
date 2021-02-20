@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
 
@@ -295,6 +295,7 @@ const Ring = () => {
   const router = useRouter()
   const [person, setPerson] = useState()
   const [loading, setLoading] = useState()
+  const [voipToken, setVoipToken] = useState()
 
   async function hentNyPerson () {
     setLoading(true)
@@ -311,6 +312,24 @@ const Ring = () => {
     }
   }
 
+  async function hentVoipToken () {
+    try {
+      const { data } = await axios.get('/api/twilio/token', { withCredentials: true })
+      console.log(data)
+      setVoipToken(data)
+    } catch (error) {
+      if (is401(error)) {
+        router.push('/login')
+      } else {
+        console.error(error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    hentVoipToken()
+  }, [])
+
   return (
     <Layout pageTitle='Ringesiden'>
       <Head>
@@ -320,6 +339,7 @@ const Ring = () => {
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         <Samtale data={person} setPerson={setPerson} />
       </div>
+      {voipToken && <div>Du er klar for VoIP samtaler</div>}
     </Layout>
   )
 }
