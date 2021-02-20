@@ -21,6 +21,11 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
 COOKIE_NAME=Navn på cookie
+TWILIO_ACCOUNT_SID=
+TWILIO_TWIML_APP_SID=
+TWILIO_CALLER_ID=
+TWILIO_API_KEY=
+TWILIO_API_SECRET=
 ```
 
 ## Lisens
