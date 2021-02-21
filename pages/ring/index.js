@@ -2,7 +2,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Device } from 'twilio-client'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
 
@@ -298,7 +297,7 @@ const Ring = () => {
   const [loading, setLoading] = useState()
   const [voipToken, setVoipToken] = useState()
   const [voipReady, setVoipReady] = useState()
-  const device = new Device()
+  let device
 
   async function hentNyPerson () {
     setLoading(true)
@@ -328,9 +327,13 @@ const Ring = () => {
     }
   }
 
-  async function handleVoipSetup () {
-    device.setup(voipToken)
-    setVoipReady(true)
+  function handleVoipSetup () {
+    if (voipToken) {
+      const Twilio = require('twilio-client')
+      device = new Twilio.Device()
+      device.setup(voipToken)
+      setVoipReady(true)
+    }
   }
 
   useEffect(() => {
