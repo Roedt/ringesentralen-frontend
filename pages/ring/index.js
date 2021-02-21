@@ -50,9 +50,15 @@ const Ring = () => {
     if (voipToken) {
       const Twilio = require('twilio-client')
       const phone = new Twilio.Device()
-      phone.setup(voipToken)
-      setDevice(() => phone)
-      setVoipReady(true)
+      phone.setup(voipToken, {
+        codecPreferences: ['opus', 'pcmu'],
+        fakeLocalDTMF: true,
+        enableRingingState: true
+      })
+      phone.on('ready', function (phone) {
+        setDevice(() => phone)
+        setVoipReady(true)
+      })
     }
   }
 
