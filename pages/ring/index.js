@@ -211,7 +211,7 @@ function ResultatSkjema () {
   )
 }
 
-function Samtale ({ data, setPerson }) {
+function Samtale ({ data, device, setPerson }) {
   const [samtale, setSamtale] = useState()
 
   async function avslaaSamtale () {
@@ -255,6 +255,19 @@ function Samtale ({ data, setPerson }) {
     )
   }
 
+  const RingeKnapp = () => {
+    return (
+      <button type='button' onClick={() => window.alert('ikke implementert ennå')} className='w-48 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
+          <path d='M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z' />
+        </svg>
+        <span>
+          Ring med VoIP
+        </span>
+      </button>
+    )
+  }
+
   if (!data) return null
   const { person } = data
   const { fornavn, etternavn, telefonnummer, id } = person
@@ -270,6 +283,7 @@ function Samtale ({ data, setPerson }) {
               <p className='text-sm text-gray-500'>
                 {telefonnummer}
               </p>
+              {device && <RingeKnapp />}
             </div>
           </div>
         </div>
@@ -294,10 +308,10 @@ function Samtale ({ data, setPerson }) {
 const Ring = () => {
   const router = useRouter()
   const [person, setPerson] = useState()
+  const [device, setDevice] = useState()
   const [loading, setLoading] = useState()
   const [voipToken, setVoipToken] = useState()
   const [voipReady, setVoipReady] = useState()
-  let device
 
   async function hentNyPerson () {
     setLoading(true)
@@ -330,8 +344,9 @@ const Ring = () => {
   function handleVoipSetup () {
     if (voipToken) {
       const Twilio = require('twilio-client')
-      device = new Twilio.Device()
-      device.setup(voipToken)
+      const phone = new Twilio.Device()
+      phone.setup(voipToken)
+      setDevice(() => phone)
       setVoipReady(true)
     }
   }
@@ -362,7 +377,7 @@ const Ring = () => {
       <div>
         {(voipToken && !voipReady) && <VoIP />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
-        <Samtale data={person} setPerson={setPerson} />
+        <Samtale data={person} device={device} setPerson={setPerson} />
       </div>
     </Layout>
   )
