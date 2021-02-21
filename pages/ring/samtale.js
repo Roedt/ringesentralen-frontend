@@ -16,7 +16,6 @@ function Samtale ({ data, device, setPerson }) {
   }
 
   async function avsluttSamtale (id) {
-    // await axios.post('/api/backend/samtale/startSamtale', { skalRingesID: id }, { withCredentials: true })
     setSamtale('avsluttet')
   }
 
