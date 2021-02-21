@@ -122,7 +122,7 @@ function Samtale ({ data, device, setPerson }) {
           </button>
         </div>
       </div>
-      {samtale === 'avsluttet' && <ResultatSkjema id={id} />}
+      {samtale === 'avsluttet' && <ResultatSkjema id={id} setPerson={setPerson} />}
     </div>
   )
 }

@@ -3,10 +3,10 @@ import { useState } from 'react'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 
-function ResultatSkjema ({ id }) {
+function ResultatSkjema ({ id, setPerson }) {
   const [loading, setLoading] = useState()
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     setLoading(true)
     const form = document.getElementById('samtalereferat-form')
@@ -24,10 +24,15 @@ function ResultatSkjema ({ id }) {
       ringtID: id,
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
-    const { data } = axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
-    console.log(data)
-    setLoading(false)
-    form.reset()
+    try {
+      await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
+      setLoading(false)
+      form.reset()
+      setPerson(false)
+    } catch (error) {
+      console.error(error)
+      setLoading(false)
+    }
   }
 
   return (
