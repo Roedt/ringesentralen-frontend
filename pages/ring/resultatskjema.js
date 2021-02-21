@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 
@@ -26,6 +27,7 @@ function ResultatSkjema ({ id, setPerson }) {
     }
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
+      toaster.notify('Samtalereferatet er lagret', { duration: 2000 })
       setLoading(false)
       form.reset()
       setPerson(false)
