@@ -21,16 +21,18 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
 COOKIE_NAME=Navn på cookie
-TWILIO_ACCOUNT_SID=
-TWILIO_TWIML_APP_SID=
-TWILIO_CALLER_ID=
-TWILIO_API_KEY=
-TWILIO_API_SECRET=
+TWILIO_ACCOUNT_SID=id til twilio kontoen
+TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
+TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
+TWILIO_API_KEY=api key hos twilio
+TWILIO_API_SECRET=api secret hos twilio
 ```
 
 ### Twilio
 - følger guiden [Browser calls with Node.js and Express](https://www.twilio.com/docs/voice/tutorials/browser-calls-node-express)
 - for å teste med et gitt telefonnummer legg til `debugNummer` på `/ring` (`/ring?debugNummer=98765432`) i test må dette være et nummer som er godkjent via twiliokonsollen
+- `/api/twilio/token` oppretter token mot twilo basert på nøkler og apier
+- `/api/twilio/connect` lager twiml som svar på Twilios webhook (bruk f.eks. [ngrok](https://ngrok.com/) for å nå lokal maskin under utvikling)
 
 ## Lisens
 
