@@ -17,12 +17,17 @@ const Ring = () => {
   const [loading, setLoading] = useState()
   const [voipToken, setVoipToken] = useState()
   const [voipReady, setVoipReady] = useState()
+  const { debugNummer } = router.query
 
   async function hentNyPerson () {
     setLoading(true)
     try {
       const { data } = await axios.get('/api/backend/samtale/neste', { withCredentials: true })
+      if (debugNummer) {
+        data.person.telefonnummer = debugNummer
+      }
       setPerson(data)
+      console.log(data)
       setLoading(false)
     } catch (error) {
       if (is401(error)) {

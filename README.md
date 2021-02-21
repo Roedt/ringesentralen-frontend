@@ -30,6 +30,7 @@ TWILIO_API_SECRET=
 
 ### Twilio
 - følger guiden [Browser calls with Node.js and Express](https://www.twilio.com/docs/voice/tutorials/browser-calls-node-express)
+- for å teste med et gitt telefonnummer legg til `debugNummer` på `/ring` (`/ring?debugNummer=98765432`)
 
 ## Lisens
 
