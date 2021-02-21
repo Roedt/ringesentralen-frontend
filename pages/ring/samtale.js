@@ -20,7 +20,7 @@ function Samtale ({ data, device, setPerson }) {
   }
 
   async function startVoIPSamtale (telefonnummer) {
-    device.connect({ To: telefonnummer })
+    device.connect({ telefonnummer })
     device.on('connect', () => {
       setVoIPActive(true)
       setSamtale('paagaaende')
