@@ -83,7 +83,7 @@ function Samtale ({ data, device, setPerson }) {
           <path fill-rule='evenodd' d='M11.146 1.646a.5.5 0 0 1 .708 0L13 2.793l1.146-1.147a.5.5 0 0 1 .708.708L13.707 3.5l1.147 1.146a.5.5 0 0 1-.708.708L13 4.207l-1.146 1.147a.5.5 0 0 1-.708-.708L12.293 3.5l-1.147-1.146a.5.5 0 0 1 0-.708z' />
         </svg>
         <span>
-          Avslutt samtalen på VoIP
+          Legg på VoIP
         </span>
       </button>
     )

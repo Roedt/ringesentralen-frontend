@@ -27,7 +27,6 @@ const Ring = () => {
         data.person.telefonnummer = debugNummer
       }
       setPerson(data)
-      console.log(data)
       setLoading(false)
     } catch (error) {
       if (is401(error)) {
