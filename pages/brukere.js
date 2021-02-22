@@ -8,7 +8,7 @@ const is401 = error => {
   return /401/.test(error.message)
 }
 
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID }) => {
   return (
     <tr>
       <td className='px-6 py-4 whitespace-nowrap'>
@@ -33,10 +33,10 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag }) => {
         </span>
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-        Admin
+        Gjør til godkjenner
       </td>
-      <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-        <a href='#' className='text-indigo-600 hover:text-indigo-900'>Edit</a>
+      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+        Sett som administrator
       </td>
     </tr>
   )
@@ -59,13 +59,13 @@ function BrukerListe ({ brukere }) {
                     Lokallag
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Status
+                    Ringer
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Role
+                    Godkjenner
                   </th>
-                  <th scope='col' className='relative px-6 py-3'>
-                    <span className='sr-only'>Edit</span>
+                  <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Administrator
                   </th>
                 </tr>
               </thead>
