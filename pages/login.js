@@ -75,6 +75,9 @@ function Login () {
               </Button>
             </form>
           </div>
+          <div className='mt-6'>
+            Har du glemt passordet? <a href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>Gjenopprett passord</a>
+          </div>
         </div>
       </div>
       {errors && <ShowErrors error={errors} />}

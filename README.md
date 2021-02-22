@@ -21,6 +21,7 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
 COOKIE_NAME=Navn på cookie
+NEXT_PUBLIC_HYPERSYS_BASE_URL=url til hypersys
 TWILIO_ACCOUNT_SID=id til twilio kontoen
 TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
 TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
