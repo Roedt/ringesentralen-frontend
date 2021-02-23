@@ -24,13 +24,13 @@ function BrukerListe ({ brukere }) {
                     Lokallag
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Bruker
+                  </th>
+                  <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Ringer
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Godkjenner
-                  </th>
-                  <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Status
                   </th>
                 </tr>
               </thead>

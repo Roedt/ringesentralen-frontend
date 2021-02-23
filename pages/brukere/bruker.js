@@ -63,18 +63,18 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <Toggle
-          skjermleserTekst='Er bruker godkjent som ringer'
+          skjermleserTekst='Kan bruke ringesentralen'
           status
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
-          skjermleserTekst='Er bruker lokal godkjenner'
+          skjermleserTekst='Kan bruker ringe'
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
-          skjermleserTekst='Er bruker aktivert'
+          skjermleserTekst='Kan bruker godkjenne'
           status
         />
       </td>
