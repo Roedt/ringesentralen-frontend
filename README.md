@@ -25,6 +25,7 @@ NEXT_PUBLIC_HYPERSYS_BASE_URL=url til hypersys
 TWILIO_ACCOUNT_SID=id til twilio kontoen
 TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
 TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
+TWILIO_INCOMING_HANDLER=telefonnummer vi ønsker å videresende innkommende samtaler til
 TWILIO_API_KEY=api key hos twilio
 TWILIO_API_SECRET=api secret hos twilio
 ```

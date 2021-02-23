@@ -13,7 +13,7 @@ async function twilioConnectCall (request, response) {
     // Telefoner fra Ringesentralen over VoIP
     dial.number({}, fixTelefonNummer(telefonnummer))
   } else {
-    // Telefoner sok ringer tilbake og skal redirectes til et av våre nummere
+    // Telefoner som ringer tilbake og skal redirectes til et av våre nummere
     dial.number({}, process.env.TWILIO_INCOMING_HANDLER)
   }
   response.setHeader('Content-Type', 'application/xml')
