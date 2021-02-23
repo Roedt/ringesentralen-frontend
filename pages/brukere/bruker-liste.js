@@ -1,4 +1,48 @@
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID }) => {
+import axios from 'axios'
+
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
+  function avslaaBrukerSomRinger () {
+    endreBrukerStatus({
+      endring: 'avslaa',
+      id: hypersysID
+    })
+  }
+
+  function deaktiverBrukerSomRinger () {
+    endreBrukerStatus({
+      endring: 'deaktiver',
+      id: hypersysID
+    })
+  }
+
+  function godkjennBrukerSomRinger () {
+    endreBrukerStatus({
+      endring: 'godkjenn',
+      id: hypersysID
+    })
+  }
+
+  function reaktiverBrukerSomRinger () {
+    endreBrukerStatus({
+      endring: 'reaktiver',
+      id: hypersysID
+    })
+  }
+
+  function gjoerBrukerTilLokalGodkjenner () {
+    endreBrukerStatus({
+      endring: 'gjoerTilLokalGodkjenner',
+      id: hypersysID
+    })
+  }
+
+  function fjernBrukerSomLokalGodkjenner () {
+    endreBrukerStatus({
+      endring: 'fjernSomLokalGodkjenner',
+      id: hypersysID
+    })
+  }
+
   return (
     <tr>
       <td className='px-6 py-4 whitespace-nowrap'>
@@ -33,6 +77,12 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID }) => {
 }
 
 function BrukerListe ({ brukere }) {
+  async function endreBrukerStatus (data) {
+    const { endring, id } = data
+    const url = `/api/backend/brukere/${endring}`
+    await axios.put(url, { personMedEndraTilgang: id }, { withCredentials: true })
+  }
+
   if (!brukere) return null
   return (
     <div className='flex flex-col'>
@@ -60,7 +110,7 @@ function BrukerListe ({ brukere }) {
                 </tr>
               </thead>
               <tbody className='bg-white divide-y divide-gray-200'>
-                {brukere && brukere.map(bruker => <Bruker {...bruker} key={bruker.hypersysID} />)}
+                {brukere && brukere.map(bruker => <Bruker {...bruker} endreBrukerStatus={endreBrukerStatus} key={bruker.hypersysID} />)}
               </tbody>
             </table>
           </div>
