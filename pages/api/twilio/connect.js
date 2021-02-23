@@ -8,13 +8,13 @@ async function twilioConnectCall (request, response) {
   const payload = await request.body
   const { telefonnummer, Caller } = payload
   const twiml = new VoiceResponse()
-  const dial = twiml.dial({ callerId: process.env.TWILIO_CALLER_ID })
   if (erUtGaaende(Caller)) {
     // Telefoner fra Ringesentralen over VoIP
+    const dial = twiml.dial({ callerId: process.env.TWILIO_CALLER_ID })
     dial.number({}, fixTelefonNummer(telefonnummer))
   } else {
     // Telefoner som ringer tilbake og skal redirectes til et av våre nummere
-    dial.number({}, process.env.TWILIO_INCOMING_HANDLER)
+    twiml.dial(process.env.TWILIO_INCOMING_HANDLER)
   }
   response.setHeader('Content-Type', 'application/xml')
   response.status(200).send(twiml.toString())
