@@ -60,8 +60,8 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
         </div>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
-        <div className='text-sm text-gray-900'>{lokallag.navn}</div>
-        <div className='text-sm text-gray-500'>{rolle.join(', ')}</div>
+        <div className='text-sm text-gray-900'>{lokallag?.navn || 'Ikke oppgitt'}</div>
+        <div className='text-sm text-gray-500'>{rolle?.join(', ') || 'Ikke oppgitt'}</div>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <Toggle
