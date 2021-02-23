@@ -1,6 +1,7 @@
 import Toggle from '../../components/ui/toggle'
 
 const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
+  /*
   function avslaaBrukerSomRinger () {
     endreBrukerStatus({
       endring: 'avslaa',
@@ -42,6 +43,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
       id: hypersysID
     })
   }
+  */
 
   return (
     <tr>
