@@ -1,80 +1,5 @@
 import axios from 'axios'
-
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
-  function avslaaBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'avslaa',
-      id: hypersysID
-    })
-  }
-
-  function deaktiverBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'deaktiver',
-      id: hypersysID
-    })
-  }
-
-  function godkjennBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'godkjenn',
-      id: hypersysID
-    })
-  }
-
-  function reaktiverBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'reaktiver',
-      id: hypersysID
-    })
-  }
-
-  function gjoerBrukerTilLokalGodkjenner () {
-    endreBrukerStatus({
-      endring: 'gjoerTilLokalGodkjenner',
-      id: hypersysID
-    })
-  }
-
-  function fjernBrukerSomLokalGodkjenner () {
-    endreBrukerStatus({
-      endring: 'fjernSomLokalGodkjenner',
-      id: hypersysID
-    })
-  }
-
-  return (
-    <tr>
-      <td className='px-6 py-4 whitespace-nowrap'>
-        <div className='flex items-center'>
-          <div className='ml-4'>
-            <div className='text-sm font-medium text-gray-900'>
-              {fornavn} {etternavn}
-            </div>
-            <div className='text-sm text-gray-500'>
-              {epost}
-            </div>
-          </div>
-        </div>
-      </td>
-      <td className='px-6 py-4 whitespace-nowrap'>
-        <div className='text-sm text-gray-900'>{lokallag.navn}</div>
-        <div className='text-sm text-gray-500'>{rolle.join(', ')}</div>
-      </td>
-      <td className='px-6 py-4 whitespace-nowrap'>
-        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-          Godkjent
-        </span>
-      </td>
-      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-        Gjør til godkjenner
-      </td>
-      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-        Sett som administrator
-      </td>
-    </tr>
-  )
-}
+import Bruker from './bruker'
 
 function BrukerListe ({ brukere }) {
   async function endreBrukerStatus (data) {
@@ -105,7 +30,7 @@ function BrukerListe ({ brukere }) {
                     Godkjenner
                   </th>
                   <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Administrator
+                    Status
                   </th>
                 </tr>
               </thead>
