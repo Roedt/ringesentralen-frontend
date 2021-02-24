@@ -12,6 +12,7 @@ async function hentRingeManus (request, response) {
   } catch (error) {
     tekst = await readFile(path.join(filmappe, fallback), 'utf-8')
   }
+  response.setHeader('Content-Type', 'text/markdown; charset=utf-8')
   response.send(tekst)
 }
 
