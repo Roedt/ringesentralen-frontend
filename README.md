@@ -36,6 +36,11 @@ TWILIO_API_SECRET=api secret hos twilio
 - `/api/twilio/token` oppretter token mot twilo basert på nøkler og apier
 - `/api/twilio/connect` lager twiml som svar på Twilios webhook (bruk f.eks. [ngrok](https://ngrok.com/) for å nå lokal maskin under utvikling)
 
+### Ringemanus
+
+- Det lages ringemanus for hvert valgdistrikt
+- Manus skrives i markdown og legges i mappen ringemanus
+
 ## Lisens
 
 [MIT](LICENSE)
