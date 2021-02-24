@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const isFunction = func => typeof func === 'function'
 
 function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff }) {
   const [aktiv, setAktiv] = useState(status || false)
+  const aktivRef = useRef(status || false)
   function toggleAktiv () {
     setAktiv(!aktiv)
   }
 
   useEffect(() => {
-    if (aktiv && isFunction(runIfOn)) {
-      console.log('kjører funksjon for på')
-      runIfOn()
-    }
-    if (!aktiv && isFunction(runIfOff)) {
-      console.log('kjører funksjon for av')
-      runIfOn()
+    if (aktivRef.current !== aktiv) {
+      if (aktiv && isFunction(runIfOn)) {
+        runIfOn()
+      }
+      if (!aktiv && isFunction(runIfOff)) {
+        runIfOff()
+      }
+      aktivRef.current = aktiv
     }
   }, [aktiv])
 
