@@ -40,7 +40,7 @@ const MineSamtaler = () => {
   }
 
   useEffect(() => {
-    hentMineSamtaler(),
+    hentMineSamtaler()
     hentLagetsSamtaler()
   }, [])
 
