@@ -69,14 +69,14 @@ function Liste ({ data }) {
   )
 }
 
-const Statistikk = () => {
+const Dashboard = () => {
   const router = useRouter()
-  const [statistikk, setStatistikk] = useState()
+  const [dashboard, setDashboard] = useState()
 
-  async function getStatistikk () {
+  async function getDashboard () {
     try {
       const { data } = await axios.get('/api/backend/dashboard', { withCredentials: true })
-      setStatistikk(data)
+      setDashboard(data)
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
@@ -87,17 +87,17 @@ const Statistikk = () => {
   }
 
   useEffect(() => {
-    getStatistikk()
+    getDashboard()
   }, [])
 
   return (
-    <Layout pageTitle='Statistikk'>
+    <Layout pageTitle='Dashboard'>
       <Head>
-        <title>Statistikk</title>
+        <title>Dashboard</title>
       </Head>
-      <Liste data={statistikk} />
+      <Liste data={dashboard} />
     </Layout>
   )
 }
 
-export default Statistikk
+export default Dashboard
