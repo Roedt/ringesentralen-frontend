@@ -11,6 +11,7 @@ module.exports = {
     animation: ['responsive', 'motion-safe', 'motion-reduce']
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography')
   ]
 }

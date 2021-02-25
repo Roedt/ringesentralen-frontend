@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
+    "@tailwindcss/typography": "0.4.0",
     "axios": "0.21.1",
     "cookies": "0.8.0",
     "next": "10.0.7",
