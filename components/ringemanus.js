@@ -28,7 +28,7 @@ function Ringemanus ({ manus }) {
     <div className='prose lg:prose-xl'>
       <button onClick={toggleManus} className='text-left w-full flex justify-between items-start text-gray-400'>
         <span className='font-medium text-gray-900'>
-          Ringemanus
+          {visManus ? 'Skjul' : 'Vis'} ringemanus
         </span>
         <span className='ml-6 h-7 flex items-center'>
           <svg className={`${visManus ? 'rotate-0' : '-rotate-180'} h-6 w-6 transform`} xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
