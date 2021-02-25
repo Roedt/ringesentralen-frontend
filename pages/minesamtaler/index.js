@@ -12,6 +12,7 @@ const is401 = error => {
 const MineSamtaler = () => {
   const router = useRouter()
   const [mineSamtaler, setMineSamtaler] = useState()
+  const [lagetsSamtaler, setLagetsSamtaler] = useState()
 
   async function hentMineSamtaler () {
     try {
@@ -25,9 +26,22 @@ const MineSamtaler = () => {
       }
     }
   }
+  async function hentLagetsSamtaler () {
+    try {
+      const { data } = await axios.get('/api/backend/historikk/laget', { withCredentials: true })
+      setLagetsSamtaler(data)
+    } catch (error) {
+      if (is401(error)) {
+        router.push('/login')
+      } else {
+        console.error(error)
+      }
+    }
+  }
 
   useEffect(() => {
-    hentMineSamtaler()
+    hentMineSamtaler(),
+    hentLagetsSamtaler()
   }, [])
 
   return (
@@ -41,7 +55,7 @@ const MineSamtaler = () => {
       <div className='shadow mt-12'>
         <small>NB: Denne oversikta vises kun for lokale godkjennere og admins</small>
         <br />
-        <Samtaler title='Alle samtaler i mitt lag' samtaler={mineSamtaler} />
+        <Samtaler title='Alle samtaler i mitt lag' samtaler={lagetsSamtaler} />
       </div>
     </Layout>
   )
