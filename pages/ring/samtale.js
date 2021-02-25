@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import Ringemanus from '../../components/ringemanus'
 import ResultatSkjema from './resultatskjema'
 
 function Samtale ({ data, device, setPerson }) {
@@ -122,6 +123,7 @@ function Samtale ({ data, device, setPerson }) {
           </button>
         </div>
       </div>
+      <Ringemanus manus={id} />
       {samtale === 'avsluttet' && <ResultatSkjema id={id} setPerson={setPerson} />}
     </div>
   )

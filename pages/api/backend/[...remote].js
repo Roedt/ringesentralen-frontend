@@ -14,6 +14,7 @@ async function backendProxy (request, response) {
     const url = `${process.env.API_URL}/${remote.join('/')}`
     try {
       const { data, status } = await axios[method](url, payload)
+      console.log(data)
       response.status(status).json(data)
     } catch (error) {
       console.error(error)
