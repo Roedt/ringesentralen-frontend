@@ -36,7 +36,7 @@ const MineSamtaler = () => {
         <title>Mine samtaler</title>
       </Head>
       <div className='shadow'>
-        <Samtaler title='Mine samtaler' samtaler={mineSamtaler}/>
+        <Samtaler title='Mine samtaler' samtaler={mineSamtaler} />
 
         <h2 className='text-xl font-semibold mt-16 mb-2'>Alle samtaler i mitt lag</h2>
         <small>NB: Denne oversikta vises kun for lokale godkjennere og admins</small>
