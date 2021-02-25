@@ -123,7 +123,9 @@ function Samtale ({ data, device, setPerson }) {
           </button>
         </div>
       </div>
-      <Ringemanus manus={id} />
+      <div className='mt-4'>
+        <Ringemanus manus={id} />
+      </div>
       {samtale === 'avsluttet' && <ResultatSkjema id={id} setPerson={setPerson} />}
     </div>
   )
