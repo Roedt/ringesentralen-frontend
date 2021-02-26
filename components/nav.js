@@ -67,6 +67,7 @@ function Nav () {
           <BurgerLink href='/' title='Forsiden' pathname={router.pathname} />
           <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
           <BurgerLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />
+          <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
           <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />
           <BurgerLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
