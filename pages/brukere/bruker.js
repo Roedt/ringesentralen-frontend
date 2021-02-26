@@ -1,6 +1,17 @@
+import { useState } from 'react'
+
 import Toggle from '../../components/ui/toggle'
 
+const kanBrukeRingesentralen = roller => roller.includes('bruker')
+const kanRinge = roller => roller.includes('ringer')
+const kanGodkjenne = roller => roller.includes('godkjenner')
+// const kanAdministrere = roller => roller.includes('admin')
+
 const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
+  const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
+  const [erRinger, setErRinger] = useState(kanRinge(rolle))
+  const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
+
   /*
   function avslaaBrukerSomRinger () {
     endreBrukerStatus({
@@ -8,22 +19,26 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
       id: hypersysID
     })
   }
-
-  function deaktiverBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'deaktiver',
-      id: hypersysID
-    })
-  }
+  */
 
   function godkjennBrukerSomRinger () {
+    setErRinger(true)
     endreBrukerStatus({
       endring: 'godkjenn',
       id: hypersysID
     })
   }
 
-  function reaktiverBrukerSomRinger () {
+  function deaktiverBruker () {
+    setErBruker(false)
+    endreBrukerStatus({
+      endring: 'deaktiver',
+      id: hypersysID
+    })
+  }
+
+  function reaktiverBruker () {
+    setErBruker(true)
     endreBrukerStatus({
       endring: 'reaktiver',
       id: hypersysID
@@ -31,6 +46,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
   }
 
   function gjoerBrukerTilLokalGodkjenner () {
+    setErGodkjenner(true)
     endreBrukerStatus({
       endring: 'gjoerTilLokalGodkjenner',
       id: hypersysID
@@ -38,12 +54,12 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
   }
 
   function fjernBrukerSomLokalGodkjenner () {
+    setErGodkjenner(false)
     endreBrukerStatus({
       endring: 'fjernSomLokalGodkjenner',
       id: hypersysID
     })
   }
-  */
 
   return (
     <tr>
@@ -66,18 +82,24 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
       <td className='px-6 py-4 whitespace-nowrap'>
         <Toggle
           skjermleserTekst='Kan bruke ringesentralen'
-          status
+          status={erBruker}
+          runIfOn={reaktiverBruker}
+          runIfOff={deaktiverBruker}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker ringe'
+          status={erRinger}
+          runIfOn={godkjennBrukerSomRinger}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker godkjenne'
-          status
+          status={erGodkjenner}
+          runIfOn={gjoerBrukerTilLokalGodkjenner}
+          runIfOff={fjernBrukerSomLokalGodkjenner}
         />
       </td>
     </tr>
