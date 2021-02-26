@@ -8,7 +8,8 @@
     "build": "next build",
     "bump": "npx npm-check-updates --target minor -u && npm i",
     "start": "next start",
-    "test": "standard && jest --passWithNoTests",
+    "test": "standard && jest",
+    "test:watch": "jest --watch",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
