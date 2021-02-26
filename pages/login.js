@@ -5,7 +5,6 @@ import Head from 'next/head'
 
 import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
-import Layout from '../components/layout'
 
 function ShowErrors ({ error }) {
   return (
@@ -40,7 +39,7 @@ function Login () {
   }
 
   return (
-    <Layout pageTitle='Logg inn på ringesentralen'>
+    <div>
       <Head>
         <title>Ringesentralen</title>
       </Head>
@@ -81,7 +80,7 @@ function Login () {
         </div>
       </div>
       {errors && <ShowErrors error={errors} />}
-    </Layout>
+    </div>
   )
 }
 
