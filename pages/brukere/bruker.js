@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import Toggle from '../../components/ui/toggle'
 
-const kanBrukeRingesentralen = roller => roller.includes('bruker')
-const kanRinge = roller => roller.includes('ringer')
-const kanGodkjenne = roller => roller.includes('godkjenner')
+const kanBrukeRingesentralen = roller => roller && roller.includes('bruker')
+const kanRinge = roller => roller && roller.includes('ringer')
+const kanGodkjenne = roller => roller && roller.includes('godkjenner')
 // const kanAdministrere = roller => roller.includes('admin')
 
 const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
