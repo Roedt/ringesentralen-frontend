@@ -8,7 +8,7 @@ const kanRinge = roller => isArray(roller) && roller.includes('ringer')
 const kanGodkjenne = roller => isArray(roller) && roller.includes('godkjenner')
 // const kanAdministrere = roller => roller.includes('admin')
 
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreBrukerStatus }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerStatus }) => {
   const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
@@ -26,7 +26,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
     setErRinger(true)
     endreBrukerStatus({
       endring: 'godkjenn',
-      id: hypersysID
+      id
     })
   }
 
@@ -34,7 +34,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
     setErBruker(false)
     endreBrukerStatus({
       endring: 'deaktiver',
-      id: hypersysID
+      id
     })
   }
 
@@ -42,7 +42,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
     setErBruker(true)
     endreBrukerStatus({
       endring: 'reaktiver',
-      id: hypersysID
+      id
     })
   }
 
@@ -50,7 +50,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
     setErGodkjenner(true)
     endreBrukerStatus({
       endring: 'gjoerTilLokalGodkjenner',
-      id: hypersysID
+      id
     })
   }
 
@@ -58,7 +58,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, hypersysID, endreB
     setErGodkjenner(false)
     endreBrukerStatus({
       endring: 'fjernSomLokalGodkjenner',
-      id: hypersysID
+      id
     })
   }
 
