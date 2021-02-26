@@ -25,7 +25,7 @@ function Samtaler ({ title, samtaler }) {
           </tr>
         </thead>
         <tbody className='bg-white divide-y divide-gray-200'>
-          {samtaler && samtaler.map(samtale => <Samtale {...samtale} key={samtale.tidspunkt} />)}
+          {samtaler && samtaler.map(samtale => <Samtale {...samtale} key={samtale.tidspunkt+samtale.ringer} />)}
         </tbody>
       </table>
     </div>
