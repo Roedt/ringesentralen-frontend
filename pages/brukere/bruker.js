@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Toggle from '../../components/ui/toggle'
 
@@ -6,18 +6,38 @@ const isArray = data => Array.isArray(data)
 const kanBrukeRingesentralen = roller => isArray(roller) && roller.includes('bruker')
 const kanRinge = roller => isArray(roller) && roller.includes('ringer')
 const kanGodkjenne = roller => isArray(roller) && roller.includes('godkjenner')
-// const kanAdministrere = roller => roller.includes('admin')
+
+function regnUtRoller (roller, erBruker, erRinger, erGodkjenner) {
+  const nyeRoller = []
+  nyeRoller.push(erBruker ? 'bruker' : 'sperret')
+  if (erRinger) {
+    nyeRoller.push('ringer')
+  }
+  if (erGodkjenner) {
+    nyeRoller.push('godkjenner')
+  }
+  if (roller.includes('admin') && erBruker && erRinger && erGodkjenner) {
+    nyeRoller.push('admin')
+  }
+  return nyeRoller
+}
 
 const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerStatus }) => {
   const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
+  const [roller, setRoller] = useState(rolle || [])
+
+  useEffect(() => {
+    const oppdaterteRoller = regnUtRoller(roller, erBruker, erRinger, erGodkjenner)
+    setRoller(oppdaterteRoller)
+  }, [erBruker, erRinger, erGodkjenner])
 
   /*
   function avslaaBrukerSomRinger () {
     endreBrukerStatus({
       endring: 'avslaa',
-      id: hypersysID
+      id: id
     })
   }
   */
@@ -78,11 +98,11 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <div className='text-sm text-gray-900'>{lokallag?.navn || 'Ikke oppgitt'}</div>
-        <div className='text-sm text-gray-500'>{rolle?.join(', ') || 'Ikke oppgitt'}</div>
+        <div className='text-sm text-gray-500'>{roller.join(', ') || 'Ikke oppgitt'}</div>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <Toggle
-          skjermleserTekst='Kan bruke ringesentralen'
+          skjermleserTekst='Har bruker tilgang til ringesentralen'
           status={erBruker}
           runIfOn={reaktiverBruker}
           runIfOff={deaktiverBruker}
@@ -93,6 +113,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
           skjermleserTekst='Kan bruker ringe'
           status={erRinger}
           runIfOn={godkjennBrukerSomRinger}
+          runIfOff={deaktiverBruker}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
