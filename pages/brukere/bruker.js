@@ -44,6 +44,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
 
   function godkjennBrukerSomRinger () {
     setErRinger(true)
+    setErBruker(true)
     endreBrukerStatus({
       endring: 'godkjenn',
       id
@@ -52,6 +53,8 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
 
   function deaktiverBruker () {
     setErBruker(false)
+    setErRinger(false)
+    setErGodkjenner(false)
     endreBrukerStatus({
       endring: 'deaktiver',
       id
@@ -60,6 +63,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
 
   function reaktiverBruker () {
     setErBruker(true)
+    setErRinger(true)
     endreBrukerStatus({
       endring: 'reaktiver',
       id
@@ -68,6 +72,8 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
 
   function gjoerBrukerTilLokalGodkjenner () {
     setErGodkjenner(true)
+    setErRinger(true)
+    setErBruker(true)
     endreBrukerStatus({
       endring: 'gjoerTilLokalGodkjenner',
       id
