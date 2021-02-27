@@ -41,6 +41,15 @@ TWILIO_API_SECRET=api secret hos twilio
 - Det lages ringemanus for hvert valgdistrikt
 - Manus skrives i markdown og legges i mappen ringemanus
 
+### Scripts
+- test og lint `npm t`
+- test:watch `npm run test:watch`
+- lint `npm run lint`
+- lint:fix `npm run lint:fix`
+- oppdatere avhengigheter opp til og med minor `npm run bump`
+- slette node_modules og oppdatere package-lock `npm run refresh`
+
+
 ## Lisens
 
 [MIT](LICENSE)
