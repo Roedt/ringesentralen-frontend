@@ -1,18 +1,22 @@
 import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/layout'
 import Samtaler from './samtaleliste.js'
+import { ProfilContext } from '../../contexts/profil-context-provider'
 
 const is401 = error => {
   return /401/.test(error.message)
 }
 
-const MineSamtaler = () => {
+const SamtaleOversikt = () => {
   const router = useRouter()
   const [mineSamtaler, setMineSamtaler] = useState()
   const [lagetsSamtaler, setLagetsSamtaler] = useState()
+  const [erGodkjenner, setErGodkjenner] = useState()
+  const profil = useContext(ProfilContext)
+  console.log(profil)
 
   async function hentMineSamtaler () {
     try {
@@ -41,22 +45,48 @@ const MineSamtaler = () => {
 
   useEffect(() => {
     hentMineSamtaler()
-    hentLagetsSamtaler()
   }, [])
 
+  useEffect(() => {
+    if (profil) {
+      setErGodkjenner(profil.rolle.includes('godkjenner'))
+    }
+  }, [profil])
+
+  useEffect(() => {
+    if (erGodkjenner) {
+      hentLagetsSamtaler()
+    }
+  }, [erGodkjenner])
+
+  const LagetsSamtaler = ({ samtaler }) => {
+    if (!samtaler) return null
+    return (
+      <div className='shadow mt-12'>
+        <small>NB: Denne oversikta vises kun for lokale godkjennere og admins</small>
+        <br />
+        <Samtaler title='Alle samtaler i mitt lag' samtaler={samtaler} />
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <div className='shadow'>
+        <Samtaler title='Mine samtaler' samtaler={mineSamtaler} />
+      </div>
+      <LagetsSamtaler samtaler={lagetsSamtaler} />
+    </>
+  )
+}
+
+function MineSamtaler () {
   return (
     <Layout pageTitle='Mine samtaler'>
       <Head>
         <title>Mine samtaler</title>
       </Head>
-      <div className='shadow'>
-        <Samtaler title='Mine samtaler' samtaler={mineSamtaler} />
-      </div>
-      <div className='shadow mt-12'>
-        <small>NB: Denne oversikta vises kun for lokale godkjennere og admins</small>
-        <br />
-        <Samtaler title='Alle samtaler i mitt lag' samtaler={lagetsSamtaler} />
-      </div>
+      <SamtaleOversikt />
     </Layout>
   )
 }

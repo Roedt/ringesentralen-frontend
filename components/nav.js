@@ -28,6 +28,7 @@ function Nav () {
   const [isOpen, setIsOpen] = useState(false)
   const [erGodkjenner, setErGodkjenner] = useState(false)
   const profil = useContext(ProfilContext)
+  console.log(profil)
 
   useEffect(() => {
     if (profil) {
