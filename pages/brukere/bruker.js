@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Toggle from '../../components/ui/toggle'
 
 const isArray = data => Array.isArray(data)
-const kanBrukeRingesentralen = roller => isArray(roller) && roller.includes('bruker')
+const kanBrukeRingesentralen = roller => isArray(roller) && (roller.includes('bruker') || roller.includes('venter_paa_godkjenning'))
 const kanRinge = roller => isArray(roller) && roller.includes('ringer')
 const kanGodkjenne = roller => isArray(roller) && roller.includes('godkjenner')
 
@@ -33,24 +33,6 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
     setRoller(oppdaterteRoller)
   }, [erBruker, erRinger, erGodkjenner])
 
-  /*
-  function avslaaBrukerSomRinger () {
-    endreBrukerStatus({
-      endring: 'avslaa',
-      id: id
-    })
-  }
-  */
-
-  function godkjennBrukerSomRinger () {
-    setErRinger(true)
-    setErBruker(true)
-    endreBrukerStatus({
-      endring: 'godkjenn',
-      id
-    })
-  }
-
   function deaktiverBruker () {
     setErBruker(false)
     setErRinger(false)
@@ -61,11 +43,11 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
     })
   }
 
-  function reaktiverBruker () {
+  function aktiverBruker () {
     setErBruker(true)
     setErRinger(true)
     endreBrukerStatus({
-      endring: 'reaktiver',
+      endring: 'aktiver',
       id
     })
   }
@@ -110,7 +92,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
         <Toggle
           skjermleserTekst='Har bruker tilgang til ringesentralen'
           status={erBruker}
-          runIfOn={reaktiverBruker}
+          runIfOn={aktiverBruker}
           runIfOff={deaktiverBruker}
         />
       </td>
@@ -118,7 +100,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
         <Toggle
           skjermleserTekst='Kan bruker ringe'
           status={erRinger}
-          runIfOn={godkjennBrukerSomRinger}
+          runIfOn={aktiverBruker}
           runIfOff={deaktiverBruker}
         />
       </td>
