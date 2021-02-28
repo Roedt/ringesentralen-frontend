@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useEffect, useState } from 'react'
 
-export const SessionContext = createContext()
+export const ProfilContext = createContext()
 
 const is401 = error => {
   return /401/.test(error.message)
@@ -30,8 +30,8 @@ export const ProfilContextProvider = props => {
   }, [])
 
   return (
-    <SessionContext.Provider value={[profil, setProfil]}>
+    <ProfilContext.Provider value={profil}>
       {props.children}
-    </SessionContext.Provider>
+    </ProfilContext.Provider>
   )
 }
