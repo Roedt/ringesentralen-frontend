@@ -1,12 +1,24 @@
-// import axios from 'axios'
+import axios from 'axios'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+
+const is401 = error => {
+  return /401/.test(error.message)
+}
 
 function Loggut () {
   const router = useRouter()
 
-  function handleLogOut () {
-    console.log('loged out')
+  async function handleLogOut () {
+    try {
+      await axios.get('/api/logout', { withCredentials: true })
+    } catch (error) {
+      if (is401(error)) {
+        router.push('/login')
+      } else {
+        console.error(error)
+      }
+    }
   }
 
   function handleCancel () {
