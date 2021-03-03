@@ -17,11 +17,11 @@ async function backendProxy (request, response) {
       const { data, status } = await axios[method](url, payload)
       response.status(status).json(data)
     } catch (error) {
-      if (is401) {
+      if (is401(error)) {
         response.status(401).send(error)
-      } else if (is403) {
+      } else if (is403(error)) {
         response.status(403).send(error)
-      } else if (is503) {   
+      } else if (is503(error)) {   
         response.status(503).json(error)
       } else {
         console.error(error)

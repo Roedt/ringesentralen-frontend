@@ -24,11 +24,11 @@ async function login (request, response) {
     })
     return response.json(cookie)
   } catch (error) {
-    if (is401) {
+    if (is401(error)) {
       response.status(401).send(error)
-    } else if (is403) {
+    } else if (is403(error)) {
       response.status(403).send(error)
-    } else if (is503) {
+    } else if (is503(error)) {
       response.status(503).json(error)
     } else {
       console.error(error)
