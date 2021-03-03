@@ -21,7 +21,7 @@ async function backendProxy (request, response) {
         response.status(401).send(error)
       } else if (is403(error)) {
         response.status(403).send(error)
-      } else if (is503(error)) {   
+      } else if (is503(error)) {
         response.status(503).json(error)
       } else {
         console.error(error)
