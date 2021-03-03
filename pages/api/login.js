@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Cookie from 'cookies'
 import { encrypt } from '../../lib/crypto'
+import { is401, is403, is503 } from '../../lib/utils'
 
 async function login (request, response) {
   const url = `${process.env.API_URL}/token/login`
@@ -23,8 +24,16 @@ async function login (request, response) {
     })
     return response.json(cookie)
   } catch (error) {
-    console.error(error)
-    throw error
+    if (is401) {
+      response.status(401).send(error)
+    } else if (is403) {
+      response.status(403).send(error)
+    } else if (is503) {
+      response.status(503).json(error)
+    } else {
+      console.error(error)
+      throw error
+    }
   }
 }
 

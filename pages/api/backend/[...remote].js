@@ -1,5 +1,6 @@
 import axios from 'axios'
 import parseCookie from '../../../lib/parse-cookie'
+import { is401, is403, is503 } from '../../../lib/utils'
 
 async function backendProxy (request, response) {
   const { query: { remote } } = request
@@ -16,8 +17,16 @@ async function backendProxy (request, response) {
       const { data, status } = await axios[method](url, payload)
       response.status(status).json(data)
     } catch (error) {
-      console.error(error)
-      throw error
+      if (is401) {
+        response.status(401).send(error)
+      } else if (is403) {
+        response.status(403).send(error)
+      } else if (is503) {   
+        response.status(503).json(error)
+      } else {
+        console.error(error)
+        throw error
+      }
     }
   }
 }
