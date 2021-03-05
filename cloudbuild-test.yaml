@@ -5,7 +5,7 @@ steps:
     args:
       - "-c"
       - |
-        docker build  --build-arg=NEXT_PUBLIC_API_ENDPOINT=$_HYPERSYSURL -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
+        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
