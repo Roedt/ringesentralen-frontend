@@ -1,5 +1,6 @@
 FROM node:14-alpine AS base
 ARG HYPERSYSURL
+RUN echo ${HYPERSYSURL}
 RUN echo "HypersysURL: ${HYPERSYSURL}"
 WORKDIR /base
 COPY package*.json ./
