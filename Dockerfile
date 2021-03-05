@@ -12,6 +12,8 @@ RUN npm run build
 
 FROM node:14-alpine AS production
 ENV NODE_ENV=production
+ARG NEXT_PUBLIC_HYPERSYS_BASE_URL
+ENV NEXT_PUBLIC_HYPERSYS_BASE_URL=$NEXT_PUBLIC_HYPERSYS_BASE_URL
 WORKDIR /app
 COPY --from=build /build/package*.json ./
 COPY --from=build /build/.next ./.next
