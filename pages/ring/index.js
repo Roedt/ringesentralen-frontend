@@ -2,14 +2,12 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+
+import { is401 } from '../../lib/utils'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
-
-const is401 = error => {
-  return /401/.test(error.message)
-}
 
 const Ring = () => {
   const router = useRouter()
