@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { useState } from 'react'
 
+import fixTelefonNummer from '../../lib/fix-telefonnummer'
+import { Warning } from '../../components/ui/alerts'
+
 function Nummeroppslag ({ setPerson }) {
   const [telefonNummer, setTelefonNummer] = useState('')
   const [alert, setAlert] = useState()
@@ -8,8 +11,7 @@ function Nummeroppslag ({ setPerson }) {
   async function hentTelefonNummer () {
     if (telefonNummer) {
       setAlert(false)
-      const { data } = axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: telefonNummer.toString() }, { withCredentials: true })
-      console.log(data)
+      const { data } = await axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: fixTelefonNummer(telefonNummer) }, { withCredentials: true })
       if (data) {
         setPerson(data)
       } else {
@@ -37,7 +39,7 @@ function Nummeroppslag ({ setPerson }) {
           <span>Søk</span>
         </button>
       </div>
-      {alert && <div>{alert}</div>}
+      {alert && <Warning message={alert} />}
     </div>
   )
 }
