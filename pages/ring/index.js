@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Samtale from './samtale'
+import Nummeroppslag from './nummeroppslag'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
 
@@ -92,6 +93,7 @@ const Ring = () => {
       <div>
         {(voipToken && !voipReady) && <VoIP />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
+        {!person && <Nummeroppslag setPerson={setPerson} />}
         <Samtale data={person} device={device} setPerson={setPerson} />
       </div>
     </Layout>
