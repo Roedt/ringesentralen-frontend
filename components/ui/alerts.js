@@ -1,4 +1,4 @@
-function danger ({ message }) {
+function Danger ({ message }) {
   return (
     <div className='bg-red-50 border-l-4 border-red-400 p-4'>
       <div className='flex'>
@@ -17,7 +17,7 @@ function danger ({ message }) {
   )
 }
 
-function warning ({ message }) {
+function Warning ({ message }) {
   return (
     <div className='bg-yellow-50 border-l-4 border-yellow-400 p-4'>
       <div className='flex'>
@@ -36,7 +36,7 @@ function warning ({ message }) {
   )
 }
 
-function info ({ message }) {
+function Info ({ message }) {
   return (
     <div className='bg-blue-50 border-l-4 border-blue-400 p-4'>
       <div className='flex'>
@@ -55,7 +55,7 @@ function info ({ message }) {
   )
 }
 
-function success ({ message }) {
+function Success ({ message }) {
   return (
     <div className='bg-green-50 border-l-4 border-green-400 p-4'>
       <div className='flex'>
@@ -74,11 +74,11 @@ function success ({ message }) {
   )
 }
 
-export default info
+export default Info
 
 export {
-  danger,
-  info,
-  success,
-  warning
+  Danger,
+  Info,
+  Success,
+  Warning
 }
