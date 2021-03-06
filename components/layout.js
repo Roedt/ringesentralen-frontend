@@ -1,12 +1,14 @@
 import Header from './header'
 import Nav from './nav'
 import Footer from './footer'
+import Vannmerke from './vannmerke'
 import { ProfilContextProvider } from '../contexts/profil-context-provider'
 
 export default function Layout ({ pageTitle, children }) {
   return (
     <ProfilContextProvider>
       <div>
+        <Vannmerke isDemo />
         <Nav />
         <Header pageTitle={pageTitle} />
         <main>
