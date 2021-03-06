@@ -28,7 +28,6 @@ function Nav () {
   const [isOpen, setIsOpen] = useState(false)
   const [erGodkjenner, setErGodkjenner] = useState(false)
   const profil = useContext(ProfilContext)
-  console.log(profil)
 
   useEffect(() => {
     if (profil) {
@@ -48,7 +47,6 @@ function Nav () {
               <div className='ml-10 flex items-baseline space-x-4'>
                 <MainLink href='/' title='Forsiden' pathname={router.pathname} />
                 <MainLink href='/ring' title='Ring' pathname={router.pathname} />
-                {erGodkjenner && <MainLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />}
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
                 {erGodkjenner && <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />}
@@ -78,7 +76,6 @@ function Nav () {
         <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
           <BurgerLink href='/' title='Forsiden' pathname={router.pathname} />
           <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
-          {erGodkjenner && <BurgerLink href='/nummeroppslag' title='Nummeroppslag' pathname={router.pathname} />}
           <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
           {erGodkjenner && <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />}
