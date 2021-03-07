@@ -1,10 +1,13 @@
 FROM node:14-alpine AS base
+ARG HYPERSYSURL
 WORKDIR /base
 COPY package*.json ./
 RUN npm install
 COPY . .
 
 FROM base AS build
+ARG HYPERSYSURL
+ENV NEXT_PUBLIC_HYPERSYS_BASE_URL=$HYPERSYSURL
 ENV NODE_ENV=production
 WORKDIR /build
 COPY --from=base /base ./
