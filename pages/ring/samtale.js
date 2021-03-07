@@ -3,20 +3,16 @@ import { useState } from 'react'
 import Ringemanus from '../../components/ringemanus'
 import ResultatSkjema from './resultatskjema'
 
-function Samtale ({ data, device, setPerson }) {
+function Samtale ({ accepted, data, device, setPerson }) {
   const [samtale, setSamtale] = useState()
   const [VoIPActive, setVoIPActive] = useState()
-
-  async function avslaaSamtale () {
-    setPerson(false)
-  }
 
   async function startSamtale (id) {
     await axios.post('/api/backend/samtale/startSamtale', { skalRingesID: id }, { withCredentials: true })
     setSamtale('paagaaende')
   }
 
-  async function avsluttSamtale (id) {
+  async function avsluttSamtale () {
     setSamtale('avsluttet')
   }
 
@@ -36,7 +32,7 @@ function Samtale ({ data, device, setPerson }) {
     })
   }
 
-  const StartKnapp = () => {
+  const StartKnapp = ({ id }) => {
     return (
       <button type='button' onClick={() => startSamtale(id)} className='w-48 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='https://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
@@ -90,43 +86,31 @@ function Samtale ({ data, device, setPerson }) {
     )
   }
 
-  if (!data) return null
+  const kanViseKomponent = data && accepted
+
+  if (!kanViseKomponent) return null
+
   const { person } = data
-  const { fornavn, etternavn, telefonnummer, id } = person
+  const { telefonnummer, id } = person
+
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
       <div className='-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap'>
-        <div className='ml-4 mt-4'>
-          <div className='flex items-center'>
-            <div className='ml-4'>
-              <h3 className='text-lg leading-6 font-medium text-gray-900'>
-                {fornavn} {etternavn}
-              </h3>
-              <p className='text-sm text-gray-500'>
-                {telefonnummer}
-              </p>
-              {(device && !VoIPActive) && <RingeMedVoipKnapp telefonnummer={telefonnummer} />}
-              {VoIPActive && <AvsluttVoipKnapp />}
-            </div>
-          </div>
-        </div>
         <div className='ml-4 mt-4 flex-shrink-0 flex'>
-          {!samtale && <StartKnapp />}
+          {(device && !VoIPActive) && <RingeMedVoipKnapp telefonnummer={telefonnummer} />}
+          {VoIPActive && <AvsluttVoipKnapp />}
+          {!samtale && <StartKnapp id={id} />}
           {samtale === 'paagaaende' && <StoppKnapp />}
-          <button type='button' disabled={samtale} onClick={() => avslaaSamtale()} className='w-48 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-            <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='https://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' aria-hidden='true'>
-              <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z' />
-            </svg>
-            <span>
-              Avslå samtale
-            </span>
-          </button>
         </div>
       </div>
-      <div className='mt-4'>
-        <Ringemanus manus={id} />
+      <div className='mt-4 flex lg:flex-row md:flex-col'>
+        <div className='flex-1 lg:pr-4 md:mb-4'>
+          <Ringemanus manus={id} />
+        </div>
+        <div className='flex-1 lg:pl-4'>
+          <ResultatSkjema id={id} setPerson={setPerson} />
+        </div>
       </div>
-      {samtale === 'avsluttet' && <ResultatSkjema id={id} setPerson={setPerson} />}
     </div>
   )
 }

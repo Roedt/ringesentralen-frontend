@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react'
 import { is401 } from '../../lib/utils'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
+import Person from './person'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
 
 const Ring = () => {
   const router = useRouter()
   const [person, setPerson] = useState()
+  const [accepted, setIsAccepted] = useState()
   const [device, setDevice] = useState()
   const [loading, setLoading] = useState()
   const [voipToken, setVoipToken] = useState()
@@ -20,6 +22,7 @@ const Ring = () => {
 
   async function hentNyPerson () {
     setLoading(true)
+    setIsAccepted(false)
     try {
       const { data } = await axios.get('/api/backend/samtale/neste', { withCredentials: true })
       if (debugNummer) {
@@ -92,7 +95,8 @@ const Ring = () => {
         {(voipToken && !voipReady) && <VoIP />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
-        <Samtale data={person} device={device} setPerson={setPerson} />
+        {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
+        <Samtale data={person} accepted={accepted} device={device} setPerson={setPerson} />
       </div>
     </Layout>
   )
