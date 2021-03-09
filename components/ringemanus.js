@@ -2,9 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 const md = require('markdown-it')()
 
-function Ringemanus ({ manus }) {
+function Ringemanus ({ manus, isOpen }) {
   const [html, setHtml] = useState('')
-  const [visManus, setVisManus] = useState()
+  const [visManus, setVisManus] = useState(isOpen)
 
   function toggleManus () {
     setVisManus(!visManus)

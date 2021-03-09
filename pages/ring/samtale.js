@@ -105,10 +105,10 @@ function Samtale ({ accepted, data, device, setPerson }) {
       </div>
       <div className='mt-4 flex lg:flex-row md:flex-col'>
         <div className='flex-1 lg:pr-4 md:mb-4'>
-          <ResultatSkjema id={id} setPerson={setPerson} />
+          <ResultatSkjema id={id} setPerson={setPerson} isOpen />
         </div>
         <div className='flex-1 lg:pl-4'>
-          <Ringemanus manus={id} />
+          <Ringemanus manus={id} isOpen />
         </div>
       </div>
     </div>
