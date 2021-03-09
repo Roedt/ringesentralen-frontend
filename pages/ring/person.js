@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Historikk from './historikk'
 
 function Person ({ data, setIsAccepted, setPerson }) {
   const [godtatt, setIsGodtatt] = useState()
@@ -14,7 +15,7 @@ function Person ({ data, setIsAccepted, setPerson }) {
 
   if (!data) return null
 
-  const { person } = data
+  const { person, tidlegareSamtalar } = data
   const { fornavn, etternavn, telefonnummer } = person
 
   return (
@@ -51,6 +52,7 @@ function Person ({ data, setIsAccepted, setPerson }) {
           </button>
         </div>
       </div>
+      <Historikk tidlegareSamtalar={tidlegareSamtalar} isOpen />
     </div>
   )
 }
