@@ -81,12 +81,17 @@ const HomePage = () => {
     getDashboard()
   }, [])
 
+  function handleBoom () {
+    throw new Error('Alt gikk galt')
+  }
+
   return (
     <Layout pageTitle='Ringesentralen'>
       <Head>
         <title>Ringesentralen</title>
       </Head>
       <Dashboard dashboard={dashboard} />
+      <button onClick={handleBoom}>Boom</button>
     </Layout>
   )
 }
