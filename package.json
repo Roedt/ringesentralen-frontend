@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
+    "@sentry/react": "6.2.2",
+    "@sentry/tracing": "6.2.2",
     "@tailwindcss/typography": "0.4.0",
     "axios": "0.21.1",
     "cookies": "0.8.0",
