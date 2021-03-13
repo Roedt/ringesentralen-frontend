@@ -6,7 +6,7 @@ async function hentRingeManus (request, response) {
   const { manus } = await request.query
   console.log('manus', manus)
 
-  const filmappe = path.join(process.cwd(), 'ringemanus')
+  const filmappe = path.join(process.cwd(), 'pages', 'api', 'ringemanus', 'manus')
   console.log('cwd', process.cwd())
   console.log('files i process.cwd()', readdirSync(process.cwd()))
   console.log('filmappe', filmappe)
