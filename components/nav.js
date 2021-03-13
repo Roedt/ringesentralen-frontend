@@ -50,7 +50,7 @@ function Nav () {
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
                 {erGodkjenner && <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />}
-                {erGodkjenner && <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />}
+                <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
                 {erGodkjenner && <MainLink href='/administrasjon' title='Administrasjon' pathname={router.pathname} />}
                 <MainLink href='/loggut' title='Logg ut' pathname={router.pathname} />
               </div>
@@ -79,7 +79,7 @@ function Nav () {
           <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
           {erGodkjenner && <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />}
-          {erGodkjenner && <BurgerLink href='/statistikk' title='Statistikk' pathname={router.pathname} />}
+          <BurgerLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
           {erGodkjenner && <BurgerLink href='/administrasjon' title='Administrasjon' pathname={router.pathname} />}
           <BurgerLink href='/loggut' title='Logg ut' pathname={router.pathname} />
         </div>
