@@ -66,7 +66,6 @@ const Hjelp = () => {
             <li>godkjenne nye ringarar</li>
             <li>sjå den fullstendige lista over alle ringarar</li>
             <li>sjå ekstra statistikk</li>
-            <li>slette all informasjon vi har om ein person</li>
             <li>deaktivere ein ringar</li>
             <li>gi ein ringar moglegheit til å godkjenne lokale ringarar (og til å ta bort denne moglegheita igjen)</li>
           </ul>
