@@ -52,9 +52,9 @@ function Samtale ({ accepted, data, device, setPerson }) {
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
+      <VoIP telefonnummer={telefonnummer} />
       <div className='-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap'>
         <div className='ml-4 mt-4 flex-shrink-0 flex'>
-          <VoIP telefonnummer={telefonnummer} />
           {!samtale && <StartKnapp id={id} />}
           {samtale === 'paagaaende' && <StoppKnapp />}
         </div>
