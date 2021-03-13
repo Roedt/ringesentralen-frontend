@@ -1,12 +1,11 @@
-import { readdirSync } from 'fs';
-import { readFile, readdir } from 'fs/promises'
+import { readdirSync } from 'fs'
+import { readFile } from 'fs/promises'
 import path from 'path'
 
 async function hentRingeManus (request, response) {
   const { manus } = await request.query
   console.log('manus', manus)
 
-  
   const filmappe = path.join(process.cwd(), 'ringemanus')
   console.log('cwd', process.cwd())
   console.log('files i process.cwd()', readdirSync(process.cwd()))
