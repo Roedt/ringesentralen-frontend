@@ -19,7 +19,6 @@ Du trenger [Node.js](https://nodejs.org/) >= 12
 ```
 API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
-ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
 COOKIE_NAME=Navn på cookie
 COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
@@ -39,9 +38,12 @@ TWILIO_API_SECRET=api secret hos twilio
 - `/api/twilio/connect` lager twiml som svar på Twilios webhook (bruk f.eks. [ngrok](https://ngrok.com/) for å nå lokal maskin under utvikling)
 
 ### Ringemanus
-
 - Det lages ringemanus for hvert valgdistrikt
 - Manus skrives i markdown og legges i mappen ringemanus
+
+### Sesjoner
+- Bruker stateless sesjonshåndtering med `next-iron-session`
+- Mer eller mindre plukket direkte fra [det offisielle eksempelrepoet](https://github.com/vercel/next.js/tree/canary/examples/with-iron-session)
 
 ### Scripts
 - test og lint `npm t`
