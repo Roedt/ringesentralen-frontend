@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Cookie from 'cookies'
-import { encrypt } from '../../lib/crypto'
+
+import withSession from '../../lib/session'
 import { is401, is403, is503 } from '../../lib/utils'
 
 async function login (request, response) {
@@ -13,16 +13,15 @@ async function login (request, response) {
   }
   try {
     const { data: token } = await axios.post(url, payload)
-    const cookie = {
+
+    const user = {
       token,
-      expires: new Date().getTime() + 36000000
+      expires: new Date().getTime() + 36000000,
+      isLoggedIn: true
     }
-    const cookies = new Cookie(request, response)
-    cookies.set(process.env.COOKIE_NAME, encrypt(cookie), {
-      httpOnly: true,
-      sameSite: 'lax'
-    })
-    return response.json(cookie)
+    request.session.set('user', user)
+    await request.session.save()
+    response.json(user)
   } catch (error) {
     if (is401(error)) {
       response.status(401).send(error)
@@ -37,4 +36,4 @@ async function login (request, response) {
   }
 }
 
-export default login
+export default withSession(login)
