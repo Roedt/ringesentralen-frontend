@@ -54,7 +54,6 @@ const StatistikkResponse = ({ statistikk }) => {
   }
 
   const PersonerStatistikk = () => {
-    console.log(statistikk)
     if (!statistikk) return null
     return (
       <div>
