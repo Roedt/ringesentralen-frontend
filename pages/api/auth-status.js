@@ -1,12 +1,12 @@
-import parseCookie from '../../lib/parse-cookie'
+import withSession from '../../lib/session'
 
 async function AuthStatus (request, response) {
-  const cookie = parseCookie(request, response)
-  if (cookie) {
-    return response.json({ ...cookie, isAuthenticated: true })
+  const user = request.session.get('user')
+  if (user) {
+    return response.json({ ...user, isAuthenticated: true })
   } else {
     return response({ isAuthenticated: false })
   }
 }
 
-export default AuthStatus
+export default withSession(AuthStatus)

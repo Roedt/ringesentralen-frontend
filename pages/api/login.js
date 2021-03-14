@@ -17,8 +17,9 @@ async function login (request, response) {
     const user = {
       token,
       expires: new Date().getTime() + 36000000,
-      isLoggedIn: true
+      isAuthenticated: true
     }
+    console.log('Hentet bruker, alt er oki')
     request.session.set('user', user)
     await request.session.save()
     response.json(user)
