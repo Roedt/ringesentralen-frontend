@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { is401 } from '../../lib/utils'
+import { is401, is403 } from '../../lib/utils'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
 import Person from './person'
@@ -30,6 +30,8 @@ const Ring = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }

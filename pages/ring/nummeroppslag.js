@@ -1,10 +1,13 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import { is401, is403 } from '../../lib/utils'
 import fixTelefonNummer from '../../lib/fix-telefonnummer'
 import { Warning } from '../../components/ui/alerts'
 
 function Nummeroppslag ({ setPerson }) {
+  const router = useRouter()
   const [telefonNummer, setTelefonNummer] = useState('')
   const [alert, setAlert] = useState()
 
@@ -16,11 +19,21 @@ function Nummeroppslag ({ setPerson }) {
   async function hentTelefonNummer () {
     if (telefonNummer) {
       setAlert(false)
-      const { data } = await axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: fixTelefonNummer(telefonNummer) }, { withCredentials: true })
-      if (data) {
-        setPerson(data)
-      } else {
-        setAlert('Fant ingen treff på telefonnummeret')
+      try {
+        const { data } = await axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: fixTelefonNummer(telefonNummer) }, { withCredentials: true })
+        if (data) {
+          setPerson(data)
+        } else {
+          setAlert('Fant ingen treff på telefonnummeret')
+        }
+      } catch (error) {
+        if (is401(error)) {
+          router.push('/login')
+        } else if (is403(error)) {
+          router.push('/sperret')
+        } else {
+          console.error(error)
+        }
       }
     }
   }
