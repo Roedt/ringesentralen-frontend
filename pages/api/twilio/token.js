@@ -1,8 +1,8 @@
-import parseCookie from '../../../lib/parse-cookie'
+import withSession from '../../../lib/session'
 
 function twilioToken (request, response) {
-  const cookie = parseCookie(request, response)
-  if (!cookie) {
+  const user = request.session.get('user')
+  if (!user) {
     response.status(401).json({ isAuthenticated: false })
   } else {
     const AccessToken = require('twilio').jwt.AccessToken
@@ -32,4 +32,4 @@ function twilioToken (request, response) {
   }
 }
 
-export default twilioToken
+export default withSession(twilioToken)
