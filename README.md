@@ -21,6 +21,7 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 ENCRYPTOR_KEY=Nøkkel for kryptering av cookie
 COOKIE_NAME=Navn på cookie
+COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
 NEXT_PUBLIC_SENTRY_DSN=url til Sentry
 TWILIO_ACCOUNT_SID=id til twilio kontoen
