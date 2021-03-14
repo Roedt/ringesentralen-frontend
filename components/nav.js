@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { ProfilContext } from '../contexts/profil-context-provider'
 
 function BurgerLink ({ href, title, pathname }) {
   const menuBurgerSelected = 'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'
@@ -26,14 +25,6 @@ function MainLink ({ href, title, pathname }) {
 function Nav () {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [erGodkjenner, setErGodkjenner] = useState(false)
-  const profil = useContext(ProfilContext)
-
-  useEffect(() => {
-    if (profil) {
-      setErGodkjenner(profil.rolle.includes('godkjenner'))
-    }
-  }, [profil])
 
   return (
     <nav className='bg-gray-800'>
@@ -49,7 +40,7 @@ function Nav () {
                 <MainLink href='/ring' title='Ring' pathname={router.pathname} />
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
-                {erGodkjenner && <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />}
+                <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />
                 <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
                 <MainLink href='/loggut' title='Logg ut' pathname={router.pathname} />
               </div>
@@ -77,7 +68,7 @@ function Nav () {
           <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
           <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
-          {erGodkjenner && <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />}
+          <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />
           <BurgerLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
           <BurgerLink href='/loggut' title='Logg ut' pathname={router.pathname} />
         </div>
