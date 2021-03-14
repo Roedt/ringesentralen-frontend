@@ -4,9 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 
-const is401 = error => {
-  return /401/.test(error.message)
-}
+import { is401, is403 } from '../lib/utils'
 
 function Linje ({ igjenAaRinge, lokallag, personerSomKanRinges, totaltInklRingte }) {
   return (
@@ -80,6 +78,8 @@ const Dashboard = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }
