@@ -13,7 +13,6 @@ const SamtaleOversikt = () => {
   const [lagetsSamtaler, setLagetsSamtaler] = useState()
   const [erGodkjenner, setErGodkjenner] = useState()
   const profil = useContext(ProfilContext)
-  console.log(profil)
 
   async function hentMineSamtaler () {
     try {
