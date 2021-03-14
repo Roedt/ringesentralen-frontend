@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import withSession from '../../lib/session'
+import withSession from '../../../lib/session'
 import { is401, is403, is503 } from '../../../lib/utils'
 
 async function backendProxy (request, response) {
