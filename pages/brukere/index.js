@@ -2,12 +2,10 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+
+import { is401, is403 } from '../../lib/utils'
 import Layout from '../../components/layout'
 import BrukerListe from './bruker-liste'
-
-const is401 = error => {
-  return /401/.test(error.message)
-}
 
 const Brukere = () => {
   const router = useRouter()
@@ -26,6 +24,8 @@ const Brukere = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }
