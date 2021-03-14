@@ -2,13 +2,10 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { is401, is403 } from '../../lib/utils'
 import Layout from '../../components/layout'
-import Samtaler from './samtaleliste.js'
 import { ProfilContext } from '../../contexts/profil-context-provider'
-
-const is401 = error => {
-  return /401/.test(error.message)
-}
+import Samtaler from './samtaleliste.js'
 
 const SamtaleOversikt = () => {
   const router = useRouter()
@@ -25,6 +22,8 @@ const SamtaleOversikt = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }
@@ -37,6 +36,8 @@ const SamtaleOversikt = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }

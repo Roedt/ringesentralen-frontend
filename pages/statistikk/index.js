@@ -3,11 +3,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Layout from '../../components/layout'
+import { is401, is403 } from '../../lib/utils'
 import StatistikkResponse from './statistikkresponse'
-
-const is401 = error => {
-  return /401/.test(error.message)
-}
 
 const Statistikk = () => {
   const router = useRouter()
@@ -20,6 +17,8 @@ const Statistikk = () => {
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
       } else {
         console.error(error)
       }
