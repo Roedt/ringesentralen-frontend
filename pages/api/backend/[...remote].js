@@ -1,16 +1,17 @@
 import axios from 'axios'
-import parseCookie from '../../../lib/parse-cookie'
+
+import withSession from '../../../lib/session'
 import { is401, is403, is503 } from '../../../lib/utils'
 
 async function backendProxy (request, response) {
   const { query: { remote } } = request
   const method = request.method.toLowerCase()
   const payload = await request.body
-  const cookie = parseCookie(request, response)
-  if (!cookie) {
+  const user = request.session.get('user')
+  if (!user) {
     response.status(401).json({ isAuthenticated: false })
   } else {
-    const { token } = cookie
+    const { token } = user
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     const url = `${process.env.API_URL}/${remote.join('/')}`
     try {
@@ -31,4 +32,4 @@ async function backendProxy (request, response) {
   }
 }
 
-export default backendProxy
+export default withSession(backendProxy)
