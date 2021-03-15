@@ -1,20 +1,18 @@
 import Statistikkinnslag from './statistikkinnslag'
-import { useContext, useEffect, useState } from 'react'
-import { ProfilContext } from '../../contexts/profil-context-provider'
+import { useEffect, useState } from 'react'
 
-const StatistikkResponse = ({ statistikk }) => {
+const StatistikkResponse = ({ statistikk, user }) => {
   if (!statistikk) return null
 
   const [erAdmin, setErAdmin] = useState(false)
   const [erRinger, setErRinger] = useState(false)
-  const profil = useContext(ProfilContext)
 
   useEffect(() => {
-    if (profil) {
-      setErAdmin(profil.rolle.includes('admin'))
-      setErRinger(profil.rolle.includes('ringer'))
+    if (user && user.rolle) {
+      setErAdmin(user?.rolle.includes('admin'))
+      setErRinger(user?.rolle.includes('ringer'))
     }
-  }, [profil])
+  }, [user])
 
   const resultater = statistikk.samtalerStatistikkResponse.resultat
 

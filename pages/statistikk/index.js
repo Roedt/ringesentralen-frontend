@@ -2,12 +2,14 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import useUser from '../../lib/useUser'
 import Layout from '../../components/layout'
 import { is401, is403 } from '../../lib/utils'
 import StatistikkResponse from './statistikkresponse'
 
 const Statistikk = () => {
   const router = useRouter()
+  const { user } = useUser({ redirectTo: '/login' })
   const [statistikk, setStatistikk] = useState()
 
   async function hentStatistikk () {
@@ -34,7 +36,7 @@ const Statistikk = () => {
       <Head>
         <title>Statistikk</title>
       </Head>
-      <StatistikkResponse statistikk={statistikk} />
+      <StatistikkResponse statistikk={statistikk} user={user} />
     </Layout>
   )
 }
