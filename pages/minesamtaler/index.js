@@ -1,18 +1,19 @@
 import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import useUser from '../../lib/useUser'
 import { is401, is403 } from '../../lib/utils'
 import Layout from '../../components/layout'
-import { ProfilContext } from '../../contexts/profil-context-provider'
 import Samtaler from './samtaleliste.js'
 
 const SamtaleOversikt = () => {
   const router = useRouter()
+  const { user } = useUser({ redirectTo: '/login' })
   const [mineSamtaler, setMineSamtaler] = useState()
   const [lagetsSamtaler, setLagetsSamtaler] = useState()
   const [erGodkjenner, setErGodkjenner] = useState()
-  const profil = useContext(ProfilContext)
 
   async function hentMineSamtaler () {
     try {
@@ -48,10 +49,10 @@ const SamtaleOversikt = () => {
   }, [])
 
   useEffect(() => {
-    if (profil) {
-      setErGodkjenner(profil.rolle.includes('godkjenner'))
+    if (user) {
+      setErGodkjenner(user.rolle.includes('godkjenner'))
     }
-  }, [profil])
+  }, [user])
 
   useEffect(() => {
     if (erGodkjenner) {
