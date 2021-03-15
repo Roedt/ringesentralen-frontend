@@ -2,9 +2,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-const is401 = error => {
-  return /401/.test(error.message)
-}
+import { is401 } from '../lib/utils'
 
 function Loggut () {
   const router = useRouter()
