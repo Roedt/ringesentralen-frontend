@@ -33,14 +33,14 @@
     "@tailwindcss/typography": "0.4.0",
     "axios": "0.21.1",
     "markdown-it": "12.0.4",
-    "next": "10.0.8",
+    "next": "10.0.9",
     "next-iron-session": "4.1.12",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-spring": "8.0.27",
     "swr": "0.5.3",
     "toasted-notes": "3.2.0",
-    "twilio": "3.57.0",
+    "twilio": "3.58.0",
     "twilio-client": "1.14.0"
   },
   "devDependencies": {
