@@ -41,7 +41,7 @@ function VoIP ({ telefonnummer }) {
   }
 
   async function startVoIPSamtale (telefonnummer) {
-    device.connect(telefonnummer)
+    device.connect({ telefonnummer })
     device.on('connect', () => {
       setVoIPActive(true)
     })
