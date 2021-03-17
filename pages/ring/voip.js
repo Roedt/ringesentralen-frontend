@@ -11,6 +11,13 @@ function VoIP ({ telefonnummer }) {
   const [VoIPActive, setVoIPActive] = useState()
   const [voipReady, setVoipReady] = useState()
 
+  function cleanupState () {
+    setDevice(false)
+    setVoipToken(false)
+    setVoIPActive(false)
+    setVoipReady(false)
+  }
+
   async function hentVoipToken () {
     try {
       const { data } = await axios.get('/api/twilio/token', { withCredentials: true })
@@ -81,7 +88,7 @@ function VoIP ({ telefonnummer }) {
   }
 
   const Panel = ({ device, voipReady, VoIPActive, telefonnummer }) => {
-    if (!device && !voipReady && !telefonnummer) return null
+    if (!device || !voipReady || !telefonnummer) return null
     return (
       <>
         <RingeMedVoipKnapp VoIPActive={VoIPActive} telefonnummer={telefonnummer} />
@@ -91,8 +98,11 @@ function VoIP ({ telefonnummer }) {
   }
 
   useEffect(() => {
+    if (!telefonnummer) {
+      cleanupState()
+    }
     hentVoipToken()
-  }, [])
+  }, [telefonnummer])
 
   return (
     <div className='mb-4 pb-4 border-b border-gray-200'>
