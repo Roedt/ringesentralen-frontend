@@ -9,6 +9,7 @@ async function backendProxy (request, response) {
   const payload = await request.body
   const user = request.session.get('user')
   if (!user) {
+    console.log('Finner ingen bruker, sender til innlogging')
     response.status(401).json({ isAuthenticated: false })
   } else {
     const { token } = user
