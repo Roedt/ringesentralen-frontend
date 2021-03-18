@@ -6,7 +6,7 @@ import Vannmerke from './vannmerke'
 export default function Layout ({ pageTitle, children }) {
   return (
     <div>
-      <Vannmerke isDemo />
+      <Vannmerke isDemo={!process.env.NEXT_PUBLIC_IS_PRODUCTION} />
       <Nav />
       <Header pageTitle={pageTitle} />
       <main>

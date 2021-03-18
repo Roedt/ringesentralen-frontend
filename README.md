@@ -23,6 +23,7 @@ COOKIE_NAME=Navn på cookie
 COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
 NEXT_PUBLIC_SENTRY_DSN=url til Sentry
+NEXT_PUBLIC_IS_PRODUCTION= dersom denne er satt vises ikke demo-banneret på toppen
 TWILIO_ACCOUNT_SID=id til twilio kontoen
 TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
 TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
