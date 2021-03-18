@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { is401 } from '../../lib/utils'
 
-function Modus () {
+function Modus ({ user }) {
   const router = useRouter()
   const [aktivtModus, setAktivtModus] = useState('medlemmer')
 
@@ -20,6 +20,13 @@ function Modus () {
       }
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      const { aktivtModus } = user
+      setAktivtModus(aktivtModus)
+    }
+  }, [user])
 
   return (
     <div className='flex justify-start mb-8'>

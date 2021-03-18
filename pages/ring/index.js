@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import { is401, is403 } from '../../lib/utils'
+import useUser from '../../lib/useUser'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
 import Modus from './modus'
@@ -13,6 +14,7 @@ import Button from '../../components/ui/button'
 
 const Ring = () => {
   const router = useRouter()
+  const { user } = useUser({ redirectTo: '/login' })
   const [person, setPerson] = useState()
   const [accepted, setIsAccepted] = useState()
   const [loading, setLoading] = useState()
@@ -45,7 +47,7 @@ const Ring = () => {
         <title>Ringesiden</title>
       </Head>
       <div>
-        {!person && <Modus />}
+        {!person && <Modus user={user} />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
         {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
