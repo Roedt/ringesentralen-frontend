@@ -1,7 +1,7 @@
 import withSession from '../../lib/session'
 
 async function settAktivtModus (request, response) {
-  const { modus } = await request.query
+  const { modus } = await request.body
   const session = request.session.get('user')
   if (!session) {
     console.log('Finner ingen session, sender til innlogging')

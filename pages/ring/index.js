@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { is401, is403 } from '../../lib/utils'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
+import Modus from './modus'
 import Person from './person'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
@@ -44,6 +45,7 @@ const Ring = () => {
         <title>Ringesiden</title>
       </Head>
       <div>
+        {!person && <Modus />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
         {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
