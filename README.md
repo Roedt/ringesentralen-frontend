@@ -40,7 +40,7 @@ TWILIO_API_SECRET=api secret hos twilio
 
 ### Ringemanus
 - Det lages ringemanus for hvert valgdistrikt
-- Manus skrives i markdown og legges i mappen ringemanus
+- Manus skrives i markdown og legges i mappen `public/ringemanus/<velgere|medlemmer>/<fylkesnummer>.md`
 
 ### Sesjoner
 - Bruker stateless sesjonshåndtering med `next-iron-session`
