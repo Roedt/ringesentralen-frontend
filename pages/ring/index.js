@@ -51,7 +51,7 @@ const Ring = () => {
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
         {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
-        <Samtale data={person} accepted={accepted} setPerson={setPerson} />
+        <Samtale data={person} accepted={accepted} setPerson={setPerson} user={user} />
       </div>
     </Layout>
   )

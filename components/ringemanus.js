@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { is404 } from '../lib/utils'
 const md = require('markdown-it')()
 
 function Ringemanus ({ manus, modus, isOpen }) {
@@ -11,14 +12,16 @@ function Ringemanus ({ manus, modus, isOpen }) {
   }
 
   async function hentRingeManus () {
-    const manusUrl = `/ringemanus/${modus || 'velgere'}/{manus}.md`
+    const manusUrl = `/ringemanus/${modus || 'velgere'}/${manus}.md`
     const fallBackUrl = `/ringemanus/${modus || 'velgere'}/fallback.md`
     try {
       const { data } = await axios.get(manusUrl)
       setHtml(md.render(data))
     } catch (error) {
-      const { data } = await axios.get(fallBackUrl)
-      setHtml(md.render(data))
+      if (is404(error)) {
+        const { data } = await axios.get(fallBackUrl)
+        setHtml(md.render(data))
+      }
     }
   }
 
