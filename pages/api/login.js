@@ -25,7 +25,7 @@ async function login (request, response) {
       lokallag,
       token,
       expires: new Date().getTime() + 36000000,
-      aktivtModus: 'medlem',
+      aktivtModus: 'velgere',
       isAuthenticated: true
     }
     request.session.set('user', user)
