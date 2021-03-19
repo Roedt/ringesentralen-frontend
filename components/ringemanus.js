@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 const md = require('markdown-it')()
 
-function Ringemanus ({ manus, isOpen }) {
+function Ringemanus ({ manus, modus, isOpen }) {
   const [html, setHtml] = useState('')
   const [visManus, setVisManus] = useState(isOpen)
 
@@ -10,19 +10,25 @@ function Ringemanus ({ manus, isOpen }) {
     setVisManus(!visManus)
   }
 
-  async function hentRingeManus (manus) {
-    const url = `/api/ringemanus?manus=${manus}`
-    const { data } = await axios.get(url)
-    setHtml(md.render(data))
+  async function hentRingeManus () {
+    const manusUrl = `/ringemanus/${modus || 'velgere'}/{manus}.md`
+    const fallBackUrl = `/ringemanus/${modus || 'velgere'}/fallback.md`
+    try {
+      const { data } = await axios.get(manusUrl)
+      setHtml(md.render(data))
+    } catch (error) {
+      const { data } = await axios.get(fallBackUrl)
+      setHtml(md.render(data))
+    }
   }
 
   useEffect(() => {
-    if (manus) {
-      hentRingeManus(manus)
+    if (manus && modus) {
+      hentRingeManus()
     }
-  }, [manus])
+  }, [manus, modus])
 
-  if (!manus) return null
+  if (!manus || !modus) return null
 
   return (
     <div className='prose lg:prose-xl'>
