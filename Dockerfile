@@ -25,7 +25,6 @@ WORKDIR /app
 COPY --from=build /build/package*.json ./
 COPY --from=build /build/.next ./.next
 COPY --from=build /build/public ./public
-COPY --from=build /build/pages/api/ringemanus ./pages/api/ringemanus
 RUN npm install next
 
 EXPOSE 3000
