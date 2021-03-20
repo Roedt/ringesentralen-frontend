@@ -25,7 +25,7 @@ async function twilioConnectCall (request, response) {
     gather.say({
       voice: 'Polly.Liv',
       language: 'nb-NO'
-    }, 'Velkommen til Rødts ringesentral. Tast 1 om du vil at vi skal ringe deg tilbake senere. Tast 1 om du ikke ønsker å bli ringt igjen')
+    }, 'Velkommen til Rødts ringesentral. Tast een om du vil at vi skal ringe deg tilbake senere. Tast too om du ikke ønsker å bli ringt igjen')
     // Dette er den gamle koden for å redirecte til et annet telefonnummer
     // twiml.dial(process.env.TWILIO_INCOMING_HANDLER)
   }
