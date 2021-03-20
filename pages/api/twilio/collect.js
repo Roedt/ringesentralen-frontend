@@ -4,8 +4,6 @@ const VoiceResponse = twilio.twiml.VoiceResponse
 
 async function twilioCollectCall (request, response) {
   const payload = await request.body
-  console.log(JSON.stringify(payload, null, 2))
-  console.log('connect')
   const { Digits } = payload
   let melding = 'Vi mottok ikke noe svar, men det er helt greit. Godt valg! '
   if (Digits === '1') {
