@@ -25,7 +25,7 @@ async function hentToken () {
     const { data } = await axios.post(tokenUrl, payload)
     return data
   } catch (error) {
-    console.error(error)
+    console.error(error.message)
     return false
   }
 }
@@ -37,7 +37,7 @@ async function postSvar ({ token, payload }) {
     console.log(data)
     return data
   } catch (error) {
-    console.error(error)
+    console.error(error.message)
     return false
   }
 }
