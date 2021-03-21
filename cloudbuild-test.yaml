@@ -5,8 +5,8 @@ steps:
     args:
       - "-c"
       - |
-        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL --build-arg=SENTRYURL=$_SENTRYURL --build-arg=IS_PRODUCTION=$_IS_PRODUCTION --build-args=SYSTEMBRUKER=$SYSTEMBRUKER --build-args=SYSTEMBRUKER_PASSORD=$SYSTEMBRUKER_PASSORD --builds-args=FRONTEND_TOKEN_KEY=$FRONTEND_TOKEN_KEY -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
-
+        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL --build-arg=SENTRYURL=$_SENTRYURL --build-arg=IS_PRODUCTION=$_IS_PRODUCTION --build-arg=SYSTEMBRUKER=$$SYSTEMBRUKER --build-arg=SYSTEMBRUKERPASSORD=$$SYSTEMBRUKERPASSORD --build-arg=FRONTENDTOKENKEY=$$FRONTENDTOKENKEY -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
+    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/ringesentralen-frontend']
@@ -30,8 +30,8 @@ images: ['gcr.io/$PROJECT_ID/ringesentralen-frontend']
 availableSecrets:
   secretManager:
   - versionName: projects/$PROJECT_ID/secrets/frontendTokenKey/versions/1
-    env: 'FRONTEND_TOKEN_KEY'
+    env: 'FRONTENDTOKENKEY'
   - versionName: projects/$PROJECT_ID/secrets/frontendSystembruker/versions/1
     env: 'SYSTEMBRUKER'
   - versionName: projects/$PROJECT_ID/secrets/frontendSystembrukerPassord/versions/1
-    env: 'SYSTEMBRUKER_PASSORD'
+    env: 'SYSTEMBRUKERPASSORD'
