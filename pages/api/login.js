@@ -6,10 +6,11 @@ import { is401, is403, is503 } from '../../lib/utils'
 async function login (request, response) {
   const tokenUrl = `${process.env.API_URL}/token/login`
   const profilUrl = `${process.env.API_URL}/profil`
-  const { brukarnamn, passord } = await request.body
+  const { brukarnamn, passord, systembruker } = await request.body
   const payload = {
     brukarnamn,
     passord,
+    systembruker: systembruker || false,
     key: process.env.API_AUTH_KEY
   }
   try {
