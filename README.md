@@ -30,6 +30,8 @@ TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
 TWILIO_INCOMING_HANDLER=telefonnummer vi ønsker å videresende innkommende samtaler til
 TWILIO_API_KEY=api key hos twilio
 TWILIO_API_SECRET=api secret hos twilio
+SERVICEBRUKER_BRUKERNAVN=brukernavn for servicebrukeren som skal registrere svar fra telefonsvareren
+SERVICEBRUKER_PASSORD=passord for servicebrukeren
 ```
 
 ### Twilio
