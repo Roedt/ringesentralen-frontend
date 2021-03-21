@@ -28,9 +28,12 @@ const Ring = () => {
       if (debugNummer) {
         data.person.telefonnummer = debugNummer
       }
-      setPerson(data)
       setLoading(false)
+      if (data) {
+        setPerson(data)
+      }
     } catch (error) {
+      setLoading(false)
       if (is401(error)) {
         router.push('/login')
       } else if (is403(error)) {
