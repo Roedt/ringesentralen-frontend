@@ -5,7 +5,7 @@ steps:
     args:
       - "-c"
       - |
-        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL --build-arg=SENTRYURL=$_SENTRYURL --build-arg=IS_PRODUCTION=$_IS_PRODUCTION -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
+        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL --build-arg=SENTRYURL=$_SENTRYURL --build-arg=IS_PRODUCTION=$_IS_PRODUCTION --build-args=SYSTEMBRUKER=$SYSTEMBRUKER --build-args=SYSTEMBRUKER_PASSORD=$SYSTEMBRUKER_PASSORD -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -27,3 +27,9 @@ steps:
 
 # Image name
 images: ['gcr.io/$PROJECT_ID/ringesentralen-frontend']
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/frontendSystembruker/versions/1
+    env: 'SYSTEMBRUKER'
+  - versionName: projects/$PROJECT_ID/secrets/frontendSystembrukerPassord/versions/1
+    env: 'SYSTEMBRUKER_PASSORD'
