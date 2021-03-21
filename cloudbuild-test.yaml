@@ -5,8 +5,20 @@ steps:
     args:
       - "-c"
       - |
-        docker build  --build-arg=HYPERSYSURL=$_HYPERSYSURL --build-arg=SENTRYURL=$_SENTRYURL --build-arg=IS_PRODUCTION=$_IS_PRODUCTION --build-arg=SYSTEMBRUKER=$$SYSTEMBRUKER --build-arg=SYSTEMBRUKERPASSORD=$$SYSTEMBRUKERPASSORD --build-arg=FRONTENDTOKENKEY=$$FRONTENDTOKENKEY -t gcr.io/$PROJECT_ID/ringesentralen-frontend .
-    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY']
+        docker build --build-arg=HYPERSYSURL=$_HYPERSYSURL \
+        --build-arg=SENTRYURL=$_SENTRYURL \
+        --build-arg=IS_PRODUCTION=$_IS_PRODUCTION \
+        --build-arg=SYSTEMBRUKER=$$SYSTEMBRUKER \
+        --build-arg=SYSTEMBRUKERPASSORD=$$SYSTEMBRUKERPASSORD \
+        --build-arg=FRONTENDTOKENKEY=$$FRONTENDTOKENKEY \
+        --build-arg="TWILIO_TWIML_APP_SID=$$TWILIOTWIMLAPPSID" \
+        --build-arg="TWILIO_ACCOUNT_SID=$$TWILIOACCOUNTSID" \
+        --build-arg="TWILIO_CALLER_ID=$$TWILIOCALLERID" \
+        --build-arg="TWILIO_API_KEY=$$TWILIOAPIKEY" \
+        --build-arg="TWILIO_API_SECRET=$$TWILIOAPISECRET" \
+        --build-arg="COOKIE_SECRET=$$COOKIESECRET" \
+        -t 'gcr.io/$PROJECT_ID/ringesentralen-frontend' .
+    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'TWILIOTWIMLAPPSID', 'TWILIOACCOUNTSID', 'TWILIOCALLERID', 'TWILIOAPIKEY', 'TWILIOAPISECRET', 'COOKIESECRET']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/ringesentralen-frontend']
@@ -35,3 +47,15 @@ availableSecrets:
     env: 'SYSTEMBRUKER'
   - versionName: projects/$PROJECT_ID/secrets/frontendSystembrukerPassord/versions/1
     env: 'SYSTEMBRUKERPASSORD'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_TWIML_APP_SID/versions/1
+    env: 'TWILIOTWIMLAPPSID'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_ACCOUNT_SID/versions/1
+    env: 'TWILIOACCOUNTSID'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_CALLER_ID/versions/1
+    env: 'TWILIOCALLERID'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_KEY/versions/1
+    env: 'TWILIOAPIKEY'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_SECRET/versions/1
+    env: 'TWILIOAPISECRET'
+  - versionName: projects/$PROJECT_ID/secrets/COOKIE_SECRET/versions/1
+    env: 'COOKIESECRET'
