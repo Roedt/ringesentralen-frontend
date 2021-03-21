@@ -7,8 +7,8 @@ const Hjelp = () => {
       <Head>
         <title>Hjelpeside</title>
       </Head>
-      <div class='rounded-xl bg-gray-100 p-8 md:p-8'>
-        <h2 class='text-xl font-semibold mb-2'>For deg som ringar</h2>
+      <div className='rounded-xl bg-gray-100 p-8 md:p-8'>
+        <h2 className='text-xl font-semibold mb-2'>For deg som ringar</h2>
         <p>Dette systemet hjelper deg å ringe medlemmer eller andre. Systemet viser deg telefonnummer, namn, adresse, lokallag med meir, og så ringer du personen.
           Systemet vil også vise deg eit forslag til <em>manus</em>, altså kva du kan seie når du snakkar med personen.
         </p>
@@ -38,7 +38,7 @@ const Hjelp = () => {
         <p>Det er viktig at du mot slutten eller etter samtalen registrerer resultat av samtalen - eksempelvis at personen svarte og vil ha valgkampsbrev frå oss.
           Marker om personen svarte eller ikkje. I tillegg er de tre sjekkboksar, som du kan krysse viss svaret er ja, og la vera blanke viss svaret er nei:
         </p>
-        <ul class='list-disc ml-4 mb-4 mt-2'>
+        <ul className='list-disc ml-4 mb-4 mt-2'>
           <li>Vil ha korona-program på epost</li>
           <li>Kan tenke seg å være mer aktiv i Rødt framover</li>
           <li>Vil ha valgkampsbrev med informasjon om valgkampen</li>
@@ -59,10 +59,10 @@ const Hjelp = () => {
 
         <p>Lokallag kan ha ein lokal person som har status som lokal godkjenner av ringarar. Denne personen har alle moglegheitene ein ringar har, og kan i tillegg godkjenne ringarar i sitt lokallag.</p>
 
-        <hr class='m-4' />
-        <h2 class='text-xl font-semibold mb-2'>Administrasjonsverktøy</h2>
+        <hr className='m-4' />
+        <h2 className='text-xl font-semibold mb-2'>Administrasjonsverktøy</h2>
         <p>Vi som driftar systemet har tilgang til nokre ekstra administrasjonsverktyg: vi kan
-          <ul class='list-disc mb-6 ml-4'>
+          <ul className='list-disc mb-6 ml-4'>
             <li>godkjenne nye ringarar</li>
             <li>sjå den fullstendige lista over alle ringarar</li>
             <li>sjå ekstra statistikk</li>
@@ -73,8 +73,8 @@ const Hjelp = () => {
 
         <p>Når ringeprosjektet er over for denne gong, vil vi hente ut resultata og følge dei opp vidare.</p>
 
-        <hr class='m-4' />
-        <h2 class='text-xl font-semibold mb-2'>Noko du ikkje fekk svar på her?</h2>
+        <hr className='m-4' />
+        <h2 className='text-xl font-semibold mb-2'>Noko du ikkje fekk svar på her?</h2>
         <p>Takk for at du bidreg! Er det noko du lurer på, still gjerne spørsmål på <a className='text-blue-600 underline' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>Slack</a>, på kanalen #ringesentralen.
           Finn du tekniske feil eller andre ting du reagerer på, sett vi som lager systemet stor pris på om du rapporterer det,
           helst på  <a className='text-blue-600 underline' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>Slack</a>.
