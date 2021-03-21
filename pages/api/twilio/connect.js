@@ -15,6 +15,7 @@ async function twilioConnectCall (request, response) {
   } else {
     // Telefoner som ringer tilbake skal treffe telefonsvareren vår
     // Først setter vi opp tastefunksjonen som tar imot input fra tastene
+    // Den timer ut etter 5 sekunder og er ferdig etter at ett tall er mottatt
     const gather = twiml.gather({
       input: 'dtmf',
       timeout: 5,
@@ -26,6 +27,8 @@ async function twilioConnectCall (request, response) {
       voice: 'Polly.Liv',
       language: 'nb-NO'
     }, 'Velkommen til Rødts ringesentral. Tast een om du vil at vi skal ringe deg tilbake senere. Tast too om du ikke ønsker å bli ringt igjen')
+    // Dersom innsamling av data timer ut sendes data videre likevel
+    twiml.redirect('/api/twilio/collect')
     // Dette er den gamle koden for å redirecte til et annet telefonnummer
     // twiml.dial(process.env.TWILIO_INCOMING_HANDLER)
   }
