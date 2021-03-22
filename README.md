@@ -19,9 +19,9 @@ Du trenger [Node.js](https://nodejs.org/) >= 12
 ```
 API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
-AMPLITUDE_API_KEY=Nøkkel for logging til Amplitude
 COOKIE_NAME=Navn på cookie
 COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
+NEXT_PUBLIC_AMPLITUDE_API_KEY=Nøkkel for logging til Amplitude
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
 NEXT_PUBLIC_SENTRY_DSN=url til Sentry
 NEXT_PUBLIC_IS_PRODUCTION= dersom denne er satt vises ikke demo-banneret på toppen
