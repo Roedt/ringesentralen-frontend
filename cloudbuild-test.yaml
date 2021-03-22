@@ -6,6 +6,7 @@ steps:
       - "-c"
       - |
         docker build --build-arg=HYPERSYSURL=$_HYPERSYSURL \
+        --build-arg=AMPLITUDE_API_KEY=$_AMPLITUDE_API_KEY \
         --build-arg=SENTRYURL=$_SENTRYURL \
         --build-arg=IS_PRODUCTION=$_IS_PRODUCTION \
         --build-arg=SYSTEMBRUKER=$$SYSTEMBRUKER \
