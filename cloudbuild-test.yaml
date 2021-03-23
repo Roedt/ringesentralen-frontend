@@ -18,8 +18,9 @@ steps:
         --build-arg="TWILIO_API_KEY=$$TWILIOAPIKEY" \
         --build-arg="TWILIO_API_SECRET=$$TWILIOAPISECRET" \
         --build-arg="COOKIE_SECRET=$$COOKIESECRET" \
+        --build-arg="ENCRYPTION_KEY=$$ENCRYPTION_KEY" \
         -t 'gcr.io/$PROJECT_ID/ringesentralen-frontend' .
-    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'TWILIOTWIMLAPPSID', 'TWILIOACCOUNTSID', 'TWILIOCALLERID', 'TWILIOAPIKEY', 'TWILIOAPISECRET', 'COOKIESECRET']
+    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'TWILIOTWIMLAPPSID', 'TWILIOACCOUNTSID', 'TWILIOCALLERID', 'TWILIOAPIKEY', 'TWILIOAPISECRET', 'COOKIESECRET', 'ENCRYPTION_KEY']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/ringesentralen-frontend']
@@ -60,3 +61,5 @@ availableSecrets:
     env: 'TWILIOAPISECRET'
   - versionName: projects/$PROJECT_ID/secrets/COOKIE_SECRET/versions/1
     env: 'COOKIESECRET'
+  - versionName: projects/$PROJECT_ID/secrets/encryptionKey/versions/2
+    env: 'ENCRYPTION_KEY'
