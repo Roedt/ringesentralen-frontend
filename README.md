@@ -21,18 +21,19 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 COOKIE_NAME=Navn på cookie
 COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
+ENCRYPTION_KEY=Nøkkel for kryptering av brukernavn og passord, 32 bits
 NEXT_PUBLIC_AMPLITUDE_API_KEY=Nøkkel for logging til Amplitude
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
 NEXT_PUBLIC_SENTRY_DSN=url til Sentry
 NEXT_PUBLIC_IS_PRODUCTION= dersom denne er satt vises ikke demo-banneret på toppen
+SERVICEBRUKER_BRUKERNAVN=brukernavn for servicebrukeren som skal registrere svar fra telefonsvareren
+SERVICEBRUKER_PASSORD=passord for servicebrukeren
 TWILIO_ACCOUNT_SID=id til twilio kontoen
 TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
 TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
 TWILIO_INCOMING_HANDLER=telefonnummer vi ønsker å videresende innkommende samtaler til
 TWILIO_API_KEY=api key hos twilio
 TWILIO_API_SECRET=api secret hos twilio
-SERVICEBRUKER_BRUKERNAVN=brukernavn for servicebrukeren som skal registrere svar fra telefonsvareren
-SERVICEBRUKER_PASSORD=passord for servicebrukeren
 ```
 
 ### Twilio
