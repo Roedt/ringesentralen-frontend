@@ -43,23 +43,23 @@ steps:
 images: ['gcr.io/$PROJECT_ID/ringesentralen-frontend']
 availableSecrets:
   secretManager:
-  - versionName: projects/$PROJECT_ID/secrets/frontendTokenKey/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/frontendTokenKey/versions/latest
     env: 'FRONTENDTOKENKEY'
-  - versionName: projects/$PROJECT_ID/secrets/frontendSystembruker/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/frontendSystembruker/versions/latest
     env: 'SYSTEMBRUKER'
-  - versionName: projects/$PROJECT_ID/secrets/frontendSystembrukerPassord/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/frontendSystembrukerPassord/versions/latest
     env: 'SYSTEMBRUKERPASSORD'
-  - versionName: projects/$PROJECT_ID/secrets/TWILIO_TWIML_APP_SID/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_TWIML_APP_SID/versions/latest
     env: 'TWILIOTWIMLAPPSID'
-  - versionName: projects/$PROJECT_ID/secrets/TWILIO_ACCOUNT_SID/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_ACCOUNT_SID/versions/latest
     env: 'TWILIOACCOUNTSID'
-  - versionName: projects/$PROJECT_ID/secrets/TWILIO_CALLER_ID/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_CALLER_ID/versions/latest
     env: 'TWILIOCALLERID'
-  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_KEY/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_KEY/versions/latest
     env: 'TWILIOAPIKEY'
-  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_SECRET/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_SECRET/versions/latest
     env: 'TWILIOAPISECRET'
-  - versionName: projects/$PROJECT_ID/secrets/COOKIE_SECRET/versions/1
+  - versionName: projects/$PROJECT_ID/secrets/COOKIE_SECRET/versions/latest
     env: 'COOKIESECRET'
-  - versionName: projects/$PROJECT_ID/secrets/encryptionKey/versions/2
+  - versionName: projects/$PROJECT_ID/secrets/encryptionKey/versions/latest
     env: 'ENCRYPTION_KEY'
