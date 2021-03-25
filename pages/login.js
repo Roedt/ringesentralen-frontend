@@ -34,10 +34,8 @@ function Login () {
       router.push('/')
     } catch (error) {
       setLoading(false)
-      if (is401(error)) {
-        setErrors('Du er ikke registrert som bruker av systemet. Sjekk om du er korrekt registrert i Hypersys eller kontakt oss på Slack.')
-      } else if (is403(error)) {
-        setErrors('Feil brukernavn og/eller passord. Vennligst prøv igjen.')
+      if (is401(error) || is403(error)) {
+        setErrors('Feil brukernavn og/eller passord. Sjekk om du er korrekt registrert i Hypersys eller kontakt oss på Slack.')
       } else if (is503(error)) {
         setErrors('Vi har problemer med å nå noen av baksystemene. Vennligst prøv igjen senere.')
       } else {
