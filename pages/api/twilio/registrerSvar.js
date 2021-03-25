@@ -1,6 +1,10 @@
 import axios from 'axios'
+
+import { encrypt } from '../../../lib/crypto'
+
 const tokenUrl = `${process.env.API_URL}/token/login`
 const svarUrl = `${process.env.API_URL}/telefonsvar`
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY
 
 function hentSvarAlternativ (digits) {
   let svar = 'ugyldigSvar'
@@ -16,8 +20,8 @@ function hentSvarAlternativ (digits) {
 
 async function hentToken () {
   const payload = {
-    brukarnamn: process.env.SERVICEBRUKER_BRUKERNAVN,
-    passord: process.env.SERVICEBRUKER_PASSORD,
+    brukarnamn: encrypt(process.env.SERVICEBRUKER_BRUKERNAVN, ENCRYPTION_KEY),
+    passord: encrypt(process.env.SERVICEBRUKER_PASSORD, ENCRYPTION_KEY),
     systembruker: true,
     key: process.env.API_AUTH_KEY
   }
