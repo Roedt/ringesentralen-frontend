@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { is403, is503 } from '../lib/utils'
+import { is401, is403, is503 } from '../lib/utils'
 import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 import { Warning } from '../components/ui/alerts'
@@ -34,7 +34,9 @@ function Login () {
       router.push('/')
     } catch (error) {
       setLoading(false)
-      if (is403(error)) {
+      if (is401(error)) {
+        setErrors('Du er ikke registrert som bruker av systemet. Sjekk om du er korrekt registrert i Hypersys eller kontakt oss på Slack.')
+      } else if (is403(error)) {
         setErrors('Feil brukernavn og/eller passord. Vennligst prøv igjen.')
       } else if (is503(error)) {
         setErrors('Vi har problemer med å nå noen av baksystemene. Vennligst prøv igjen senere.')
