@@ -4,7 +4,7 @@ import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 
-function ResultatSkjema ({ id, isOpen, setPerson }) {
+function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
   const [loading, setLoading] = useState()
   const [visSkjema, setVisSkjema] = useState(isOpen)
 
@@ -19,7 +19,7 @@ function ResultatSkjema ({ id, isOpen, setPerson }) {
     const payload = generatePayload(form)
     const referat = {
       kommentar: payload.kommentar,
-      modus: 'Korona',
+      modus: modus,
       modusspesifikkeResultat: {
         type: 'KoronaspesifikkeResultat',
         vilHaKoronaprogram: payload?.vilHaKoronaprogram === 'on',
@@ -28,7 +28,8 @@ function ResultatSkjema ({ id, isOpen, setPerson }) {
       },
       resultat: payload.resultat,
       ringtID: id,
-      vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
+      vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on',
+      gyldigResulat: true
     }
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
