@@ -28,8 +28,7 @@ function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
       },
       resultat: payload.resultat,
       ringtID: id,
-      vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on',
-      gyldigResulat: true
+      vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
