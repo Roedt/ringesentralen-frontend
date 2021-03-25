@@ -52,7 +52,7 @@
     "autoprefixer": "10.2.5",
     "babel-jest": "26.6.3",
     "jest": "26.6.3",
-    "msw": "0.27.2",
+    "msw": "0.28.0",
     "postcss": "8.2.8",
     "standard": "16.0.3",
     "tailwindcss": "2.0.4"
