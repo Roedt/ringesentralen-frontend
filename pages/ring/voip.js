@@ -10,12 +10,14 @@ function VoIP ({ telefonnummer }) {
   const [voipToken, setVoipToken] = useState()
   const [VoIPActive, setVoIPActive] = useState()
   const [voipReady, setVoipReady] = useState()
+  const [status, setStatus] = useState()
 
   function cleanupState () {
     setDevice(false)
     setVoipToken(false)
     setVoIPActive(false)
     setVoipReady(false)
+    setStatus(false)
   }
 
   async function hentVoipToken () {
@@ -43,22 +45,27 @@ function VoIP ({ telefonnummer }) {
       phone.on('ready', function (phone) {
         setDevice(() => phone)
         setVoipReady(true)
+        setStatus('klar')
       })
     }
   }
 
   async function startVoIPSamtale (telefonnummer) {
     device.connect({ telefonnummer })
+    setStatus('ringer')
     device.on('connect', () => {
       setVoIPActive(true)
+      setStatus('tilkoblet')
     })
     device.on('disconnect', () => {
       setVoIPActive(false)
+      setStatus('avsluttet')
     })
   }
 
   async function avsluttVoIPSamtale () {
     device.disconnectAll()
+    setStatus('avsluttet')
   }
 
   const RingeMedVoipKnapp = ({ VoIPActive, telefonnummer }) => {
@@ -87,12 +94,41 @@ function VoIP ({ telefonnummer }) {
     )
   }
 
-  const Panel = ({ device, voipReady, VoIPActive, telefonnummer }) => {
+  const StatusLinje = ({ status }) => {
+    if (!status) return null
+    const statusMeldinger = {
+      klar: 'VoIP er klar til bruk',
+      ringer: 'Ringer',
+      tilkoblet: 'Samtale pågår',
+      avsluttet: 'Samtale avsluttet, husk å logge resultat'
+    }
+
+    const statusFarger = {
+      klar: 'bg-gray-50',
+      ringer: 'bg-yellow-50',
+      tilkoblet: 'bg-green-50',
+      avsluttet: 'bg-blue-50'
+    }
+
+    return (
+      <div className={`mt-2 flex items-center text-gray-900 font-medium text-l ${statusFarger[status]} py-2`}>
+        <svg xmlns='http://www.w3.org/2000/svg' className='ml-3 mr-2 h-5 w-5 text-gray-900' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
+        </svg>
+        <span>
+          {statusMeldinger[status]}
+        </span>
+      </div>
+    )
+  }
+
+  const Panel = ({ device, voipReady, VoIPActive, telefonnummer, status }) => {
     if (!device || !voipReady || !telefonnummer) return null
     return (
       <>
         <RingeMedVoipKnapp VoIPActive={VoIPActive} telefonnummer={telefonnummer} />
         <AvsluttVoipKnapp VoIPActive={VoIPActive} />
+        <StatusLinje status={status} />
       </>
     )
   }
@@ -114,7 +150,13 @@ function VoIP ({ telefonnummer }) {
           Bruk VoIP
         </span>
       </button>
-      <Panel device={device} voipReady={voipReady} VoIPActive={VoIPActive} telefonnummer={telefonnummer} />
+      <Panel
+        device={device}
+        voipReady={voipReady}
+        VoIPActive={VoIPActive}
+        telefonnummer={telefonnummer}
+        status={status}
+      />
     </div>
   )
 }
