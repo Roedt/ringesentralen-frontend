@@ -7,17 +7,11 @@ import { is401, is403, is503 } from '../lib/utils'
 import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 import { Warning } from '../components/ui/alerts'
-import Hjelp from '../components/hjelp'
 
 function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
-  const [visHjelp, setVisHjelp] = useState()
   const router = useRouter()
-
-  function toggleHjelp () {
-    setVisHjelp(!visHjelp)
-  }
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -26,10 +20,8 @@ function Login () {
     const form = document.getElementById('login-form')
     try {
       await axios.post('/api/login', generatePayload(form))
-      // const { data: result } = await axios.get('/api/auth-status')
       await axios.get('/api/auth-status')
       setLoading(false)
-      // console.log(result)
       form.reset()
       router.push('/')
     } catch (error) {
@@ -84,20 +76,17 @@ function Login () {
             </form>
           </div>
           <div className='mt-6 mb-2'>
-            Har du glemt passordet? <a href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>Gjenopprett passord</a>
+            <p className='mb-2'>
+              Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem). <br />
+            </p>
+            <p className='mb-2'>
+              Har du ikkje logga inn der før, eller har glemt passordet, <a href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>bruk gjenopprett passord</a>.
+            </p>
+            <p>
+              Er det noko du lurer på, <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>still gjerne spørsmål på Slack</a>
+            </p>
           </div>
           {errors && <Warning message={errors} />}
-          <button onClick={toggleHjelp} className='w-48 mt-2 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-            <svg className={`${visHjelp ? '-rotate-180' : 'rotate-0'} -ml-1 mr-2 h-5 w-5 text-gray-400 transform`} xmlns='https://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
-            </svg>
-            <span>
-              {visHjelp ? 'Skjul' : 'Vis'} hjelp
-            </span>
-          </button>
-          <div className={`max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 bg-gray-100 ${visHjelp ? 'visible' : 'hidden'}`}>
-            <Hjelp />
-          </div>
         </div>
       </div>
     </div>
