@@ -3,17 +3,25 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import { is401 } from '../../lib/utils'
+import { useAmplitude } from '../../contexts/amplitude-context'
 import Historikk from './historikk'
 
 function Person ({ data, setIsAccepted, setPerson }) {
   const router = useRouter()
   const [godtatt, setIsGodtatt] = useState()
+  const { logAmplitudeEvent } = useAmplitude()
 
   function avslaaSamtale () {
+    logAmplitudeEvent('ringer', {
+      handling: 'Avslår samtale'
+    })
     setPerson(false)
   }
 
   function avbrytSesjon () {
+    logAmplitudeEvent('ringer', {
+      handling: 'Avbryter sesjon'
+    })
     setPerson(false)
   }
 
@@ -30,6 +38,9 @@ function Person ({ data, setIsAccepted, setPerson }) {
   }
 
   function godtaSamtale (id) {
+    logAmplitudeEvent('ringer', {
+      handling: 'Godtar samtale'
+    })
     setIsAccepted(true)
     setIsGodtatt(true)
     startSamtale(id)
