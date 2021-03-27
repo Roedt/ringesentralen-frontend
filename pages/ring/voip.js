@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { is401 } from '../../lib/utils'
+import { useAmplitude } from '../../contexts/amplitude-context'
 
 function VoIP ({ telefonnummer }) {
   const router = useRouter()
@@ -11,6 +12,7 @@ function VoIP ({ telefonnummer }) {
   const [VoIPActive, setVoIPActive] = useState()
   const [voipReady, setVoipReady] = useState()
   const [status, setStatus] = useState()
+  const { logAmplitudeEvent } = useAmplitude()
 
   function cleanupState () {
     setDevice(false)
@@ -46,6 +48,9 @@ function VoIP ({ telefonnummer }) {
         setDevice(() => phone)
         setVoipReady(true)
         setStatus('klar')
+      })
+      logAmplitudeEvent('ringer', {
+        handling: 'Velger bruk VoIP'
       })
     }
   }
