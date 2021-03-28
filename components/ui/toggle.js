@@ -11,6 +11,7 @@ function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff }) {
     setAktiv(!aktiv)
   }
 
+  // Kjører evt funksjoner om toggle endrer state
   useEffect(() => {
     if (aktivRef.current !== aktiv) {
       if (aktiv && isFunction(runIfOn)) {
@@ -24,6 +25,7 @@ function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff }) {
     }
   }, [aktiv])
 
+  // Gjøre det mulig å påvirke visning utenfra (om en serie toggles avhenger av hverandre)
   useEffect(() => {
     setToggleState(status)
   }, [status])
