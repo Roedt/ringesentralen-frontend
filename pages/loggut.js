@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import { is401 } from '../lib/utils'
+import Tilbakemelding from '../components/tilbakemelding'
 
 function Loggut () {
   const router = useRouter()
@@ -56,6 +57,10 @@ function Loggut () {
               </button>
             </div>
           </div>
+          <Tilbakemelding
+            tekst='Hvordan var opplevelsen din av Ringesentralen i dag?'
+            tema='utlogging'
+          />
         </div>
       </div>
     </div>
