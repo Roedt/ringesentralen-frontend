@@ -2,7 +2,7 @@ import { version } from '../package.json'
 
 export default function Footer () {
   return (
-    <footer className='h-10 px-10 inline-flex items-center justify-between'>
+    <footer className='h-10 px-10 inline-flex items-center justify-between text-gray-500'>
       <div>
         Ringesentralen v{version}
       </div>
