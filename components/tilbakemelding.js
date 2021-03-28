@@ -3,6 +3,8 @@ import { useAmplitude } from '../contexts/amplitude-context'
 function Tilbakemelding ({ tekst, tema }) {
   const { logAmplitudeEvent } = useAmplitude()
 
+  if (!tema && !tekst) return null
+
   function registrerTilbakemelding (tilbakemelding) {
     logAmplitudeEvent('tilbakemelding', {
       tema,
@@ -10,7 +12,6 @@ function Tilbakemelding ({ tekst, tema }) {
     })
   }
 
-  if (!tema && !tekst) return null
   return (
     <div className='my-4 px-6 py-10 sm:px-10 sm:py-6 bg-white rounded-lg shadow-md lg:shadow-lg'>
       <h1 className='text-lg font-semibold mb-2'>{tekst}</h1>
