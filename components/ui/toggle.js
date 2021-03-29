@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const isFunction = func => typeof func === 'function'
 
-function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff }) {
+function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff, disabled }) {
   const [aktiv, setAktiv] = useState(status || false)
   const [toggleState, setToggleState] = useState(status || false)
 
@@ -14,10 +14,10 @@ function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff }) {
   // Kjører evt funksjoner om toggle endrer state
   useEffect(() => {
     if (aktivRef.current !== aktiv) {
-      if (aktiv && isFunction(runIfOn)) {
+      if (aktiv && isFunction(runIfOn) && !disabled) {
         runIfOn()
       }
-      if (!aktiv && isFunction(runIfOff)) {
+      if (!aktiv && isFunction(runIfOff) && !disabled) {
         runIfOff()
       }
       aktivRef.current = aktiv

@@ -94,24 +94,27 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
         <Toggle
           skjermleserTekst='Har bruker tilgang til ringesentralen'
           status={erBruker}
-          runIfOn={erAdministrator ? false : aktiverBruker}
-          runIfOff={erAdministrator ? false : deaktiverBruker}
+          runIfOn={aktiverBruker}
+          runIfOff={deaktiverBruker}
+          disabled={erAdministrator}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker ringe'
           status={erRinger}
-          runIfOn={erAdministrator ? false : aktiverBruker}
-          runIfOff={erAdministrator ? false : deaktiverBruker}
+          runIfOn={aktiverBruker}
+          runIfOff={deaktiverBruker}
+          disabled={erAdministrator}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker godkjenne'
           status={erGodkjenner}
-          runIfOn={erAdministrator ? false : gjoerBrukerTilLokalGodkjenner}
-          runIfOff={erAdministrator ? false : fjernBrukerSomLokalGodkjenner}
+          runIfOn={gjoerBrukerTilLokalGodkjenner}
+          runIfOff={fjernBrukerSomLokalGodkjenner}
+          disabled={erAdministrator}
         />
       </td>
     </tr>
