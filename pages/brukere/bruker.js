@@ -6,6 +6,7 @@ const isArray = data => Array.isArray(data)
 const kanBrukeRingesentralen = roller => isArray(roller) && (roller.includes('bruker') || roller.includes('venter_paa_godkjenning'))
 const kanRinge = roller => isArray(roller) && roller.includes('ringer')
 const kanGodkjenne = roller => isArray(roller) && roller.includes('godkjenner')
+const kanAdministrere = roller => isArray(roller) && roller.includes('admin')
 
 function regnUtRoller (roller, erBruker, erRinger, erGodkjenner) {
   const nyeRoller = []
@@ -27,6 +28,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
   const [roller, setRoller] = useState(rolle || [])
+  const erAdministrator = kanAdministrere(rolle)
 
   useEffect(() => {
     const oppdaterteRoller = regnUtRoller(roller, erBruker, erRinger, erGodkjenner)
@@ -92,24 +94,24 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
         <Toggle
           skjermleserTekst='Har bruker tilgang til ringesentralen'
           status={erBruker}
-          runIfOn={aktiverBruker}
-          runIfOff={deaktiverBruker}
+          runIfOn={erAdministrator ? false : aktiverBruker}
+          runIfOff={erAdministrator ? false : deaktiverBruker}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker ringe'
           status={erRinger}
-          runIfOn={aktiverBruker}
-          runIfOff={deaktiverBruker}
+          runIfOn={erAdministrator ? false : aktiverBruker}
+          runIfOff={erAdministrator ? false : deaktiverBruker}
         />
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
         <Toggle
           skjermleserTekst='Kan bruker godkjenne'
           status={erGodkjenner}
-          runIfOn={gjoerBrukerTilLokalGodkjenner}
-          runIfOff={fjernBrukerSomLokalGodkjenner}
+          runIfOn={erAdministrator ? false : gjoerBrukerTilLokalGodkjenner}
+          runIfOff={erAdministrator ? false : fjernBrukerSomLokalGodkjenner}
         />
       </td>
     </tr>
