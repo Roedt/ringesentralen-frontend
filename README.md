@@ -21,7 +21,7 @@ API_URL=url til APIet
 API_AUTH_KEY=Nøkkel for loginkallet
 COOKIE_NAME=Navn på cookie
 COOKIE_SECRET=Nøkkel for kryptering, minst 32 tegn
-ENCRYPTION_KEY=Nøkkel for kryptering av brukernavn og passord, 32 bits
+ENCRYPTION_KEY=Nøkkel for kryptering av brukernavn og passord, 32 tegn
 NEXT_PUBLIC_AMPLITUDE_API_KEY=Nøkkel for logging til Amplitude
 NEXT_PUBLIC_HYPERSYS_BASE_URL=url til Hypersys
 NEXT_PUBLIC_SENTRY_DSN=url til Sentry
@@ -37,20 +37,24 @@ TWILIO_API_SECRET=api secret hos twilio
 ```
 
 ### Twilio
+
 - følger guiden [Browser calls with Node.js and Express](https://www.twilio.com/docs/voice/tutorials/browser-calls-node-express)
 - for å teste med et gitt telefonnummer legg til `debugNummer` på `/ring` (`/ring?debugNummer=98765432`) i test må dette være et nummer som er godkjent via twiliokonsollen
 - `/api/twilio/token` oppretter token mot twilo basert på nøkler og apier
 - `/api/twilio/connect` lager twiml som svar på Twilios webhook (bruk f.eks. [ngrok](https://ngrok.com/) for å nå lokal maskin under utvikling)
 
 ### Ringemanus
+
 - Det lages ringemanus for hvert valgdistrikt
 - Manus skrives i markdown og legges i mappen `public/ringemanus/<velgere|medlemmer>/<fylkesnummer>.md`
 
 ### Sesjoner
+
 - Bruker stateless sesjonshåndtering med `next-iron-session`
 - Mer eller mindre plukket direkte fra [det offisielle eksempelrepoet](https://github.com/vercel/next.js/tree/canary/examples/with-iron-session)
 
 ### Scripts
+
 - test og lint `npm t`
 - test:watch `npm run test:watch`
 - lint `npm run lint`
@@ -58,6 +62,9 @@ TWILIO_API_SECRET=api secret hos twilio
 - oppdatere avhengigheter opp til og med minor `npm run bump` - ikke så nyttig etter at `renovate` er satt opp på repoet
 - slette node_modules og oppdatere package-lock `npm run refresh`
 
+## Deploy
+
+Det er satt opp automatikk så alle push til `main` starter bygg og deploy til test og produksjonsmiljø
 
 ## Lisens
 
