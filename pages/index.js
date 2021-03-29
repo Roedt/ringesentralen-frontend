@@ -5,19 +5,11 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import { is401, is403 } from '../lib/utils'
 
-function Dashboard ({ dashboard }) {
-  if (!dashboard) return null
-  const { statusliste } = dashboard
-  const mergedData = statusliste.reduce((accumulator, current) => {
-    accumulator.igjenAaRinge += current.igjenAaRinge
-    accumulator.personerSomKanRinges += current.personerSomKanRinges
-    accumulator.totaltInklRingte += current.totaltInklRingte
-    return accumulator
-  }, { igjenAaRinge: 0, personerSomKanRinges: 0, totaltInklRingte: 0 })
+function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte }) {
   return (
-    <div>
+    <div className='mb-4'>
       <h2 className='text-lg leading-6 font-medium text-gray-900'>
-        Status
+        {lokallag.navn}
       </h2>
       <dl className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3'>
         <div className='bg-white overflow-hidden shadow rounded-lg'>
@@ -26,7 +18,7 @@ function Dashboard ({ dashboard }) {
               Igjen å ringe
             </dt>
             <dd className='mt-1 text-3xl font-semibold text-gray-900'>
-              {mergedData.igjenAaRinge}
+              {igjenAaRinge}
             </dd>
           </div>
         </div>
@@ -37,7 +29,7 @@ function Dashboard ({ dashboard }) {
               Personer som kan ringes
             </dt>
             <dd className='mt-1 text-3xl font-semibold text-gray-900'>
-              {mergedData.personerSomKanRinges}
+              {personerSomKanRinges}
             </dd>
           </div>
         </div>
@@ -48,12 +40,31 @@ function Dashboard ({ dashboard }) {
               Totalt
             </dt>
             <dd className='mt-1 text-3xl font-semibold text-gray-900'>
-              {mergedData.totaltInklRingte}
+              {totaltInklRingte}
             </dd>
           </div>
         </div>
       </dl>
     </div>
+  )
+}
+
+function Dashboard ({ dashboard }) {
+  if (!dashboard) return null
+  const { statusliste } = dashboard
+  /*
+  console.log(JSON.stringify(statusliste, null, 2))
+  const mergedData = statusliste.reduce((accumulator, current) => {
+    accumulator.igjenAaRinge += current.igjenAaRinge
+    accumulator.personerSomKanRinges += current.personerSomKanRinges
+    accumulator.totaltInklRingte += current.totaltInklRingte
+    return accumulator
+  }, { igjenAaRinge: 0, personerSomKanRinges: 0, totaltInklRingte: 0 })
+  */
+  return (
+    <>
+      {statusliste.map(data => <Linje {...data} key={data.lokallag.id} />)}
+    </>
   )
 }
 
