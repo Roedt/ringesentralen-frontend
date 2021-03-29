@@ -2,13 +2,13 @@
 
 # ringesentralen-frontend
 
-Frontend for ringesentralen.
+Frontend for ringesentralen til Rødt.
 
-Se demoversjon på [ringesentralen.raudt.party](https://ringesentralen.raudt.party/)
+Se demoversjon på [test.ringesentralen.no](https://test.ringesentralen.no/)
 
 ## Utvikling
 
-Du trenger [Node.js](https://nodejs.org/) >= 12 
+Du trenger [Node.js](https://nodejs.org/) >= 14
 
 - klon repoet
 - installer avhengigheter `npm i`
@@ -55,7 +55,7 @@ TWILIO_API_SECRET=api secret hos twilio
 - test:watch `npm run test:watch`
 - lint `npm run lint`
 - lint:fix `npm run lint:fix`
-- oppdatere avhengigheter opp til og med minor `npm run bump`
+- oppdatere avhengigheter opp til og med minor `npm run bump` - ikke så nyttig etter at `renovate` er satt opp på repoet
 - slette node_modules og oppdatere package-lock `npm run refresh`
 
 
