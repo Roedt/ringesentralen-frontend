@@ -20,7 +20,6 @@ function Sperret () {
         <title>Ingen tilgang</title>
       </Head>
       <div className='text-lg'>
-        {JSON.stringify}
         <p className='mb-2'>
           Du har ikke tilgang til det du forsøkte å gjøre.
         </p>
