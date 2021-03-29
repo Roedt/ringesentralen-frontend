@@ -1,6 +1,6 @@
 function Beta () {
   return (
-    <div className='flex justify-center my-4 p-6 sm:px-10 sm:py-6 bg-white border-red-900 rounded-lg shadow-md lg:shadow-lg'>
+    <div className='flex justify-center my-4 p-6 bg-white rounded-lg shadow-md lg:shadow-lg'>
       <h1 className='text-lg font-semibold text-red-700'>Beta</h1>
       <div className='mx-4'>
         <p>
