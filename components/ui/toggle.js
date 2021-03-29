@@ -13,11 +13,11 @@ function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff, disabled }) {
 
   // Kjører evt funksjoner om toggle endrer state
   useEffect(() => {
-    if (aktivRef.current !== aktiv) {
-      if (aktiv && isFunction(runIfOn) && !disabled) {
+    if (aktivRef.current !== aktiv && !disabled) {
+      if (aktiv && isFunction(runIfOn)) {
         runIfOn()
       }
-      if (!aktiv && isFunction(runIfOff) && !disabled) {
+      if (!aktiv && isFunction(runIfOff)) {
         runIfOff()
       }
       aktivRef.current = aktiv
@@ -31,7 +31,7 @@ function Toggle ({ skjermleserTekst, status, runIfOn, runIfOff, disabled }) {
   }, [status])
 
   return (
-    <button type='button' onClick={() => toggleAktiv()} className={`${toggleState ? 'bg-indigo-600' : 'bg-gray-200'} relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`} aria-pressed={aktiv}>
+    <button type='button' onClick={() => toggleAktiv()} className={`${disabled ? 'bg-red-100' : toggleState ? 'bg-indigo-600' : 'bg-gray-200'} relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`} aria-pressed={toggleState}>
       <span className='sr-only'>{skjermleserTekst}</span>
       <span className={`${toggleState ? 'translate-x-5' : 'translate-x-0'} pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}>
         <span className={`${toggleState ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200'} absolute inset-0 h-full w-full flex items-center justify-center transition-opacity`} aria-hidden='true'>
