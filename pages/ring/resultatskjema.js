@@ -4,7 +4,7 @@ import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 
-function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
+function ResultatSkjema ({ id, setPerson, modus }) {
   const [loading, setLoading] = useState()
 
   const handleSubmit = async event => {
@@ -16,10 +16,11 @@ function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
       kommentar: payload.kommentar,
       modus: modus,
       modusspesifikkeResultat: {
-        type: 'KoronaspesifikkeResultat',
         vilHaKoronaprogram: payload?.vilHaKoronaprogram === 'on',
         vilBliMerAktiv: payload?.vilBliMerAktiv === 'on',
-        vilHaValgkampsbrev: payload?.vilHaValgkampsbrev === 'on'
+        vilHaValgkampsbrev: payload?.vilHaValgkampsbrev === 'on',
+        vilHaMedlemsLink: payload?.vilHaMedlemsLink === 'on',
+        vilHaNyhetsbrevLink: payload?.vilHaNyhetsbrevLink === 'on'
       },
       resultat: payload.resultat,
       ringtID: id,
@@ -95,7 +96,23 @@ function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
                 Ønsker
               </legend>
               <div className='mt-4 space-y-4'>
-                <div className='relative flex items-start'>
+                <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
+                  <div className='flex items-center h-5'>
+                    <input id='vilHaNyhetsbrevLink' name='vilHaNyhetsbrevLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
+                  </div>
+                  <div className='ml-3 text-sm'>
+                    <label for='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha nyhetsbrev</label>
+                  </div>
+                </div>
+                <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
+                  <div className='flex items-center h-5'>
+                    <input id='vilHaMedlemsLink' name='vilHaMedlemsLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
+                  </div>
+                  <div className='ml-3 text-sm'>
+                    <label for='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha link om å bli medlem</label>
+                  </div>
+                </div>
+                <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
                   <div className='flex items-center h-5'>
                     <input id='vilHaKoronaprogram' name='vilHaKoronaprogram' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
@@ -103,7 +120,7 @@ function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
                     <label for='vilHaKoronaprogram' className='font-medium text-gray-700'>Vil ha korona-program på epost</label>
                   </div>
                 </div>
-                <div className='relative flex items-start'>
+                <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
                   <div className='flex items-center h-5'>
                     <input id='vilHaValgkampsbrev' name='vilHaValgkampsbrev' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
@@ -111,7 +128,7 @@ function ResultatSkjema ({ id, isOpen, setPerson, modus }) {
                     <label for='vilHaValgkampsbrev' className='font-medium text-gray-700'>Vil ha valgkampsbrev med informasjon om valgkampen</label>
                   </div>
                 </div>
-                <div className='relative flex items-start'>
+                <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
                   <div className='flex items-center h-5'>
                     <input id='vilBliMerAktiv' name='vilBliMerAktiv' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
