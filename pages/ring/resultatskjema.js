@@ -16,6 +16,7 @@ function ResultatSkjema ({ id, setPerson, modus }) {
       kommentar: payload.kommentar,
       modus: modus,
       modusspesifikkeResultat: {
+        type: 'Valg21SpesifikkeResultat',
         vilHaKoronaprogram: payload?.vilHaKoronaprogram === 'on',
         vilBliMerAktiv: payload?.vilBliMerAktiv === 'on',
         vilHaValgkampsbrev: payload?.vilHaValgkampsbrev === 'on',
