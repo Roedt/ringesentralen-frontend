@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { useAmplitude } from '../../contexts/amplitude-context'
 import Toggle from '../../components/ui/toggle'
 
 const isArray = data => Array.isArray(data)
@@ -29,6 +30,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
   const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
   const [roller, setRoller] = useState(rolle || [])
   const erAdministrator = kanAdministrere(rolle)
+  const { logAmplitudeEvent } = useAmplitude()
 
   useEffect(() => {
     const oppdaterteRoller = regnUtRoller(roller, erBruker, erRinger, erGodkjenner)
@@ -39,6 +41,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
     setErBruker(false)
     setErRinger(false)
     setErGodkjenner(false)
+    logAmplitudeEvent('brukere', {
+      handling: 'Deaktiverer bruker'
+    })
     endreBrukerStatus({
       endring: 'deaktiver',
       id
@@ -48,6 +53,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
   function aktiverBruker () {
     setErBruker(true)
     setErRinger(true)
+    logAmplitudeEvent('brukere', {
+      handling: 'Aktiverer bruker'
+    })
     endreBrukerStatus({
       endring: 'aktiver',
       id
@@ -58,6 +66,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
     setErGodkjenner(true)
     setErRinger(true)
     setErBruker(true)
+    logAmplitudeEvent('brukere', {
+      handling: 'Gjør bruker til lokal godkjenner'
+    })
     endreBrukerStatus({
       endring: 'gjoerTilLokalGodkjenner',
       id
@@ -66,6 +77,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
 
   function fjernBrukerSomLokalGodkjenner () {
     setErGodkjenner(false)
+    logAmplitudeEvent('brukere', {
+      handling: 'Fjerner bruker som lokal godkjenner'
+    })
     endreBrukerStatus({
       endring: 'fjernSomLokalGodkjenner',
       id
