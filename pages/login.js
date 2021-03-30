@@ -77,7 +77,7 @@ function Login () {
               </Button>
             </form>
           </div>
-          <div className='mt-6 mb-2'>
+          <div className='w-11/12 mt-6 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 p-0'>
             <p className='mb-2'>
               Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem). <br />
             </p>
