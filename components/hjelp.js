@@ -31,7 +31,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-1' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Logg inn
                   </span>
@@ -42,7 +42,7 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className='mt-2 pr-12' id='faq-0'>
+              <dd className='mt-2 pr-12' id='faq-1'>
                 <p className='text-base text-gray-500'>
                   Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem).
                   Har du ikkje logga inn der før, bruk <em>glemt passord</em>-lenka på innloggingssida, så vil du få moglegheit til å setje eit passord.
@@ -62,7 +62,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-2' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Ring
                   </span>
@@ -73,7 +73,7 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className='mt-2 pr-12' id='faq-0'>
+              <dd className='mt-2 pr-12' id='faq-2'>
                 <p className='text-base text-gray-500'>
                   Sjølve ringinga gjer du helst gjennom systemet.
                   Når du startar samtalen her inne på Ringesentralen, får du moglegheita til å ringe gjennom systemet. Da vil mottakaren få opp at det er Raudt som har prøvd å ringe hen,
@@ -92,7 +92,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-3' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Personen tok ikkje telefonen
                   </span>
@@ -103,7 +103,7 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className='mt-2 pr-12' id='faq-0'>
+              <dd className='mt-2 pr-12' id='faq-3'>
                 <p className='text-base text-gray-500'>
                   Om nokon ikkje tok telefonen, eller av andre grunnar ringer deg tilbake seinare, kan du gå inn på <em>Noen ringer tilbake</em>. Der vil du få opp namn og den andre informasjonen om personen, pluss ringemanuset.
                 </p>
@@ -128,7 +128,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-4' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Administrasjonsverktøy
                   </span>
@@ -139,7 +139,7 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className='mt-2 pr-12' id='faq-0'>
+              <dd className='mt-2 pr-12' id='faq-4'>
                 <p className='text-base text-gray-500'>
                   Vi som driftar systemet har tilgang til nokre ekstra administrasjonsverktyg: vi kan
                   <ul className='list-disc mb-6 ml-4'>
@@ -159,7 +159,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-5' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Noko du ikkje fekk svar på her?
                   </span>
@@ -170,7 +170,7 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className='mt-2 pr-12' id='faq-0'>
+              <dd className='mt-2 pr-12' id='faq-5'>
                 <p className='text-base text-gray-500'>
                   Takk for at du bidreg! Er det noko du lurer på, still gjerne spørsmål på <a className='text-blue-600 underline' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>Slack</a>, på kanalen #ringesentralen.
                   Finn du tekniske feil eller andre ting du reagerer på, sett vi som lager systemet stor pris på om du rapporterer det,
