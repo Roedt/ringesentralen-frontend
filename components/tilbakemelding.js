@@ -62,6 +62,9 @@ function Tilbakemelding ({ tekst, tema }) {
           </span>
         </button>
       </div>
+      <div className='mt-4'>
+        Har du andre tilbakemeldinger så <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>bruk kanalen #ringesentralen på Slack</a>
+      </div>
     </div>
   )
 }
