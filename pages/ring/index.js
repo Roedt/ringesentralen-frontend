@@ -18,7 +18,7 @@ const Ring = () => {
   const [person, setPerson] = useState()
   const [accepted, setIsAccepted] = useState()
   const [loading, setLoading] = useState()
-  const { debugNummer } = router.query
+  const { debugNummer } = process.env.NEXT_PUBLIC_TILLAT_DEBUGNUMMER ? router.query : false
 
   async function hentNyPerson () {
     setLoading(true)
