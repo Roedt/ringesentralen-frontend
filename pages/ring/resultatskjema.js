@@ -1,10 +1,14 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import toaster from 'toasted-notes'
+
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
+import { is401, is403 } from '../../lib'
 
 function ResultatSkjema ({ id, setPerson, modus }) {
+  const router = useRouter()
   const [loading, setLoading] = useState()
 
   const handleSubmit = async event => {
@@ -34,7 +38,13 @@ function ResultatSkjema ({ id, setPerson, modus }) {
       form.reset()
       setPerson(false)
     } catch (error) {
-      console.error(error)
+      if (is401(error)) {
+        router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
+      } else {
+        console.error(error)
+      }
       setLoading(false)
     }
   }
