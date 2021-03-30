@@ -2,6 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Confetti from 'react-confetti'
 
 import { is401, is403 } from '../../lib/utils'
 import useUser from '../../lib/useUser'
@@ -11,6 +12,7 @@ import Modus from './modus'
 import Person from './person'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
+import { Info } from '../../components/ui/alerts'
 
 const Ring = () => {
   const router = useRouter()
@@ -18,19 +20,25 @@ const Ring = () => {
   const [person, setPerson] = useState()
   const [accepted, setIsAccepted] = useState()
   const [loading, setLoading] = useState()
+  const [info, setInfo] = useState()
   const { debugNummer } = process.env.NEXT_PUBLIC_TILLAT_DEBUGNUMMER ? router.query : false
 
   async function hentNyPerson () {
+    setInfo(false)
     setLoading(true)
     setIsAccepted(false)
     try {
-      const { data } = await axios.get('/api/backend/samtale/neste', { withCredentials: true })
+      const { data, status } = await axios.get('/api/backend/samtale/neste', { withCredentials: true })
+      console.log(status)
       if (debugNummer) {
         data.person.telefonnummer = debugNummer
       }
       setLoading(false)
       if (data) {
         setPerson(data)
+      }
+      if (status === 204) {
+        setInfo('Du har kommet til slutten av listen. Ingen flere å ringe. Gratulerer!')
       }
     } catch (error) {
       setLoading(false)
@@ -53,6 +61,8 @@ const Ring = () => {
         {!person && <Modus user={user} />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
+        {info && <Info message={info} />}
+        {info && <Confetti />}
         {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
         <Samtale data={person} accepted={accepted} setPerson={setPerson} user={user} />
       </div>

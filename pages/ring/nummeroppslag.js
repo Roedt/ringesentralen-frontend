@@ -39,7 +39,7 @@ function Nummeroppslag ({ setPerson }) {
   }
 
   return (
-    <div className='mt-4'>
+    <div className='my-4'>
       <form onSubmit={handleSubmit}>
         <label htmlFor='telefonnummer' className='block text-sm font-bold text-gray-700'>Slå opp telefonnummer</label>
         <div className='mt-1 flex rounded-md shadow-sm'>
