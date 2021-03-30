@@ -1,12 +1,25 @@
 import { useState } from 'react'
 
+import { useAmplitude } from '../contexts/amplitude-context'
+
 function Hjelp () {
+  const { logAmplitudeEvent } = useAmplitude()
   const [visFaq0, setVisFaq0] = useState()
   const [visFaq1, setVisFaq1] = useState()
   const [visFaq2, setVisFaq2] = useState()
   const [visFaq3, setVisFaq3] = useState()
   const [visFaq4, setVisFaq4] = useState()
   const [visFaq5, setVisFaq5] = useState()
+
+  function toggleFaq (func, state, spm) {
+    func(state)
+    if (state) {
+      logAmplitudeEvent('faq', {
+        handling: `Viser spørsmål ${spm}`
+      })
+    }
+  }
+
   return (
     <div>
       <div className='max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8'>
@@ -17,7 +30,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq0(!visFaq0)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq0, !visFaq0, '0')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     For deg som ringar
                   </span>
@@ -39,7 +52,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq1(!visFaq1)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-1' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq1, !visFaq1, '1')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-1' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Logg inn
                   </span>
@@ -70,7 +83,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq2(!visFaq2)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-2' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq2, !visFaq2, '2')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-2' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Ring
                   </span>
@@ -100,7 +113,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq3(!visFaq3)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-3' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq3, !visFaq3, '3')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-3' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Personen tok ikkje telefonen
                   </span>
@@ -136,7 +149,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq4(!visFaq4)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-4' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq4, !visFaq4, '4')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-4' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Administrasjonsverktøy
                   </span>
@@ -167,7 +180,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => setVisFaq5(!visFaq5)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-5' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq5, !visFaq5, '5')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-5' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Noko du ikkje fekk svar på her?
                   </span>
