@@ -5,7 +5,7 @@ import toaster from 'toasted-notes'
 
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
-import { is401, is403 } from '../../lib'
+import { is401, is403 } from '../../lib/utils'
 
 function ResultatSkjema ({ id, setPerson, modus }) {
   const router = useRouter()
