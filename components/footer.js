@@ -1,4 +1,4 @@
-import { version } from '../package.json'
+import pkg from '../package.json'
 import Beta from './beta'
 
 export default function Footer () {
@@ -7,7 +7,7 @@ export default function Footer () {
       <Beta />
       <footer className='h-10 px-10 inline-flex items-center justify-between text-gray-500'>
         <div>
-          Ringesentralen v{version}
+          Ringesentralen v{pkg.version}
         </div>
         <div className='flex'>
           <a href='https://roedtorg.slack.com/archives/C01BNKD2RU0' title='Gå til ringesentralens kanal på Slack' className='mr-2'>
