@@ -56,6 +56,9 @@ function VoIP ({ telefonnummer }) {
   }
 
   async function startVoIPSamtale (telefonnummer) {
+    logAmplitudeEvent('ringer', {
+      handling: 'Ringer med VoIP'
+    })
     device.connect({ telefonnummer })
     setStatus('ringer')
     device.on('connect', () => {
@@ -69,6 +72,9 @@ function VoIP ({ telefonnummer }) {
   }
 
   async function avsluttVoIPSamtale () {
+    logAmplitudeEvent('ringer', {
+      handling: 'Asvlutter VoIP samtale'
+    })
     device.disconnectAll()
     setStatus('avsluttet')
   }
