@@ -24,10 +24,10 @@ function Samtale ({ accepted, data, user, setPerson }) {
       {telefonnummer && <VoIP telefonnummer={telefonnummer} />}
       <div className='mt-4 flex lg:flex-row md:flex-col'>
         <div className='flex-1 lg:pr-4 md:mb-4'>
-          <ResultatSkjema id={id} setPerson={setPerson} isOpen modus={modus} />
+          <ResultatSkjema id={id} setPerson={setPerson} modus={modus} telefonnummer={telefonnummer} />
         </div>
         <div className='flex-1 lg:pl-4 md:mb-4'>
-          <Ringemanus manus={fylke} modus={modus} isOpen />
+          <Ringemanus manus={fylke} modus={modus} />
         </div>
       </div>
     </div>

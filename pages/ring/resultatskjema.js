@@ -8,7 +8,7 @@ import Button from '../../components/ui/button'
 import { is401, is403 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
 
-function ResultatSkjema ({ id, setPerson, modus }) {
+function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
   const router = useRouter()
   const [loading, setLoading] = useState()
   const { logAmplitudeEvent } = useAmplitude()
@@ -36,6 +36,23 @@ function ResultatSkjema ({ id, setPerson, modus }) {
       resultat: payload.resultat,
       ringtID: id,
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
+    }
+    const { vilHaNyhetsbrevLink, vilHaMedlemsLink } = referat
+    if (vilHaNyhetsbrevLink) {
+      const payload = {
+        telefonnummer,
+        melding: 'Takk for samtalen. Du sa du ønsket å motta nyhetsbrev fra Rødt. Da må du registrere deg på https://roedt.no'
+      }
+      const { data } = await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
+      console.log(data)
+    }
+    if (vilHaMedlemsLink) {
+      const payload = {
+        telefonnummer,
+        melding: 'Takk for samtalen. Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
+      }
+      const { data } = await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
+      console.log(data)
     }
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })

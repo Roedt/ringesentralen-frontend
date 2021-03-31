@@ -30,6 +30,7 @@ NEXT_PUBLIC_TILLAT_DEBUGNUMMER=dersom denne er satt kan du overstyre nummeret fr
 SERVICEBRUKER_BRUKERNAVN=brukernavn for servicebrukeren som skal registrere svar fra telefonsvareren
 SERVICEBRUKER_PASSORD=passord for servicebrukeren
 TWILIO_ACCOUNT_SID=id til twilio kontoen
+TWILIO_AUTH_TOKEN=token til twilio konto, brukes til sms
 TWILIO_TWIML_APP_SID=sid til twiml appen for VoPI
 TWILIO_CALLER_ID=telefonnummer som er satt opp på twilio
 TWILIO_INCOMING_HANDLER=telefonnummer vi ønsker å videresende innkommende samtaler til
