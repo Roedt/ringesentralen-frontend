@@ -6,14 +6,20 @@ import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 import { is401, is403 } from '../../lib/utils'
+import { useAmplitude } from '../../contexts/amplitude-context'
 
 function ResultatSkjema ({ id, setPerson, modus }) {
   const router = useRouter()
   const [loading, setLoading] = useState()
+  const { logAmplitudeEvent } = useAmplitude()
 
   const handleSubmit = async event => {
     event.preventDefault()
     setLoading(true)
+    logAmplitudeEvent('ringer', {
+      handling: 'Logger samtalereferat',
+      modus
+    })
     const form = document.getElementById('samtalereferat-form')
     const payload = generatePayload(form)
     const referat = {
