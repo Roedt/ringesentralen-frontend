@@ -37,23 +37,23 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       ringtID: id,
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
-    const { vilHaNyhetsbrevLink, vilHaMedlemsLink } = referat
+    /*
+    const { vilHaNyhetsbrevLink, vilHaMedlemsLink } = referat.modusspesifikkeResultat
     if (vilHaNyhetsbrevLink) {
       const payload = {
         telefonnummer,
         melding: 'Takk for samtalen. Du sa du ønsket å motta nyhetsbrev fra Rødt. Da må du registrere deg på https://roedt.no'
       }
-      const { data } = await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-      console.log(data)
+      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
     if (vilHaMedlemsLink) {
       const payload = {
         telefonnummer,
         melding: 'Takk for samtalen. Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
       }
-      const { data } = await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-      console.log(data)
+      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
+    */
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
       toaster.notify('Samtalereferatet er lagret', { duration: 2000 })
