@@ -39,17 +39,22 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     }
     /*
     const { vilHaNyhetsbrevLink, vilHaMedlemsLink } = referat.modusspesifikkeResultat
-    if (vilHaNyhetsbrevLink) {
+    if (vilHaNyhetsbrevLink && vilHaMedlemsLink) {
       const payload = {
         telefonnummer,
-        melding: 'Takk for samtalen. Du sa du ønsket å motta nyhetsbrev fra Rødt. Da må du registrere deg på https://roedt.no'
+        melding: 'Du sa du ønsket å motta nyhetsbrev fra Rødt og at du ville vite mer om å bli medlem. Du registrerer deg for nyhetsbrev på https://roedt.no og du kan lese mer om medlemsskap her https://roedt.no/bli-medlem'
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-    }
-    if (vilHaMedlemsLink) {
+    } else if (vilHaNyhetsbrevLink) {
       const payload = {
         telefonnummer,
-        melding: 'Takk for samtalen. Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
+        melding: 'Du sa du ønsket å motta nyhetsbrev fra Rødt. Da må du registrere deg på https://roedt.no'
+      }
+      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
+    } else if (vilHaMedlemsLink) {
+      const payload = {
+        telefonnummer,
+        melding: 'Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
