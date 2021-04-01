@@ -81,6 +81,12 @@ module.exports = {
         })
       )
     }
+    // For å fikse webpacks sutring på handlebars
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      handlebars: 'handlebars/dist/handlebars.js'
+    }
+
     return config
   },
   basePath
