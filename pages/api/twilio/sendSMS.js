@@ -5,7 +5,7 @@ import fixTelefonNummer from '../../../lib/fix-telefonnummer'
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID
 const token = process.env.TWILIO_AUTH_TOKEN
-const callerId = process.env.TWILIO_CALLER_ID
+const callerId = process.env.TWILIO_SMS_ID
 
 function handleSMS (telefonnummer, melding) {
   const client = new Twilio(accountSid, token)
