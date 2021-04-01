@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 
 import { is401 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
+import { Warning } from '../../components/ui/alerts'
+import harTelefonnummerGyldigLandkode from '../../lib/har-telefonnummer-gyldig-landkode'
+import fixTelefonNummer from '../../lib/fix-telefonnummer'
 
 function VoIP ({ telefonnummer }) {
   const router = useRouter()
@@ -13,6 +16,7 @@ function VoIP ({ telefonnummer }) {
   const [voipReady, setVoipReady] = useState()
   const [status, setStatus] = useState()
   const { logAmplitudeEvent } = useAmplitude()
+  const erGyldigLandkode = harTelefonnummerGyldigLandkode(fixTelefonNummer(telefonnummer))
 
   function cleanupState () {
     setDevice(false)
@@ -150,6 +154,15 @@ function VoIP ({ telefonnummer }) {
     }
     hentVoipToken()
   }, [telefonnummer])
+
+  if (!erGyldigLandkode) {
+    const message = 'Telefonnummeret har ikke en landkode vi støtter i VoIP. Dersom denne personen skal ringes må du bruke en vanlig telefon.'
+    return (
+      <div className='mb-4 pb-4 border-b border-gray-200'>
+        <Warning message={message} />
+      </div>
+    )
+  }
 
   return (
     <div className='mb-4 pb-4 border-b border-gray-200'>
