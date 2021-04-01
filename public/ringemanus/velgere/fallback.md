@@ -1,4 +1,4 @@
-Hei! Jeg heter <navnet ditt> og ringer fra <lokallaget ditt>. 
+Hei! Jeg heter {{navn}} og ringer fra {{lokalLag}}. 
 
 Vi har en ringerunde nå i valgåret, og jeg lurer på om jeg kan stille deg noen korte spørsmål?
 
