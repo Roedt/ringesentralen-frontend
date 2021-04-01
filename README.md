@@ -50,6 +50,7 @@ TWILIO_API_SECRET=api secret hos twilio
 
 - Det lages ringemanus for hvert valgdistrikt
 - Manus skrives i markdown og legges i mappen `public/ringemanus/<velgere|medlemmer>/<fylkesnummer>.md`
+- Du kan bruke handlebars i manus for å erstatte `{{navn}}` og `{{lokalLag}}`
 
 ### Sesjoner
 
