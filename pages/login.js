@@ -24,7 +24,7 @@ function Login () {
       await axios.get('/api/auth-status')
       setLoading(false)
       form.reset()
-      router.push('/')
+      router.push('/ring')
     } catch (error) {
       setLoading(false)
       if (is401(error) || is403(error)) {
