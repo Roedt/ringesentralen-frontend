@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 
 import { is401 } from '../lib/utils'
 
-function Modus ({ user, action }) {
+const isFunction = func => typeof func === 'function'
+
+function Modus ({ user, action, callOnChange }) {
   const router = useRouter()
   const [aktivtModus, setAktivtModus] = useState('medlemmer')
 
@@ -18,6 +20,9 @@ function Modus ({ user, action }) {
       } else {
         console.error(error)
       }
+    }
+    if (callOnChange && isFunction(callOnChange)) {
+      callOnChange(modus)
     }
   }
 

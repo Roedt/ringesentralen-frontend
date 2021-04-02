@@ -2,7 +2,10 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+
+import useUser from '../lib/useUser'
 import Layout from '../components/layout'
+import Modus from '../components/modus'
 import { is401, is403 } from '../lib/utils'
 
 function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte }) {
@@ -70,7 +73,9 @@ function Dashboard ({ dashboard }) {
 
 const HomePage = () => {
   const router = useRouter()
+  const { user } = useUser({ redirectTo: '/login' })
   const [dashboard, setDashboard] = useState()
+  const [aktivtModus, setAktivtModus] = useState()
 
   async function getDashboard () {
     try {
@@ -91,11 +96,18 @@ const HomePage = () => {
     getDashboard()
   }, [])
 
+  useEffect(() => {
+    if (aktivtModus) {
+      getDashboard()
+    }
+  }, [aktivtModus])
+
   return (
     <Layout pageTitle='Ringesentralen'>
       <Head>
         <title>Ringesentralen</title>
       </Head>
+      <Modus user={user} action='Vis' callOnChange={setAktivtModus} />
       <Dashboard dashboard={dashboard} />
     </Layout>
   )
