@@ -7,3 +7,11 @@
 body {
   font-family: GT Walsheim, Helvetica, sans-serif;
 }
+
+.email {
+  display: none;
+}
+
+.roedt {
+  background-color: #e41e26;
+}
