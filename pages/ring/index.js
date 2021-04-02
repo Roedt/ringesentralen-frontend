@@ -8,7 +8,7 @@ import { is401, is403 } from '../../lib/utils'
 import useUser from '../../lib/useUser'
 import Samtale from './samtale'
 import Nummeroppslag from './nummeroppslag'
-import Modus from './modus'
+import Modus from '../../components/modus'
 import Person from './person'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
@@ -57,7 +57,7 @@ const Ring = () => {
         <title>Ringesiden</title>
       </Head>
       <div>
-        {!person && <Modus user={user} />}
+        {!person && <Modus user={user} action='Ring' />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
         {info && <Info message={info} />}
