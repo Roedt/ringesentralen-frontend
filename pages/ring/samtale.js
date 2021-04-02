@@ -17,7 +17,7 @@ function Samtale ({ accepted, data, user, setPerson }) {
   if (!kanViseKomponent) return null
 
   const { person } = data
-  const { telefonnummer, id, fylke, lokallag } = person
+  const { telefonnummer, id, fylke, lokallagNavn } = person
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
@@ -27,7 +27,7 @@ function Samtale ({ accepted, data, user, setPerson }) {
           <ResultatSkjema id={id} setPerson={setPerson} modus={modus} telefonnummer={telefonnummer} />
         </div>
         <div className='flex-1 lg:pl-4 md:mb-4'>
-          <Ringemanus manus={fylke} modus={modus} lokalLag={`<lokallaget ${lokallag}>`} navn={`<navnet ${user?.email}>`} />
+          <Ringemanus manus={fylke} modus={modus} lokalLag={lokallagNavn} navn={`${user?.navn}`} />
         </div>
       </div>
     </div>

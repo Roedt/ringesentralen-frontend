@@ -34,6 +34,7 @@ const Ring = () => {
       }
       setLoading(false)
       if (data) {
+        data.person.lokallagNavn = data.lokallagNavn
         setPerson(data)
       }
       if (status === 204) {
