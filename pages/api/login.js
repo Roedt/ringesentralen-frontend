@@ -19,9 +19,10 @@ async function login (request, response) {
     const { data: token } = await axios.post(tokenUrl, payload)
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     const { data: profil } = await axios.get(profilUrl)
-    const { email, rolle, fylke, lokallag } = profil
+    const { email, etternavn, fornavn, rolle, fylke, lokallag } = profil
 
     const user = {
+      navn: `${fornavn} ${etternavn}`,
       email,
       rolle,
       fylke,
