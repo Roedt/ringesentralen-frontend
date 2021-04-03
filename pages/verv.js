@@ -43,23 +43,23 @@ function Verving () {
           <div className='max-w-lg mx-auto lg:max-w-none'>
             <form id='verving-skjema' onSubmit={handleSubmit} className='grid grid-cols-1 gap-y-6'>
               <div>
-                <label for='fornavn' className='sr-only'>Fornavn</label>
+                <label htmlFor='fornavn' className='sr-only'>Fornavn</label>
                 <input type='text' name='fornavn' id='fornavn' autoComplete='given-name' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Fornavn' />
               </div>
               <div>
-                <label for='etternavn' className='sr-only'>Etternavn</label>
+                <label htmlFor='etternavn' className='sr-only'>Etternavn</label>
                 <input type='text' name='etternavn' id='etternavn' autoComplete='family-name' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Etternavn' />
               </div>
               <div>
-                <label for='postnummer' className='sr-only'>Postnummer</label>
+                <label htmlFor='postnummer' className='sr-only'>Postnummer</label>
                 <input type='text' name='postnummer' id='postnummer' autoComplete='postal-code' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Postnummer' />
               </div>
               <div className='email'>
-                <label for='epost' className='sr-only'>E-post</label>
+                <label htmlFor='epost' className='sr-only'>E-post</label>
                 <input id='epost' name='epost' type='email' autoComplete='email' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='E-post' />
               </div>
               <div>
-                <label for='telefonnummer' className='sr-only'>Telefonnummer</label>
+                <label htmlFor='telefonnummer' className='sr-only'>Telefonnummer</label>
                 <input type='text' name='telefonnummer' id='telefonnummer' autoComplete='tel' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Telefonnummer' />
               </div>
               <div>

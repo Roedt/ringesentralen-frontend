@@ -10,6 +10,7 @@ function Hjelp () {
   const [visFaq3, setVisFaq3] = useState()
   const [visFaq4, setVisFaq4] = useState()
   const [visFaq5, setVisFaq5] = useState()
+  const [visFaq6, setVisFaq6] = useState()
 
   function toggleFaq (func, state, spm) {
     func(state)
@@ -197,6 +198,39 @@ function Hjelp () {
                   Finn du tekniske feil eller andre ting du reagerer på, sett vi som lager systemet stor pris på om du rapporterer det,
                   helst på  <a className='text-blue-600 underline' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>Slack</a>.
                   Der vil sannsynlegvis Mads Opheim svare deg om tekniske ting, Reidar Strisland eller Kristoffer Lerstang om innhald og den slags.
+                </p>
+              </dd>
+            </div>
+          </dl>
+          <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
+            <div className='pt-6'>
+              <dt className='text-lg'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq6, !visFaq6, '6')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                  <span className='font-medium text-gray-900'>
+                    Hva er nytt i Ringesentralen v2?
+                  </span>
+                  <span className='ml-6 h-7 flex items-center'>
+                    <svg className={`${visFaq6 ? '-rotate-180' : 'rotate-0'} h-6 w-6 transform`} xmlns='https://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd className={`mt-2 pr-12 ${visFaq6 ? 'visible' : 'hidden'}`} id='faq-6'>
+                <p className='text-base text-gray-500'>
+                  <ul className='list-disc pl-4'>
+                    <li className='mb-1'>Du kan no logge inn med Hypersys-brukaren din. Det gjer også at du har automatisk funksjonalitet for gløymt passord.</li>
+                    <li className='mb-1'>Du får epost når du har vorte godkjent som ringar, eller om du etter avtale er gjort til lokal godkjenner som kan godkjenne andre frå ditt lag som ringarar.</li>
+                    <li className='mb-1'>Du kan no ringe direkte frå systemet. Når du har fått opp ein person å ringe, kan du frå inne i systemet klikke på ein knapp og så vil systemet setje opp samtalen. Mottakaren vil da bli ringt frå eit Raudt-tilknytta nummer.</li>
+                    <li className='mb-1'>Du kan no avstå frå å ringe ein person, ved hjelp av ein avslå-knapp.</li>
+                    <li className='mb-1'>Du kan no enkelt ta pausar mellom ringinga.</li>
+                    <li className='mb-1'>Systemet er basert på ein heilt ny og trygg teknisk plattform.</li>
+                    <li className='mb-1'>Systemet skalerer automatisk ved behov, så det er ingen risiko for at det blir overlasta.</li>
+                    <li className='mb-1'>Vi har satt opp eit separat testmiljø der ny funksjonalitet kan testast ut.</li>
+                    <li className='mb-1'>Teknisk raskt å utvikle og rulle ut ny funksjonalitet.</li>
+                    <li className='mb-1'>Du kan som ringer selv endre hvilken type brukere du skal kontakte (medlemmer eller velgere)</li>
+                    <li className='mb-1'>Når noen ringer tilbake (gitt at de er ringt fra den innebygde telefonen i systemet) kommer de til en telefonsvarer hvor de selv kan velge om vi skal forsøke å ringe påny eller om de ønsker å være i fred.</li>
+                  </ul>
                 </p>
               </dd>
             </div>
