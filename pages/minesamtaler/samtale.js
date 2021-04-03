@@ -1,14 +1,19 @@
 import prettyPrintDate from '../../lib/prettyprint-dato'
 
-const Samtale = ({ tidspunkt, ringer, kommentar, resultat, ringtNummer, ringtNavn }) => {
+const Samtale = ({ tidspunkt, ringer, kommentar, resultat, ringtNummer, ringtNavn, erMeg }) => {
   return (
-    <tr className='text-sm font-medium text-gray-900'>
-      <td className='px-6 py-4 whitespace-nowrap'>{prettyPrintDate(tidspunkt)}</td>
-      <td className='px-6 py-4 whitespace-nowrap'>{ringtNavn} ({ringtNummer})</td>
-      <td className='px-6 py-4 whitespace-nowrap'>{resultat}</td>
-      <td className='px-6 py-4 whitespace-nowrap'>{kommentar}</td>
-      <td className='px-6 py-4 whitespace-nowrap'>{ringer}</td>
-    </tr>
+    <li className='py-4'>
+      <div className='flex space-x-3'>
+        <div className='flex-1 space-y-1'>
+          <div className='flex items-center justify-between'>
+            <h3 className='text-sm font-medium'>{prettyPrintDate(tidspunkt)} - {ringtNavn} ({ringtNummer})</h3>
+            <p className='text-sm text-gray-500'>{resultat}</p>
+          </div>
+          <p className='text-sm text-gray-500'>{kommentar}</p>
+          <p className={`${erMeg ? 'hidden' : 'visible'} text-sm text-gray-500`}>{ringer}</p>
+        </div>
+      </div>
+    </li>
   )
 }
 

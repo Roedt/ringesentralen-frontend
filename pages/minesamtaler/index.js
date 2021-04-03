@@ -63,7 +63,7 @@ const SamtaleOversikt = () => {
   const LagetsSamtaler = ({ samtaler }) => {
     if (!samtaler) return null
     return (
-      <div className='shadow mt-12'>
+      <div className='mt-12'>
         <small>NB: Denne oversikta vises kun for lokale godkjennere og admins</small>
         <br />
         <Samtaler title='Alle samtaler i mitt lag' samtaler={samtaler} />
@@ -73,8 +73,8 @@ const SamtaleOversikt = () => {
 
   return (
     <>
-      <div className='shadow'>
-        <Samtaler title='Mine samtaler' samtaler={mineSamtaler} />
+      <div>
+        <Samtaler title='Mine samtaler' samtaler={mineSamtaler} erMeg />
       </div>
       <LagetsSamtaler samtaler={lagetsSamtaler} />
     </>
