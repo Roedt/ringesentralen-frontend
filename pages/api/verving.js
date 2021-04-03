@@ -45,10 +45,12 @@ async function sendSMS (payload) {
 
 async function verving (request, response) {
   const payload = await request.body
+  payload.epost = '12534343'
+
   if (!isSpam(payload)) {
     await sendSMS(payload)
   }
-  console.log(JSON.stringify(payload, null, 2))
+
   response.json({ ...payload, success: true })
 }
 
