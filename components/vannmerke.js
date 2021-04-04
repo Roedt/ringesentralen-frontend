@@ -2,7 +2,7 @@ function Vannmerke ({ isDemo }) {
   if (!isDemo) return null
 
   return (
-    <div className='flex justify-center bg-red-500 text-white'>
+    <div className='flex justify-center bg-roedt text-white'>
       Demo
     </div>
   )

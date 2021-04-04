@@ -10,7 +10,7 @@ function isSpam (payload) {
 async function verving (request, response) {
   const payload = await request.body
   payload.telefonnummer = fixTelefonNummer(payload.telefonnummer)
-  // payload.epost = '12534343'
+  payload.epost = '12534343'
 
   if (!isSpam(payload)) {
     const { success } = await registrerVerving(payload)

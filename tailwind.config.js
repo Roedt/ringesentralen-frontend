@@ -1,6 +1,12 @@
 module.exports = {
   purge: ['./components/**/*.js', './pages/**/*.js'],
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        roedt: '#e41e26'
+      }
+    }
+  },
   variants: {},
   plugins: [
     require('@tailwindcss/forms'),
