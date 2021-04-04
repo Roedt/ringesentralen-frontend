@@ -14,7 +14,7 @@ function Skjema ({ setSuccess }) {
     event.preventDefault()
     const form = document.getElementById('verving-skjema')
     const payload = generatePayload(form)
-    await axios.post('/api/verving', payload)
+    await axios.post('/api/verv', payload)
     form.reset()
     setSuccess(true)
   }
