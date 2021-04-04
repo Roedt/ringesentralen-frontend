@@ -32,19 +32,19 @@ function Skjema ({ setSuccess }) {
       </div>
       <div className={`${ververMeg ? 'hidden' : 'visible'}`}>
         <label htmlFor='ververensNavn' className='sr-only'>Navnet ditt</label>
-        <input type='text' name='ververensNavn' id='ververensNavn' autoComplete='name' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Navnet ditt' />
+        <input type='text' name='ververensNavn' id='ververensNavn' autoComplete='name' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Navnet ditt' />
       </div>
       <div>
         <label htmlFor='fornavn' className='sr-only'>Fornavn {ververMeg ? '' : 'på den du verver'}</label>
-        <input type='text' name='fornavn' id='fornavn' autoComplete='given-name' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Fornavn ${ververMeg ? '' : 'på den du verver'}`} />
+        <input type='text' name='fornavn' id='fornavn' autoComplete='given-name' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Fornavn ${ververMeg ? '' : 'på den du verver'}`} />
       </div>
       <div>
         <label htmlFor='etternavn' className='sr-only'>Etternavn {ververMeg ? '' : 'på den du verver'}</label>
-        <input type='text' name='etternavn' id='etternavn' autoComplete='family-name' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Etternavn ${ververMeg ? '' : 'på den du verver'}`} />
+        <input type='text' name='etternavn' id='etternavn' autoComplete='family-name' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Etternavn ${ververMeg ? '' : 'på den du verver'}`} />
       </div>
       <div>
         <label htmlFor='postnummer' className='sr-only'>Postnummer {ververMeg ? '' : 'til den du verver'}</label>
-        <input type='text' name='postnummer' id='postnummer' autoComplete='postal-code' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Postnummer ${ververMeg ? '' : 'til den du verver'}`} />
+        <input type='text' name='postnummer' id='postnummer' autoComplete='postal-code' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Postnummer ${ververMeg ? '' : 'til den du verver'}`} />
       </div>
       <div className='email'>
         <label htmlFor='epost' className='sr-only'>E-post</label>
@@ -52,7 +52,7 @@ function Skjema ({ setSuccess }) {
       </div>
       <div>
         <label htmlFor='telefonnummer' className='sr-only'>Telefonnummer {ververMeg ? '' : 'til den du verver'}</label>
-        <input type='text' name='telefonnummer' id='telefonnummer' autoComplete='tel' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Telefonnummer ${ververMeg ? '' : 'til den du verver'}`} />
+        <input type='text' name='telefonnummer' id='telefonnummer' autoComplete='tel' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Telefonnummer ${ververMeg ? '' : 'til den du verver'}`} />
       </div>
       <div>
         <Button
