@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import hentToken from './hentToken'
+import hentToken from '../../../lib/hentSystembrukerToken'
 
 const verveUrl = `${process.env.API_URL}/verving/verv`
 
