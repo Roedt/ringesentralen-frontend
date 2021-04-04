@@ -3,7 +3,10 @@ import { useState } from 'react'
 
 import generatePayload from '../../lib/generate-payload'
 
+import Button from '../../components/ui/button'
+
 function Skjema ({ setSuccess }) {
+  const [loading, setLoading] = useState()
   const [ververMeg, setVerverMeg] = useState()
 
   function toggleVerveSelv (event) {
@@ -12,9 +15,11 @@ function Skjema ({ setSuccess }) {
 
   async function handleSubmit (event) {
     event.preventDefault()
+    setLoading(true)
     const form = document.getElementById('verving-skjema')
     const payload = generatePayload(form)
     await axios.post('/api/verv', payload)
+    setLoading(false)
     form.reset()
     setSuccess(true)
   }
@@ -50,9 +55,12 @@ function Skjema ({ setSuccess }) {
         <input type='text' name='telefonnummer' id='telefonnummer' autoComplete='tel' className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder={`Telefonnummer ${ververMeg ? '' : 'til den du verver'}`} />
       </div>
       <div>
-        <button type='submit' className='inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-          Send inn
-        </button>
+        <Button
+          type='submit'
+          loading={loading}
+        >
+          Send inn vervingen
+        </Button>
       </div>
     </form>
   )
