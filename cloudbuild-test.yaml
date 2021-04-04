@@ -14,13 +14,15 @@ steps:
         --build-arg=FRONTENDTOKENKEY=$$FRONTENDTOKENKEY \
         --build-arg="TWILIO_TWIML_APP_SID=$$TWILIOTWIMLAPPSID" \
         --build-arg="TWILIO_ACCOUNT_SID=$$TWILIOACCOUNTSID" \
+        --build-arg="TWILIO_AUTH_TOKEN=$$TWILIOAUTHTOKEN" \
         --build-arg="TWILIO_CALLER_ID=$$TWILIOCALLERID" \
+        --build-arg="TWILIO_SMS_ID=$$TWILIOSMSID" \
         --build-arg="TWILIO_API_KEY=$$TWILIOAPIKEY" \
         --build-arg="TWILIO_API_SECRET=$$TWILIOAPISECRET" \
         --build-arg="COOKIE_SECRET=$$COOKIESECRET" \
         --build-arg="ENCRYPTION_KEY=$$ENCRYPTION_KEY" \
         -t 'gcr.io/$PROJECT_ID/ringesentralen-frontend' .
-    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'TWILIOTWIMLAPPSID', 'TWILIOACCOUNTSID', 'TWILIOCALLERID', 'TWILIOAPIKEY', 'TWILIOAPISECRET', 'COOKIESECRET', 'ENCRYPTION_KEY']
+    secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'TWILIOTWIMLAPPSID', 'TWILIOACCOUNTSID', 'TWILIOAUTHTOKEN', 'TWILIOCALLERID', 'TWILIOSMSID', 'TWILIOAPIKEY', 'TWILIOAPISECRET', 'COOKIESECRET', 'ENCRYPTION_KEY']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/ringesentralen-frontend']
@@ -53,8 +55,12 @@ availableSecrets:
     env: 'TWILIOTWIMLAPPSID'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_ACCOUNT_SID/versions/latest
     env: 'TWILIOACCOUNTSID'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_AUTH_TOKEN/versions/latest
+    env: 'TWILIOAUTHTOKEN'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_CALLER_ID/versions/latest
     env: 'TWILIOCALLERID'
+  - versionName: projects/$PROJECT_ID/secrets/TWILIO_SMS_ID/versions/latest
+    env: 'TWILIOSMSID'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_KEY/versions/latest
     env: 'TWILIOAPIKEY'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_API_SECRET/versions/latest
