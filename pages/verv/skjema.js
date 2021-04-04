@@ -32,7 +32,7 @@ function Skjema ({ setSuccess }) {
       </div>
       <div className={`${ververMeg ? 'hidden' : 'visible'}`}>
         <label htmlFor='ververensNavn' className='sr-only'>Navnet ditt</label>
-        <input type='text' name='ververensNavn' id='ververensNavn' autoComplete='name' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Navnet ditt' />
+        <input type='text' name='ververensNavn' id='ververensNavn' autoComplete='name' required={!ververMeg} className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Navnet ditt' />
       </div>
       <div>
         <label htmlFor='fornavn' className='sr-only'>Fornavn {ververMeg ? '' : 'på den du verver'}</label>

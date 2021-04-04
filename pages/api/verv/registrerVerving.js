@@ -8,10 +8,8 @@ async function postVerving ({ token, payload }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
   try {
     const { data } = await axios.post(verveUrl, payload)
-    console.log(JSON.stringify(data, null, 2))
     return data
   } catch (error) {
-    console.log(error)
     console.error(error.message)
     return false
   }
