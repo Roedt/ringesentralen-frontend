@@ -11,7 +11,7 @@ function Verving () {
   return (
     <>
       <Head>
-        <title>Verv en venn til Rødts rinegsentral</title>
+        <title>Verv en venn til Rødts ringesentral</title>
       </Head>
       <div className='relative bg-white'>
         {success && <Confetti />}
