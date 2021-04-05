@@ -38,7 +38,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
     /*
-    const { vilHaNyhetsbrevLink, vilHaMedlemsLink } = referat.modusspesifikkeResultat
+    const { vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink } = referat.modusspesifikkeResultat
     if (vilHaNyhetsbrevLink && vilHaMedlemsLink) {
       const payload = {
         telefonnummer,
@@ -55,6 +55,13 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       const payload = {
         telefonnummer,
         melding: 'Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
+      }
+      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
+    }
+    if (vilHaFellesskapLink) {
+      const payload = {
+        telefonnummer,
+        melding: 'Du sa du ønsket å motta lenke til Rødts aksjonsside her er den https://www.fellesskapfungerer.no/'
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
