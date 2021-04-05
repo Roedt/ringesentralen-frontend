@@ -15,8 +15,8 @@ async function verving (request, response) {
   if (!isSpam(payload)) {
     const { success } = await registrerVerving(payload)
     if (success) {
-      const sms = await sendSMS(payload)
-      console.log(sms)
+      // Sender bare sms til de som ikke er registrert fra tidligere og ved vellykkede registreringer
+      await sendSMS(payload)
     }
   }
 
