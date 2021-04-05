@@ -14,40 +14,40 @@ function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte
       <h2 className='text-lg leading-6 font-medium text-gray-900'>
         {lokallag.navn}
       </h2>
-      <dl className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3'>
+      <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3'>
         <div className='bg-white overflow-hidden shadow rounded-lg'>
           <div className='px-4 py-5 sm:p-6'>
-            <dt className='text-sm font-medium text-gray-500 truncate'>
+            <h3 className='text-sm font-medium text-gray-500 truncate'>
               Igjen å ringe
-            </dt>
-            <dd className='mt-1 text-3xl font-semibold text-gray-900'>
+            </h3>
+            <h4 className='mt-1 text-3xl font-semibold text-gray-900'>
               {igjenAaRinge}
-            </dd>
+            </h4>
           </div>
         </div>
 
         <div className='bg-white overflow-hidden shadow rounded-lg'>
           <div className='px-4 py-5 sm:p-6'>
-            <dt className='text-sm font-medium text-gray-500 truncate'>
+            <h3 className='text-sm font-medium text-gray-500 truncate'>
               Personer som kan ringes
-            </dt>
-            <dd className='mt-1 text-3xl font-semibold text-gray-900'>
+            </h3>
+            <h4 className='mt-1 text-3xl font-semibold text-gray-900'>
               {personerSomKanRinges}
-            </dd>
+            </h4>
           </div>
         </div>
 
         <div className='bg-white overflow-hidden shadow rounded-lg'>
           <div className='px-4 py-5 sm:p-6'>
-            <dt className='text-sm font-medium text-gray-500 truncate'>
+            <h3 className='text-sm font-medium text-gray-500 truncate'>
               Totalt
-            </dt>
-            <dd className='mt-1 text-3xl font-semibold text-gray-900'>
+            </h3>
+            <h4 className='mt-1 text-3xl font-semibold text-gray-900'>
               {totaltInklRingte}
-            </dd>
+            </h4>
           </div>
         </div>
-      </dl>
+      </div>
     </div>
   )
 }
