@@ -7,8 +7,8 @@ const verveUrl = `${process.env.API_URL}/verving/verv`
 async function postVerving ({ token, payload }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
   try {
-    const { data } = await axios.post(verveUrl, payload)
-    return data
+    const { data, status } = await axios.post(verveUrl, payload)
+    return { ...data, success: status === 201 }
   } catch (error) {
     console.error(error.message)
     return false
@@ -26,8 +26,13 @@ async function registrerVerving (payload) {
     }
     const registrertSvar = await postVerving({ token, payload: verveData })
     if (registrertSvar) {
-      console.log('vervingen er registrert')
-      return { success: true }
+      const { success } = registrertSvar
+      if (success) {
+        console.log('vervingen er registrert')
+      } else {
+        console.log('den vervede var registrert fra før')
+      }
+      return { success }
     } else {
       console.warn('vervingen ble ikke registrert')
       return { success: false }
