@@ -20,7 +20,6 @@ function Login () {
     const form = document.getElementById('login-form')
     try {
       await axios.post('/api/login', generatePayload(form))
-      await axios.get('/api/auth-status')
       setLoading(false)
       form.reset()
       router.push('/ring')

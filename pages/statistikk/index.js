@@ -9,7 +9,7 @@ import StatistikkResponse from './statistikkresponse'
 
 const Statistikk = () => {
   const router = useRouter()
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser()
   const [statistikk, setStatistikk] = useState()
 
   async function hentStatistikk () {

@@ -16,7 +16,7 @@ import { Info } from '../../components/ui/alerts'
 
 const Ring = () => {
   const router = useRouter()
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser()
   const [person, setPerson] = useState()
   const [accepted, setIsAccepted] = useState()
   const [loading, setLoading] = useState()

@@ -10,7 +10,7 @@ import Samtaler from './samtaleliste.js'
 
 const SamtaleOversikt = () => {
   const router = useRouter()
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser()
   const [mineSamtaler, setMineSamtaler] = useState()
   const [lagetsSamtaler, setLagetsSamtaler] = useState()
   const [erGodkjenner, setErGodkjenner] = useState()

@@ -73,7 +73,7 @@ function Dashboard ({ dashboard }) {
 
 const HomePage = () => {
   const router = useRouter()
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser()
   const [dashboard, setDashboard] = useState()
   const [aktivtModus, setAktivtModus] = useState()
 

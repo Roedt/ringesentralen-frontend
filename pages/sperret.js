@@ -5,7 +5,7 @@ import useUser from '../lib/useUser'
 import Layout from '../components/layout'
 
 function Sperret () {
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser()
   const [roller, setRoller] = useState()
 
   useEffect(() => {
