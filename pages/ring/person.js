@@ -57,10 +57,10 @@ function Person ({ data, setIsAccepted, setPerson }) {
         <div className='ml-4 mt-4'>
           <div className='flex items-center'>
             <div className='ml-4'>
-              <h3 className='text-lg leading-6 font-medium text-gray-900'>
+              <h2 className='text-lg leading-6 font-medium text-gray-900'>
                 {fornavn} {etternavn}
-              </h3>
-              <p className='text-sm text-gray-500'>
+              </h2>
+              <p className='text-base text-gray-500'>
                 {telefonnummer}
               </p>
             </div>
