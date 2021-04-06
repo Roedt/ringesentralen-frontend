@@ -40,8 +40,9 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       ringtID: id,
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
-    /*
+
     const { vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink } = referat.modusspesifikkeResultat
+
     if (vilHaNyhetsbrevLink && vilHaMedlemsLink) {
       const payload = {
         telefonnummer,
@@ -68,8 +69,9 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
-    */
+
     try {
+      delete referat.modusspesifikkeResultat.vilHaFellesskapLink // midlertidig fiks
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
       toaster.notify('Samtalereferatet er lagret', { duration: 2000 })
       setLoading(false)
