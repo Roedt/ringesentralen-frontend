@@ -5,6 +5,8 @@ import toaster from 'toasted-notes'
 
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
+import Minipoll from '../../components/minipoll'
+
 import { is401, is403 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
 
@@ -86,6 +88,11 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
 
   return (
     <>
+      <Minipoll
+        tema='stortingsvalg-2021'
+        tekst='Kommer du til å stemme Rødt ved stortingsvalget i år?'
+        alternativer={['Ja', 'Nei', 'Usikker']}
+      />
       <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
         <div className={`space-y-8 ${modus === 'medlemmer' ? 'divide-y divide-gray-200' : ''}`}>
           <div className={`${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
