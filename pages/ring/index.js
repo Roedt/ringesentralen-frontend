@@ -20,6 +20,7 @@ const Ring = () => {
   const [person, setPerson] = useState()
   const [accepted, setIsAccepted] = useState()
   const [loading, setLoading] = useState()
+  const [visConfetti, setVisConfetti] = useState()
   const [info, setInfo] = useState()
   const { debugNummer } = process.env.NEXT_PUBLIC_TILLAT_DEBUGNUMMER ? router.query : false
 
@@ -39,6 +40,10 @@ const Ring = () => {
       }
       if (status === 204) {
         setInfo('Du har kommet til slutten av listen. Ingen flere å ringe. Gratulerer!')
+        setVisConfetti(true)
+        setTimeout(() => {
+          setVisConfetti(false)
+        }, 10000)
       }
     } catch (error) {
       setLoading(false)
@@ -62,7 +67,7 @@ const Ring = () => {
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
         {!person && <Nummeroppslag setPerson={setPerson} />}
         {info && <Info message={info} />}
-        {info && <Confetti />}
+        {visConfetti && <Confetti />}
         {person && <Person data={person} setIsAccepted={setIsAccepted} setPerson={setPerson} />}
         <Samtale data={person} accepted={accepted} setPerson={setPerson} user={user} />
       </div>
