@@ -24,7 +24,7 @@ function regnUtRoller (roller, erBruker, erRinger, erGodkjenner) {
   return nyeRoller
 }
 
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerStatus }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBrukerStatus, postnummer }) => {
   const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erGodkjenner, setErGodkjenner] = useState(kanGodkjenne(rolle))
@@ -96,6 +96,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, endreBrukerSta
             </div>
             <div className='text-sm text-gray-500'>
               {epost}
+            </div>
+            <div className='text-sm text-gray-500'>
+              Postnummer {postnummer} (fylke: {fylke.navn})
             </div>
           </div>
         </div>
