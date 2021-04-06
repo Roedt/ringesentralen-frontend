@@ -33,6 +33,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
         vilBliMerAktiv: payload?.vilBliMerAktiv === 'on',
         vilHaValgkampsbrev: payload?.vilHaValgkampsbrev === 'on',
         vilHaMedlemsLink: payload?.vilHaMedlemsLink === 'on',
+        vilHaFellesskapLink: payload?.vilHaFellesskapLink === 'on',
         vilHaNyhetsbrevLink: payload?.vilHaNyhetsbrevLink === 'on'
       },
       resultat: payload.resultat,
@@ -90,7 +91,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     <>
       <Minipoll
         tema='stortingsvalg-2021'
-        tekst='Kommer du til å stemme Rødt ved stortingsvalget i år?'
+        tekst='Har du tenkt å stemme Rødt ved stortingsvalget i år?'
         alternativer={['Ja', 'Nei', 'Usikker']}
       />
       <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
@@ -154,7 +155,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaNyhetsbrevLink' name='vilHaNyhetsbrevLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha nyhetsbrev</label>
+                    <label htmlFor='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha link til nyhetsbrev</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
@@ -163,6 +164,14 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                   </div>
                   <div className='ml-3 text-sm'>
                     <label htmlFor='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha link om å bli medlem</label>
+                  </div>
+                </div>
+                <div className='relative flex items-start'>
+                  <div className='flex items-center h-5'>
+                    <input id='vilHaFellesskapLink' name='vilHaFellesskapLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
+                  </div>
+                  <div className='ml-3 text-sm'>
+                    <label htmlFor='vilHaFellesskapLink' className='font-medium text-gray-700'>Vil ha link til fellesskapfungerer.no</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
