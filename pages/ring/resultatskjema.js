@@ -23,7 +23,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     const form = document.getElementById('samtalereferat-form')
     const payload = generatePayload(form)
     const referat = {
-      kommentar: payload.kommentar,
+      kommentar: payload.kommentar || '',
       modus: modus,
       modusspesifikkeResultat: {
         type: 'Valg21SpesifikkeResultat',
@@ -87,11 +87,11 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
   return (
     <>
       <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
-        <div className='space-y-8 divide-y divide-gray-200'>
-          <div>
+        <div className={`space-y-8 ${modus === 'medlemmer' ? 'divide-y divide-gray-200' : ''}`}>
+          <div className={`${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
             <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
               <div className='sm:col-span-6'>
-                <label for='kommentar' className='block text-sm font-medium text-gray-700'>
+                <label htmlFor='kommentar' className='block text-sm font-medium text-gray-700'>
                   Kommentarer
                 </label>
                 <div className='mt-1'>
@@ -113,19 +113,19 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                 <div className='mt-4 space-y-4'>
                   <div className='flex items-center'>
                     <input id='resultat-svarte' name='resultat' type='radio' value='Svarte' required className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
-                    <label for='resultat-svarte' className='ml-3 block text-sm font-medium text-gray-700'>
+                    <label htmlFor='resultat-svarte' className='ml-3 block text-sm font-medium text-gray-700'>
                       Svarte
                     </label>
                   </div>
                   <div className='flex items-center'>
                     <input id='resultat-passet-ikke' name='resultat' value='Passet_ikke' type='radio' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
-                    <label for='resultat-passet-ikke' className='ml-3 block text-sm font-medium text-gray-700'>
+                    <label htmlFor='resultat-passet-ikke' className='ml-3 block text-sm font-medium text-gray-700'>
                       Passet ikke
                     </label>
                   </div>
                   <div className='flex items-center'>
                     <input id='resultat-ikke-svar' name='resultat' value='Ikke_svar' type='radio' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300' />
-                    <label for='resultat-ikke-svar' className='ml-3 block text-sm font-medium text-gray-700'>
+                    <label htmlFor='resultat-ikke-svar' className='ml-3 block text-sm font-medium text-gray-700'>
                       Svarte ikke
                     </label>
                   </div>
@@ -147,7 +147,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaNyhetsbrevLink' name='vilHaNyhetsbrevLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha nyhetsbrev</label>
+                    <label htmlFor='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha nyhetsbrev</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
@@ -155,7 +155,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaMedlemsLink' name='vilHaMedlemsLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha link om å bli medlem</label>
+                    <label htmlFor='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha link om å bli medlem</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
@@ -163,7 +163,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaKoronaprogram' name='vilHaKoronaprogram' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilHaKoronaprogram' className='font-medium text-gray-700'>Vil ha korona-program på epost</label>
+                    <label htmlFor='vilHaKoronaprogram' className='font-medium text-gray-700'>Vil ha korona-program på epost</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
@@ -171,7 +171,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaValgkampsbrev' name='vilHaValgkampsbrev' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilHaValgkampsbrev' className='font-medium text-gray-700'>Vil ha valgkampsbrev med informasjon om valgkampen</label>
+                    <label htmlFor='vilHaValgkampsbrev' className='font-medium text-gray-700'>Vil ha valgkampsbrev med informasjon om valgkampen</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
@@ -179,7 +179,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilBliMerAktiv' name='vilBliMerAktiv' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilBliMerAktiv' className='font-medium text-gray-700'>Kan tenke seg å være mer aktiv i Rødt framover</label>
+                    <label htmlFor='vilBliMerAktiv' className='font-medium text-gray-700'>Kan tenke seg å være mer aktiv i Rødt framover</label>
                   </div>
                 </div>
                 <div className='relative flex items-start'>
@@ -187,7 +187,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilIkkeBliRingt' name='vilIkkeBliRingt' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label for='vilIkkeBliRingt' className='font-medium text-gray-700'>Vil ikke bli ringt</label>
+                    <label htmlFor='vilIkkeBliRingt' className='font-medium text-gray-700'>Vil ikke bli ringt</label>
                   </div>
                 </div>
               </div>
