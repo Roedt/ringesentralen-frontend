@@ -71,7 +71,6 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     }
 
     try {
-      delete referat.modusspesifikkeResultat.vilHaFellesskapLink // midlertidig fiks
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
       toaster.notify('Samtalereferatet er lagret', { duration: 2000 })
       setLoading(false)
