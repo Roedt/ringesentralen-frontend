@@ -92,8 +92,8 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     <>
       <Minipoll
         tema='stortingsvalg-2021'
-        tekst='Har du tenkt å stemme Rødt ved stortingsvalget i år?'
-        alternativer={['Ja', 'Nei', 'Usikker']}
+        tekst='Vurderer du å stemme Rødt ved stortingsvalget i år?'
+        alternativer={['Ja', 'Usikker', 'Nei']}
       />
       <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
         <div className={`space-y-8 ${modus === 'medlemmer' ? 'divide-y divide-gray-200' : ''}`}>
