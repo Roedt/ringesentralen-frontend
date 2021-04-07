@@ -6,6 +6,7 @@ import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import Button from '../../components/ui/button'
 import Minipoll from '../../components/minipoll'
+import { Warning } from '../../components/ui/alerts'
 
 import { is401, is403 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
@@ -13,10 +14,12 @@ import { useAmplitude } from '../../contexts/amplitude-context'
 function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
   const router = useRouter()
   const [loading, setLoading] = useState()
+  const [errors, setErrors] = useState()
   const { logAmplitudeEvent } = useAmplitude()
 
   const handleSubmit = async event => {
     event.preventDefault()
+    setErrors(false)
     setLoading(true)
     logAmplitudeEvent('ringer', {
       handling: 'Logger samtalereferat',
@@ -82,6 +85,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       } else if (is403(error)) {
         router.push('/sperret')
       } else {
+        setErrors('Fikk ikke lagret samtalen. Vennligst forsøk igjen. Om problemene fortsetter: kontakt oss på Slack')
         console.error(error)
       }
       setLoading(false)
@@ -95,7 +99,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
         tekst='Vurderer du å stemme Rødt ved stortingsvalget i år?'
         alternativer={['Ja', 'Usikker', 'Nei']}
       />
-      <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
+      <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200 mb-4' onSubmit={handleSubmit}>
         <div className={`space-y-8 ${modus === 'medlemmer' ? 'divide-y divide-gray-200' : ''}`}>
           <div className={`${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
             <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
@@ -221,6 +225,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
           </Button>
         </div>
       </form>
+      {errors && <Warning message={errors} />}
     </>
   )
 }
