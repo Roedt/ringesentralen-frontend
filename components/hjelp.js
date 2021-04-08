@@ -43,9 +43,12 @@ function Hjelp () {
                 </button>
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq0 ? 'visible' : 'hidden'}`} id='faq-0'>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Dette systemet hjelper deg å ringe medlemmer eller andre. Systemet viser deg telefonnummer, namn, adresse, lokallag med meir, og så ringer du personen.
                   Systemet vil også vise deg eit forslag til <em>manus</em>, altså kva du kan seie når du snakkar med personen.
+                </p>
+                <p className='text-base text-gray-500'>
+                  Her kan du se en <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://www.youtube.com/watch?v=GaGpHNy0KXE'>video om hvordan du bruker ringesentralen</a> (ca 12 minutter lang)
                 </p>
               </dd>
             </div>
