@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import useUser from '../../lib/useUser'
 import { is401, is403 } from '../../lib/utils'
 import Layout from '../../components/layout'
+import Modus from '../../components/modus'
 import Samtaler from './samtaleliste.js'
 
 const SamtaleOversikt = () => {
@@ -14,6 +15,7 @@ const SamtaleOversikt = () => {
   const [mineSamtaler, setMineSamtaler] = useState()
   const [lagetsSamtaler, setLagetsSamtaler] = useState()
   const [erGodkjenner, setErGodkjenner] = useState()
+  const [aktivtModus, setAktivtModus] = useState()
 
   async function hentMineSamtaler () {
     try {
@@ -45,12 +47,9 @@ const SamtaleOversikt = () => {
   }
 
   useEffect(() => {
-    hentMineSamtaler()
-  }, [])
-
-  useEffect(() => {
     if (user) {
       setErGodkjenner(user.rolle.includes('godkjenner'))
+      setAktivtModus(user.aktivtModus)
     }
   }, [user])
 
@@ -59,6 +58,15 @@ const SamtaleOversikt = () => {
       hentLagetsSamtaler()
     }
   }, [erGodkjenner])
+
+  useEffect(() => {
+    if (aktivtModus) {
+      hentMineSamtaler()
+    }
+    if (aktivtModus && erGodkjenner) {
+      hentLagetsSamtaler()
+    }
+  }, [aktivtModus])
 
   const LagetsSamtaler = ({ samtaler }) => {
     if (!samtaler) return null
@@ -73,6 +81,7 @@ const SamtaleOversikt = () => {
 
   return (
     <>
+      <Modus user={user} action='Vis' callOnChange={setAktivtModus} />
       <div>
         <Samtaler title='Mine samtaler' samtaler={mineSamtaler} erMeg />
       </div>
