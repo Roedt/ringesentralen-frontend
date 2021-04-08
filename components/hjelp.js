@@ -11,6 +11,7 @@ function Hjelp () {
   const [visFaq4, setVisFaq4] = useState()
   const [visFaq5, setVisFaq5] = useState()
   const [visFaq6, setVisFaq6] = useState()
+  const [visFaq7, setVisFaq7] = useState()
 
   function toggleFaq (func, state, spm) {
     func(state)
@@ -234,6 +235,31 @@ function Hjelp () {
                     <li className='mb-1'>Du kan som ringer selv endre hvilken type brukere du skal kontakte (medlemmer eller velgere)</li>
                     <li className='mb-1'>Når noen ringer tilbake (gitt at de er ringt fra den innebygde telefonen i systemet) kommer de til en telefonsvarer hvor de selv kan velge om vi skal forsøke å ringe påny eller om de ønsker å være i fred.</li>
                   </ul>
+                </p>
+              </dd>
+            </div>
+          </dl>
+          <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
+            <div className='pt-6'>
+              <dt className='text-lg'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq7, !visFaq7, '7')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                  <span className='font-medium text-gray-900'>
+                    Hvorfor er det 0 medlemmer i lokallaget mitt?
+                  </span>
+                  <span className='ml-6 h-7 flex items-center'>
+                    <svg className={`${visFaq7 ? '-rotate-180' : 'rotate-0'} h-6 w-6 transform`} xmlns='https://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd className={`mt-2 pr-12 ${visFaq7 ? 'visible' : 'hidden'}`} id='faq-0'>
+                <p className='text-base text-gray-500 mb-2'>
+                  På forsiden hvor det vises hvor mange du kan ringe står det 0 på mange lokallag.
+                </p>
+                <p className='text-base text-gray-500'>
+                  Dette er fordi systemet ikke henter inn medlemslisten før noen forsøker å ringe et medlem.<br />
+                  Så snart noen forsøker å ringe medlemmer vil tallet oppdatere seg.
                 </p>
               </dd>
             </div>
