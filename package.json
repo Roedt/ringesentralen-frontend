@@ -29,7 +29,7 @@
     "@sentry/browser": "6.2.5",
     "@sentry/integrations": "6.2.5",
     "@sentry/node": "6.2.5",
-    "@sentry/webpack-plugin": "1.14.2",
+    "@sentry/webpack-plugin": "1.15.0",
     "@tailwindcss/typography": "0.4.0",
     "amplitude-js": "8.1.0",
     "axios": "0.21.1",
