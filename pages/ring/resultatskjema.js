@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import toaster from 'toasted-notes'
 
 import generatePayload from '../../lib/generate-payload'
+import genererLinkmelding from './generer-link-melding'
 import Button from '../../components/ui/button'
 import Minipoll from '../../components/minipoll'
 import { Warning } from '../../components/ui/alerts'
@@ -46,29 +47,10 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
 
     const { vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink } = referat.modusspesifikkeResultat
 
-    if (vilHaNyhetsbrevLink && vilHaMedlemsLink) {
+    if (vilHaNyhetsbrevLink || vilHaMedlemsLink || vilHaFellesskapLink) {
       const payload = {
         telefonnummer,
-        melding: 'Du sa du ønsket å motta nyhetsbrev fra Rødt og at du ville vite mer om å bli medlem. Du registrerer deg for nyhetsbrev på https://roedt.no og du kan lese mer om medlemsskap her https://roedt.no/bli-medlem'
-      }
-      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-    } else if (vilHaNyhetsbrevLink) {
-      const payload = {
-        telefonnummer,
-        melding: 'Du sa du ønsket å motta nyhetsbrev fra Rødt. Da må du registrere deg på https://roedt.no'
-      }
-      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-    } else if (vilHaMedlemsLink) {
-      const payload = {
-        telefonnummer,
-        melding: 'Du sa du ønsket vite mer om å bli medlem i Rødt. Les mer om dette her https://roedt.no/bli-medlem'
-      }
-      await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
-    }
-    if (vilHaFellesskapLink) {
-      const payload = {
-        telefonnummer,
-        melding: 'Du sa du ønsket å motta lenke til Rødts aksjonsside her er den https://www.fellesskapfungerer.no/'
+        melding: genererLinkmelding(vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink)
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
