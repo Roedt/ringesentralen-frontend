@@ -49,7 +49,7 @@ function Person ({ data, setIsAccepted, setPerson }) {
   if (!data) return null
 
   const { person, tidlegareSamtalar } = data
-  const { fornavn, etternavn, telefonnummer, id } = person
+  const { fornavn, etternavn, telefonnummer, id, lokallagNavn } = person
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
@@ -62,6 +62,9 @@ function Person ({ data, setIsAccepted, setPerson }) {
               </h2>
               <p className='text-base text-gray-500'>
                 {telefonnummer}
+              </p>
+              <p className='text-sm text-gray-500'>
+                Nærmeste lokallag: <span className='font-semibold'>{lokallagNavn}</span>
               </p>
             </div>
           </div>
