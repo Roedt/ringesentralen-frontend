@@ -30,6 +30,7 @@ async function login (request, response) {
       token,
       expires: new Date().getTime() + 36000000,
       aktivtModus: 'medlemmer',
+      aktivtLokallag: lokallag,
       isAuthenticated: true
     }
     request.session.set('user', user)
