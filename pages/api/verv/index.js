@@ -9,6 +9,7 @@ function isSpam (payload) {
 
 async function verving (request, response) {
   const payload = await request.body
+  console.log(JSON.stringify(payload, null, 2))
   payload.telefonnummer = fixTelefonNummer(payload.telefonnummer)
   payload.epost = '12534343'
 
