@@ -142,7 +142,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaNyhetsbrevLink' name='vilHaNyhetsbrevLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha link til nyhetsbrev</label>
+                    <label htmlFor='vilHaNyhetsbrevLink' className='font-medium text-gray-700'>Vil ha tilsendt link til nyhetsbrev</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
@@ -150,7 +150,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaMedlemsLink' name='vilHaMedlemsLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha link om å bli medlem</label>
+                    <label htmlFor='vilHaMedlemsLink' className='font-medium text-gray-700'>Vil ha tilsendt link om å bli medlem</label>
                   </div>
                 </div>
                 <div className='relative flex items-start'>
@@ -158,7 +158,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                     <input id='vilHaFellesskapLink' name='vilHaFellesskapLink' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaFellesskapLink' className='font-medium text-gray-700'>Vil ha link til fellesskapfungerer.no</label>
+                    <label htmlFor='vilHaFellesskapLink' className='font-medium text-gray-700'>Vil ha tilsendt link til fellesskapfungerer.no</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
