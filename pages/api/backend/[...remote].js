@@ -12,9 +12,9 @@ async function backendProxy (request, response) {
     console.log('Finner ingen bruker, sender til innlogging')
     response.status(401).json({ isAuthenticated: false })
   } else {
-    const { token, aktivtModus } = user
+    const { token, aktivtModus, aktivtLokallag } = user
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
-    const url = `${process.env.API_URL}/${remote.join('/')}?modus=${aktivtModus}`
+    const url = `${process.env.API_URL}/${remote.join('/')}?modus=${aktivtModus}&lokallag=${aktivtLokallag}`
     try {
       const { data, status } = await axios[method](url, payload)
       response.status(status).json(data)
