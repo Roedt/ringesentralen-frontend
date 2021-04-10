@@ -1,5 +1,6 @@
 import twilio from 'twilio'
 
+import svarerAlternativer from './telefonsvarer-alternativer'
 import registrerSvar from './registrerSvar'
 
 const VoiceResponse = twilio.twiml.VoiceResponse
@@ -7,18 +8,17 @@ const VoiceResponse = twilio.twiml.VoiceResponse
 async function twilioCollectCall (request, response) {
   const payload = await request.body
   const { Digits, From } = payload
-  let melding = 'Vi mottok ikke noe svar vi forstod, men det er helt greit. Godt valg! '
+  let melding = ''
   if (Digits === '1') {
-    melding = 'Vi ringer deg tilbake når vi ringesentralen åpner igjen. Godt valg! '
+    melding = svarerAlternativer.ja
   }
   if (Digits === '2') {
-    melding = 'Da skal vi la være å ringe deg tilbake. Godt valg! '
+    melding = svarerAlternativer.nei
   }
   await registrerSvar({ telefonnummer: From, digits: Digits })
   const twiml = new VoiceResponse()
-  twiml.say({
-    voice: 'Polly.Liv',
-    language: 'nb-NO'
+  twiml.play({
+    loop: 1
   }, melding)
   response.setHeader('Content-Type', 'application/xml')
   response.status(200).send(twiml.toString())

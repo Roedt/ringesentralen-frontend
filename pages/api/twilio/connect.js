@@ -1,5 +1,8 @@
 import twilio from 'twilio'
+
 import fixTelefonNummer from '../../../lib/fix-telefonnummer'
+import svarerAlternativer from './telefonsvarer-alternativer'
+
 const VoiceResponse = twilio.twiml.VoiceResponse
 
 const erUtGaaende = caller => /client/.test(caller)
@@ -23,10 +26,9 @@ async function twilioConnectCall (request, response) {
       action: '/api/twilio/collect'
     })
     // Så setter vi opp stemmen som skal leses opp først
-    gather.say({
-      voice: 'Polly.Liv',
-      language: 'nb-NO'
-    }, 'Velkommen til Rødts ringesentral. Tast een om du vil at vi skal ringe deg tilbake senere. Tast too om du ikke ønsker å bli ringt igjen')
+    gather.play({
+      loop: 1
+    }, svarerAlternativer.svar)
     // Dersom innsamling av data timer ut sendes data videre likevel
     twiml.redirect('/api/twilio/collect')
     // Dette er den gamle koden for å redirecte til et annet telefonnummer
