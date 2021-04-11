@@ -54,6 +54,10 @@ availableSecrets:
     env: 'SYSTEMBRUKERPASSORD'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_TWIML_APP_SID/versions/latest
     env: 'TWILIOTWIMLAPPSID'
+  - versionName: projects/$PROJECT_ID/secrets/NEXT_PUBLIC_RECAPTCHA_SITE_ID/versions/latest
+    env: 'NEXT_PUBLIC_RECAPTCHA_SITE_ID'
+  - versionName: projects/$PROJECT_ID/secrets/RECAPTCHA_SECRET/versions/latest
+    env: 'RECAPTCHA_SECRET'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_ACCOUNT_SID/versions/latest
     env: 'TWILIOACCOUNTSID'
   - versionName: projects/$PROJECT_ID/secrets/TWILIO_AUTH_TOKEN/versions/latest
