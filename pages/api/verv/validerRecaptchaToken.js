@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const recaptchaSecret = process.env.CAPTCHA_SECRET
+const recaptchaSecret = process.env.RECAPTCHA_SECRET
 const recaptchaURL = 'https://www.google.com/recaptcha/api/siteverify'
 
 async function validerRecaptchaToken (token) {

@@ -5,9 +5,6 @@ import Head from 'next/head'
 import Kvittering from './kvittering'
 import Skjema from './skjema'
 
-const SITE_ID = process.env.NEXT_PUBLIC_CAPTCHA_KEY
-const reCaptchaUrl = `https://www.google.com/recaptcha/api.js?render=${SITE_ID}`
-
 function Verving () {
   const [success, setSuccess] = useState()
 
@@ -15,7 +12,6 @@ function Verving () {
     <>
       <Head>
         <title>Verv en venn til Rødts ringesentral</title>
-        <script src={reCaptchaUrl} />
       </Head>
       <div className='relative bg-white'>
         {success && <Confetti />}
