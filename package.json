@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
+    "@google-cloud/recaptcha-enterprise": "2.1.0",
     "@sentry/browser": "6.2.5",
     "@sentry/integrations": "6.2.5",
     "@sentry/node": "6.2.5",

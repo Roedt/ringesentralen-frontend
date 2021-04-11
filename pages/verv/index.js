@@ -5,7 +5,8 @@ import Head from 'next/head'
 import Kvittering from './kvittering'
 import Skjema from './skjema'
 
-const reCaptchaUrl = `https://www.google.com/recaptcha/enterprise.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_ID}`
+const SITE_ID = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_ID
+const reCaptchaUrl = `https://www.google.com/recaptcha/enterprise.js?render=${SITE_ID}`
 
 function Verving () {
   const [success, setSuccess] = useState()

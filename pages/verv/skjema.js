@@ -2,12 +2,14 @@ import axios from 'axios'
 import { useState } from 'react'
 
 import generatePayload from '../../lib/generate-payload'
+import useRecaptcha from '../../lib/useRecaptcha'
 
 import Button from '../../components/ui/button'
 
 function Skjema ({ setSuccess }) {
   const [loading, setLoading] = useState()
   const [ververMeg, setVerverMeg] = useState()
+  const { getToken } = useRecaptcha()
 
   function toggleVerveSelv (event) {
     setVerverMeg(event.target.checked)
@@ -16,8 +18,11 @@ function Skjema ({ setSuccess }) {
   async function handleSubmit (event) {
     event.preventDefault()
     setLoading(true)
+    const token = await getToken({ action: 'submit' })
+    console.log(token)
     const form = document.getElementById('verving-skjema')
     const payload = generatePayload(form)
+    payload.token = token
     await axios.post('/api/verv', payload)
     setLoading(false)
     form.reset()

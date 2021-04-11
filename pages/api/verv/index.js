@@ -12,6 +12,7 @@ async function verving (request, response) {
   console.log(JSON.stringify(payload, null, 2))
   payload.telefonnummer = fixTelefonNummer(payload.telefonnummer)
   payload.epost = '12534343'
+  console.log(JSON.stringify(payload, null, 2))
 
   if (!isSpam(payload)) {
     const { success } = await registrerVerving(payload)
