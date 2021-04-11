@@ -18,7 +18,7 @@ function Skjema ({ setSuccess }) {
   async function handleSubmit (event) {
     event.preventDefault()
     setLoading(true)
-    const token = await getToken({ action: 'submit' })
+    const token = await getToken({ action: 'verving' })
     console.log(token)
     const form = document.getElementById('verving-skjema')
     const payload = generatePayload(form)
