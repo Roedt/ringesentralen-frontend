@@ -3,10 +3,13 @@ import axios from 'axios'
 const recaptchaSecret = process.env.RECAPTCHA_SECRET
 const recaptchaURL = 'https://www.google.com/recaptcha/api/siteverify'
 
-async function validerRecaptchaToken (token) {
+async function validerRecaptchaToken (token, remoteip) {
   const params = new URLSearchParams()
   params.append('response', token)
   params.append('secret', recaptchaSecret)
+  if (remoteip) {
+    params.append('remoteip', remoteip)
+  }
 
   const config = {
     headers: {

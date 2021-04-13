@@ -4,15 +4,16 @@ import sendSMS from './sendSMS'
 import fixTelefonNummer from '../../../lib/fix-telefonnummer'
 import validerRecaptchaToken from './validerRecaptchaToken'
 
-async function verifyRecaptcha (payload) {
-  const recaptchaScore = await validerRecaptchaToken(payload.token)
+async function verifyRecaptcha (payload, remoteip) {
+  const recaptchaScore = await validerRecaptchaToken(payload.token, remoteip)
   return recaptchaScore ? !(recaptchaScore >= 0.9) : true
 }
 
 async function verving (request, response) {
   const payload = await request.body
+  const remoteip = request.headers['x-forwarded-for'] || request.connection.remoteAddress || false
   payload.telefonnummer = fixTelefonNummer(payload.telefonnummer)
-  const isSpam = await verifyRecaptcha(payload)
+  const isSpam = await verifyRecaptcha(payload, remoteip)
 
   if (!isSpam) {
     console.log('Dette er ikke spam')
