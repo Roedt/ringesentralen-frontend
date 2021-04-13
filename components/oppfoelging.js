@@ -10,25 +10,25 @@ function lagOnskeListe (oppfoelging) {
   } = oppfoelging
   const liste = []
   if (koronaprogram) {
-    liste.push('Ønsker å få tilsendt koronaprogram')
+    liste.push('Vil ha korona-program på epost')
   }
   if (merAktiv) {
-    liste.push('Ønsker å bli mer aktiv i Rødt')
+    liste.push('Kan tenke seg å være mer aktiv i Rødt framover')
   }
   if (valgkampsbrev) {
-    liste.push('Ønsker å få tilsendt valgkampsbrev')
+    liste.push('Vil ha valgkampsbrev med informasjon om valgkampen')
   }
   if (vilHaMedlemsLink) {
-    liste.push('Ønsker tilsendt link for medlemsskap')
+    liste.push('Vil ha tilsendt link om å bli medlem')
   }
   if (vilHaFellesskapLink) {
-    liste.push('Ønsker tilsendt link for fellesskapfungerer.no')
+    liste.push('Vil ha tilsendt link til fellesskapfungerer.no')
   }
   if (vilHaNyhetsbrevLink) {
-    liste.push('Ønsker tilsendt link for nyhetsbrev')
+    liste.push('Vil ha tilsendt link til nyhetsbrev')
   }
   if (vilIkkeBliRingt) {
-    liste.push('Ønsker IKKE å bli ringt igjen')
+    liste.push('Vil IKKE bli ringt')
   }
   return liste
 }
