@@ -48,8 +48,12 @@ function Hjelp () {
                   Dette systemet hjelper deg å ringe medlemmer eller andre. Systemet viser deg telefonnummer, namn, adresse, lokallag med meir, og så ringer du personen.
                   Systemet vil også vise deg eit forslag til <em>manus</em>, altså kva du kan seie når du snakkar med personen.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Her kan du se en <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://www.youtube.com/watch?v=GaGpHNy0KXE'>video om hvordan du bruker ringesentralen</a> (ca 12 minutter lang)
+                </p>
+                <p className='text-base text-gray-500'>
+                  Når du ringer ved hjelp av den innebygde funksjonalitetet (VoIP) vil de du ringer se nummeret 23 50 66 18.<br />
+                  Dersom noen forsøker å ringe tilbake på det nummeret vil de få en telefonsvarer hvor Bjørnar Moxnes spør om de ønsker vi skal ringe tilbake eller ikke.
                 </p>
               </dd>
             </div>
@@ -69,14 +73,14 @@ function Hjelp () {
                 </button>
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq1 ? 'visible' : 'hidden'}`} id='faq-1'>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem).
                   Har du ikkje logga inn der før, bruk <em>glemt passord</em>-lenka på innloggingssida, så vil du få moglegheit til å setje eit passord.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Når det er gjort er du registrert, og du kan logge inn her på Ringesentralen.
                 </p>
-                <p className='text-base text-gray-500'>Derimot vil ingen funksjonalitet vera tilgjengeleg umiddelbart: Før du kan starte å ringe, må ein administrator eller lokal godkjenner godkjenne at du er klar til å starte å ringe.
+                <p className='text-base text-gray-500 mb-2'>Derimot vil ingen funksjonalitet vera tilgjengeleg umiddelbart: Før du kan starte å ringe, må ein administrator eller lokal godkjenner godkjenne at du er klar til å starte å ringe.
                   Når dette er klart, vil du få ein epost frå systemet. Da kan du logge deg inn og starte ringinga.
                 </p>
                 <p className='text-base text-gray-500'>
@@ -100,17 +104,21 @@ function Hjelp () {
                 </button>
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq2 ? 'visible' : 'hidden'}`} id='faq-2'>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Sjølve ringinga gjer du helst gjennom systemet.
                   Når du startar samtalen her inne på Ringesentralen, får du moglegheita til å ringe gjennom systemet. Da vil mottakaren få opp at det er Raudt som har prøvd å ringe hen,
                   og også få eit telefonnummer å ringe tilbake til som tar hen til valkampsentralen.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Skulle du ønskje det, eller det er noko teknisk problematisk, kan du også ringe personen frå din eigen telefon. Nummeret du skal ringe vil visast under personens namn.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Det er viktig at du mot slutten eller etter samtalen registrerer resultat av samtalen - eksempelvis at personen svarte og vil ha valgkampsbrev frå oss.
                   Marker om personen svarte eller ikkje. I tillegg er det sjekkboksar, som du kan krysse viss svaret er ja, og la vera blanke viss svaret er nei:
+                </p>
+                <p className='text-base text-gray-500'>
+                  Når du ringer ved hjelp av den innebygde funksjonalitetet (VoIP) vil de du ringer se nummeret 23 50 66 18.<br />
+                  Dersom noen forsøker å ringe tilbake på det nummeret vil de få en telefonsvarer hvor Bjørnar Moxnes spør om de ønsker vi skal ringe tilbake eller ikke.
                 </p>
               </dd>
             </div>
@@ -130,16 +138,16 @@ function Hjelp () {
                 </button>
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq3 ? 'visible' : 'hidden'}`} id='faq-3'>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Om nokon ikkje tok telefonen, eller av andre grunnar ringer deg tilbake seinare, kan du gå inn på <em>Noen ringer tilbake</em>. Der vil du få opp namn og den andre informasjonen om personen, pluss ringemanuset.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Personar som er ringt og som svarte, vil ikkje dukke opp i systemet på ny. Viss ein person ikkje svarte, eller det ikkje passa, vil denne dukke opp igjen etter eit døgn.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Viss du gjekk inn på ring neste, men ikkje fekk ringt personen lell, og du ikkje registrerer noko resultat, vil personen dukke opp i systemet igjen etter 30 minutt.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Hugs at informasjonen du får tilgang til her er taushetsbelagt. Ikkje bruk informasjonen i andre samanhengar eller andre stadar.
                   Når du klikkar på <em>Ring</em>-sida, loggar vi at det startar ein samtale mellom deg og den du skal ringe.
                   Vi loggar også resultatet du registrerer frå samtalen, og tidspunkt.
@@ -166,7 +174,7 @@ function Hjelp () {
                 </button>
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq4 ? 'visible' : 'hidden'}`} id='faq-4'>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Vi som driftar systemet har tilgang til nokre ekstra administrasjonsverktyg: vi kan
                   <ul className='list-disc mb-6 ml-4'>
                     <li>godkjenne nye ringarar</li>
@@ -176,7 +184,7 @@ function Hjelp () {
                     <li>gi ein ringar moglegheit til å godkjenne lokale ringarar (og til å ta bort denne moglegheita igjen)</li>
                   </ul>
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Når ringeprosjektet er over for denne gong, vil vi hente ut resultata og følge dei opp vidare.
                 </p>
               </dd>
