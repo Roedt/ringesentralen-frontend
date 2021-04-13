@@ -1,7 +1,8 @@
 import prettyPrintDato from '../../lib/prettyprint-dato'
+import Oppfoelging from '../../components/oppfoelging'
 
 function Logg ({ data }) {
-  const { kommentar, ringer, tidspunkt, resultat } = data
+  const { kommentar, ringer, tidspunkt, resultat, oppfoelging } = data
   return (
     <li className='py-4'>
       <div className='flex space-x-3'>
@@ -12,6 +13,7 @@ function Logg ({ data }) {
           </div>
           <p className='text-sm text-gray-700'>{resultat}</p>
           <p className='text-sm text-gray-700'>{kommentar}</p>
+          <Oppfoelging oppfoelging={oppfoelging} className='text-sm text-gray-700' />
         </div>
       </div>
     </li>
