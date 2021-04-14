@@ -84,6 +84,9 @@ function Login () {
             <p>
               Er det noko du lurer på, <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>still gjerne spørsmål på Slack</a>
             </p>
+            <p>
+              Om du ikke bruker Slack kan du <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedt.no/slack'>få tilgang her</a>.
+            </p>
           </div>
           {errors && <Warning message={errors} />}
         </div>
