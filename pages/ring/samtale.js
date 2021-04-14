@@ -22,7 +22,6 @@ function Samtale ({ accepted, data, user, setPerson }) {
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
-      {JSON.stringify(person, null, 2)}
       {telefonnummer && <VoIP telefonnummer={telefonnummer} />}
       <div className='mt-4 flex flex-col lg:flex-row'>
         <div className='flex-1 lg:pr-4 md:mb-4 sm:mb-4'>
