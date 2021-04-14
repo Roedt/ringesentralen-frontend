@@ -1,4 +1,4 @@
-Hei! Jeg heter {{navn}} og ringer fra {{lokalLag}}. 
+Hei! Jeg heter {{navn}} og ringer fra {{lokalLag}}.
 
 Vi har en ringerunde nå i valgåret, og jeg lurer på om jeg kan stille deg noen korte spørsmål?
 
@@ -6,8 +6,6 @@ Etter valget kan Rødt få mange nye stortingsrepresentanter, noe som vil gi oss
 
 Kan du tenke deg å være mer aktiv i Rødt framover?
 
-Vil du ha valgkampsbrev med informasjon om valgkampen fra Rødt?
-
-Vi har også laget en ny nettside hvor du kan bidra til valgkampen. Den finner du på [fellesskapfungerer.no](https://fellesskapfungerer.no)
+Vi har også laget en ny nettside hvor du kan bidra til valgkampen. Den finner du på fellesskapfungerer.no
 
 Er det noe annet du lurer på?
