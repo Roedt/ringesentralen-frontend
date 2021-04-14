@@ -6,43 +6,10 @@ import toaster from 'toasted-notes'
 import generatePayload from '../../lib/generate-payload'
 import genererLinkmelding from './generer-link-melding'
 import Button from '../../components/ui/button'
-import Minipoll from '../../components/minipoll'
 import { Warning } from '../../components/ui/alerts'
 
 import { is401, is403 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
-
-function PollsVelgere () {
-  return (
-    <>
-      <Minipoll
-        tema='oktForskjellPandemi'
-        tekst='Opplever du at forskjellene har økt som følge av korona-pandemien?'
-        alternativer={['Ja', 'Nei', 'Vet ikke']}
-      />
-      <Minipoll
-        tema='oktForskjellGjortNok'
-        tekst='Synes du det har blitt gjort nok for å hindre økte forskjeller i denne tida?'
-        alternativer={['Ja', 'Nei', 'Vet ikke']}
-      />
-      <Minipoll
-        tema='tannhelse'
-        tekst='Er du enig med Rødt i at tannhelse bør være gratis?'
-        alternativer={['Svært enig', 'Enig', 'Verken eller', 'Uenig', 'Svært uenig']}
-      />
-      <Minipoll
-        tema='fellesVelferd'
-        tekst='Er du enig med Rødt i at skattepenger bevilget til velferd skal gå til felles velferd, ikke privat profitt?'
-        alternativer={['Svært enig', 'Enig', 'Verken eller', 'Uenig', 'Svært uenig']}
-      />
-      <Minipoll
-        tema='stemmePaaRoedt'
-        tekst='Er Rødt et av partiene du vurderer å stemme på?'
-        alternativer={['Ja', 'Nei', 'Vet ikke']}
-      />
-    </>
-  )
-}
 
 function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
   const router = useRouter()
@@ -107,7 +74,6 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
 
   return (
     <>
-      {modus === 'velgere' && <PollsVelgere />}
       <form id='samtalereferat-form' className='space-y-8 divide-y divide-gray-200 mb-4' onSubmit={handleSubmit}>
         <div className={`space-y-8 ${modus === 'medlemmer' ? 'divide-y divide-gray-200' : ''}`}>
           <div className={`${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
