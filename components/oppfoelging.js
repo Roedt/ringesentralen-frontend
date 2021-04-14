@@ -1,7 +1,9 @@
 function lagOnskeListe (oppfoelging) {
   const {
     koronaprogram,
-    merAktiv,
+    vilBliMerAktiv,
+    vilPolitikkLink,
+    vilBliRingtAugust,
     valgkampsbrev,
     vilIkkeBliRingt,
     vilHaMedlemsLink,
@@ -12,20 +14,26 @@ function lagOnskeListe (oppfoelging) {
   if (koronaprogram) {
     liste.push('Vil ha korona-program på epost')
   }
-  if (merAktiv) {
+  if (vilPolitikkLink) {
+    liste.push('Vil ha sms med link Rødts politikk')
+  }
+  if (vilBliMerAktiv) {
     liste.push('Kan tenke seg å være mer aktiv i Rødt framover')
   }
   if (valgkampsbrev) {
     liste.push('Vil ha valgkampsbrev med informasjon om valgkampen')
   }
   if (vilHaMedlemsLink) {
-    liste.push('Vil ha tilsendt link om å bli medlem')
+    liste.push('Vil ha sms med link om å bli medlem')
   }
   if (vilHaFellesskapLink) {
-    liste.push('Vil ha tilsendt link til fellesskapfungerer.no')
+    liste.push('Vil ha sms med link til fellesskapfungerer.no')
   }
   if (vilHaNyhetsbrevLink) {
     liste.push('Vil ha tilsendt link til nyhetsbrev')
+  }
+  if (vilBliRingtAugust) {
+    liste.push('Vil bli ringt igjen i augustt')
   }
   if (vilIkkeBliRingt) {
     liste.push('Vil IKKE bli ringt')
