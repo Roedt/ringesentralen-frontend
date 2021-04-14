@@ -14,6 +14,7 @@ function Modus ({ user, action, callOnChange }) {
     setAktivtModus(modus)
     try {
       await axios.post('/api/modus', { modus }, { withCredentials: true })
+      router.reload()
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
