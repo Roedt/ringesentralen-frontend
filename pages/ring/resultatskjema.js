@@ -65,24 +65,23 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
       modus: modus,
       modusspesifikkeResultat: {
         type: 'Valg21SpesifikkeResultat',
-        vilHaKoronaprogram: payload?.vilHaKoronaprogram === 'on',
+        vilPolitikkLink: payload?.vilPolitikkLink === 'on',
         vilBliMerAktiv: payload?.vilBliMerAktiv === 'on',
-        vilHaValgkampsbrev: payload?.vilHaValgkampsbrev === 'on',
         vilHaMedlemsLink: payload?.vilHaMedlemsLink === 'on',
         vilHaFellesskapLink: payload?.vilHaFellesskapLink === 'on',
-        vilHaNyhetsbrevLink: payload?.vilHaNyhetsbrevLink === 'on'
+        vilBliRingtAugust: payload?.vilBliRingtAugust === 'on'
       },
       resultat: payload.resultat,
       ringtID: id,
       vilIkkeBliRingt: payload?.vilIkkeBliRingt === 'on'
     }
 
-    const { vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink } = referat.modusspesifikkeResultat
+    const { vilPolitikkLink, vilHaMedlemsLink, vilHaFellesskapLink } = referat.modusspesifikkeResultat
 
-    if (vilHaNyhetsbrevLink || vilHaMedlemsLink || vilHaFellesskapLink) {
+    if (vilPolitikkLink || vilHaMedlemsLink || vilHaFellesskapLink) {
       const payload = {
         telefonnummer,
-        melding: genererLinkmelding(vilHaNyhetsbrevLink, vilHaMedlemsLink, vilHaFellesskapLink)
+        melding: genererLinkmelding(vilPolitikkLink, vilHaMedlemsLink, vilHaFellesskapLink)
       }
       await axios.post('/api/twilio/sendSMS', payload, { withCredentials: true })
     }
@@ -191,10 +190,10 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                 </div>
                 <div className={`relative flex items-start ${modus === 'velgere' ? 'visible' : 'hidden'}`}>
                   <div className='flex items-center h-5'>
-                    <input id='vilBliRingtAugus' name='vilBliRingtAugus' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
+                    <input id='vilBliRingtAugust' name='vilBliRingtAugust' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
-                    <label htmlFor='vilBliRingtAugus' className='font-medium text-gray-700'>Vil bli ringt igjen i august</label>
+                    <label htmlFor='vilBliRingtAugust' className='font-medium text-gray-700'>Vil bli ringt igjen i august</label>
                   </div>
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
