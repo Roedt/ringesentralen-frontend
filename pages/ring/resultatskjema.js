@@ -163,22 +163,6 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
                 </div>
                 <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
                   <div className='flex items-center h-5'>
-                    <input id='vilHaKoronaprogram' name='vilHaKoronaprogram' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
-                  </div>
-                  <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaKoronaprogram' className='font-medium text-gray-700'>Vil ha korona-program på epost</label>
-                  </div>
-                </div>
-                <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
-                  <div className='flex items-center h-5'>
-                    <input id='vilHaValgkampsbrev' name='vilHaValgkampsbrev' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
-                  </div>
-                  <div className='ml-3 text-sm'>
-                    <label htmlFor='vilHaValgkampsbrev' className='font-medium text-gray-700'>Vil ha valgkampsbrev med informasjon om valgkampen</label>
-                  </div>
-                </div>
-                <div className={`relative flex items-start ${modus === 'medlemmer' ? 'visible' : 'hidden'}`}>
-                  <div className='flex items-center h-5'>
                     <input id='vilBliMerAktiv' name='vilBliMerAktiv' type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
                   </div>
                   <div className='ml-3 text-sm'>
