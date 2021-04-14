@@ -5,11 +5,12 @@ import Handlebars from 'handlebars'
 import { is404 } from '../lib/utils'
 const md = require('markdown-it')()
 
-function Ringemanus ({ manus, modus, lokalLag, navn }) {
+function Ringemanus ({ manus, modus, lokalLag, navn, navnTilDenSomringes }) {
   const [html, setHtml] = useState('')
   const innhold = {
     navn,
-    lokalLag
+    lokalLag,
+    navnTilDenSomringes
   }
 
   async function hentRingeManus () {
