@@ -8,6 +8,10 @@ import Layout from '../components/layout'
 import Modus from '../components/modus'
 import { is401, is403 } from '../lib/utils'
 
+function navneSortering (a, b) {
+  return a.lokallag.navn.localeCompare(b.lokallag.navn)
+}
+
 function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte }) {
   return (
     <div className='mb-4'>
@@ -80,6 +84,9 @@ const HomePage = () => {
   async function getDashboard () {
     try {
       const { data } = await axios.get('/api/backend/dashboard', { withCredentials: true })
+      if (data && Array.isArray(data.statusliste)) {
+        data.statusliste = data.statusliste.sort(navneSortering)
+      }
       setDashboard(data)
     } catch (error) {
       if (is401(error)) {
