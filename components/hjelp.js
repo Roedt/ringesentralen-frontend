@@ -244,6 +244,9 @@ function Hjelp () {
                     <li className='mb-1'>Når noen ringer tilbake (gitt at de er ringt fra den innebygde telefonen i systemet) kommer de til en telefonsvarer hvor de selv kan velge om vi skal forsøke å ringe påny eller om de ønsker å være i fred.</li>
                   </ul>
                 </p>
+                <p className='text-base text-gray-500 mb-2'>
+                  Vil du vite hva vi jobber med fremover <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://github.com/orgs/Roedt/projects/1' target='_blank' rel='noopener noreferrer'>kan du følge med på prosjektsiden vår (åpnes i nytt vindu)</a>.
+                </p>
               </dd>
             </div>
           </dl>
