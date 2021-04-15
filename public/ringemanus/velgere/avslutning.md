@@ -7,7 +7,7 @@ OM PERSONEN ER POSITIV/NYSGJERRIG:
 Kan du tenke deg mer informasjon om Rødt fram mot valget?
 
 Vil du at vi skal sende deg en:
-- SMS med link til roedt.no/politikk?
+- SMS med link til roedt.no/politikken?
 - SMS med link til å bli medlem?
 - SMS med en link til hvor du kan bidra i valgkampen?
 
