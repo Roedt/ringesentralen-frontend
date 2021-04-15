@@ -86,6 +86,7 @@ ENV COOKIE_SECRET=${COOKIE_SECRET}
 ENV ENCRYPTION_KEY=${ENCRYPTION_KEY}
 WORKDIR /app
 COPY --from=build /build/package*.json ./
+COPY --from=build /build/next.config.js ./
 COPY --from=build /build/.next ./.next
 COPY --from=build /build/public ./public
 RUN npm install next
