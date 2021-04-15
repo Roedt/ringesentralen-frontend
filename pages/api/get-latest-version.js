@@ -8,6 +8,7 @@ const config = {
 }
 
 async function isLatesVersion (request, response) {
+  delete axios.defaults.headers.common.Authorization
   try {
     const { data } = await axios.get(latestUrl, config)
     const { tag_name: latestVersion } = data
