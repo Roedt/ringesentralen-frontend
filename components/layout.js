@@ -18,7 +18,13 @@ export default function Layout ({ pageTitle, children }) {
     }
   }, [user])
 
-  if (!isLoggedIn) return null
+  if (!isLoggedIn) {
+    return (
+      <div className='text-center py-48'>
+        Du er logget ut <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='/login'>logg inn igjen</a>
+      </div>
+    )
+  }
 
   return (
     <div className='flex flex-col min-h-screen'>
