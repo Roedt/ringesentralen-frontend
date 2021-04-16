@@ -1,31 +1,13 @@
-import useSWR from 'swr'
-
 import pkg from '../package.json'
 
 const thisVersion = pkg.version
 
-function VersjonsNummer ({ thisVersion, latest }) {
-  let melding = `Ringesentralen v${thisVersion}`
-  let className = ''
-  if (latest?.success && thisVersion !== latest.latestVersion) {
-    melding = `Ny versjon! Du bruker v${thisVersion} siste versjon er v${latest.latestVersion}. Vennligst oppdater nettleseren.`
-    className = 'text-roedt'
-  }
-  return (
-    <span className={className}>
-      {melding}
-    </span>
-  )
-}
-
 export default function Footer () {
-  const { data: latest } = useSWR('/api/get-latest-version')
-
   return (
     <>
       <footer className='h-10 px-10 inline-flex items-center justify-between text-gray-500'>
         <div>
-          <VersjonsNummer thisVersion={thisVersion} latest={latest} />
+          Ringesentralen {thisVersion}
         </div>
         <div className='flex'>
           <a href='https://roedtorg.slack.com/archives/C01BNKD2RU0' title='Gå til ringesentralens kanal på Slack' className='mr-2'>
