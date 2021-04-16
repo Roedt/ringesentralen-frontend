@@ -6,6 +6,7 @@ import Header from './header'
 import Nav from './nav'
 import Footer from './footer'
 import Vannmerke from './vannmerke'
+import SisteVersjon from './versjon'
 
 export default function Layout ({ pageTitle, children }) {
   const { user } = useUser()
@@ -23,6 +24,7 @@ export default function Layout ({ pageTitle, children }) {
     <div className='flex flex-col min-h-screen'>
       <Vannmerke isDemo={!process.env.NEXT_PUBLIC_IS_PRODUCTION} />
       <Nav />
+      <SisteVersjon />
       <Header pageTitle={pageTitle} />
       <main className='flex-grow'>
         <div className='max-w-7xl mx-auto py-6 sm:px-6 lg:px-8'>
