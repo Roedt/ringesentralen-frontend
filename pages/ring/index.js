@@ -59,7 +59,7 @@ const Ring = () => {
   }
 
   return (
-    <Layout pageTitle='Ringesiden'>
+    <Layout pageTitle={user ? `Ringesiden - ringer ${user.aktivtModus}` : 'Ringesiden'}>
       <Head>
         <title>Ringesiden</title>
       </Head>
