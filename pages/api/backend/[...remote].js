@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import pkg from '../../../package.json'
+
 import withSession from '../../../lib/session'
 import { is401, is403, is503 } from '../../../lib/utils'
 
@@ -15,8 +17,13 @@ async function backendProxy (request, response) {
     const { token, aktivtModus, aktivtLokallag } = user
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     const url = `${process.env.API_URL}/${remote.join('/')}?modus=${aktivtModus}&lokallag=${aktivtLokallag}`
+    const config = {
+      headers: {
+        'User-Agent': `Ringesentralen ${pkg.version}`
+      }
+    }
     try {
-      const { data, status } = await axios[method](url, payload)
+      const { data, status } = await axios[method](url, payload, config)
       response.status(status).json(data)
     } catch (error) {
       if (is401(error)) {
