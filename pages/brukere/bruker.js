@@ -40,7 +40,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
   useEffect(() => {
     const oppdaterteRoller = regnUtRoller(roller, erBruker, erRinger, erRingerForMedlemmer, erGodkjenner)
     setRoller(oppdaterteRoller)
-  }, [erBruker, erRinger, erGodkjenner])
+  }, [erBruker, erRinger, erGodkjenner, erRingerForMedlemmer])
 
   function deaktiverBruker () {
     setErBruker(false)
@@ -68,7 +68,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
     })
   }
 
-  function aktiverRingerMedlemmer () {
+  function giTilgangTilAaRingeMedlemmer () {
     setErBruker(true)
     setErRinger(true)
     setErRingerForMedlemmer(true)
@@ -76,7 +76,18 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
       handling: 'Gir bruker tilgang til å ringe medlemmer'
     })
     endreBrukerStatus({
-      endring: 'tilgangTilAaRingeMedlemmer',
+      endring: 'giTilgangTilAaRingeMedlemmer',
+      id
+    })
+  }
+
+  function fjernTilgangTilAaRingeMedlemmer () {
+    setErRingerForMedlemmer(false)
+    logAmplitudeEvent('brukere', {
+      handling: 'Gir bruker tilgang til å ringe medlemmer'
+    })
+    endreBrukerStatus({
+      endring: 'fjernTilgangTilAaRingeMedlemmer',
       id
     })
   }
@@ -149,8 +160,8 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
         <Toggle
           skjermleserTekst='Kan bruker ringe medlemmer'
           status={erRingerForMedlemmer}
-          runIfOn={aktiverRingerMedlemmer}
-          runIfOff={deaktiverBruker}
+          runIfOn={giTilgangTilAaRingeMedlemmer}
+          runIfOff={fjernTilgangTilAaRingeMedlemmer}
           disabled={erAdministrator}
         />
       </td>
