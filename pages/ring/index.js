@@ -11,6 +11,7 @@ import Nummeroppslag from './nummeroppslag'
 import Modus from '../../components/modus'
 import LokallagVelger from '../../components/lokallag-velger'
 import Person from './person'
+import StengeTid from './stengetid'
 import Layout from '../../components/layout'
 import Button from '../../components/ui/button'
 import { Info } from '../../components/ui/alerts'
@@ -64,6 +65,7 @@ const Ring = () => {
         <title>Ringesiden</title>
       </Head>
       <div>
+        <StengeTid />
         {!person && <Modus user={user} action='Ring' />}
         {!person && <LokallagVelger user={user} />}
         {!person && <Button loading={loading} onClick={hentNyPerson}>Hent ny person å ringe</Button>}
