@@ -8,7 +8,8 @@ const isFunction = func => typeof func === 'function'
 
 function Modus ({ user, action, callOnChange }) {
   const router = useRouter()
-  const [aktivtModus, setAktivtModus] = useState('medlemmer')
+  const [aktivtModus, setAktivtModus] = useState('velgere')
+  const [kanRingeMedlemmer, setKanRingeMedlemmer] = useState(false)
 
   async function setModus (modus) {
     setAktivtModus(modus)
@@ -31,10 +32,14 @@ function Modus ({ user, action, callOnChange }) {
 
   useEffect(() => {
     if (user) {
-      const { aktivtModus } = user
+      const kanRingeMedlemmer = roller => Array.isArray(roller) && roller.includes('ringerForMedlemmer')
+      const { aktivtModus, rolle } = user
       setAktivtModus(aktivtModus)
+      setKanRingeMedlemmer(kanRingeMedlemmer(rolle))
     }
   }, [user])
+
+  if (!kanRingeMedlemmer) return null
 
   return (
     <div className='flex justify-start mb-8'>
