@@ -7,6 +7,10 @@ import { is401, is403 } from '../../lib/utils'
 import Layout from '../../components/layout'
 import BrukerListe from './bruker-liste'
 
+function etternavnSortering (a, b) {
+  return a.etternavn.localeCompare(b.etternavn)
+}
+
 const Brukere = () => {
   const router = useRouter()
   const [brukere, setBrukere] = useState()
@@ -15,6 +19,7 @@ const Brukere = () => {
   async function hentBrukere () {
     try {
       const { data } = await axios.get('/api/backend/brukere/brukere', { withCredentials: true })
+      data.sort(etternavnSortering)
       if (filterKriterie) {
         const filtrert = data.filter(bruker => bruker.rolle.includes(filterKriterie))
         setBrukere(filtrert)
