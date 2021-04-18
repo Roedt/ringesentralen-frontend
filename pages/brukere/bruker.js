@@ -28,7 +28,7 @@ function regnUtRoller (roller, erBruker, erRinger, erRingerForMedlemmer, erGodkj
   return nyeRoller
 }
 
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBrukerStatus, postnummer }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBrukerStatus, postnummer, mineRoller }) => {
   const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erRingerForMedlemmer, setErRingerForMedlemmer] = useState(kanRingeMedlemmer(rolle))
@@ -171,7 +171,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
           status={erGodkjenner}
           runIfOn={gjoerBrukerTilLokalGodkjenner}
           runIfOff={fjernBrukerSomLokalGodkjenner}
-          disabled={erAdministrator}
+          disabled={!kanAdministrere(mineRoller) || erAdministrator}
         />
       </td>
     </tr>

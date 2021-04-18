@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Bruker from './bruker'
 
-function BrukerListe ({ brukere }) {
+function BrukerListe ({ brukere, mineRoller }) {
   async function endreBrukerStatus (data) {
     const { endring, id } = data
     const url = `/api/backend/brukere/${endring}`
@@ -38,7 +38,7 @@ function BrukerListe ({ brukere }) {
                 </tr>
               </thead>
               <tbody className='bg-white divide-y divide-gray-200'>
-                {brukere && brukere.map(bruker => <Bruker {...bruker} endreBrukerStatus={endreBrukerStatus} key={bruker.hypersysID} />)}
+                {brukere && brukere.map(bruker => <Bruker {...bruker} endreBrukerStatus={endreBrukerStatus} key={bruker.hypersysID} mineRoller={mineRoller} />)}
               </tbody>
             </table>
           </div>

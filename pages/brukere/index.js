@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { is401, is403 } from '../../lib/utils'
+import useUser from '../../lib/useUser'
 import Layout from '../../components/layout'
 import BrukerListe from './bruker-liste'
 
@@ -12,9 +13,11 @@ function etternavnSortering (a, b) {
 }
 
 const Brukere = () => {
+  const { user } = useUser()
   const router = useRouter()
   const [brukere, setBrukere] = useState()
   const [filterKriterie, setFilterKriterie] = useState()
+  const [mineRoller, setMineRoller] = useState()
 
   async function hentBrukere () {
     try {
@@ -41,6 +44,12 @@ const Brukere = () => {
     hentBrukere()
   }, [filterKriterie])
 
+  useEffect(() => {
+    if (user) {
+      setMineRoller(user.rolle)
+    }
+  }, [user])
+
   return (
     <Layout pageTitle='Brukere'>
       <Head>
@@ -62,7 +71,7 @@ const Brukere = () => {
           </button>
         </span>
       </div>
-      <BrukerListe brukere={brukere} />
+      <BrukerListe brukere={brukere} mineRoller={mineRoller} />
     </Layout>
   )
 }
