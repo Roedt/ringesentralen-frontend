@@ -42,6 +42,7 @@ function Nav () {
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
                 <MainLink href='/brukere' title='Brukere' pathname={router.pathname} />
                 <MainLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
+                <MainLink href='/meg' title='Meg' pathname={router.pathname} />
                 <MainLink href='/loggut' title='Logg ut' pathname={router.pathname} />
               </div>
             </div>
@@ -70,6 +71,7 @@ function Nav () {
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
           <BurgerLink href='/brukere' title='Brukere' pathname={router.pathname} />
           <BurgerLink href='/statistikk' title='Statistikk' pathname={router.pathname} />
+          <BurgerLink href='/meg' title='Meg' pathname={router.pathname} />
           <BurgerLink href='/loggut' title='Logg ut' pathname={router.pathname} />
         </div>
       </div>
