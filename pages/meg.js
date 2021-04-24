@@ -12,11 +12,16 @@ import { Warning } from '../components/ui/alerts'
 function MinProfil ({ profil, session }) {
   if (!profil || !session) return null
 
-  const { fornavn, etternavn, telefonnummer, email, postnummer, fylke, lokallag } = profil
+  const { fornavn, etternavn, telefonnummer, email, postnummer, lokallag, fylkeNavn, lokallagNavn } = profil
   const rollerProfil = profil.rolle
   const { aktivtModus, aktivtLokallag } = session
   const rollerSesjon = session.rolle
   const message = 'Du har ulike roller i løsningen og i pågående sesjon. Vennligst logg ut og inn igjen'
+
+  const toAktivtLokallag = () => {
+    if (aktivtLokallag === lokallag) return lokallagNavn
+    return aktivtLokallag
+  }
 
   return (
     <>
@@ -42,7 +47,7 @@ function MinProfil ({ profil, session }) {
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Lokallag</dt>
-              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{lokallag}</dd>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{lokallagNavn}</dd>
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Postnummer</dt>
@@ -50,7 +55,7 @@ function MinProfil ({ profil, session }) {
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Fylke</dt>
-              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{fylke}</dd>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{fylkeNavn}</dd>
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Roller i systemet</dt>
@@ -66,7 +71,7 @@ function MinProfil ({ profil, session }) {
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Aktivt lokallag</dt>
-              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{aktivtLokallag}</dd>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{toAktivtLokallag()}</dd>
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Aktivt ringemodus</dt>
