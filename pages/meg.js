@@ -10,7 +10,7 @@ import Layout from '../components/layout'
 import { Warning } from '../components/ui/alerts'
 
 function MinProfil ({ profil, session }) {
-  if (!profil && !session) return null
+  if (!profil || !session) return null
 
   const { fornavn, etternavn, telefonnummer, email, postnummer, fylke, lokallag } = profil
   const rollerProfil = profil.rolle
@@ -105,7 +105,7 @@ function Meg () {
     }
   }, [user])
 
-  if (!user) return null
+  if (!user || !minProfil) return null
 
   return (
     <Layout pageTitle='Meg'>
