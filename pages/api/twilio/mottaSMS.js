@@ -1,11 +1,14 @@
 import axios from 'axios'
+import twilio from 'twilio'
 
 import hentToken from '../../../lib/hentSystembrukerToken'
 
+const MessagingResponse = twilio.twiml.MessagingResponse
+
 const svarUrl = `${process.env.API_URL}/verving/svar`
 
-const svarerJa = melding => /ja/i.test(melding.toLowerCase())
-const svarerNei = melding => /nei/i.test(melding.toLowerCase())
+const svarerJa = melding => melding && /ja/i.test(melding.toLowerCase())
+const svarerNei = melding => melding && /nei/i.test(melding.toLowerCase())
 
 async function postVerveSvar ({ token, payload }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
@@ -19,6 +22,8 @@ async function postVerveSvar ({ token, payload }) {
 }
 
 async function mottaSMS (request, response) {
+  const twiml = new MessagingResponse()
+  twiml.message('Svaret ditt er mottatt. Tusen takk')
   const payload = await request.body
   const { From, Body } = payload
   if (svarerJa(Body) || svarerNei(Body)) {
@@ -45,7 +50,8 @@ async function mottaSMS (request, response) {
   } else {
     console.warn('klarte ikke tolke svaret')
   }
-  response.json({ success: true })
+  response.setHeader('Content-Type', 'application/xml')
+  response.status(200).send(twiml.toString())
 }
 
 export default mottaSMS
