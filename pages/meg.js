@@ -9,7 +9,7 @@ import { is401, is403 } from '../lib/utils'
 import Layout from '../components/layout'
 import { Warning } from '../components/ui/alerts'
 
-function MinProfil ({ profil, session }) {
+function MinProfil ({ profil, session, mineLokallag }) {
   if (!profil || !session) return null
 
   const { fornavn, etternavn, telefonnummer, email, postnummer, lokallag, fylkeNavn, lokallagNavn } = profil
@@ -77,6 +77,12 @@ function MinProfil ({ profil, session }) {
               <dt className='text-sm font-medium text-gray-500'>Aktivt ringemodus</dt>
               <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{aktivtModus}</dd>
             </div>
+            <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+              <dt className='text-sm font-medium text-gray-500'>Lokallag jeg har tilgang til</dt>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
+                {JSON.stringify(mineLokallag, null, 2)}
+              </dd>
+            </div>
           </dl>
         </div>
       </div>
@@ -88,6 +94,7 @@ function Meg () {
   const router = useRouter()
   const { user } = useUser()
   const [minProfil, setMinProfil] = useState()
+  const [mineLokallag, setMineLokallag] = useState()
 
   async function hentMinProfil () {
     try {
@@ -104,9 +111,25 @@ function Meg () {
     }
   }
 
+  async function hentMineLokallag () {
+    try {
+      const { data } = await axios.get('/api/backend/profil/lokallag', { withCredentials: true })
+      setMineLokallag(data)
+    } catch (error) {
+      if (is401(error)) {
+        router.push('/login')
+      } else if (is403(error)) {
+        router.push('/sperret')
+      } else {
+        console.error(error)
+      }
+    }
+  }
+
   useEffect(() => {
     if (user) {
       hentMinProfil()
+      hentMineLokallag()
     }
   }, [user])
 
@@ -117,7 +140,7 @@ function Meg () {
       <Head>
         <title>Meg</title>
       </Head>
-      <MinProfil profil={minProfil} session={user} />
+      <MinProfil profil={minProfil} session={user} mineLokallag={mineLokallag} />
     </Layout>
   )
 }
