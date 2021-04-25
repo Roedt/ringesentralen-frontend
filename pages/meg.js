@@ -9,18 +9,22 @@ import { is401, is403 } from '../lib/utils'
 import Layout from '../components/layout'
 import { Warning } from '../components/ui/alerts'
 
-function MinProfil ({ profil, session, mineLokallag }) {
-  if (!profil || !session) return null
+function navneSortering (a, b) {
+  return a.navn.localeCompare(b.navn)
+}
 
-  const { fornavn, etternavn, telefonnummer, email, postnummer, lokallag, fylkeNavn, lokallagNavn } = profil
+function MinProfil ({ profil, session, mineLokallag }) {
+  if (!profil || !session || !mineLokallag) return null
+
+  const { fornavn, etternavn, telefonnummer, email, postnummer, fylkeNavn, lokallagNavn } = profil
   const rollerProfil = profil.rolle
   const { aktivtModus, aktivtLokallag } = session
   const rollerSesjon = session.rolle
   const message = 'Du har ulike roller i løsningen og i pågående sesjon. Vennligst logg ut og inn igjen'
 
-  const toAktivtLokallag = () => {
-    if (aktivtLokallag === lokallag) return lokallagNavn
-    return aktivtLokallag
+  const hentAktivtLokallagNavn = (id) => {
+    const lokallag = mineLokallag.find(lag => lag.id === id)
+    return lokallag ? lokallag.navn : id
   }
 
   return (
@@ -71,7 +75,7 @@ function MinProfil ({ profil, session, mineLokallag }) {
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Aktivt lokallag</dt>
-              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{toAktivtLokallag()}</dd>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{hentAktivtLokallagNavn(aktivtLokallag)}</dd>
             </div>
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Aktivt ringemodus</dt>
@@ -80,7 +84,7 @@ function MinProfil ({ profil, session, mineLokallag }) {
             <div className='py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500'>Lokallag jeg har tilgang til</dt>
               <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-                {JSON.stringify(mineLokallag, null, 2)}
+                <ul>{mineLokallag.map(lag => <li key={`lagid-${lag.id}`}>{lag.navn}</li>)}</ul>
               </dd>
             </div>
           </dl>
@@ -114,6 +118,7 @@ function Meg () {
   async function hentMineLokallag () {
     try {
       const { data } = await axios.get('/api/backend/profil/lokallag', { withCredentials: true })
+      data.sort(navneSortering)
       setMineLokallag(data)
     } catch (error) {
       if (is401(error)) {
