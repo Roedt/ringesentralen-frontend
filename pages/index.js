@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { saveAs } from 'file-saver'
 import { Parser } from 'json2csv'
+import { Blob } from 'blob-polyfill'
 
 import useUser from '../lib/useUser'
 import Layout from '../components/layout'

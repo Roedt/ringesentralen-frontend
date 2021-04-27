@@ -33,6 +33,7 @@
     "@tailwindcss/typography": "0.4.0",
     "amplitude-js": "8.1.0",
     "axios": "0.21.1",
+    "blob-polyfill": "5.0.20210201",
     "file-saver": "2.0.5",
     "handlebars": "4.7.7",
     "json2csv": "5.0.6",
