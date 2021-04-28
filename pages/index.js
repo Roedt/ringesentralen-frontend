@@ -47,7 +47,7 @@ function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte
         <div className='bg-white overflow-hidden shadow rounded-lg'>
           <div className='px-4 py-5 sm:p-6'>
             <h3 className='text-sm font-medium text-gray-500 truncate'>
-              Totalt
+              Ferdig ringte
             </h3>
             <h4 className='mt-1 text-3xl font-semibold text-gray-900'>
               {totaltInklRingte}
