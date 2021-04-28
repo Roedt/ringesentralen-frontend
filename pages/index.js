@@ -67,7 +67,7 @@ function Dashboard ({ dashboard }) {
       lokallag: linje.lokallag.navn,
       igjenAaRinge: linje.igjenAaRinge,
       personerSomKanRinges: linje.personerSomKanRinges,
-      totaltInklRingte: linje.totaltInklRingte
+      ferdigRingte: linje.totaltInklRingte
     }))
     const csv = json2csvParser.parse(data)
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })
