@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import hentToken from '../../lib/hentSystembrukerToken'
-import fixTelefonNummer from '../../fix-telefonnummer'
+import fixTelefonNummer from '../../lib/fix-telefonnummer'
 
 const registreringsUrl = `${process.env.API_URL}/registrer`
 
