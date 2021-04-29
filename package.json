@@ -26,9 +26,9 @@
   },
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
-    "@sentry/browser": "6.3.3",
-    "@sentry/integrations": "6.3.3",
-    "@sentry/node": "6.3.3",
+    "@sentry/browser": "6.3.4",
+    "@sentry/integrations": "6.3.4",
+    "@sentry/node": "6.3.4",
     "@sentry/webpack-plugin": "1.15.1",
     "@tailwindcss/typography": "0.4.0",
     "amplitude-js": "8.1.0",
