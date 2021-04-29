@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import hentToken from '../../lib/hentSystembrukerToken'
+import fixTelefonNummer from './fix-telefonnummer'
 
 const registreringsUrl = `${process.env.API_URL}/registrer`
 
@@ -51,7 +52,7 @@ function repackData ({ data }) {
     medlemIRoedt: data.Medlem,
     postnummer: data.Postnummer,
     spesiellKompetanse: data.Kompetanse,
-    telefonnummer: data.Tlf
+    telefonnummer: fixTelefonNummer(data.Tlf)
   }
 
   return repacked
