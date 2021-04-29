@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import hentToken from '../../lib/hentSystembrukerToken'
 
-const registreringsUrl = `${process.env.API_URL}/frivillig/registrer`
+const registreringsUrl = `${process.env.API_URL}/registrer`
 
 async function postFrivilligRegistrering ({ token, payload }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
