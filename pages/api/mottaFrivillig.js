@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import hentToken from '../../lib/hentSystembrukerToken'
 import fixTelefonNummer from '../../lib/fix-telefonnummer'
+import lageEnumvennligStreng from '../../lib/lag-enumvennlig-streng'
 
 const registreringsUrl = `${process.env.API_URL}/registrer`
 
@@ -39,7 +40,7 @@ function repackData ({ data }) {
     'Bil'
   ]
 
-  const kanTenkeSegAaBidraMedAktiviteter = aktiviteter.filter(aktivitet => data[aktivitet] === 'true')
+  const kanTenkeSegAaBidraMedAktiviteter = aktiviteter.filter(aktivitet => data[aktivitet] === 'true').map(aktivitet => lageEnumvennligStreng(aktivitet))
 
   const repacked = {
     alleredeAktivILokallag: data.Aktiv === 'Ja',
