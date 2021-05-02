@@ -4,7 +4,17 @@ import { useState } from 'react'
 
 import { is401 } from '../../lib/utils'
 import { useAmplitude } from '../../contexts/amplitude-context'
+import { Success } from '../../components/ui/alerts'
 import Historikk from './historikk'
+
+function VervetBadge ({ kilde }) {
+  if (kilde !== 'Verva') return null
+  return (
+    <div className='mb-4'>
+      <Success message='Denne personen ble vervet til Ringesentralen' />
+    </div>
+  )
+}
 
 function Person ({ data, setIsAccepted, setPerson }) {
   const router = useRouter()
@@ -49,10 +59,11 @@ function Person ({ data, setIsAccepted, setPerson }) {
   if (!data) return null
 
   const { person, tidlegareSamtalar } = data
-  const { fornavn, etternavn, telefonnummer, id, lokallagNavn } = person
+  const { fornavn, etternavn, telefonnummer, id, lokallagNavn, kilde } = person
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
+      <VervetBadge kilde={kilde} />
       <div className='-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap'>
         <div className='ml-4 mt-4'>
           <div className='flex items-center'>
