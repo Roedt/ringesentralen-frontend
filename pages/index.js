@@ -12,14 +12,14 @@ import Modus from '../components/modus'
 import { is401, is403 } from '../lib/utils'
 
 function navneSortering (a, b) {
-  return a.lokallag.navn.localeCompare(b.lokallag.navn)
+  return a.fylke.navn.localeCompare(b.fylke.navn)
 }
 
-function Linje ({ lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte }) {
+function Linje ({ fylke, lokallag, igjenAaRinge, personerSomKanRinges, totaltInklRingte }) {
   return (
     <div className='mb-4'>
       <h2 className='text-lg leading-6 font-medium text-gray-900'>
-        {lokallag.navn}
+        {fylke.navn} - {lokallag.navn}
       </h2>
       <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3'>
         <div className='bg-white overflow-hidden shadow rounded-lg'>
@@ -64,6 +64,7 @@ function Dashboard ({ dashboard }) {
     const json2csvParser = new Parser()
     const { statusliste } = dashboard
     const data = statusliste.map(linje => Object.assign({}, {
+      fylke: linje.fylke.navn,
       lokallag: linje.lokallag.navn,
       igjenAaRinge: linje.igjenAaRinge,
       personerSomKanRinges: linje.personerSomKanRinges,
