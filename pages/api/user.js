@@ -1,3 +1,4 @@
+import axios from 'axios'
 import withSession from '../../lib/session'
 
 export default withSession(async (request, response) => {
@@ -9,6 +10,14 @@ export default withSession(async (request, response) => {
       ...user
     })
   } else {
+    // Vekker backend til live dersom man ikke har brukersession
+    console.log('Ingen brukersesjon, la oss ruske litt i backend')
+    try {
+      axios.get(`${process.env.API_URL}/health/live`)
+    } catch (error) {
+      console.warn('Fikk feil mot health/live')
+      console.error(error.message)
+    }
     response.json({
       isLoggedIn: false
     })
