@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
@@ -12,6 +12,14 @@ function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
   const router = useRouter()
+
+  const wakeupBackend = async () => {
+    try {
+      await axios.get('/api/backend/health/live')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -34,6 +42,10 @@ function Login () {
       }
     }
   }
+
+  useEffect(() => {
+    wakeupBackend()
+  }, [])
 
   return (
     <div>
