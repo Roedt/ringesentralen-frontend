@@ -83,8 +83,11 @@ function Hjelp () {
                 <p className='text-base text-gray-500 mb-2'>Derimot vil ingen funksjonalitet vera tilgjengeleg umiddelbart: Før du kan starte å ringe, må ein administrator eller lokal godkjenner godkjenne at du er klar til å starte å ringe.
                   Når dette er klart, vil du få ein epost frå systemet. Da kan du logge deg inn og starte ringinga.
                 </p>
-                <p className='text-base text-gray-500'>
+                <p className='text-base text-gray-500 mb-2'>
                   Viss du ikkje får tilgang da, logg ut og inn igjen.
+                </p>
+                <p className='text-base text-gray-500'>
+                  Dersom du lurer på hvilke roller og tilganger du har systemet kan du <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='/meg'>se dette på meg siden</a>.
                 </p>
               </dd>
             </div>
