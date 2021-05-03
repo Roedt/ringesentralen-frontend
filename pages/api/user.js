@@ -13,9 +13,9 @@ export default withSession(async (request, response) => {
     // Vekker backend til live dersom man ikke har brukersession
     console.log('Ingen brukersesjon, la oss ruske litt i backend')
     try {
-      axios.get(`${process.env.API_URL}/health/live`)
+      axios.get(`${process.env.API_URL}/ping`)
     } catch (error) {
-      console.warn('Fikk feil mot health/live')
+      console.warn('Fikk feil mot ping')
       console.error(error.message)
     }
     response.json({

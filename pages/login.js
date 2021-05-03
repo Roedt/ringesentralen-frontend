@@ -15,7 +15,7 @@ function Login () {
 
   const wakeupBackend = async () => {
     try {
-      await axios.get('/api/backend/health/live')
+      await axios.get('/api/backend/ping')
     } catch (error) {
       console.error(error)
     }
