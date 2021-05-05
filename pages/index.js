@@ -61,7 +61,7 @@ function Linje ({ fylke, lokallag, igjenAaRinge, personerSomKanRinges, totaltInk
 
 function Dashboard ({ dashboard }) {
   function lastNedCSV () {
-    const json2csvParser = new Parser({ delimiter: ';'})
+    const json2csvParser = new Parser({ delimiter: ';' })
     const { statusliste } = dashboard
     const data = statusliste.map(linje => Object.assign({}, {
       fylke: linje.fylke.navn,
