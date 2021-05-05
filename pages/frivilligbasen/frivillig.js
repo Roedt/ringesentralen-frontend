@@ -1,6 +1,7 @@
 import Aktiviteter from './aktiviteter'
 
 function Frivillig ({ data }) {
+  if (!data) return (<div />)
   const { frivillig, person, aktiviteter } = data
   if (!frivillig) return (<div />)
   return (

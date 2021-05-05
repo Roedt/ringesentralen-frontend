@@ -10,6 +10,7 @@ const aktivitetNavn = {
 }
 
 function Aktiviteter ({ aktiviteter }) {
+  if (!aktiviteter) return (<div />)
   const bidrag = aktiviteter.map(linje => linje.aktivitet).map(aktivitet => aktivitetNavn[aktivitet])
   return (
     <div>
