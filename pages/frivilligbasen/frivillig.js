@@ -37,29 +37,29 @@ function Frivillig ({ data }) {
           </div>
           <table>
             <tbody>
-            <tr>
-              <td>Allerede aktiv i lokallag?</td>
-              <td>{frivillig.alleredeAktivILokallag ? "Ja" : "Nei"}</td>
-            </tr>
-            <tr>
-              <td>Er allerede medlem i Rødt?</td>
-              <td>{frivillig.medlemIRoedt}</td>
-            </tr>
-            <tr>
-              <td>Spesiell kompetanse?</td>
-              <td>{frivillig.spesiellKompetanse}</td>
-            </tr>
-            <tr>
-              <td>Andre ting du vil bidra med?</td>
-              <td>{frivillig.andreTingDuVilBidraMed}</td>
-            </tr>
-            <tr>
-              <td>Fortell litt om deg selv</td>
-              <td>{frivillig.fortellLittOmDegSelv}</td>
-            </tr>
+              <tr>
+                <td>Allerede aktiv i lokallag?</td>
+                <td>{frivillig.alleredeAktivILokallag ? 'Ja' : 'Nei'}</td>
+              </tr>
+              <tr>
+                <td>Er allerede medlem i Rødt?</td>
+                <td>{frivillig.medlemIRoedt}</td>
+              </tr>
+              <tr>
+                <td>Spesiell kompetanse?</td>
+                <td>{frivillig.spesiellKompetanse}</td>
+              </tr>
+              <tr>
+                <td>Andre ting du vil bidra med?</td>
+                <td>{frivillig.andreTingDuVilBidraMed}</td>
+              </tr>
+              <tr>
+                <td>Fortell litt om deg selv</td>
+                <td>{frivillig.fortellLittOmDegSelv}</td>
+              </tr>
             </tbody>
           </table>
-          </div>
+        </div>
       </div>
       <Aktiviteter aktiviteter={aktiviteter} />
     </div>
