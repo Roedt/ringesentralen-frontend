@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { is401, is403 } from '../../lib/utils'
 
 import Layout from '../../components/layout'
+import Frivillig from './frivillig'
 
 function Frivilligbasen () {
   const router = useRouter()
@@ -38,7 +39,7 @@ function Frivilligbasen () {
         <title>Frivilligbasen</title>
       </Head>
       <div>
-        {JSON.stringify(frivillige, null, 2)}
+        {frivillige.map(frivillig => <Frivillig data={frivillig} key={`frivillig-${frivillig.frivillig.id}`} />)}
       </div>
     </Layout>
   )
