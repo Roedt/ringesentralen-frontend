@@ -63,6 +63,8 @@ async function mottaFrivillig (request, response) {
   const payload = await request.body
   const token = await hentToken()
   if (token) {
+    console.log('datadump frivillig webhook')
+    console.log(JSON.stringify(payload, null, 2))
     const repacked = repackData(payload)
     const registrertFrivillig = await postFrivilligRegistrering({ token, payload: repacked })
     if (registrertFrivillig) {
