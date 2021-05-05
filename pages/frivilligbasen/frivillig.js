@@ -2,7 +2,7 @@ import Aktiviteter from './aktiviteter'
 
 function Frivillig ({ data }) {
   if (!data) return (<div />)
-  const { frivillig, person, aktiviteter, fylke } = data
+  const { frivillig, person, aktiviteter, fylke, lokallag } = data
   if (!frivillig) return (<div />)
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
@@ -21,9 +21,46 @@ function Frivillig ({ data }) {
           </button>
         </div>
       </div>
-      <div>Person: {JSON.stringify(person, null, 2)}</div>
-      <div>Frivillig: {JSON.stringify(frivillig, null, 2)}</div>
-      <div>Fylke: {fylke.navn}</div>
+      <div className='flex items-center'>
+        <div className='ml-4'>
+          <div className='text-sm text-gray-900'>
+            Epost: {person.email}
+          </div>
+          <div className='text-sm text-gray-900'>
+            Telefon: {person.telefonnummer}
+          </div>
+          <div className='text-sm text-gray-900'>
+            Nærmeste lokallag: {lokallag.navn}
+          </div>
+          <div className='text-sm text-gray-900'>
+            Postnummer {person.postnummer} (fylke: {fylke.navn})
+          </div>
+          <table>
+            <tbody>
+            <tr>
+              <td>Allerede aktiv i lokallag?</td>
+              <td>{frivillig.alleredeAktivILokallag ? "Ja" : "Nei"}</td>
+            </tr>
+            <tr>
+              <td>Er allerede medlem i Rødt?</td>
+              <td>{frivillig.medlemIRoedt}</td>
+            </tr>
+            <tr>
+              <td>Spesiell kompetanse?</td>
+              <td>{frivillig.spesiellKompetanse}</td>
+            </tr>
+            <tr>
+              <td>Andre ting du vil bidra med?</td>
+              <td>{frivillig.andreTingDuVilBidraMed}</td>
+            </tr>
+            <tr>
+              <td>Fortell litt om deg selv</td>
+              <td>{frivillig.fortellLittOmDegSelv}</td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+      </div>
       <Aktiviteter aktiviteter={aktiviteter} />
     </div>
   )
