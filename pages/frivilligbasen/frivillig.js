@@ -1,7 +1,8 @@
+
 import Aktiviteter from './aktiviteter'
 
 function Frivillig ({ data }) {
-  if (!data) return (<div />)
+  if (!data) return null
   const { frivillig, person, aktiviteter, fylke, lokallag } = data
   if (!frivillig) return null
   return (
