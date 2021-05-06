@@ -3,7 +3,7 @@ import Aktiviteter from './aktiviteter'
 function Frivillig ({ data }) {
   if (!data) return (<div />)
   const { frivillig, person, aktiviteter, fylke, lokallag } = data
-  if (!frivillig) return (<div />)
+  if (!frivillig) return null
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
       <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>
