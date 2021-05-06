@@ -7,8 +7,20 @@ function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
 
   if (!data) return null
-  const { frivillig, person, aktiviteter, fylke, lokallag } = data
+  const { frivillig, person, aktiviteter, fylke, lokallag, kontakt } = data
   if (!frivillig) return null
+
+  function formaterKontakt (kontakt) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    return (
+      <div className='ml-4 mt-2 flex-shrink-0'>
+        <strong>Kontakter</strong>
+        <div>Tidspunkt for kontakt: {new Date(kontakt.datetime).toLocaleTimeString('no-NO', options)}</div>
+        <div>Tilbakemelding: {kontakt.tilbakemelding}</div>
+        <div>Kontakta av: {kontakt.registrert_av.fornavn} {kontakt.registrert_av.etternavn}</div>
+      </div>
+    )
+  }
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
@@ -69,6 +81,7 @@ function Frivillig ({ data }) {
         </div>
       </div>
       <Aktiviteter aktiviteter={aktiviteter} />
+      {kontakt.map(k => formaterKontakt(k))}
     </div>
   )
 }
