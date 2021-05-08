@@ -50,7 +50,7 @@ function repackData ({ data }) {
     fornavn,
     fortellLittOmDegSelv: data.field,
     kanTenkeSegAaBidraMedAktiviteter,
-    medlemIRoedt: data.Medlem,
+    medlemIRoedt: lageEnumvennligStreng(data.Medlem),
     postnummer: data.Postnummer,
     spesiellKompetanse: data.Kompetanse,
     telefonnummer: fixTelefonNummer(data.Tlf)
