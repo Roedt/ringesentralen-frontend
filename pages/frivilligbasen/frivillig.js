@@ -41,7 +41,7 @@ function Frivillig ({ data }) {
           <table>
             <tbody>
               <tr>
-                <td width="210px">Allerede aktiv i lokallag?</td>
+                <td width='210px'>Allerede aktiv i lokallag?</td>
                 <td>{frivillig.alleredeAktivILokallag ? 'Ja' : 'Nei'}</td>
               </tr>
               <tr>
