@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
+import Kontakter from './kontakter'
 
 function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
@@ -10,18 +11,6 @@ function Frivillig ({ data }) {
   const { frivillig, person, aktiviteter, fylke, lokallag, kontakt } = data
   if (!frivillig) return null
 
-  function formaterKontakt (kontakt) {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-    return (
-      <div className='ml-4 mt-2 flex-shrink-0'>
-        <strong>Kontakter</strong>
-        <div>Tidspunkt for kontakt: {new Date(kontakt.datetime).toLocaleTimeString('no-NO', options)}</div>
-        <div>Tilbakemelding: {kontakt.tilbakemelding}</div>
-        <div>Kontakta av: {kontakt.registrert_av.fornavn} {kontakt.registrert_av.etternavn}</div>
-      </div>
-    )
-  }
-
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
       <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>
@@ -29,7 +18,7 @@ function Frivillig ({ data }) {
           <h3 className='text-lg leading-6 font-medium text-gray-900'>{person.fornavn} {person.etternavn}</h3>
           <div className='ml-4'>{person.telefonnummer}</div>
           <div className='ml-4'>{person.email}</div>
-          <div className='text-sm text-gray-900'>
+          <div className='text-sm text-gray-700'>
             {fylke.navn} - {lokallag.navn} - {person.postnummer}
           </div>
         </div>
@@ -46,6 +35,7 @@ function Frivillig ({ data }) {
       </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} />
+      <Kontakter kontakter={kontakt} />
       <div className='flex items-center'>
         <div className='ml-4'>
           <table>
@@ -74,7 +64,6 @@ function Frivillig ({ data }) {
           </table>
         </div>
       </div>
-      {kontakt.map(k => formaterKontakt(k))}
     </div>
   )
 }
