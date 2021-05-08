@@ -25,8 +25,13 @@ function Frivillig ({ data }) {
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
       <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>
-        <div className='ml-4 mt-2'>
+        <div className='ml-4 mt-2 flex'>
           <h3 className='text-lg leading-6 font-medium text-gray-900'>{person.fornavn} {person.etternavn}</h3>
+          <div className='ml-4'>{person.telefonnummer}</div>
+          <div className='ml-4'>{person.email}</div>
+          <div className='text-sm text-gray-900'>
+            {fylke.navn} - {lokallag.navn} - {person.postnummer}
+          </div>
         </div>
         <div className='ml-4 mt-2 flex-shrink-0'>
           <button type='button' onClick={() => setVisSkjema(!visSkjema)} className={`${!visSkjema ? 'visible' : 'invisible'} w-48 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}>
@@ -40,20 +45,9 @@ function Frivillig ({ data }) {
         </div>
       </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
+      <Aktiviteter aktiviteter={aktiviteter} />
       <div className='flex items-center'>
         <div className='ml-4'>
-          <div className='text-sm text-gray-900'>
-            Epost: {person.email}
-          </div>
-          <div className='text-sm text-gray-900'>
-            Telefon: {person.telefonnummer}
-          </div>
-          <div className='text-sm text-gray-900'>
-            Nærmeste lokallag: {lokallag.navn}
-          </div>
-          <div className='text-sm text-gray-900'>
-            Postnummer {person.postnummer} (fylke: {fylke.navn})
-          </div>
           <table>
             <tbody>
               <tr>
@@ -80,7 +74,6 @@ function Frivillig ({ data }) {
           </table>
         </div>
       </div>
-      <Aktiviteter aktiviteter={aktiviteter} />
       {kontakt.map(k => formaterKontakt(k))}
     </div>
   )
