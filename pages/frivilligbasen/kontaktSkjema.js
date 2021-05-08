@@ -19,7 +19,7 @@ function KontaktSkjema ({ visSkjema, frivillig, setVisSkjema }) {
       tilbakemelding
     }
     try {
-      await axios.post('/api/backend/registrerKontakt', payload, { withCredentials: true })
+      await axios.post('/api/backend/frivillig/registrerKontakt', payload, { withCredentials: true })
       setVisSkjema(false)
     } catch (error) {
       if (is401(error)) {

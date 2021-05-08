@@ -4,7 +4,7 @@ import hentToken from '../../lib/hentSystembrukerToken'
 import fixTelefonNummer from '../../lib/fix-telefonnummer'
 import lageEnumvennligStreng from '../../lib/lag-enumvennlig-streng'
 
-const registreringsUrl = `${process.env.API_URL}/registrer`
+const registreringsUrl = `${process.env.API_URL}/frivillig/registrer`
 
 async function postFrivilligRegistrering ({ token, payload }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
