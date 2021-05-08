@@ -17,7 +17,7 @@ function Frivillig ({ data }) {
         <div className='ml-4 mt-2 flex'>
           <h3 className='text-lg leading-6 font-medium text-gray-900'>{person.fornavn} {person.etternavn}</h3>
           <div className='ml-4'>{person.telefonnummer}</div>
-          <div className='ml-4'>{person.email}</div>
+          <div className='ml-4 mr-4'>{person.email}</div>
           <div className='text-sm text-gray-700'>
             {fylke.navn} - {lokallag.navn} - {person.postnummer}
           </div>
@@ -41,11 +41,11 @@ function Frivillig ({ data }) {
           <table>
             <tbody>
               <tr>
-                <td>Allerede aktiv i lokallag?</td>
+                <td width="210px">Allerede aktiv i lokallag?</td>
                 <td>{frivillig.alleredeAktivILokallag ? 'Ja' : 'Nei'}</td>
               </tr>
               <tr>
-                <td>Er allerede medlem i Rødt?</td>
+                <td>Medlem i Rødt?</td>
                 <td>{frivillig.medlemIRoedt}</td>
               </tr>
               <tr>
@@ -53,7 +53,7 @@ function Frivillig ({ data }) {
                 <td>{frivillig.spesiellKompetanse}</td>
               </tr>
               <tr>
-                <td>Andre ting du vil bidra med?</td>
+                <td>Annet du vil bidra med?</td>
                 <td>{frivillig.andreTingDuVilBidraMed}</td>
               </tr>
               <tr>
