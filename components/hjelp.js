@@ -12,6 +12,7 @@ function Hjelp () {
   const [visFaq5, setVisFaq5] = useState()
   const [visFaq6, setVisFaq6] = useState()
   const [visFaq7, setVisFaq7] = useState()
+  const [visFaq8, setVisFaq8] = useState()
 
   function toggleFaq (func, state, spm) {
     func(state)
@@ -220,7 +221,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => toggleFaq(setVisFaq6, !visFaq6, '6')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq6, !visFaq6, '6')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-6' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Hva er nytt i Ringesentralen v2?
                   </span>
@@ -256,7 +257,7 @@ function Hjelp () {
           <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
-                <button type='button' onClick={() => toggleFaq(setVisFaq7, !visFaq7, '7')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq7, !visFaq7, '7')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-7' aria-expanded='false'>
                   <span className='font-medium text-gray-900'>
                     Hvorfor er det 0 medlemmer i lokallaget mitt?
                   </span>
@@ -267,13 +268,38 @@ function Hjelp () {
                   </span>
                 </button>
               </dt>
-              <dd className={`mt-2 pr-12 ${visFaq7 ? 'visible' : 'hidden'}`} id='faq-0'>
+              <dd className={`mt-2 pr-12 ${visFaq7 ? 'visible' : 'hidden'}`} id='faq-7'>
                 <p className='text-base text-gray-500 mb-2'>
                   På forsiden hvor det vises hvor mange du kan ringe står det 0 på mange lokallag.
                 </p>
                 <p className='text-base text-gray-500'>
                   Dette er fordi systemet ikke henter inn medlemslisten før noen forsøker å ringe et medlem.<br />
                   Så snart noen forsøker å ringe medlemmer vil tallet oppdatere seg.
+                </p>
+              </dd>
+            </div>
+          </dl><dl className='mt-6 space-y-6 divide-y divide-gray-200'>
+            <div className='pt-6'>
+              <dt className='text-lg'>
+                <button type='button' onClick={() => toggleFaq(setVisFaq8, !visFaq8, '8')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-8' aria-expanded='false'>
+                  <span className='font-medium text-gray-900'>
+                    Hva er frivilligbasen?
+                  </span>
+                  <span className='ml-6 h-7 flex items-center'>
+                    <svg className={`${visFaq8 ? '-rotate-180' : 'rotate-0'} h-6 w-6 transform`} xmlns='https://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd className={`mt-2 pr-12 ${visFaq8 ? 'visible' : 'hidden'}`} id='faq-8'>
+                <p className='text-base text-gray-500 mb-2'>
+                  På <a href="https://www.fellesskapfungerer.no/bli-valgkampfrivillig">fellesskapfungerer.no</a> kan folk registrere seg som frivillige for Raudt i valkampen.
+                </p>
+                <p className='text-base text-gray-500'>
+                  Når dei gjer det, dukkar dei opp her.<br />
+                  Viss du har rolla <em>kan ringe medlemmar</em>, ser du dei som har meldt seg som har tilhørsle til ditt lokallag.<br />
+                  Har du rolla lokal godkjenner, ser du alle i ditt fylke.
                 </p>
               </dd>
             </div>
