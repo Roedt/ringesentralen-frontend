@@ -31,7 +31,7 @@ const Ring = () => {
     setLoading(true)
     setIsAccepted(false)
     try {
-      const { data, status } = await axios.get('/api/backend/samtale/neste', { withCredentials: true })
+      const { data, status } = await axios.get('/api/hentNeste', { withCredentials: true })
       if (debugNummer) {
         data.person.telefonnummer = debugNummer
       }

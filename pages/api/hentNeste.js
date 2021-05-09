@@ -30,7 +30,7 @@ function isValid (data) {
     cache.set(id)
     return true
   } else {
-    console.warn('Fikk treff på neste samtale i cache')
+    console.warn('Fikk treff på neste person til samtale i cache')
     return false
   }
 }
@@ -38,13 +38,12 @@ function isValid (data) {
 async function hentNeste (request, response) {
   const session = request.session.get('user')
   if (!session) {
-    console.log('Finner ingen session, sender til innlogging fra hentNeste')
+    console.log('finner ingen session, sender til innlogging fra hentNeste')
     response.status(401).json({ isAuthenticated: false })
   } else {
     const { token, aktivtModus, aktivtLokallag } = session
     let neste = await hentNestePerson(token, aktivtModus, aktivtLokallag)
     while (neste && !isValid(neste.data)) {
-      console.log('hentNeste: neste var allerede i cache')
       neste = await hentNestePerson(token, aktivtModus, aktivtLokallag)
     }
     const { status, data } = neste
