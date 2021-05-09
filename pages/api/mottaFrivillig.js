@@ -55,7 +55,7 @@ function repackData ({ data }) {
     spesiellKompetanse: data.Kompetanse,
     spraak: data['Språk 2'],
     telefonnummer: fixTelefonNummer(data.Tlf),
-    opptattAv: [], //TODO
+    opptattAv: [], // TODO
     haandtering: data['Håndtering'],
     personlig: data.Personlig === 'Ja',
     tydelig: data.Tydelig,
