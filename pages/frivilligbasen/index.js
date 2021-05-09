@@ -60,6 +60,7 @@ function Frivilligbasen () {
     try {
       await axios.post('/api/backend/frivillig/importer', { withCredentials: true })
       toaster.notify('Importen er gjennomført med suksess', { duration: 2000 })
+      hentFrivillige()
     } catch (error) {
       if (is401(error)) {
         router.push('/login')
