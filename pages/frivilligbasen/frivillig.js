@@ -4,7 +4,7 @@ import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
 import Kontakter from './kontakter'
 
-function genererTagLine (frivillig) {
+export function genererTagLine (frivillig) {
   const tags = []
   if (frivillig.medlemIRoedt === 'Vilbli') {
     tags.push('Vil bli medlem i Rødt')
