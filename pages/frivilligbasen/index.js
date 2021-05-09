@@ -30,8 +30,10 @@ function Frivilligbasen () {
       etternavn: linje.person.etternavn,
       telefonnummer: linje.person.telefonnummer,
       email: linje.person.email,
-      frivillig: linje.frivillig,
       aktiviteter: skrivUtBidrag(linje.aktiviteter),
+      andreBidrag: linje.frivillig.andreTingDuVilBidraMed,
+      kompetanse: linje.frivillig.spesiellKompetanse,
+      frivillig: linje.frivillig,
       kontakt: linje.kontakt
     }))
     const csv = json2csvParser.parse(data)
