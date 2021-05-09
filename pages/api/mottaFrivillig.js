@@ -78,7 +78,7 @@ async function mottaFrivillig (request, response) {
       console.warn('frivillig ble ikke registrert')
     }
   } else {
-    console.warn('mottok ikke noe token')
+    console.warn('mottok ikke noe token på mottaFrivillig')
   }
   response.json(payload)
 }
