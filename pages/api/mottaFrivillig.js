@@ -53,7 +53,13 @@ function repackData ({ data }) {
     medlemIRoedt: lageEnumvennligStreng(data.Medlem),
     postnummer: data.Postnummer,
     spesiellKompetanse: data.Kompetanse,
-    telefonnummer: fixTelefonNummer(data.Tlf)
+    //spraak: data['Språk 2']
+    telefonnummer: fixTelefonNummer(data.Tlf),
+    opptattAv: [], //TODO
+    haandtering: data['Håndtering'],
+    personlig: data.Personlig === 'Ja',
+    tydelig: data.Tydelig,
+    forslag: data.Forslag
   }
 
   return repacked
