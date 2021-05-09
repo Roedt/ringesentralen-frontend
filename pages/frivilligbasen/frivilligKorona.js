@@ -10,6 +10,7 @@ function FrivilligKorona ({ frivilligKorona }) {
   return (
     <div className='mt-3 text-sm'>
       {tydelig}<br />
+      Synes regjeringa har håndtert koronakrisa på en forsvarlig måte? {frivilligKorona.haandtering}<br />
       {personlig}<br />
       {forslag}
     </div>
