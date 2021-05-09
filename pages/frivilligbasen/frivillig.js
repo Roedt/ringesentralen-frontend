@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
 import Kontakter from './kontakter'
+import OpptattAv from './opptattAv'
 
 export function genererTagLine (frivillig) {
   const tags = []
@@ -26,7 +27,7 @@ function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
 
   if (!data) return null
-  const { frivillig, person, aktiviteter, fylke, lokallag, kontakt } = data
+  const { frivillig, person, aktiviteter, fylke, lokallag, kontakt, opptattAv } = data
   if (!frivillig) return null
 
   return (
@@ -58,6 +59,7 @@ function Frivillig ({ data }) {
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
       <Kontakter kontakter={kontakt} />
+      <OpptattAv opptattAv={opptattAv} />
     </div>
   )
 }
