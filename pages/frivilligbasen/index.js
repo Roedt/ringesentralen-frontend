@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { saveAs } from 'file-saver'
 import { Parser } from 'json2csv'
 import { Blob } from 'blob-polyfill'
-import toaster from 'toasted-notes'
 
 import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
