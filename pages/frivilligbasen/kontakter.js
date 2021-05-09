@@ -1,11 +1,11 @@
-const datoOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+import skrivUtPenDato from '../../lib/prettyprint-dato'
 
 function Kontakt ({ kontakt }) {
   if (!kontakt) return null
   return (
     <div>
       <div className='text-sm text-gray-700'>
-        {new Date(kontakt.datetime).toLocaleTimeString('no-NO', datoOptions)} - {kontakt.registrert_av.fornavn} {kontakt.registrert_av.etternavn}
+        {skrivUtPenDato(kontakt.datetime)} - {kontakt.registrert_av.fornavn} {kontakt.registrert_av.etternavn}
       </div>
       <div>{kontakt.tilbakemelding}</div>
     </div>
