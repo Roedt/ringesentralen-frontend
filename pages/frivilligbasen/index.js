@@ -34,7 +34,7 @@ function Frivilligbasen () {
       aktiviteter: skrivUtBidrag(linje.aktiviteter),
       andreBidrag: linje.frivillig.andreTingDuVilBidraMed,
       kompetanse: linje.frivillig.spesiellKompetanse,
-      frivillig: linje.frivillig,
+      kortOmMeg: linje.frivillig.fortellLittOmDegSelv,
       kontakt: linje.kontakt
     }))
     const csv = json2csvParser.parse(data)
