@@ -9,13 +9,16 @@ const aktivitetNavn = {
   Bil: 'Har bil og kan bidra med kjøring'
 }
 
-function Aktiviteter ({ aktiviteter }) {
-  if (!aktiviteter) return null
+function Aktiviteter ({ aktiviteter, frivillig }) {
+  if (!aktiviteter || !frivillig) return null
+  const { spesiellKompetanse, andreTingDuVilBidraMed } = frivillig
   const bidrag = aktiviteter.map(linje => linje.aktivitet).map(aktivitet => aktivitetNavn[aktivitet])
   return (
     <div>
       <div className='text-l font-semibold text-gray-900'>Kan bidra med</div>
       <div className='text-l text-gray-900'>{bidrag.join(', ')}</div>
+      <div>{spesiellKompetanse}</div>
+      <div>{andreTingDuVilBidraMed}</div>
     </div>
   )
 }

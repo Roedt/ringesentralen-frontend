@@ -55,20 +55,12 @@ function Frivillig ({ data }) {
         {genererTagLine(frivillig)}
       </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
-      <Aktiviteter aktiviteter={aktiviteter} />
+      <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
       <Kontakter kontakter={kontakt} />
       <div className='flex items-center'>
         <div className='ml-4'>
           <table>
             <tbody>
-              <tr>
-                <td>Spesiell kompetanse?</td>
-                <td>{frivillig.spesiellKompetanse}</td>
-              </tr>
-              <tr>
-                <td>Annet du vil bidra med?</td>
-                <td>{frivillig.andreTingDuVilBidraMed}</td>
-              </tr>
               <tr>
                 <td>Fortell litt om deg selv</td>
                 <td>{frivillig.fortellLittOmDegSelv}</td>
