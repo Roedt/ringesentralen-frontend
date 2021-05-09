@@ -9,9 +9,9 @@ import toaster from 'toasted-notes'
 
 import { is401, is403 } from '../../lib/utils'
 import { skrivUtBidrag } from './aktiviteter'
+import Frivillig, { genererTagLine } from './frivillig'
 
 import Layout from '../../components/layout'
-import Frivillig from './frivillig'
 
 function navneSortering (a, b) {
   return a.fylke.navn.localeCompare(b.fylke.navn)
@@ -26,6 +26,7 @@ function Frivilligbasen () {
     const data = frivillige.map(linje => Object.assign({}, {
       fylke: linje.fylke.navn,
       lokallag: linje.lokallag.navn,
+      medlemsskap: genererTagLine(linje.frivillig),
       fornavn: linje.person.fornavn,
       etternavn: linje.person.etternavn,
       telefonnummer: linje.person.telefonnummer,
