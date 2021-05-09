@@ -278,7 +278,8 @@ function Hjelp () {
                 </p>
               </dd>
             </div>
-          </dl><dl className='mt-6 space-y-6 divide-y divide-gray-200'>
+          </dl>
+          <dl className='mt-6 space-y-6 divide-y divide-gray-200'>
             <div className='pt-6'>
               <dt className='text-lg'>
                 <button type='button' onClick={() => toggleFaq(setVisFaq8, !visFaq8, '8')} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-8' aria-expanded='false'>
@@ -294,7 +295,7 @@ function Hjelp () {
               </dt>
               <dd className={`mt-2 pr-12 ${visFaq8 ? 'visible' : 'hidden'}`} id='faq-8'>
                 <p className='text-base text-gray-500 mb-2'>
-                  På <a href="https://www.fellesskapfungerer.no/bli-valgkampfrivillig">fellesskapfungerer.no</a> kan folk registrere seg som frivillige for Raudt i valkampen.
+                  På <a href='https://www.fellesskapfungerer.no/bli-valgkampfrivillig'>fellesskapfungerer.no</a> kan folk registrere seg som frivillige for Raudt i valkampen.
                 </p>
                 <p className='text-base text-gray-500'>
                   Når dei gjer det, dukkar dei opp her.<br />
