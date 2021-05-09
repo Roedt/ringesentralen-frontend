@@ -52,23 +52,12 @@ function Frivillig ({ data }) {
         </div>
       </div>
       <div className='-mt-2 text-gray-700 text-sm'>
-        {genererTagLine(frivillig)}
+        <p>{genererTagLine(frivillig)}</p>
+        <p>{frivillig.fortellLittOmDegSelv}</p>
       </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
       <Kontakter kontakter={kontakt} />
-      <div className='flex items-center'>
-        <div className='ml-4'>
-          <table>
-            <tbody>
-              <tr>
-                <td>Fortell litt om deg selv</td>
-                <td>{frivillig.fortellLittOmDegSelv}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   )
 }
