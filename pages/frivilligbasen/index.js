@@ -8,6 +8,7 @@ import { Blob } from 'blob-polyfill'
 import toaster from 'toasted-notes'
 
 import { is401, is403 } from '../../lib/utils'
+import skrivUtPenDato from '../../lib/prettyprint-dato'
 import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
 
@@ -15,6 +16,14 @@ import Layout from '../../components/layout'
 
 function navneSortering (a, b) {
   return a.fylke.navn.localeCompare(b.fylke.navn)
+}
+
+function skrivUtKontaktLogg (kontakter) {
+  const logg = kontakter.reduce((liste, kontakt) => {
+    liste.push(`${skrivUtPenDato(kontakt.datetime)} - ${kontakt.registrert_av.fornavn} ${kontakt.registrert_av.etternavn}: ${kontakt.tilbakemelding}`)
+    return liste
+  }, [])
+  return logg.join('\n\n')
 }
 
 function Frivilligbasen () {
@@ -35,7 +44,7 @@ function Frivilligbasen () {
       andreBidrag: linje.frivillig.andreTingDuVilBidraMed,
       kompetanse: linje.frivillig.spesiellKompetanse,
       kortOmMeg: linje.frivillig.fortellLittOmDegSelv,
-      kontakt: linje.kontakt
+      kontaktLogg: skrivUtKontaktLogg(linje.kontakt)
     }))
     const csv = json2csvParser.parse(data)
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })
