@@ -5,6 +5,7 @@ import KontaktSkjema from './kontaktSkjema'
 import Kontakter from './kontakter'
 import OpptattAv from './opptattAv'
 import FrivilligKorona from './frivilligKorona'
+import skrivUtPenDato from '../../lib/prettyprint-dato'
 
 export function genererTagLine (frivillig) {
   const tags = []
@@ -21,6 +22,7 @@ export function genererTagLine (frivillig) {
     tags.push('Er ikke medlem av Rødt')
   }
   tags.push(frivillig.alleredeAktivILokallag ? 'allerede aktiv i lokallaget' : 'ikke aktiv i lokallaget')
+  tags.push('Meldte seg ' + skrivUtPenDato(frivillig.registrertTidspunkt))
   return tags.join(', ')
 }
 
@@ -30,6 +32,11 @@ function Frivillig ({ data }) {
   if (!data) return null
   const { frivillig, person, aktiviteter, fylke, lokallag, kontakt, opptattAv, frivilligKorona } = data
   if (!frivillig) return null
+
+  function mineSpraak (frivillig) {
+    if (!frivillig.spraak || frivillig.spraak.length === 0) return null
+    return 'Snakker ' + frivillig.spraak
+  }
 
   return (
     <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
@@ -56,6 +63,7 @@ function Frivillig ({ data }) {
       <div className='md:-mt-2 text-gray-700 text-sm'>
         <p>{genererTagLine(frivillig)}</p>
         <p>{frivillig.fortellLittOmDegSelv}</p>
+        <p>{mineSpraak(frivillig)}</p>
       </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
