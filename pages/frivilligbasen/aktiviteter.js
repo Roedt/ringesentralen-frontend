@@ -9,14 +9,18 @@ const aktivitetNavn = {
   Bil: 'Har bil og kan bidra med kjøring'
 }
 
+export function skrivUtBidrag (aktiviteter) {
+  const bidrag = aktiviteter.map(linje => linje.aktivitet).map(aktivitet => aktivitetNavn[aktivitet])
+  return bidrag.join(', ')
+}
+
 function Aktiviteter ({ aktiviteter, frivillig }) {
   if (!aktiviteter || !frivillig) return null
   const { spesiellKompetanse, andreTingDuVilBidraMed } = frivillig
-  const bidrag = aktiviteter.map(linje => linje.aktivitet).map(aktivitet => aktivitetNavn[aktivitet])
   return (
     <div>
       <div className='text-l font-semibold text-gray-900'>Kan bidra med</div>
-      <div className='text-l text-gray-900'>{bidrag.join(', ')}</div>
+      <div className='text-l text-gray-900'>{skrivUtBidrag(aktiviteter)}</div>
       <div>{spesiellKompetanse}</div>
       <div>{andreTingDuVilBidraMed}</div>
     </div>
