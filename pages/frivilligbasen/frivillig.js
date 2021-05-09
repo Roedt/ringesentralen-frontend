@@ -4,6 +4,24 @@ import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
 import Kontakter from './kontakter'
 
+function genererTagLine (frivillig) {
+  const tags = []
+  if (frivillig.medlemIRoedt === 'Vilbli') {
+    tags.push('Vil bli medlem i Rødt')
+  }
+  if (frivillig.medlemIRoedt === 'RU') {
+    tags.push('Er medlem av Rød Ungdom')
+  }
+  if (frivillig.medlemIRoedt === 'Ja') {
+    tags.push('Er medlem av Rødt')
+  }
+  if (frivillig.medlemIRoedt === 'Nei') {
+    tags.push('Er ikke medlem av Rødt')
+  }
+  tags.push(frivillig.alleredeAktivILokallag ? 'allerede aktiv i lokallaget' : 'ikke aktiv i lokallaget')
+  return tags.join(', ')
+}
+
 function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
 
@@ -33,6 +51,9 @@ function Frivillig ({ data }) {
           </button>
         </div>
       </div>
+      <div className='-mt-2 text-gray-700 text-sm'>
+        {genererTagLine(frivillig)}
+      </div>
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} />
       <Kontakter kontakter={kontakt} />
@@ -40,14 +61,6 @@ function Frivillig ({ data }) {
         <div className='ml-4'>
           <table>
             <tbody>
-              <tr>
-                <td width='210px'>Allerede aktiv i lokallag?</td>
-                <td>{frivillig.alleredeAktivILokallag ? 'Ja' : 'Nei'}</td>
-              </tr>
-              <tr>
-                <td>Medlem i Rødt?</td>
-                <td>{frivillig.medlemIRoedt}</td>
-              </tr>
               <tr>
                 <td>Spesiell kompetanse?</td>
                 <td>{frivillig.spesiellKompetanse}</td>
