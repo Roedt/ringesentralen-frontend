@@ -53,7 +53,7 @@ function repackData ({ data }) {
     medlemIRoedt: lageEnumvennligStreng(data.Medlem),
     postnummer: data.Postnummer,
     spesiellKompetanse: data.Kompetanse,
-    //spraak: data['Språk 2']
+    spraak: data['Språk 2'],
     telefonnummer: fixTelefonNummer(data.Tlf),
     opptattAv: [], //TODO
     haandtering: data['Håndtering'],
