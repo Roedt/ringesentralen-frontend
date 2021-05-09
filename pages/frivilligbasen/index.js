@@ -8,6 +8,7 @@ import { Blob } from 'blob-polyfill'
 import toaster from 'toasted-notes'
 
 import { is401, is403 } from '../../lib/utils'
+import { skrivUtBidrag } from './aktiviteter'
 
 import Layout from '../../components/layout'
 import Frivillig from './frivillig'
@@ -30,7 +31,7 @@ function Frivilligbasen () {
       telefonnummer: linje.person.telefonnummer,
       email: linje.person.email,
       frivillig: linje.frivillig,
-      aktiviteter: linje.aktiviteter,
+      aktiviteter: skrivUtBidrag(linje.aktiviteter),
       kontakt: linje.kontakt
     }))
     const csv = json2csvParser.parse(data)
