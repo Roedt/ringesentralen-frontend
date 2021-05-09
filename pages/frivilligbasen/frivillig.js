@@ -4,6 +4,7 @@ import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
 import Kontakter from './kontakter'
 import OpptattAv from './opptattAv'
+import FrivilligKorona from './frivilligKorona'
 
 export function genererTagLine (frivillig) {
   const tags = []
@@ -27,7 +28,7 @@ function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
 
   if (!data) return null
-  const { frivillig, person, aktiviteter, fylke, lokallag, kontakt, opptattAv } = data
+  const { frivillig, person, aktiviteter, fylke, lokallag, kontakt, opptattAv, frivilligKorona } = data
   if (!frivillig) return null
 
   return (
@@ -60,6 +61,7 @@ function Frivillig ({ data }) {
       <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
       <Kontakter kontakter={kontakt} />
       <OpptattAv opptattAv={opptattAv} />
+      <FrivilligKorona frivilligKorona={frivilligKorona} />
     </div>
   )
 }
