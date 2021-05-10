@@ -50,7 +50,10 @@ function Frivilligbasen () {
   const [frivillige, setFrivillige] = useState([])
 
   function lastNedCSV () {
-    const json2csvParser = new Parser({ delimiter: ';' })
+    const json2csvParser = new Parser({
+      delimiter: ';',
+      eol: '\r\n'
+    })
     const data = frivillige.map(linje => Object.assign({}, {
       fylke: linje.fylke.navn,
       lokallag: linje.lokallag.navn,
@@ -60,13 +63,13 @@ function Frivilligbasen () {
       telefonnummer: linje.person.telefonnummer,
       email: linje.person.email,
       aktiviteter: skrivUtBidrag(linje.aktiviteter),
-      andreBidrag: linje.frivillig.andreTingDuVilBidraMed || '',
-      kompetanse: linje.frivillig.spesiellKompetanse || '',
-      spraak: linje.frivillig.spraak || '',
-      kortOmMeg: linje.frivillig.fortellLittOmDegSelv || '',
-      opptattAv: linje.opptattAv ? linje.opptattAv.join(', ') : '',
+      andreBidrag: linje.frivillig.andreTingDuVilBidraMed || ' ',
+      kompetanse: linje.frivillig.spesiellKompetanse || ' ',
+      spraak: linje.frivillig.spraak || ' ',
+      kortOmMeg: linje.frivillig.fortellLittOmDegSelv || ' ',
+      opptattAv: linje.opptattAv ? linje.opptattAv.join(', ') : ' ',
       koronaTilbakemelding: skrivUtKoronaTilbakemeldinger(linje.frivilligKorona),
-      kontaktLogg: skrivUtKontaktLogg(linje.kontakt) || ''
+      kontaktLogg: skrivUtKontaktLogg(linje.kontakt) || ' '
     }))
     const csv = json2csvParser.parse(data)
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })
