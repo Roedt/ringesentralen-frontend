@@ -42,6 +42,7 @@ function Frivilligbasen () {
       aktiviteter: skrivUtBidrag(linje.aktiviteter),
       andreBidrag: linje.frivillig.andreTingDuVilBidraMed,
       kompetanse: linje.frivillig.spesiellKompetanse,
+      spraak: linje.frivillig.spraak || '',
       kortOmMeg: linje.frivillig.fortellLittOmDegSelv,
       kontaktLogg: skrivUtKontaktLogg(linje.kontakt)
     }))
