@@ -25,6 +25,26 @@ function skrivUtKontaktLogg (kontakter) {
   return logg.join('\n\n')
 }
 
+function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
+  const tilbakemelding = []
+  const { tydelig, forslag, personlig } = tilbakemeldinger
+  if (tydelig) {
+    tilbakemelding.push('Synes Rødt har hatt tydelige løsninger under pandemien')
+  } else {
+    tilbakemelding.push('Synes ikke Rødt har hatt tydelige løsninger under pandemien')
+  }
+  if (personlig) {
+    tilbakemelding.push('Har selv, eller har noen i sin nære omkrets som har, opplevd økonomiske konsekvenser som følge av koronakrisa')
+  } else {
+    tilbakemelding.push('Har ikke selv, eller i sin nære omkrets som har, opplevd økonomiske konsekvenser som følge av koronakrisa')
+  }
+  if (forslag && forslag.length > 1) {
+    tilbakemelding.push('Forslag noe spesielt Rødt bør foreslå for å hjelpe folk gjennom koronakrisa:')
+    tilbakemelding.push(forslag)
+  }
+  return tilbakemelding.join('\n')
+}
+
 function Frivilligbasen () {
   const router = useRouter()
   const [frivillige, setFrivillige] = useState([])
@@ -45,7 +65,7 @@ function Frivilligbasen () {
       spraak: linje.frivillig.spraak || '',
       kortOmMeg: linje.frivillig.fortellLittOmDegSelv,
       opptattAv: linje.opptattAv ? linje.opptattAv.join(', ') : '',
-      koronaTilbakemelding: '',
+      koronaTilbakemelding: skrivUtKoronaTilbakemeldinger(linje.frivilligKorona),
       kontaktLogg: skrivUtKontaktLogg(linje.kontakt)
     }))
     const csv = json2csvParser.parse(data)
