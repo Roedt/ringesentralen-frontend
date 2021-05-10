@@ -44,6 +44,8 @@ function Frivilligbasen () {
       kompetanse: linje.frivillig.spesiellKompetanse,
       spraak: linje.frivillig.spraak || '',
       kortOmMeg: linje.frivillig.fortellLittOmDegSelv,
+      opptattAv: linje.opptattAv ? linje.opptattAv.join(', ') : '',
+      koronaTilbakemelding: '',
       kontaktLogg: skrivUtKontaktLogg(linje.kontakt)
     }))
     const csv = json2csvParser.parse(data)
