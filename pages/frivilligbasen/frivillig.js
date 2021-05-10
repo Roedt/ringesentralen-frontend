@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 
 import Aktiviteter from './aktiviteter'
 import KontaktSkjema from './kontaktSkjema'
@@ -6,6 +7,22 @@ import Kontakter from './kontakter'
 import OpptattAv from './opptattAv'
 import FrivilligKorona from './frivilligKorona'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
+
+function VisSkjulTekst ({ vis }) {
+  if (vis) {
+    return (
+      <>
+        Skjul tilleggsinformasjon <ChevronUpIcon className='-mr-1 ml-2 h-5 w-5' aria-hidden='true' />
+      </>
+    )
+  } else {
+    return (
+      <>
+        Vis tilleggsinformasjon <ChevronDownIcon className='-mr-1 ml-2 h-5 w-5' aria-hidden='true' />
+      </>
+    )
+  }
+}
 
 export function genererTagLine (frivillig) {
   const tags = []
@@ -28,6 +45,7 @@ export function genererTagLine (frivillig) {
 
 function Frivillig ({ data }) {
   const [visSkjema, setVisSkjema] = useState()
+  const [visTilleggsinformasjon, setVisTilleggsinformasjon] = useState()
 
   if (!data) return null
   const { frivillig, person, aktiviteter, fylke, lokallag, kontakt, opptattAv, frivilligKorona } = data
@@ -68,8 +86,15 @@ function Frivillig ({ data }) {
       <KontaktSkjema frivillig={frivillig} visSkjema={visSkjema} setVisSkjema={setVisSkjema} />
       <Aktiviteter aktiviteter={aktiviteter} frivillig={frivillig} />
       <Kontakter kontakter={kontakt} />
-      <OpptattAv opptattAv={opptattAv} />
-      <FrivilligKorona frivilligKorona={frivilligKorona} />
+      <div>
+        <button onClick={() => setVisTilleggsinformasjon(!visTilleggsinformasjon)} className='mt-2 mb-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500'>
+          <VisSkjulTekst vis={visTilleggsinformasjon} />
+        </button>
+        <div className={`${visTilleggsinformasjon ? 'visible' : 'hidden'}`}>
+          <OpptattAv opptattAv={opptattAv} />
+          <FrivilligKorona frivilligKorona={frivilligKorona} />
+        </div>
+      </div>
     </div>
   )
 }
