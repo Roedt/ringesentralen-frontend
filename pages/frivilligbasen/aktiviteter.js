@@ -1,4 +1,4 @@
-const aktivitetNavn = {
+export const aktivitetNavn = {
   Stand: 'Stå på stand / møte velgere',
   SoMe: 'Dele innhold på sosiale medier',
   Doerbanking: 'Gå fra dør til dør og snakke med folk om Rødt',
