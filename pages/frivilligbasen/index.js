@@ -10,7 +10,7 @@ import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
 import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
-import filtrerFrivillig from './filtrerFrivillig'
+import filtrerFrivillig from '../../lib/filtrerFrivillig'
 import AktiviteterFilter from './aktiviteterFilter'
 
 import Layout from '../../components/layout'
