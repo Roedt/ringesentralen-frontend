@@ -10,6 +10,7 @@ import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
 import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
+import filtrerFrivillig from './filtrerFrivillig'
 
 import Layout from '../../components/layout'
 
@@ -48,6 +49,8 @@ function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
 function Frivilligbasen () {
   const router = useRouter()
   const [frivillige, setFrivillige] = useState([])
+  const [filterKriterier, setFilterKriterier] = useState([])
+  const [ufiltrertListe, setUfiltrertListe] = useState([])
 
   function lastNedCSV () {
     const json2csvParser = new Parser({
@@ -81,7 +84,9 @@ function Frivilligbasen () {
       const { data } = await axios.get('/api/backend/frivillig/alle', { withCredentials: true })
       if (data) {
         data.sort(navneSortering)
-        setFrivillige(data)
+        setUfiltrertListe(data)
+        const filtrert = data.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
+        setFrivillige(filtrert)
       }
     } catch (error) {
       if (is401(error)) {
