@@ -1,5 +1,4 @@
 function filtrerFrivillig (aktiviteter = [], spraak = '', filter) {
-  console.log(aktiviteter, spraak, filter)
   if (!filter || filter.length === 0) return true
   const mineAktiviteter = aktiviteter.map(item => item.aktivitet)
   const harAktiviteter = mineAktiviteter.filter(aktivitet => filter.includes(aktivitet)).length > 0
