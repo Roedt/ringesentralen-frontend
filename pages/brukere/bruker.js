@@ -130,7 +130,10 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
               {epost}
             </div>
             <div className='text-sm text-gray-500'>
-              Postnummer {postnummer} (fylke: {fylke?.navn || 'Udefinert'})
+              Postnummer {postnummer}
+            </div>
+            <div className='text-sm text-gray-500'>
+              {fylke?.navn || 'Udefinert fylke'}
             </div>
             <div className='text-sm text-gray-500'>
               Registrert {skrivUtPenDato(registreringstidspunkt)}
