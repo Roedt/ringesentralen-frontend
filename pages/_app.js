@@ -1,4 +1,3 @@
-import 'toasted-notes/src/styles.css'
 import { init } from '../utils/sentry'
 import { AmplitudeProvider } from '../contexts/amplitude-context'
 import { ToastProvider } from '../contexts/toast-context'

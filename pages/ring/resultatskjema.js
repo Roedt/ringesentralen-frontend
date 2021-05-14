@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import toaster from 'toasted-notes'
 
+import { useToast } from '../../contexts/toast-context'
 import generatePayload from '../../lib/generate-payload'
 import genererLinkmelding from './generer-link-melding'
 import Button from '../../components/ui/button'
@@ -13,6 +13,7 @@ import { useAmplitude } from '../../contexts/amplitude-context'
 
 function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
   const router = useRouter()
+  const { setToastMelding } = useToast()
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
   const { logAmplitudeEvent } = useAmplitude()
@@ -55,7 +56,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
 
     try {
       await axios.post('/api/backend/samtale/registrerResultatFraSamtale', referat, { withCredentials: true })
-      toaster.notify('Samtalereferatet er lagret', { duration: 2000 })
+      setToastMelding('Samtalereferatet er lagret')
       setLoading(false)
       form.reset()
       setPerson(false)
