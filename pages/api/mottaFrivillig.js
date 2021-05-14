@@ -119,6 +119,8 @@ async function mottaFrivillig (request, response) {
     console.log('datadump frivillig webhook')
     console.log(JSON.stringify(payload, null, 2))
     const repacked = repackData(payload)
+    console.log('frivillig-requesten til backend')
+    console.log(JSON.stringify(repacked, null, 2))
     const registrertFrivillig = await postFrivilligRegistrering({ token, payload: repacked })
     if (registrertFrivillig) {
       const { success } = registrertFrivillig
@@ -126,11 +128,9 @@ async function mottaFrivillig (request, response) {
         console.log('frivillig er registrert')
       } else {
         console.log('noe feilet og frivillig ble ikke registrert')
-        console.log(JSON.stringify(repacked, null, 2))
       }
     } else {
       console.warn('frivillig ble ikke registrert')
-      console.log(JSON.stringify(repacked, null, 2))
     }
   } else {
     console.warn('mottok ikke noe token på mottaFrivillig')
