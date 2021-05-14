@@ -120,7 +120,7 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
 
   return (
     <tr>
-      <td className='px-6 py-4 whitespace-nowrap'>
+      <td className='px-2 py-4 whitespace-nowrap inline-block vertical-align: top'>
         <div className='flex items-center'>
           <div className='ml-4'>
             <div className='text-sm font-medium text-gray-900'>
@@ -140,7 +140,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <div className='text-sm text-gray-900'>{lokallag?.navn || 'Ikke oppgitt'}</div>
-        <div className='text-sm text-gray-500'>{roller.join(', ') || 'Ikke oppgitt'}</div>
+        <pre>
+          <div className='text-sm text-gray-500'>{roller.join('\r\n') || 'Ikke oppgitt'}</div>
+        </pre>
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <Toggle
