@@ -126,9 +126,11 @@ async function mottaFrivillig (request, response) {
         console.log('frivillig er registrert')
       } else {
         console.log('noe feilet og frivillig ble ikke registrert')
+        console.log(JSON.stringify(repacked, null, 2))
       }
     } else {
       console.warn('frivillig ble ikke registrert')
+      console.log(JSON.stringify(repacked, null, 2))
     }
   } else {
     console.warn('mottok ikke noe token på mottaFrivillig')
