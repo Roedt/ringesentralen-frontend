@@ -4,16 +4,16 @@ import { Transition } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/solid'
 
-function Toast ({ message }) {
-  const [show, setShow] = useState(message)
+function Toast ({ melding }) {
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
-    if (!message) {
+    if (!melding) {
       setShow(false)
     } else {
       setShow(true)
     }
-  }, [message])
+  }, [melding])
 
   return (
     <Transition
@@ -33,7 +33,7 @@ function Toast ({ message }) {
               <CheckCircleIcon className='h-6 w-6 text-green-400' aria-hidden='true' />
             </div>
             <div className='ml-3 w-0 flex-1 pt-0.5'>
-              <p className='text-sm font-medium text-gray-900'>{message}</p>
+              <p className='text-sm font-medium text-gray-900'>{melding}</p>
             </div>
             <div className='ml-4 flex-shrink-0 flex'>
               <button

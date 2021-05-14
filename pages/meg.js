@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import useUser from '../lib/useUser'
+import { useToast } from '../contexts/toast-context'
 import { is401, is403 } from '../lib/utils'
 
 import Layout from '../components/layout'
@@ -14,6 +15,7 @@ function navneSortering (a, b) {
 }
 
 function MinProfil ({ profil, session, mineLokallag }) {
+  const { setToastMelding } = useToast()
   if (!profil || !session || !mineLokallag) return null
 
   const { fornavn, etternavn, telefonnummer, email, postnummer, fylkeNavn, lokallagNavn } = profil
@@ -30,6 +32,7 @@ function MinProfil ({ profil, session, mineLokallag }) {
   return (
     <>
       {rollerProfil.toString() !== rollerSesjon.toString() && <Warning message={message} />}
+      <button onClick={() => setToastMelding('Dette er en fin toast ass')}>Toast test</button>
       <div className='bg-white shadow overflow-hidden sm:rounded-lg'>
         <div className='px-4 py-5 sm:px-6'>
           <h3 className='text-lg leading-6 font-medium text-gray-900'>Meg i Ringesentalen</h3>
