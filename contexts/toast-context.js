@@ -11,7 +11,7 @@ function ToastProvider ({ children }) {
     if (toastMelding) {
       setTimeout(() => {
         setToastMelding(false)
-      }, 2000)
+      }, 20000)
     }
   }, [toastMelding])
 
