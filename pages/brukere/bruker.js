@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useAmplitude } from '../../contexts/amplitude-context'
 import Toggle from '../../components/ui/toggle'
+import skrivUtPenDato from '../../lib/prettyprint-dato'
 
 const isArray = data => Array.isArray(data)
 const kanBrukeRingesentralen = roller => isArray(roller) && (roller.includes('bruker') || roller.includes('venter_paa_godkjenning'))
@@ -28,7 +29,7 @@ function regnUtRoller (roller, erBruker, erRinger, erRingerForMedlemmer, erGodkj
   return nyeRoller
 }
 
-const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBrukerStatus, postnummer, mineRoller }) => {
+const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBrukerStatus, postnummer, mineRoller, registreringstidspunkt }) => {
   const [erBruker, setErBruker] = useState(kanBrukeRingesentralen(rolle))
   const [erRinger, setErRinger] = useState(kanRinge(rolle))
   const [erRingerForMedlemmer, setErRingerForMedlemmer] = useState(kanRingeMedlemmer(rolle))
@@ -130,6 +131,9 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
             </div>
             <div className='text-sm text-gray-500'>
               Postnummer {postnummer} (fylke: {fylke?.navn || 'Udefinert'})
+            </div>
+            <div className='text-sm text-gray-500'>
+              Registrert {skrivUtPenDato(registreringstidspunkt)}
             </div>
           </div>
         </div>
