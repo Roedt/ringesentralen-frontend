@@ -6,16 +6,27 @@ import { useEffect, useState } from 'react'
 import { is401, is403 } from '../../lib/utils'
 import useUser from '../../lib/useUser'
 import Layout from '../../components/layout'
+import { Warning } from '../../components/ui/alerts'
 import BrukerListe from './bruker-liste'
 
 function etternavnSortering (a, b) {
   return a.etternavn.localeCompare(b.etternavn)
 }
 
+function NyeBrukereVarsling ({ nyeBrukere }) {
+  if (!nyeBrukere) return null
+  return (
+    <div className='mb-4'>
+      <Warning message='Det ligger brukere som venter på godkjenning i listen. Trykk på "Godkjenn nye brukere" for å se alle.' />
+    </div>
+  )
+}
+
 const Brukere = () => {
   const { user } = useUser()
   const router = useRouter()
   const [brukere, setBrukere] = useState()
+  const [ikkeGodkjenteBrukere, setIkkeGodkjenteBrukere] = useState()
   const [filterKriterie, setFilterKriterie] = useState()
   const [mineRoller, setMineRoller] = useState()
 
@@ -26,8 +37,11 @@ const Brukere = () => {
       if (filterKriterie) {
         const filtrert = data.filter(bruker => bruker.rolle.includes(filterKriterie))
         setBrukere(filtrert)
+        setIkkeGodkjenteBrukere(false)
       } else {
         setBrukere(data)
+        const nyeBrukere = data.filter(bruker => bruker.rolle.includes('venter_paa_godkjenning'))
+        setIkkeGodkjenteBrukere(nyeBrukere.length > 0)
       }
     } catch (error) {
       if (is401(error)) {
@@ -71,6 +85,7 @@ const Brukere = () => {
           </button>
         </span>
       </div>
+      <NyeBrukereVarsling nyeBrukere={ikkeGodkjenteBrukere} />
       <BrukerListe brukere={brukere} mineRoller={mineRoller} />
     </Layout>
   )
