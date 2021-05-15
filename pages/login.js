@@ -12,7 +12,6 @@ function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
   const router = useRouter()
-
   const wakeupBackend = async () => {
     try {
       await axios.get('/api/backend/ping')
@@ -30,7 +29,13 @@ function Login () {
       await axios.post('/api/login', generatePayload(form))
       setLoading(false)
       form.reset()
-      router.push('/ring')
+      const params = new URLSearchParams(router.asPath.replace('/login', ''))
+      const komFra = params.get('komFra')
+      if (komFra) {
+        router.push(komFra)
+      } else {
+        router.push('/ring')
+      }
     } catch (error) {
       setLoading(false)
       if (is401(error) || is403(error)) {
