@@ -91,7 +91,7 @@ function Frivilligbasen () {
       }
     } catch (error) {
       if (is401(error)) {
-        router.push('/login')
+        router.push('/login?komFra=/frivilligbasen')
       } else if (is403(error)) {
         router.push('/sperret')
       } else {

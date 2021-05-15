@@ -37,7 +37,7 @@ const SamtaleOversikt = () => {
       setLagetsSamtaler(data)
     } catch (error) {
       if (is401(error)) {
-        router.push('/login')
+        router.push('/login?komFra=/minesamtaler')
       } else if (is403(error)) {
         router.push('/sperret')
       } else {

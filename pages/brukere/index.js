@@ -45,7 +45,7 @@ const Brukere = () => {
       }
     } catch (error) {
       if (is401(error)) {
-        router.push('/login')
+        router.push('/login?komFra=/brukere')
       } else if (is403(error)) {
         router.push('/sperret')
       } else {

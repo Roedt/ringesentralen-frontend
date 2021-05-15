@@ -118,7 +118,7 @@ const HomePage = () => {
       setDashboard(data)
     } catch (error) {
       if (is401(error)) {
-        router.push('/login')
+        router.push('/login?komFra=/')
       } else if (is403(error)) {
         router.push('/sperret')
       } else {
