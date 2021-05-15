@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { SparklesIcon } from '@heroicons/react/outline'
 
 import { useAmplitude } from '../../contexts/amplitude-context'
 import Toggle from '../../components/ui/toggle'
@@ -10,6 +11,14 @@ const kanRinge = roller => isArray(roller) && roller.includes('ringer')
 const kanRingeMedlemmer = roller => isArray(roller) && roller.includes('ringerForMedlemmer')
 const kanGodkjenne = roller => isArray(roller) && roller.includes('godkjenner')
 const kanAdministrere = roller => isArray(roller) && roller.includes('admin')
+const erNyBruker = roller => isArray(roller) && roller.includes('venter_paa_godkjenning')
+
+function NyBrukerVarsling ({ rolle }) {
+  if (!erNyBruker(rolle)) return null
+  return (
+    <SparklesIcon className='w-4 h-4 fill-none text-green-400 ml-1' />
+  )
+}
 
 function regnUtRoller (roller, erBruker, erRinger, erRingerForMedlemmer, erGodkjenner) {
   const nyeRoller = []
@@ -123,8 +132,8 @@ const Bruker = ({ fornavn, etternavn, epost, rolle, lokallag, id, fylke, endreBr
       <td className='px-2 py-4 whitespace-nowrap inline-block vertical-align: top'>
         <div className='flex items-center'>
           <div className='ml-4'>
-            <div className='text-sm font-medium text-gray-900'>
-              {fornavn} {etternavn}
+            <div className='flex items-center text-sm font-medium text-gray-900'>
+              {fornavn} {etternavn}<NyBrukerVarsling rolle={rolle} />
             </div>
             <div className='text-sm text-gray-500'>
               {epost}
