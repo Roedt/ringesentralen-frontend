@@ -39,7 +39,7 @@ function Samtale ({ accepted, data, user, setPerson }) {
     return (
       <>
         <Ringemanus
-          manus='innledning'
+          manus={fylke === 2 ? 'innledning-akershus' : 'innledning'}
           modus={modus}
           lokalLag={lokallagNavn}
           navn={`${user?.navn}`}
