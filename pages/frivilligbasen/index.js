@@ -100,22 +100,6 @@ function Frivilligbasen () {
     }
   }
 
-  async function importer () {
-    try {
-      await axios.post('/api/backend/frivillig/importer', { withCredentials: true })
-      toaster.notify('Importen er gjennomført med suksess', { duration: 2000 })
-      hentFrivillige()
-    } catch (error) {
-      if (is401(error)) {
-        router.push('/login')
-      } else if (is403(error)) {
-        router.push('/sperret')
-      } else {
-        console.error(error)
-      }
-    }
-  }
-
   useEffect(() => {
     hentFrivillige()
   }, [])
@@ -137,14 +121,6 @@ function Frivilligbasen () {
           </svg>
           <span>
             Last ned som csv
-          </span>
-        </button>
-        <button type='button' onClick={() => importer()} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-          <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='https://www.w3.org/2000/svg' fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12' />
-          </svg>
-          <span>
-            Importer
           </span>
         </button>
       </div>
