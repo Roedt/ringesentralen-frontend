@@ -2,6 +2,11 @@ Hva er den aller viktigste saken for deg når du skal velge parti i høst?
 
 Er det noe med Rødts politikk som du lurer på?
 
+OM PERSONEN LURER PÅ HVOR VI HAR FÅTT NUMMERET FRA:
+
+Vi har leid disse opplysningene fra vår leverandør Iper Direkte.
+Vi kontakter folk som bor i nabolag hvor det erfaringsmessig er flere som vurderer å stemme Rødt enn snittet.
+
 OM PERSONEN ER POSITIV/NYSGJERRIG:
 
 Kan du tenke deg mer informasjon om Rødt fram mot valget?
