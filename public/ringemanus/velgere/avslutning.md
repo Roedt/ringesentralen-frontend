@@ -1,5 +1,3 @@
-Hva er den aller viktigste saken for deg når du skal velge parti i høst? 
-
 Er det noe med Rødts politikk som du lurer på?
 
 OM PERSONEN LURER PÅ HVOR VI HAR FÅTT NUMMERET FRA:

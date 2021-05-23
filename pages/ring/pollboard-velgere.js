@@ -72,7 +72,7 @@ function PollboardVelgere () {
       />
       <MinipollCheckbox
         tema='viktigsteSaker'
-        tekst='Hva er de viktigste sakene du synes Rødt skal kjempe for?'
+        tekst='Hva er de viktigste sakene for deg når du skal velge parti i høst?'
         alternativer={politiskeSaker}
       />
       <Minipoll
