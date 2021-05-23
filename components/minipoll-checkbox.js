@@ -23,7 +23,7 @@ function MinipollCheckbox ({ tekst, tema, alternativer }) {
         <div className='flex items-center h-5'>
           <input id={key} name={key} value={alternativ} onChange={registrerSvar} type='checkbox' className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded' />
         </div>
-        <div className='ml-3 text-sm'>
+        <div className='ml-3 text-base'>
           <label htmlFor={key} className='font-medium text-gray-700'>{alternativ}</label>
         </div>
       </div>
