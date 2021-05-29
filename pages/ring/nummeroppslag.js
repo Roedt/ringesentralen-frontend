@@ -13,12 +13,17 @@ function Nummeroppslag ({ setPerson }) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    hentTelefonNummer()
+    setAlert(false)
+    const inntastetTelefonnummer = fixTelefonNummer(telefonNummer)
+    if (inntastetTelefonnummer.length === 11) {
+      hentTelefonNummer()
+    } else {
+      setAlert('Du må taste inn et gyldig telefonnummer')
+    }
   }
 
   async function hentTelefonNummer () {
     if (telefonNummer) {
-      setAlert(false)
       try {
         const { data } = await axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: fixTelefonNummer(telefonNummer) }, { withCredentials: true })
         if (data) {
@@ -40,7 +45,7 @@ function Nummeroppslag ({ setPerson }) {
 
   return (
     <div className='my-4'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='mb-4'>
         <label htmlFor='telefonnummer' className='block text-sm font-bold text-gray-700'>Slå opp telefonnummer</label>
         <div className='mt-1 flex rounded-md shadow-sm'>
           <div className='relative flex items-stretch flex-grow focus-within:z-10'>
