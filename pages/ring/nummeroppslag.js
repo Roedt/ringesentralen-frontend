@@ -6,6 +6,10 @@ import { is401, is403 } from '../../lib/utils'
 import fixTelefonNummer from '../../lib/fix-telefonnummer'
 import { Warning } from '../../components/ui/alerts'
 
+function erDummyPerson ({ person }) {
+  return person.telefonnummer === '-1'
+}
+
 function Nummeroppslag ({ setPerson }) {
   const router = useRouter()
   const [telefonNummer, setTelefonNummer] = useState('')
@@ -27,7 +31,11 @@ function Nummeroppslag ({ setPerson }) {
       try {
         const { data } = await axios.post('/api/backend/samtale/noenRingerTilbake', { ringtNummer: fixTelefonNummer(telefonNummer) }, { withCredentials: true })
         if (data) {
-          setPerson(data)
+          if (erDummyPerson(data)) {
+            setAlert('Fant ingen treff på telefonnummeret')
+          } else {
+            setPerson(data)
+          }
         } else {
           setAlert('Fant ingen treff på telefonnummeret')
         }
