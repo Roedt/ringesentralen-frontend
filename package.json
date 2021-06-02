@@ -63,7 +63,7 @@
     "msw": "0.29.0",
     "postcss": "8.3.0",
     "standard": "16.0.3",
-    "tailwindcss": "2.1.2"
+    "tailwindcss": "2.1.4"
   },
   "standard": {
     "env": "jest"
