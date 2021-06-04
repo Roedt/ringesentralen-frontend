@@ -4,6 +4,7 @@ import MinipollCheckbox from '../../components/minipoll-checkbox'
 const politiskeSaker = [
   'Forskjells-Norge',
   'Arbeidsliv og sosial dumping',
+  'Barn, oppvekst, skole',
   'Profittfri velferd',
   'Sosialisme',
   'Sentralisering og distriktspolitikk',
