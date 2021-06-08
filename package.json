@@ -41,7 +41,7 @@
     "json2csv": "5.0.6",
     "markdown-it": "12.0.6",
     "next": "10.2.3",
-    "next-iron-session": "4.1.14",
+    "next-iron-session": "4.2.0",
     "node-cache": "5.1.2",
     "react": "17.0.2",
     "react-confetti": "6.0.1",
