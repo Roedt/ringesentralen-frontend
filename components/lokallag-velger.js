@@ -19,6 +19,12 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
     try {
       const { data } = await axios.get('/api/backend/profil/lokallag', { withCredentials: true })
       data.sort(navneSortering)
+      if (noSessionUpdate) {
+        data.unshift({
+          navn: 'Vis alle lokallag',
+          id: 'visalle'
+        })
+      }
       setMineLokallag(data)
     } catch (error) {
       if (is401(error)) {
@@ -58,7 +64,7 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
 
   useEffect(() => {
     if (user) {
-      setAktivtLokallag(user.aktivtLokallag)
+      setAktivtLokallag(noSessionUpdate ? 'visalle' : user.aktivtLokallag)
       hentMineLokallag()
     }
   }, [user])
