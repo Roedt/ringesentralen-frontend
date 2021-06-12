@@ -8,6 +8,8 @@ import { Blob } from 'blob-polyfill'
 
 import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
+// import useUser from '../../lib/useUser'
+// import LokallagVelger from '../../components/lokallag-velger'
 import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
 import filtrerFrivillig from '../../lib/filtrerFrivillig'
@@ -49,6 +51,7 @@ function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
 
 function Frivilligbasen () {
   const router = useRouter()
+  // const { user } = useUser()
   const [frivillige, setFrivillige] = useState([])
   const [filterKriterier, setFilterKriterier] = useState([])
   const [ufiltrertListe, setUfiltrertListe] = useState([])

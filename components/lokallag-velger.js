@@ -10,7 +10,7 @@ function navneSortering (a, b) {
   return a.navn.localeCompare(b.navn)
 }
 
-function LokallagVelger ({ user, callOnChange }) {
+function LokallagVelger ({ user, callOnChange, heading = 'Velg lokallag du ringer på vegne av' }) {
   const router = useRouter()
   const [aktivtLokallag, setAktivtLokallag] = useState()
   const [mineLokallag, setMineLokallag] = useState([])
@@ -64,7 +64,7 @@ function LokallagVelger ({ user, callOnChange }) {
 
   return (
     <div>
-      <label htmlFor='lokallag' className='block text-sm font-medium text-gray-700'>Velg lokallag du ringer på vegne av</label>
+      <label htmlFor='lokallag' className='block text-sm font-medium text-gray-700'>{heading}</label>
       <select id='location' name='location' onChange={setLokallag} className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md'>
         {mineLokallag.map(lag => <Linje {...lag} aktivt={aktivtLokallag} key={lag.id} />)}
       </select>
