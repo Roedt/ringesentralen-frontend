@@ -14,6 +14,7 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
   const router = useRouter()
   const [aktivtLokallag, setAktivtLokallag] = useState()
   const [mineLokallag, setMineLokallag] = useState([])
+  const showComponentLimit = noSessionUpdate ? 2 : 1
 
   async function hentMineLokallag () {
     try {
@@ -69,7 +70,7 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
     }
   }, [user])
 
-  if (!user || mineLokallag.length <= 1) return null
+  if (!user || mineLokallag.length <= showComponentLimit) return null
 
   return (
     <div>
