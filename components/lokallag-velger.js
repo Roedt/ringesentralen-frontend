@@ -10,7 +10,7 @@ function navneSortering (a, b) {
   return a.navn.localeCompare(b.navn)
 }
 
-function LokallagVelger ({ user, callOnChange, heading = 'Velg lokallag du ringer på vegne av' }) {
+function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg lokallag du ringer på vegne av' }) {
   const router = useRouter()
   const [aktivtLokallag, setAktivtLokallag] = useState()
   const [mineLokallag, setMineLokallag] = useState([])
@@ -32,13 +32,16 @@ function LokallagVelger ({ user, callOnChange, heading = 'Velg lokallag du ringe
   async function setLokallag (event) {
     const lokallag = event.target.value
     setAktivtLokallag(lokallag)
-    try {
-      await axios.post('/api/lokallag', { lokallag }, { withCredentials: true })
-    } catch (error) {
-      if (is401(error)) {
-        router.push('/login')
-      } else {
-        console.error(error)
+    // Oppdaterer ikke valgtlokallag i session noSessionUpdate er satt
+    if (!noSessionUpdate) {
+      try {
+        await axios.post('/api/lokallag', { lokallag }, { withCredentials: true })
+      } catch (error) {
+        if (is401(error)) {
+          router.push('/login')
+        } else {
+          console.error(error)
+        }
       }
     }
     if (callOnChange && isFunction(callOnChange)) {
