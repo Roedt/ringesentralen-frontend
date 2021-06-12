@@ -105,7 +105,7 @@ function Frivilligbasen () {
   }
 
   function oppdaterLokallagId (id) {
-    setLokallagId(id)
+    setLokallagId(id === 'visalle' ? false : id)
   }
 
   useEffect(() => {
