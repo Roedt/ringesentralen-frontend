@@ -134,6 +134,7 @@ function Frivilligbasen () {
             user={user}
             heading='Vis kun frivillige knyttet til et bestemt lokallag'
             callOnChange={oppdaterLokallagId}
+            noSessionUpdate
           />
         </div>
         <button type='button' onClick={() => lastNedCSV()} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
