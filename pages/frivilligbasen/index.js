@@ -8,8 +8,8 @@ import { Blob } from 'blob-polyfill'
 
 import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
-// import useUser from '../../lib/useUser'
-// import LokallagVelger from '../../components/lokallag-velger'
+import useUser from '../../lib/useUser'
+import LokallagVelger from '../../components/lokallag-velger'
 import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
 import filtrerFrivillig from '../../lib/filtrerFrivillig'
@@ -51,7 +51,8 @@ function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
 
 function Frivilligbasen () {
   const router = useRouter()
-  // const { user } = useUser()
+  const { user } = useUser()
+  const [lokallagId, setLokallagId] = useState()
   const [frivillige, setFrivillige] = useState([])
   const [filterKriterier, setFilterKriterier] = useState([])
   const [ufiltrertListe, setUfiltrertListe] = useState([])
@@ -103,14 +104,24 @@ function Frivilligbasen () {
     }
   }
 
+  function oppdaterLokallagId (id) {
+    setLokallagId(id)
+  }
+
   useEffect(() => {
     hentFrivillige()
   }, [])
 
   useEffect(() => {
-    const filtrert = ufiltrertListe.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
+    let filtrert = ufiltrertListe.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
+    if (lokallagId) {
+      console.log(JSON.stringify(filtrert, null, 2))
+      console.log(lokallagId)
+      filtrert = filtrert.filter(frivillig => frivillig.lokallag.id === parseInt(lokallagId, 10))
+    }
     setFrivillige(filtrert)
-  }, [filterKriterier])
+  }, [filterKriterier, lokallagId])
+
   return (
     <Layout pageTitle='Frivilligbasen'>
       <Head>
@@ -118,6 +129,13 @@ function Frivilligbasen () {
       </Head>
       <div>
         <AktiviteterFilter setFilter={setFilterKriterier} />
+        <div className='mb-4 p-4'>
+          <LokallagVelger
+            user={user}
+            heading='Vis kun frivillige knyttet til et bestemt lokallag'
+            callOnChange={oppdaterLokallagId}
+          />
+        </div>
         <button type='button' onClick={() => lastNedCSV()} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
           <svg className='-ml-1 mr-2 h-5 w-5 text-gray-400' xmlns='https://www.w3.org/2000/svg' fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10' />
