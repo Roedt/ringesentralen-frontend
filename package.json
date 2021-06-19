@@ -28,9 +28,9 @@
   "dependencies": {
     "@headlessui/react": "1.2.0",
     "@heroicons/react": "1.0.1",
-    "@sentry/browser": "6.6.0",
-    "@sentry/integrations": "6.6.0",
-    "@sentry/node": "6.6.0",
+    "@sentry/browser": "6.7.1",
+    "@sentry/integrations": "6.7.1",
+    "@sentry/node": "6.7.1",
     "@sentry/webpack-plugin": "1.15.1",
     "@tailwindcss/typography": "0.4.1",
     "amplitude-js": "8.3.1",
