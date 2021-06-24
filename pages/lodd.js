@@ -53,28 +53,41 @@ function Deltagere ({ deltagere, lagLodd }) {
   )
 }
 
-function Hatt ({ loddPerson, loddLokallag, trekkVinner }) {
+function Hatt ({ loddPerson, loddLokallag, trekkVinner, vinnerPerson, vinnerLokallag }) {
   if (!loddPerson && !loddLokallag) return null
+  if (vinnerPerson && vinnerLokallag) return null
 
   return (
     <div>
       <div className='text-center text-2xl mb-4'>{loddPerson.length} lodd i hver hatt</div>
-      <button onClick={() => trekkVinner()} className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner</button>
+      <div>
+        {!vinnerPerson && <button onClick={() => trekkVinner('person')} className='w-full mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av frivillige</button>}
+        {!vinnerLokallag && <button onClick={() => trekkVinner('lokallag')} className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av lokallag</button>}
+      </div>
     </div>
   )
 }
 
-function Vinner ({ vinnerPerson, vinnerLokallag }) {
-  if (!vinnerPerson && !vinnerLokallag) return null
+function VinnerPerson ({ vinnerPerson }) {
+  if (!vinnerPerson) return null
   return (
     <div className='text-center text-xl'>
       <div>Vinneren av de frivillige</div>
       <div className='text-2xl'>{vinnerPerson}</div>
+    </div>
+  )
+}
+
+function VinnerLokallag ({ vinnerLokallag }) {
+  if (!vinnerLokallag) return null
+  return (
+    <div className='text-center text-xl'>
       <div className='mt-4'>Vinneren av lokallagene</div>
       <div className='text-2xl'>{vinnerLokallag}</div>
     </div>
   )
 }
+
 function Lodd () {
   const [deltagere, setDeltagere] = useState(false)
   const [loddPerson, setLoddPerson] = useState(false)
@@ -96,11 +109,15 @@ function Lodd () {
     setLoddLokallag(genererteLodd.lag)
   }
 
-  function trekkVinner () {
+  function trekkVinner (kategori) {
     const loddCopyPerson = [...loddPerson]
     const loddCopyLokallag = [...loddLokallag]
-    setVinnerPerson(shuffle(loddCopyPerson)[0])
-    setVinnerLokallag(shuffle(loddCopyLokallag)[0])
+    if (kategori === 'person') {
+      setVinnerPerson(shuffle(loddCopyPerson)[0])
+    }
+    if (kategori === 'lokallag') {
+      setVinnerLokallag(shuffle(loddCopyLokallag)[0])
+    }
     setVisConfetti(true)
     setTimeout(() => {
       setVisConfetti(false)
@@ -124,8 +141,9 @@ function Lodd () {
         {visConfetti && <Confetti />}
         <HentDeltagere deltagere={deltagere} handleSubmit={handleSubmit} />
         {!loddPerson && <Deltagere deltagere={deltagere} lagLodd={lagLodd} />}
-        {!vinnerPerson && <Hatt loddPerson={loddPerson} loddLokallag={loddLokallag} trekkVinner={trekkVinner} />}
-        <Vinner vinnerPerson={vinnerPerson} vinnerLokallag={vinnerLokallag} />
+        <Hatt loddPerson={loddPerson} loddLokallag={loddLokallag} trekkVinner={trekkVinner} vinnerPerson={vinnerPerson} vinnerLokallag={vinnerLokallag} />
+        <VinnerPerson vinnerPerson={vinnerPerson} />
+        <VinnerLokallag vinnerLokallag={vinnerLokallag} />
       </div>
     </Layout>
   )
