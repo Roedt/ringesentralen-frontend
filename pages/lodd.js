@@ -32,7 +32,7 @@ function HentDeltagere ({ deltagere, handleSubmit }) {
         <div>
           <button
             type='submit'
-            className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
             Hent deltagere
           </button>
@@ -46,50 +46,59 @@ function Deltagere ({ deltagere, lagLodd }) {
   if (!deltagere) return null
   return (
     <div>
-      <div>{deltagere.length} deltagere funnet</div>
-      <button onClick={() => lagLodd()}>Generer lodd</button>
+      <div className='text-center text-2xl mb-4'>{deltagere.length} deltagere funnet</div>
+      <button onClick={() => lagLodd()} className='text-xl w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Generer lodd</button>
     </div>
   )
 }
 
-function Hatt ({ lodd, trekkVinner }) {
-  if (!lodd) return null
+function Hatt ({ loddPerson, loddLokallag, trekkVinner }) {
+  if (!loddPerson && !loddLokallag) return null
 
   return (
     <div>
-      <div>{lodd.length} lodd i hatten</div>
-      <button onClick={() => trekkVinner()}>Trekk vinner</button>
+      <div className='text-center text-2xl mb-4'>{loddPerson.length} lodd i hver hatt</div>
+      <button onClick={() => trekkVinner()} className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner</button>
     </div>
   )
 }
 
-function Vinner ({ vinner }) {
-  if (!vinner) return null
+function Vinner ({ vinnerPerson, vinnerLokallag }) {
+  if (!vinnerPerson && !vinnerLokallag) return null
   return (
-    <div>
-      <div>Vinneren er</div>
-      <div>{vinner}</div>
+    <div className='text-center text-xl'>
+      <div>Vinneren av de frivillige</div>
+      <div className='text-2xl'>{vinnerPerson}</div>
+      <div className='mt-4'>Vinneren av lokallagene</div>
+      <div className='text-2xl'>{vinnerLokallag}</div>
     </div>
   )
 }
 function Lodd () {
   const [deltagere, setDeltagere] = useState(false)
-  const [lodd, setLodd] = useState(false)
-  const [vinner, setVinner] = useState(false)
+  const [loddPerson, setLoddPerson] = useState(false)
+  const [loddLokallag, setLoddLokallag] = useState(false)
+  const [vinnerPerson, setVinnerPerson] = useState(false)
+  const [vinnerLokallag, setVinnerLokallag] = useState(false)
 
   function lagLodd () {
     const genererteLodd = deltagere.reduce((accumulator, current) => {
       const navn = `${current.fornavn} ${current.etternavn} - ${current.lokallag}`
-      const lodd = Array(current.antallSamtaler).fill(navn)
-      accumulator.push(...lodd)
+      const loddPerson = Array(current.antallSamtaler).fill(navn)
+      const loddLag = Array(current.antallSamtaler).fill(current.lokallag)
+      accumulator.person.push(...loddPerson)
+      accumulator.lag.push(...loddLag)
       return accumulator
-    }, [])
-    setLodd(genererteLodd)
+    }, { person: [], lag: [] })
+    setLoddPerson(genererteLodd.person)
+    setLoddLokallag(genererteLodd.lag)
   }
 
   function trekkVinner () {
-    const loddCopy = [...lodd]
-    setVinner(shuffle(loddCopy)[0])
+    const loddCopyPerson = [...loddPerson]
+    const loddCopyLokallag = [...loddLokallag]
+    setVinnerPerson(shuffle(loddCopyPerson)[0])
+    setVinnerLokallag(shuffle(loddCopyLokallag)[0])
   }
 
   async function handleSubmit (event) {
@@ -105,10 +114,12 @@ function Lodd () {
       <Head>
         <title>Loddtrekning</title>
       </Head>
-      <HentDeltagere deltagere={deltagere} handleSubmit={handleSubmit} />
-      <Deltagere deltagere={deltagere} lagLodd={lagLodd} />
-      <Hatt lodd={lodd} trekkVinner={trekkVinner} />
-      <Vinner vinner={vinner} />
+      <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+        <HentDeltagere deltagere={deltagere} handleSubmit={handleSubmit} />
+        {!loddPerson && <Deltagere deltagere={deltagere} lagLodd={lagLodd} />}
+        {!vinnerPerson && <Hatt loddPerson={loddPerson} loddLokallag={loddLokallag} trekkVinner={trekkVinner} />}
+        <Vinner vinnerPerson={vinnerPerson} vinnerLokallag={vinnerLokallag} />
+      </div>
     </Layout>
   )
 }
