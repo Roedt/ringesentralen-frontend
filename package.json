@@ -60,7 +60,7 @@
     "autoprefixer": "10.2.6",
     "babel-jest": "27.0.2",
     "jest": "27.0.4",
-    "msw": "0.29.0",
+    "msw": "0.30.0",
     "postcss": "8.3.5",
     "standard": "16.0.3",
     "tailwindcss": "2.1.4"
