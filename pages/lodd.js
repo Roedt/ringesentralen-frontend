@@ -1,4 +1,5 @@
 import axios from 'axios'
+import shuffle from 'crypto-shuffle'
 import Head from 'next/head'
 import { useState } from 'react'
 
@@ -88,7 +89,7 @@ function Lodd () {
 
   function trekkVinner () {
     const loddCopy = [...lodd]
-    setVinner(loddCopy[0])
+    setVinner(shuffle(loddCopy)[0])
   }
 
   async function handleSubmit (event) {
