@@ -2,6 +2,7 @@ import axios from 'axios'
 import shuffle from 'crypto-shuffle'
 import Head from 'next/head'
 import { useState } from 'react'
+import Confetti from 'react-confetti'
 
 import generatePayload from '../lib/generate-payload'
 
@@ -80,6 +81,7 @@ function Lodd () {
   const [loddLokallag, setLoddLokallag] = useState(false)
   const [vinnerPerson, setVinnerPerson] = useState(false)
   const [vinnerLokallag, setVinnerLokallag] = useState(false)
+  const [visConfetti, setVisConfetti] = useState()
 
   function lagLodd () {
     const genererteLodd = deltagere.reduce((accumulator, current) => {
@@ -99,6 +101,10 @@ function Lodd () {
     const loddCopyLokallag = [...loddLokallag]
     setVinnerPerson(shuffle(loddCopyPerson)[0])
     setVinnerLokallag(shuffle(loddCopyLokallag)[0])
+    setVisConfetti(true)
+    setTimeout(() => {
+      setVisConfetti(false)
+    }, 10000)
   }
 
   async function handleSubmit (event) {
@@ -115,6 +121,7 @@ function Lodd () {
         <title>Loddtrekning</title>
       </Head>
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+        {visConfetti && <Confetti />}
         <HentDeltagere deltagere={deltagere} handleSubmit={handleSubmit} />
         {!loddPerson && <Deltagere deltagere={deltagere} lagLodd={lagLodd} />}
         {!vinnerPerson && <Hatt loddPerson={loddPerson} loddLokallag={loddLokallag} trekkVinner={trekkVinner} />}
