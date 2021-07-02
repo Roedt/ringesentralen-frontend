@@ -15,38 +15,44 @@ const politiskeSaker = [
   'Internasjonal solidaritet'
 ]
 
-function PollboardVelgere () {
+function PollboardVelgere ({ fylke }) {
   return (
     <>
       <Minipoll
         tema='oktForskjellPandemi'
         tekst='Opplever du at forskjellene har økt som følge av korona-pandemien?'
         alternativer={['Ja', 'Nei', 'Vet ikke']}
+        fylke={fylke}
       />
       <Minipoll
         tema='oktForskjellGjortNok'
         tekst='Synes du det har blitt gjort nok for å hindre økte forskjeller i denne tida?'
         alternativer={['Ja', 'Nei', 'Vet ikke']}
+        fylke={fylke}
       />
       <Minipoll
         tema='tannhelse'
         tekst='Er du enig med Rødt i at tannhelse bør være gratis?'
         alternativer={['Svært enig', 'Enig', 'Verken eller', 'Uenig', 'Svært uenig']}
+        fylke={fylke}
       />
       <Minipoll
         tema='fellesVelferd'
         tekst='Er du enig med Rødt i at skattepenger bevilget til velferd skal gå til felles velferd, ikke privat profitt?'
         alternativer={['Svært enig', 'Enig', 'Verken eller', 'Uenig', 'Svært uenig']}
+        fylke={fylke}
       />
       <MinipollCheckbox
         tema='viktigsteSaker'
         tekst='Hva er de viktigste sakene for deg når du skal velge parti i høst?'
         alternativer={politiskeSaker}
+        fylke={fylke}
       />
       <Minipoll
         tema='stemmePaaRoedt'
         tekst='Er Rødt et av partiene du vurderer å stemme på?'
         alternativer={['Ja', 'Nei', 'Vet ikke']}
+        fylke={fylke}
       />
     </>
   )
