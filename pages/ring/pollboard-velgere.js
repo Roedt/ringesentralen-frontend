@@ -19,6 +19,20 @@ function PollboardVelgere ({ fylke }) {
   return (
     <>
       <Minipoll
+        tema='sognOgFjordaneEgetFylke'
+        tekst='Ønsker du å gjenreise Sogn og Fjordane som eget fylke?'
+        alternativer={['Ja', 'Nei', 'Vet ikke']}
+        fylke={fylke}
+        visForFylker={[14]}
+      />
+      <Minipoll
+        tema='neiTilVindkraft'
+        tekst='Er du enig med Rødt når vi sier nei til utbygging av mer vindkraft?'
+        alternativer={['Svært enig', 'Enig', 'Verken eller', 'Uenig', 'Svært uenig']}
+        fylke={fylke}
+        visForFylker={[14]}
+      />
+      <Minipoll
         tema='oktForskjellPandemi'
         tekst='Opplever du at forskjellene har økt som følge av korona-pandemien?'
         alternativer={['Ja', 'Nei', 'Vet ikke']}
