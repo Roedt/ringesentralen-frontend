@@ -2,11 +2,18 @@ import { useState } from 'react'
 
 import { useAmplitude } from '../contexts/amplitude-context'
 
-function Minipoll ({ tekst, tema, alternativer }) {
+function Minipoll ({ tekst, tema, alternativer, fylke, visForFylker }) {
   const { logAmplitudeEvent } = useAmplitude()
   const [valgt, setValgt] = useState()
 
   if (!tema && !tekst) return null
+
+  // Dersom det sendes med array av fylker, sjekk om spm skal vises for de
+  if (visForFylker && Array.isArray(visForFylker)) {
+    if (!visForFylker.includes(fylke)) {
+      return null
+    }
+  }
 
   function registrerSvar (svar) {
     setValgt(svar)
