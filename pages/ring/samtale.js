@@ -45,7 +45,7 @@ function Samtale ({ accepted, data, user, setPerson }) {
           navn={`${user?.navn}`}
           navnTilDenSomringes={navnTilDenSomringes}
         />
-        <PollboardVelgere />
+        <PollboardVelgere fylke={fylke} />
         <Ringemanus
           manus='avslutning'
           modus={modus}
