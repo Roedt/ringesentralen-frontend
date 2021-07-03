@@ -18,7 +18,8 @@ function MinipollCheckbox ({ tekst, tema, alternativer, fylke, visForFylker }) {
       const svar = event.target.value
       logAmplitudeEvent('poll', {
         tema,
-        svar
+        svar,
+        fylke
       })
     }
   }

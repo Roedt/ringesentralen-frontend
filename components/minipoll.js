@@ -19,7 +19,8 @@ function Minipoll ({ tekst, tema, alternativer, fylke, visForFylker }) {
     setValgt(svar)
     logAmplitudeEvent('poll', {
       tema,
-      svar
+      svar,
+      fylke
     })
   }
 
