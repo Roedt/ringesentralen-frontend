@@ -1,10 +1,17 @@
 import { useAmplitude } from '../contexts/amplitude-context'
 import lageEnumvennligStreng from '../lib/lag-enumvennlig-streng'
 
-function MinipollCheckbox ({ tekst, tema, alternativer }) {
+function MinipollCheckbox ({ tekst, tema, alternativer, fylke, visForFylker }) {
   const { logAmplitudeEvent } = useAmplitude()
 
   if (!tema && !tekst) return null
+
+  // Dersom det sendes med array av fylker, sjekk om spm skal vises for de
+  if (visForFylker && Array.isArray(visForFylker)) {
+    if (!visForFylker.includes(fylke)) {
+      return null
+    }
+  }
 
   function registrerSvar (event) {
     if (event.target.checked) {
