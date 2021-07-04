@@ -55,35 +55,35 @@ function Deltagere ({ deltagere, lagLodd }) {
 
 function Hatt ({ loddPerson, loddLokallag, trekkVinner, vinnerPerson, vinnerLokallag }) {
   if (!loddPerson && !loddLokallag) return null
-  if (vinnerPerson && vinnerLokallag) return null
+  if (vinnerPerson.length !== 0 && vinnerLokallag.length !== 0) return null
 
   return (
     <div>
-      <div className='text-center text-2xl mb-4'>{loddPerson.length} lodd i hver hatt</div>
+      <div className='text-center text-2xl mb-4'>{loddPerson.length} lodd i hatten</div>
       <div>
-        {!vinnerPerson && <button onClick={() => trekkVinner('person')} className='w-full mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av frivillige</button>}
-        {!vinnerLokallag && <button onClick={() => trekkVinner('lokallag')} className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av lokallag</button>}
+        <button onClick={() => trekkVinner('person')} className='w-full mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av frivillige</button>
+        <button onClick={() => trekkVinner('lokallag')} className='w-full mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Trekk vinner av lokallag</button>
       </div>
     </div>
   )
 }
 
 function VinnerPerson ({ vinnerPerson }) {
-  if (!vinnerPerson) return null
+  if (vinnerPerson.length === 0) return null
   return (
     <div className='text-center text-xl'>
-      <div>Vinneren av de frivillige</div>
-      <div className='text-2xl'>{vinnerPerson}</div>
+      <div>Vinnere av de frivillige</div>
+      {vinnerPerson.map((person, index) => <div className='text-2xl' key={`personvinner-${index}`}>{person}</div>)}
     </div>
   )
 }
 
 function VinnerLokallag ({ vinnerLokallag }) {
-  if (!vinnerLokallag) return null
+  if (vinnerLokallag.length === 0) return null
   return (
     <div className='text-center text-xl'>
       <div className='mt-4'>Vinneren av lokallagene</div>
-      <div className='text-2xl'>{vinnerLokallag}</div>
+      {vinnerLokallag.map((lag, index) => <div className='text-2xl' key={`lokallagvinner-${index}`}>{lag}</div>)}
     </div>
   )
 }
@@ -92,8 +92,8 @@ function Lodd () {
   const [deltagere, setDeltagere] = useState(false)
   const [loddPerson, setLoddPerson] = useState(false)
   const [loddLokallag, setLoddLokallag] = useState(false)
-  const [vinnerPerson, setVinnerPerson] = useState(false)
-  const [vinnerLokallag, setVinnerLokallag] = useState(false)
+  const [vinnerPerson, setVinnerPerson] = useState([])
+  const [vinnerLokallag, setVinnerLokallag] = useState([])
   const [visConfetti, setVisConfetti] = useState()
 
   function lagLodd () {
@@ -112,16 +112,21 @@ function Lodd () {
   function trekkVinner (kategori) {
     const loddCopyPerson = [...loddPerson]
     const loddCopyLokallag = [...loddLokallag]
+    setVisConfetti(false)
     if (kategori === 'person') {
-      setVinnerPerson(shuffle(loddCopyPerson)[0])
+      const copyVinnerPerson = vinnerPerson
+      copyVinnerPerson.unshift(shuffle(loddCopyPerson)[0])
+      setVinnerPerson(copyVinnerPerson)
     }
     if (kategori === 'lokallag') {
-      setVinnerLokallag(shuffle(loddCopyLokallag)[0])
+      const copyVinnerLokallag = vinnerLokallag
+      copyVinnerLokallag.unshift(shuffle(loddCopyLokallag)[0])
+      setVinnerLokallag(copyVinnerLokallag)
     }
     setVisConfetti(true)
     setTimeout(() => {
       setVisConfetti(false)
-    }, 10000)
+    }, 5000)
   }
 
   async function handleSubmit (event) {
@@ -138,12 +143,12 @@ function Lodd () {
         <title>Loddtrekning</title>
       </Head>
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-        {visConfetti && <Confetti />}
         <HentDeltagere deltagere={deltagere} handleSubmit={handleSubmit} />
         {!loddPerson && <Deltagere deltagere={deltagere} lagLodd={lagLodd} />}
         <Hatt loddPerson={loddPerson} loddLokallag={loddLokallag} trekkVinner={trekkVinner} vinnerPerson={vinnerPerson} vinnerLokallag={vinnerLokallag} />
         <VinnerPerson vinnerPerson={vinnerPerson} />
         <VinnerLokallag vinnerLokallag={vinnerLokallag} />
+        {visConfetti && <Confetti />}
       </div>
     </Layout>
   )
