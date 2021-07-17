@@ -1,6 +1,6 @@
 {
   "name": "ringesentralen-frontend",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "description": "Frontend for ringesentralen",
   "main": "index.js",
   "scripts": {
