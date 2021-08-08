@@ -14,6 +14,7 @@ import { skrivUtBidrag } from './aktiviteter'
 import Frivillig, { genererTagLine } from './frivillig'
 import filtrerFrivillig from '../../lib/filtrerFrivillig'
 import AktiviteterFilter from './aktiviteterFilter'
+import Sms from './sms'
 
 import Layout from '../../components/layout'
 
@@ -146,6 +147,7 @@ function Frivilligbasen () {
           </span>
         </button>
       </div>
+      <Sms filterKriterier={filterKriterier} frivillige={frivillige} />
       <div>
         {frivillige.map(frivillig => <Frivillig data={frivillig} key={`frivillig-${frivillig.frivillig.id}`} />)}
       </div>
