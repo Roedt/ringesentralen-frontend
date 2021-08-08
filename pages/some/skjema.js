@@ -46,7 +46,7 @@ function Skjema ({ setSuccess }) {
           type='submit'
           loading={loading}
         >
-          Meld meg til kamp
+          Jeg vil bli aktivist
         </Button>
       </div>
     </form>
