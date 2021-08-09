@@ -97,7 +97,7 @@ function MeldingsSkjema ({ showForm, frivillige, setShowForm }) {
 function SMS ({ frivillige, filterKriterier, user }) {
   const [showForm, setShowForm] = useState()
 
-  if ((filterKriterier && filterKriterier.length === 0) || (frivillige && frivillige.length === 0) || !erAdmin(user.rolle)) return null
+  if ((filterKriterier && filterKriterier.length === 0) || (frivillige && frivillige.length === 0) || (user && !erAdmin(user.rolle))) return null
 
   return (
     <div className='mt-4'>
