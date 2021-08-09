@@ -42,7 +42,7 @@ function Skjema ({ setSuccess }) {
           type='submit'
           loading={loading}
         >
-          Jeg vil bli aktivist
+          Jeg vil bli nettaktivist
         </Button>
       </div>
     </form>
