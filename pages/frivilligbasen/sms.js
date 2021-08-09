@@ -14,7 +14,7 @@ function MeldingsSkjema ({ showForm, frivillige, setShowForm }) {
 
   async function sendMelding () {
     setErrors(false)
-    const mottakere = frivillige.map(({ person }) => person.telefonnummer)
+    const mottakere = frivillige.map(({ person, frivillig }) => Object.assign({}, { telefonnummer: person.telefonnummer, frivilligId: frivillig.frivillig.id }))
     const payload = {
       mottakere,
       melding

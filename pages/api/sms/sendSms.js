@@ -2,13 +2,13 @@ import fixTelefonNummer from '../../../lib/fix-telefonnummer'
 import handleSMS from '../../../lib/sendSMS'
 import oppdaterSms from './oppdaterSms'
 
-async function sendSms ({ smsId, telefonnummer, melding, token }) {
+async function sendSms ({ smsId, telefonnummer, frivilligId, melding, token }) {
   try {
     const result = await handleSMS(fixTelefonNummer(telefonnummer), melding)
     await oppdaterSms({
       token,
       smsId,
-      telefonnummer,
+      frivilligId,
       status: 'Sendt'
     })
     return result
@@ -17,7 +17,7 @@ async function sendSms ({ smsId, telefonnummer, melding, token }) {
     await oppdaterSms({
       token,
       smsId,
-      telefonnummer,
+      frivilligId,
       status: 'Feilet'
     })
     return ({ success: false })

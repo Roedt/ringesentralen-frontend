@@ -11,7 +11,8 @@ async function sms (request, response) {
     const payload = await request.body
     const { token } = user
     const { mottakere, melding } = payload
-    const { smsId } = await registrerSms(token, mottakere, melding)
+    const frivillige = mottakere.map(mottaker => mottaker.frivilligId)
+    const { smsId } = await registrerSms(token, frivillige, melding)
     const result = await sendSmser({
       smsId,
       melding,

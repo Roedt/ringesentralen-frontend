@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import pkg from '../../../package.json'
 
-async function oppdaterSms ({ token, smsId, telefonnummer, status }) {
+async function oppdaterSms ({ token, smsId, frivilligId, status }) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
   const url = `${process.env.API_URL}/sms/oppdater`
   const config = {
@@ -11,7 +11,7 @@ async function oppdaterSms ({ token, smsId, telefonnummer, status }) {
     }
   }
   const payload = {
-    mottakere: [telefonnummer],
+    mottakere: [frivilligId],
     smsId,
     status
   }
