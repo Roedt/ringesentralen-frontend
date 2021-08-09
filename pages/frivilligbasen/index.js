@@ -147,7 +147,7 @@ function Frivilligbasen () {
           </span>
         </button>
       </div>
-      <Sms filterKriterier={filterKriterier} frivillige={frivillige} />
+      <Sms filterKriterier={filterKriterier} frivillige={frivillige} user={user} />
       <div>
         {frivillige.map(frivillig => <Frivillig data={frivillig} key={`frivillig-${frivillig.frivillig.id}`} />)}
       </div>

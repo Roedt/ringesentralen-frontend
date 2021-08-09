@@ -5,6 +5,9 @@ import { useRouter } from 'next/router'
 import { is401, is403 } from '../../lib/utils'
 import { Warning } from '../../components/ui/alerts'
 
+const isArray = data => Array.isArray(data)
+const erAdmin = roller => isArray(roller) && roller.includes('admin')
+
 function MeldingsSkjema ({ showForm, frivillige, setShowForm }) {
   const router = useRouter()
   const [melding, setMelding] = useState('')
@@ -74,10 +77,11 @@ function MeldingsSkjema ({ showForm, frivillige, setShowForm }) {
   )
 }
 
-function SMS ({ frivillige, filterKriterier }) {
+function SMS ({ frivillige, filterKriterier, user }) {
   const [showForm, setShowForm] = useState()
+  console.log(user)
 
-  if ((filterKriterier && filterKriterier.length === 0) || (frivillige && frivillige.length === 0)) return null
+  if ((filterKriterier && filterKriterier.length === 0) || (frivillige && frivillige.length === 0) || !erAdmin(user.rolle)) return null
 
   return (
     <div className='mt-4'>
