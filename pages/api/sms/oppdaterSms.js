@@ -16,7 +16,7 @@ async function oppdaterSms ({ token, smsId, frivilligId, status }) {
     status
   }
   try {
-    await axios.post(url, payload, config)
+    await axios.put(url, payload, config)
     console.log(`sms oppdatert - ${smsId} - ${status}`)
     return { success: true }
   } catch (error) {
