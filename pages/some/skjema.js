@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import generatePayload from '../../lib/generate-payload'
+import { useAmplitude } from '../../contexts/amplitude-context'
 
 import Button from '../../components/ui/button'
 
 function Skjema ({ setSuccess }) {
   const [loading, setLoading] = useState()
+  const { logAmplitudeEvent } = useAmplitude()
 
   async function handleSubmit (event) {
     event.preventDefault()
@@ -14,10 +16,19 @@ function Skjema ({ setSuccess }) {
     const form = document.getElementById('some-skjema')
     const payload = generatePayload(form)
     await axios.post('/api/some', payload)
+    logAmplitudeEvent('some', {
+      handling: 'Ny SoMeAktivist registrert'
+    })
     setLoading(false)
     form.reset()
     setSuccess(true)
   }
+
+  useEffect(() => {
+    logAmplitudeEvent('some', {
+      handling: 'Viser skjema for SoMeAktivist'
+    })
+  }, [])
 
   return (
     <form id='some-skjema' onSubmit={handleSubmit} className='grid grid-cols-1 gap-y-6'>
