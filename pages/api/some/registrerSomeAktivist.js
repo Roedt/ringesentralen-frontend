@@ -24,6 +24,8 @@ async function registrerAktivist (payload) {
       postnummer: payload.postnummer,
       telefonnummer: payload.telefonnummer
     }
+    console.log('klar til å registrere SoMeAktivist')
+    console.log(JSON.stringify(aktivistData, null, 2))
     const registrertSvar = await postAktivistPaamelding({ token, payload: aktivistData })
     if (registrertSvar) {
       const { success } = registrertSvar
