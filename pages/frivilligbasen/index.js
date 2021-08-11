@@ -116,8 +116,6 @@ function Frivilligbasen () {
   useEffect(() => {
     let filtrert = ufiltrertListe.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
     if (lokallagId) {
-      console.log(JSON.stringify(filtrert, null, 2))
-      console.log(lokallagId)
       filtrert = filtrert.filter(frivillig => frivillig.lokallag.id === parseInt(lokallagId, 10))
     }
     setFrivillige(filtrert)
