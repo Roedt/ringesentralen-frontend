@@ -50,6 +50,15 @@ function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
   return tilbakemelding.join('\n')
 }
 
+function FrivilligTeller ({ frivillige, ufiltrertListe }) {
+  if ((frivillige && frivillige.length === 0) || (ufiltrertListe && ufiltrertListe.lenght === 0)) return null
+  return (
+    <div className='p-4 mt-2 text-xl'>
+      Viser {frivillige.length} av {ufiltrertListe.length} frivillige
+    </div>
+  )
+}
+
 function Frivilligbasen () {
   const router = useRouter()
   const { user } = useUser()
@@ -146,6 +155,7 @@ function Frivilligbasen () {
         </button>
       </div>
       <Sms filterKriterier={filterKriterier} frivillige={frivillige} user={user} />
+      <FrivilligTeller frivillige={frivillige} ufiltrertListe={ufiltrertListe} />
       <div>
         {frivillige.map(frivillig => <Frivillig data={frivillig} key={`frivillig-${frivillig.frivillig.id}`} />)}
       </div>
