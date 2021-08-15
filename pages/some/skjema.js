@@ -49,6 +49,10 @@ function Skjema ({ setSuccess }) {
         <input type='text' name='telefonnummer' id='telefonnummer' autoComplete='tel' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='Telefonnummer' />
       </div>
       <div>
+        <label htmlFor='email' className='sr-only'>E-post</label>
+        <input type='email' name='email' id='email' autoComplete='email' required className='block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md' placeholder='E-post' />
+      </div>
+      <div>
         <Button
           type='submit'
           loading={loading}
