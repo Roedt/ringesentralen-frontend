@@ -22,7 +22,8 @@ async function registrerAktivist (payload) {
       fornavn: payload.fornavn,
       etternavn: payload.etternavn,
       postnummer: payload.postnummer,
-      telefonnummer: payload.telefonnummer
+      telefonnummer: payload.telefonnummer,
+      email: payload.email
     }
     console.log('klar til å registrere SoMeAktivist')
     console.log(JSON.stringify(aktivistData, null, 2))
