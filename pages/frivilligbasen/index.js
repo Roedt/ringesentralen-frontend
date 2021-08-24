@@ -22,6 +22,18 @@ function fylkesnavnSortering (a, b) {
   return a.fylke.navn.localeCompare(b.fylke.navn)
 }
 
+function etternavnSortering (a, b) {
+  return a.person.etternavn.localeCompare(b.person.etternavn)
+}
+
+function lokallagsnavnSortering (a, b) {
+  return a.lokallag.navn.localeCompare(b.lokallag.navn)
+}
+
+function datoSortering (a, b) {
+  return b.frivillig.registrertTidspunkt.localeCompare(a.frivillig.registrertTidspunkt)
+}
+
 function skrivUtKontaktLogg (kontakter) {
   const logg = kontakter.reduce((liste, kontakt) => {
     liste.push(`${skrivUtPenDato(kontakt.datetime)} - ${kontakt.registrert_av.fornavn} ${kontakt.registrert_av.etternavn}: ${kontakt.tilbakemelding}`)
@@ -50,13 +62,20 @@ function skrivUtKoronaTilbakemeldinger (tilbakemeldinger = {}) {
   return tilbakemelding.join('\n')
 }
 
-function FrivilligTeller ({ frivillige, ufiltrertListe }) {
+function FrivilligTeller ({ frivillige, ufiltrertListe, sortering }) {
   if ((frivillige && frivillige.length === 0) || (ufiltrertListe && ufiltrertListe.lenght === 0)) return null
   return (
     <div className='p-4 mt-2 text-xl'>
-      Viser {frivillige.length} av {ufiltrertListe.length} frivillige
+      Viser {frivillige.length} av {ufiltrertListe.length} frivillige, sortert etter {sortering}
     </div>
   )
+}
+
+const sorteringsAlternativer = {
+  fylke: fylkesnavnSortering,
+  etternavn: etternavnSortering,
+  lokallag: lokallagsnavnSortering,
+  registreringsdato: datoSortering
 }
 
 function Frivilligbasen () {
@@ -66,6 +85,7 @@ function Frivilligbasen () {
   const [frivillige, setFrivillige] = useState([])
   const [filterKriterier, setFilterKriterier] = useState([])
   const [ufiltrertListe, setUfiltrertListe] = useState([])
+  const [sortering, setSortering] = useState('fylke')
 
   function lastNedCSV () {
     const json2csvParser = new Parser({
@@ -98,7 +118,7 @@ function Frivilligbasen () {
     try {
       const { data } = await axios.get('/api/backend/frivillig/alle', { withCredentials: true })
       if (data) {
-        data.sort(fylkesnavnSortering)
+        data.sort(sorteringsAlternativer[sortering])
         setUfiltrertListe(data)
         const filtrert = data.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
         setFrivillige(filtrert)
@@ -127,8 +147,9 @@ function Frivilligbasen () {
     if (lokallagId) {
       filtrert = filtrert.filter(frivillig => frivillig.lokallag.id === parseInt(lokallagId, 10))
     }
+    filtrert.sort(sorteringsAlternativer[sortering])
     setFrivillige(filtrert)
-  }, [filterKriterier, lokallagId])
+  }, [filterKriterier, lokallagId, sortering])
 
   return (
     <Layout pageTitle='Frivilligbasen'>
@@ -155,7 +176,13 @@ function Frivilligbasen () {
         </button>
       </div>
       <Sms filterKriterier={filterKriterier} frivillige={frivillige} user={user} />
-      <FrivilligTeller frivillige={frivillige} ufiltrertListe={ufiltrertListe} />
+      <FrivilligTeller frivillige={frivillige} ufiltrertListe={ufiltrertListe} sortering={sortering} />
+      <div>
+        <button onClick={() => setSortering('fylke')} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Fylke</button>
+        <button onClick={() => setSortering('etternavn')} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Etternavn</button>
+        <button onClick={() => setSortering('lokallag')} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Lokallag</button>
+        <button onClick={() => setSortering('registreringsdato')} className='w-56 ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-xl font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Registreringsdato</button>
+      </div>
       <div>
         {frivillige.map(frivillig => <Frivillig data={frivillig} key={`frivillig-${frivillig.frivillig.id}`} />)}
       </div>
