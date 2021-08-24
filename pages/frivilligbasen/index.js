@@ -18,7 +18,7 @@ import Sms from './sms'
 
 import Layout from '../../components/layout'
 
-function navneSortering (a, b) {
+function fylkesnavnSortering (a, b) {
   return a.fylke.navn.localeCompare(b.fylke.navn)
 }
 
@@ -98,7 +98,7 @@ function Frivilligbasen () {
     try {
       const { data } = await axios.get('/api/backend/frivillig/alle', { withCredentials: true })
       if (data) {
-        data.sort(navneSortering)
+        data.sort(fylkesnavnSortering)
         setUfiltrertListe(data)
         const filtrert = data.filter(linje => filtrerFrivillig(linje.aktiviteter, linje.frivillig.spraak, filterKriterier))
         setFrivillige(filtrert)
