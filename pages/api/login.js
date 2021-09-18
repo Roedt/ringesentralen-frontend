@@ -29,7 +29,7 @@ async function login (request, response) {
       lokallag,
       token,
       expires: new Date().getTime() + 36000000,
-      aktivtModus: 'velgere',
+      aktivtModus: 'medlemmer',
       aktivtLokallag: lokallag,
       isAuthenticated: true
     }
