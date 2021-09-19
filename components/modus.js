@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { is401 } from '../lib/utils'
+import settings from '../settings'
 
 const isFunction = func => typeof func === 'function'
 
@@ -39,7 +40,7 @@ function Modus ({ user, action, callOnChange }) {
     }
   }, [user])
 
-  if (!kanRingeMedlemmer) return null
+  if (!kanRingeMedlemmer || !settings.tillatSkifteModus) return null
 
   return (
     <div className='flex justify-start mb-8'>
