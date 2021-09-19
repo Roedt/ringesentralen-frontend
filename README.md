@@ -73,6 +73,11 @@ TWILIO_API_SECRET=api secret hos twilio
 
 Det er satt opp automatikk så alle push til `main` starter bygg og deploy til test og produksjonsmiljø
 
+## Konfigurasjon
+
+I filen [settings.js](settings.js) kan du slå av og på ulik funksjonalitet.
+- `tillatSkifteModus` er denne `true` kan brukerne veksle melllom å ringe medlemmer eller velgere
+
 ## Lisens
 
 [MIT](LICENSE)
