@@ -49,7 +49,7 @@
     "react-dom": "17.0.2",
     "react-script-hook": "1.5.0",
     "swr": "0.5.7",
-    "twilio": "3.67.2",
+    "twilio": "3.68.0",
     "twilio-client": "1.14.0"
   },
   "devDependencies": {
