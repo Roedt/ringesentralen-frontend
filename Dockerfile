@@ -1,4 +1,4 @@
-FROM node:14-alpine AS base
+FROM node:17-alpine AS base
 ARG AMPLITUDE_API_KEY
 ARG HYPERSYSURL
 ARG SENTRYURL
@@ -53,7 +53,7 @@ WORKDIR /build
 COPY --from=base /base ./
 RUN npm run build
 
-FROM node:14-alpine AS production
+FROM node:17-alpine AS production
 ENV NODE_ENV=production
 ARG SYSTEMBRUKER
 ARG SYSTEMBRUKERPASSORD
