@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "0.3.4",
-    "@testing-library/dom": "8.7.1",
+    "@testing-library/dom": "8.11.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.1.1",
     "autoprefixer": "10.3.6",
