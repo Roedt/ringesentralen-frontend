@@ -35,7 +35,7 @@
     "@tailwindcss/typography": "0.4.1",
     "amplitude-js": "8.9.1",
     "axios": "0.22.0",
-    "blob-polyfill": "5.0.20210201",
+    "blob-polyfill": "6.0.20211015",
     "crypto-shuffle": "1.0.1",
     "file-saver": "2.0.5",
     "handlebars": "4.7.7",
