@@ -48,7 +48,7 @@
     "react-confetti": "6.0.1",
     "react-dom": "17.0.2",
     "react-script-hook": "1.5.0",
-    "swr": "1.1.0",
+    "swr": "1.1.1",
     "twilio": "3.71.3",
     "twilio-client": "1.14.0"
   },
