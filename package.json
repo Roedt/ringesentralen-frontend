@@ -61,7 +61,7 @@
     "babel-jest": "27.4.4",
     "jest": "27.4.4",
     "msw": "0.36.3",
-    "postcss": "8.4.4",
+    "postcss": "8.4.6",
     "standard": "16.0.4",
     "tailwindcss": "2.2.19"
   },
