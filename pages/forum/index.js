@@ -1,11 +1,18 @@
+import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../../components/layout'
+import { is401, is403 } from '../../lib/utils'
+import { useEffect, useState } from 'react'
+import Underforumlenke from './underforumlenke'
 
+const Forum = () => {
+  const router = useRouter()
+  const [underforum, setUnderforum] = useState()
 
-async function hentUnderforum () {
+  async function hentUnderforum () {
     try {
-      const { data } = await axios.get('/api/backend/forum/underforum', { withCredentials: true })
+      const { data } = await axios.get('/api/backend/forum', { withCredentials: true })
       setUnderforum(data)
     } catch (error) {
       if (is401(error)) {
@@ -16,15 +23,20 @@ async function hentUnderforum () {
         console.error(error)
       }
     }
+  }
 
-const Forum = () => {
-  const router = useRouter()
-  
+  useEffect(() => {
+    hentUnderforum()
+  }, [])
+
   return (
     <Layout pageTitle='Forum'>
       <Head>
         <title>Forum</title>
       </Head>
+      <div className='forum'>
+        {underforum && underforum.map((text) => <Underforumlenke key={text.id} underforum={text} />)}
+      </div>
     </Layout>
   )
 }
