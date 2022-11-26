@@ -16,23 +16,23 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 
 const editorConfig = (innhold) => {
   return {
-  theme: ExampleTheme,
-  onError (error) {
-    throw error
-  },
-  editorState: innhold ? JSON.stringify(innhold) : undefined,
-  nodes: [
-    HeadingNode,
-    ListNode,
-    ListItemNode,
-    QuoteNode,
-    TableNode,
-    TableCellNode,
-    TableRowNode,
-    AutoLinkNode,
-    LinkNode
-  ]
-}
+    theme: ExampleTheme,
+    onError (error) {
+      throw error
+    },
+    editorState: innhold ? JSON.stringify(innhold) : undefined,
+    nodes: [
+      HeadingNode,
+      ListNode,
+      ListItemNode,
+      QuoteNode,
+      TableNode,
+      TableCellNode,
+      TableRowNode,
+      AutoLinkNode,
+      LinkNode
+    ]
+  }
 }
 
 const Editor = ({ listener, readOnly, eksisterendeInnhold }) => {
