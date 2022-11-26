@@ -4,7 +4,6 @@ import { router } from 'next/router'
 import { is401 } from '../../lib/utils'
 import Traad from './traad'
 import SkrivInnlegg from './skrivInnlegg'
-import Button from '../../components/ui/button'
 import Ekspanderbar from '../../components/ui/ekspanderbar'
 
 const Underforum = ({ underforum, visRad }) => {
