@@ -14,14 +14,13 @@ import AutoLinkPlugin from './plugins/AutoLinkPlugin'
 import Tekstboksen from './tekstboksen'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 
-const editorConfig = {
-  // The editor theme
+const editorConfig = (innhold) => {
+  return {
   theme: ExampleTheme,
-  // Handling of errors during update
   onError (error) {
     throw error
   },
-  // Any custom nodes go here
+  editorState: innhold ? JSON.stringify(innhold) : undefined,
   nodes: [
     HeadingNode,
     ListNode,
@@ -34,20 +33,18 @@ const editorConfig = {
     LinkNode
   ]
 }
+}
 
-// When the editor changes, you can get notified via the
-// LexicalOnChangePlugin!
-
-const Editor = ({ listener }) => {
+const Editor = ({ listener, readOnly, eksisterendeInnhold }) => {
   return (
-    <LexicalComposer initialConfig={editorConfig}>
+    <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
       <div className='editor-container'>
-        <ToolbarPlugin />
+        {!readOnly && <ToolbarPlugin />}
         <div className='editor-inner'>
-          <Tekstboksen readOnly={false} />
-          <HistoryPlugin />
+          <Tekstboksen readOnly={readOnly} />
+          {!readOnly && <HistoryPlugin />}
           <AutoFocusPlugin />
-          <OnChangePlugin onChange={listener} />
+          {!readOnly && <OnChangePlugin onChange={listener} />}
           <ListPlugin />
           <LinkPlugin />
           <AutoLinkPlugin />

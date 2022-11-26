@@ -33,10 +33,10 @@ const SkrivInnlegg = ({ underforum }) => {
     <div>
       <hr />
       <br />
-      <Ekspanderbar onClick={() => setVisStartNyTraad(!visStartNyTraad)} erEkspandert={visStartNyTraad} tittel={'Start en ny tråd'} />
+      <Ekspanderbar onClick={() => setVisStartNyTraad(!visStartNyTraad)} erEkspandert={visStartNyTraad} tittel='Start en ny tråd' />
       <dd className={`mt-2 pr-12 ${visStartNyTraad ? 'visible' : 'hidden'}`}>
         <input id='innlegg-tittel' type='text' className='block w-full' placeholder='Tittel' value={tittel} onChange={event => setTittel(event.target.value)} />
-        <Editor listener={onChange} />
+        <Editor listener={onChange} readOnly={false} eksisterendeInnhold={undefined} />
         <Button type='button' onClick={publiser}>Publiser</Button>
       </dd>
     </div>
