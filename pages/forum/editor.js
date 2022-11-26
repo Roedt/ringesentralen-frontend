@@ -1,18 +1,18 @@
-import ExampleTheme from './themes/ExampleTheme';
-import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import ToolbarPlugin from './plugins/ToolbarPlugin';
-import { HeadingNode, QuoteNode } from '@lexical/rich-text';
-import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
-import { ListItemNode, ListNode } from '@lexical/list';
-import { AutoLinkNode, LinkNode } from '@lexical/link';
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
-import { ListPlugin } from '@lexical/react/LexicalListPlugin';
-import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
-import AutoLinkPlugin from './plugins/AutoLinkPlugin';
-import Tekstboksen from './tekstboksen';
-import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import ExampleTheme from './themes/ExampleTheme'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
+import ToolbarPlugin from './plugins/ToolbarPlugin'
+import { HeadingNode, QuoteNode } from '@lexical/rich-text'
+import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
+import { ListItemNode, ListNode } from '@lexical/list'
+import { AutoLinkNode, LinkNode } from '@lexical/link'
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
+import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin'
+import AutoLinkPlugin from './plugins/AutoLinkPlugin'
+import Tekstboksen from './tekstboksen'
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 
 const editorConfig = {
   // The editor theme

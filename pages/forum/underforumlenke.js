@@ -1,30 +1,9 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { is401 } from '../../lib/utils';
-import { router } from 'next/router';
-import Traad from './traad';
-import SkrivInnlegg from './skrivInnlegg';
+import { useState } from 'react'
+import Underforum from './underforum'
 
 const Underforumlenke = ({ underforum }) => {
   const tittel = underforum.id
   const [visRad, setVisRad] = useState()
-  const [traader, setTraader] = useState()
-
-  useEffect(async () => {
-    if (!visRad) {
-      return
-    }
-    try {
-      const { data } = await axios.get('/api/backend/forum/traader/' + underforum.id, { withCredentials: true })
-      setTraader(data)
-    } catch (error) {
-      if (is401(error)) {
-        router.push('/login')
-      } else {
-        console.error(error)
-      }
-    }
-  }, [visRad])
 
   return (
     <dl className='mt-2 space-y-2 divide-y divide-gray-200'>
@@ -43,9 +22,8 @@ const Underforumlenke = ({ underforum }) => {
         </dt>
         <dd className={`mt-2 pr-12 ${visRad ? 'visible' : 'hidden'}`} id='faq-0'>
           <ul>
-            {traader && traader.map((traad) => <Traad key={traad.id} traadId={traad} />)}
+            {underforum && <Underforum key={underforum.id} underforum={underforum} visRad={visRad} />}
           </ul>
-          <SkrivInnlegg underforum={underforum.id} />
         </dd>
       </div>
     </dl>

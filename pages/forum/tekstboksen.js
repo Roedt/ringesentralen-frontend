@@ -1,24 +1,24 @@
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { ContentEditable } from '@lexical/react/LexicalContentEditable';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { useCallback } from 'react';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { ContentEditable } from '@lexical/react/LexicalContentEditable'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { useCallback } from 'react'
 
-function ReadOnlyContentEditable(props) {
-  const [editor] = useLexicalComposerContext();
+function ReadOnlyContentEditable (props) {
+  const [editor] = useLexicalComposerContext()
   const ref = useCallback(
-      (rootElement) => {
-          editor.setRootElement(rootElement);
-      },
-      [editor]
-  );
+    (rootElement) => {
+      editor.setRootElement(rootElement)
+    },
+    [editor]
+  )
 
   return (
-      <div
-          contentEditable={false}
-          id={props.id}
-          ref={ref}
-      />
-  );
+    <div
+      contentEditable={false}
+      id={props.id}
+      ref={ref}
+    />
+  )
 }
 
 const Tekstboksen = ({ readOnly }) => {
