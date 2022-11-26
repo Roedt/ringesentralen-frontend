@@ -36,13 +36,15 @@ const Traad = ({ traadId }) => {
     hentTraad()
   }, [traadId])
 
-  const editorConfig = {
+  const editorConfig = (innhold) => {
+    return {
     // The editor theme
     theme: ExampleTheme,
     // Handling of errors during update
     onError (error) {
       throw error
     },
+    editorState: innhold ? JSON.stringify(innhold) : undefined,
     // Any custom nodes go here
     nodes: [
       HeadingNode,
@@ -56,14 +58,15 @@ const Traad = ({ traadId }) => {
       LinkNode
     ]
   }
+}
 
   return (
     <>
       <li className='mb-1 py-1'>
         <strong>{traadId.tittel}</strong>
         <br />
-        {traad && traad.innhold.innhold}
-        <LexicalComposer initialConfig={editorConfig}>
+        {traad && traad.innhold.innhold &&
+        <LexicalComposer initialConfig={editorConfig(traad.innhold.innhold)}>
           <div className='editor-container'>
             <div className='editor-inner'>
               <Tekstboksen readOnly />
@@ -73,17 +76,7 @@ const Traad = ({ traadId }) => {
               <ListMaxIndentLevelPlugin maxDepth={7} />
             </div>
           </div>
-        </LexicalComposer>
-
-        {/*
-        <LexicalPlainTextPlugin initialEditorState={() => {
-  const paragraph = $createParagraphNode();
-  const text = $createTextNode('foo');
-  paragraph.append(text);
-  $getRoot().append(paragraph);
-  root.selectEnd();
-}} />
-        */}
+        </LexicalComposer>}
 
       </li>
       <hr />
