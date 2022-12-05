@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import useUser from '../lib/useUser';
+import useUser from '../lib/useUser'
 
-import Header from './header';
-import Nav from './nav';
-import Footer from './footer';
-import Vannmerke from './vannmerke';
-import SisteVersjon from './versjon';
-import { erAdmin } from '../lib/utils';
+import Header from './header'
+import Nav from './nav'
+import Footer from './footer'
+import Vannmerke from './vannmerke'
+import SisteVersjon from './versjon'
+import { erAdmin } from '../lib/utils'
 
 export default function Layout ({ pageTitle, children }) {
   const { user } = useUser()
