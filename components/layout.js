@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import useUser from '../lib/useUser'
+import useUser from '../lib/useUser';
 
-import Header from './header'
-import Nav from './nav'
-import Footer from './footer'
-import Vannmerke from './vannmerke'
-import SisteVersjon from './versjon'
+import Header from './header';
+import Nav from './nav';
+import Footer from './footer';
+import Vannmerke from './vannmerke';
+import SisteVersjon from './versjon';
+import { erAdmin } from '../lib/utils';
 
 export default function Layout ({ pageTitle, children }) {
   const { user } = useUser()
@@ -29,7 +30,7 @@ export default function Layout ({ pageTitle, children }) {
   return (
     <div className='flex flex-col min-h-screen'>
       <Vannmerke isDemo={!process.env.NEXT_PUBLIC_IS_PRODUCTION} />
-      <Nav />
+      <Nav erAdmin={erAdmin(user.roller)} />
       <SisteVersjon />
       <Header pageTitle={pageTitle} />
       <main className='flex-grow'>
