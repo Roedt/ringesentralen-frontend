@@ -37,7 +37,7 @@ const editorConfig = (innhold) => {
 
 const Editor = ({ listener, readOnly, eksisterendeInnhold }) => {
   return (
-    <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
+    typeof window !== 'undefined' && <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
       <div className='editor-container'>
         {!readOnly && <ToolbarPlugin />}
         <div className='editor-inner'>

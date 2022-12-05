@@ -25,7 +25,7 @@ const Tekstboksen = ({ readOnly }) => {
   const classname = readOnly ? 'editor-input' : 'editor-input editor-input-writable'
   const contentEditable = readOnly ? <ReadOnlyContentEditable /> : <ContentEditable className={classname} readOnly={readOnly} />
   return (
-    <RichTextPlugin
+    typeof window !== 'undefined' && <RichTextPlugin
       contentEditable={contentEditable}
       placeholder={<div />}
     />

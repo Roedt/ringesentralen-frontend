@@ -11,7 +11,7 @@ const Underforum = ({ underforum, visRad }) => {
   const [visTraad, setVisTraad] = useState()
 
   useEffect(async () => {
-    if (!visRad) {
+    if (!visRad || !underforum) {
       return
     }
     try {
@@ -35,6 +35,7 @@ const Underforum = ({ underforum, visRad }) => {
     )
   }
   return (
+    !underforum ? <></> :
     <div className='pt-6'>
       <ul>
         {traader && traader.map(traadTittel)}

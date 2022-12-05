@@ -23,10 +23,13 @@ const Traad = ({ traadId }) => {
   }
 
   useEffect(() => {
+    if (traadId) {
     hentTraad()
+    }
   }, [traadId])
 
   return (
+    !traadId ? <></> :
     <>
       <li className='mb-1 py-1' key={traadId.tittel}>
         {traad && traad.innhold.innhold && <Editor readOnly listener={undefined} eksisterendeInnhold={traad.innhold.innhold} />}
