@@ -29,8 +29,6 @@ const Traad = ({ traadId }) => {
   return (
     <>
       <li className='mb-1 py-1' key={traadId.tittel}>
-        <strong>{traadId.tittel}</strong>
-        <br />
         {traad && traad.innhold.innhold && <Editor readOnly listener={undefined} eksisterendeInnhold={traad.innhold.innhold} />}
       </li>
       <hr />
