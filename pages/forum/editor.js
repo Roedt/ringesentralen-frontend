@@ -1,53 +1,50 @@
-import ExampleTheme from '../../components/forum/themes/ExampleTheme';
-import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import ToolbarPlugin from '../../components/forum/plugins/ToolbarPlugin';
-import { HeadingNode, QuoteNode } from '@lexical/rich-text';
-import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
-import { ListItemNode, ListNode } from '@lexical/list';
-import { AutoLinkNode, LinkNode } from '@lexical/link';
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
-import { ListPlugin } from '@lexical/react/LexicalListPlugin';
-import ListMaxIndentLevelPlugin from '../../components/forum/plugins/ListMaxIndentLevelPlugin';
-import AutoLinkPlugin from '../../components/forum/plugins/AutoLinkPlugin';
-import Tekstboksen from './tekstboksen';
-import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import ExampleTheme from './themes/ExampleTheme'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
+import ToolbarPlugin from './plugins/ToolbarPlugin'
+import { HeadingNode, QuoteNode } from '@lexical/rich-text'
+import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
+import { ListItemNode, ListNode } from '@lexical/list'
+import { AutoLinkNode, LinkNode } from '@lexical/link'
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
+import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin'
+import AutoLinkPlugin from './plugins/AutoLinkPlugin'
+import Tekstboksen from './tekstboksen'
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 
-const editorConfig = {
-  // The editor theme
-  theme: ExampleTheme,
-  // Handling of errors during update
-  onError (error) {
-    throw error
-  },
-  // Any custom nodes go here
-  nodes: [
-    HeadingNode,
-    ListNode,
-    ListItemNode,
-    QuoteNode,
-    TableNode,
-    TableCellNode,
-    TableRowNode,
-    AutoLinkNode,
-    LinkNode
-  ]
+const editorConfig = (innhold) => {
+  return {
+    theme: ExampleTheme,
+    onError (error) {
+      throw error
+    },
+    editorState: innhold ? JSON.stringify(innhold) : undefined,
+    nodes: [
+      HeadingNode,
+      ListNode,
+      ListItemNode,
+      QuoteNode,
+      TableNode,
+      TableCellNode,
+      TableRowNode,
+      AutoLinkNode,
+      LinkNode
+    ]
+  }
 }
 
-// When the editor changes, you can get notified via the
-// LexicalOnChangePlugin!
-
-const Editor = ({ listener }) => {
+const Editor = ({ listener, readOnly, eksisterendeInnhold }) => {
   return (
-    <LexicalComposer initialConfig={editorConfig}>
+    <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
       <div className='editor-container'>
-        <ToolbarPlugin />
+        {!readOnly && <ToolbarPlugin />}
         <div className='editor-inner'>
-          <Tekstboksen readOnly={false} />
-          <HistoryPlugin />
+          <Tekstboksen readOnly={readOnly} />
+          {!readOnly && <HistoryPlugin />}
           <AutoFocusPlugin />
-          <OnChangePlugin onChange={listener} />
+          {!readOnly && <OnChangePlugin onChange={listener} />}
           <ListPlugin />
           <LinkPlugin />
           <AutoLinkPlugin />

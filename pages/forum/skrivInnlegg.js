@@ -1,9 +1,10 @@
-import Editor from './editor';
-import Button from '../../components/ui/button';
-import { useState } from 'react';
-import axios from 'axios';
-import { is401, is403 } from '../../lib/utils';
-import { router } from 'next/router';
+import Editor from './editor'
+import Button from '../../components/ui/button'
+import { useState } from 'react'
+import axios from 'axios'
+import { is401, is403 } from '../../lib/utils'
+import { router } from 'next/router'
+import Ekspanderbar from '../../components/ui/ekspanderbar'
 
 const SkrivInnlegg = ({ underforum }) => {
   const [node, setNode] = useState()
@@ -28,29 +29,14 @@ const SkrivInnlegg = ({ underforum }) => {
     }
   }
 
-  const startNyTraadTittel = () => {
-     return (
-          <button type='button' onClick={() => setVisStartNyTraad(!visStartNyTraad)} className='text-left w-full flex justify-between items-start text-gray-400' aria-controls='faq-0' aria-expanded='false'>
-            <span className='font-medium text-gray-900 underline'>
-              Start en ny tråd
-            </span>
-              <span className='ml-6 h-7 flex items-center'>
-              <svg className={`${visStartNyTraad ? '-rotate-180' : 'rotate-0'} h-6 w-6 transform`} xmlns='https://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
-              </svg>
-            </span>
-          </button>
-      )
-  }
-
   return (
     <div>
       <hr />
       <br />
-      {startNyTraadTittel()}
+      <Ekspanderbar onClick={() => setVisStartNyTraad(!visStartNyTraad)} erEkspandert={visStartNyTraad} tittel='Start en ny tråd' />
       <dd className={`mt-2 pr-12 ${visStartNyTraad ? 'visible' : 'hidden'}`}>
         <input id='innlegg-tittel' type='text' className='block w-full' placeholder='Tittel' value={tittel} onChange={event => setTittel(event.target.value)} />
-        <Editor listener={onChange} />
+        <Editor listener={onChange} readOnly={false} eksisterendeInnhold={undefined} />
         <Button type='button' onClick={publiser}>Publiser</Button>
       </dd>
     </div>

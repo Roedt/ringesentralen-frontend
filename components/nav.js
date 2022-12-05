@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function BurgerLink ({ href, title, pathname }) {
   const menuBurgerSelected = 'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'
