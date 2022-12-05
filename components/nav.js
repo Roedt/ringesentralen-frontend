@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function BurgerLink ({ href, title, pathname }) {
   const menuBurgerSelected = 'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'
@@ -22,7 +22,7 @@ function MainLink ({ href, title, pathname }) {
   )
 }
 
-function Nav () {
+function Nav ({ erAdmin }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -37,6 +37,7 @@ function Nav () {
             <div className='hidden md:block'>
               <div className='ml-10 flex items-baseline space-x-4'>
                 <MainLink href='/' title='Forsiden' pathname={router.pathname} />
+                {erAdmin && <MainLink href='/forum' title='Forum' pathname={router.pathname} />}
                 <MainLink href='/ring' title='Ring' pathname={router.pathname} />
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
@@ -67,6 +68,7 @@ function Nav () {
       <div className={`${isOpen ? '' : 'hidden'} md:hidden`}>
         <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
           <BurgerLink href='/' title='Forsiden' pathname={router.pathname} />
+          {erAdmin && <BurgerLink href='/forum' title='Forum' pathname={router.pathname} />}
           <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
           <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />

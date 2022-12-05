@@ -1,13 +1,10 @@
-import axios from 'axios'
-import { useState } from 'react'
-import { useRouter } from 'next/router'
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-import { is401, is403 } from '../../lib/utils'
-import { Warning } from '../../components/ui/alerts'
-import Spinner from '../../components/ui/spinner'
-
-const isArray = data => Array.isArray(data)
-const erAdmin = roller => isArray(roller) && roller.includes('admin')
+import { is401, is403 } from '../../lib/utils';
+import { Warning } from '../../components/ui/alerts';
+import Spinner from '../../components/ui/spinner';
 
 function SenderSms () {
   return (
