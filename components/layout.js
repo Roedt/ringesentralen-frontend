@@ -30,7 +30,7 @@ export default function Layout ({ pageTitle, children }) {
   return (
     <div className='flex flex-col min-h-screen'>
       <Vannmerke isDemo={!process.env.NEXT_PUBLIC_IS_PRODUCTION} />
-      <Nav erAdmin={erAdmin(user.roller)} />
+      <Nav erAdmin={erAdmin(user.rolle)} />
       <SisteVersjon />
       <Header pageTitle={pageTitle} />
       <main className='flex-grow'>
