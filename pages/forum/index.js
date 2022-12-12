@@ -29,6 +29,18 @@ const Forum = () => {
     hentUnderforum()
   }, [])
 
+  const handler = (e) => {
+    e.preventDefault()
+    e.returnValue = true
+  }
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', handler)
+    return () => {
+      window.removeEventListener('beforeunload', handler)
+    }
+  }, [])
+
   return (
     <Layout pageTitle='Forum'>
       <Head>
