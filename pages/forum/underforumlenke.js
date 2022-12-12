@@ -6,19 +6,20 @@ const Underforumlenke = ({ underforum }) => {
   const [visRad, setVisRad] = useState()
 
   return (
-    !underforum ? <></> :
-    <dl className='mt-2 space-y-2 divide-y divide-gray-200'>
-      <div className='pt-6'>
-        <dt className='text-lg'>
-          <Ekspanderbar onClick={() => setVisRad(!visRad)} erEkspandert={visRad} tittel={underforum.id} />
-        </dt>
-        <dd className={`mt-2 pr-12 ${visRad ? 'visible' : 'hidden'}`} id='faq-0'>
-          <ul>
-            {underforum && <Underforum key={underforum.id} underforum={underforum} visRad={visRad} />}
-          </ul>
-        </dd>
-      </div>
-    </dl>
+    !underforum
+      ? <></>
+      : <dl className='mt-2 space-y-2 divide-y divide-gray-200'>
+        <div className='pt-6'>
+          <dt className='text-lg'>
+            <Ekspanderbar onClick={() => setVisRad(!visRad)} erEkspandert={visRad} tittel={underforum.id} />
+          </dt>
+          <dd className={`mt-2 pr-12 ${visRad ? 'visible' : 'hidden'}`} id='faq-0'>
+            <ul>
+              {underforum && <Underforum key={underforum.id} underforum={underforum} visRad={visRad} />}
+            </ul>
+          </dd>
+        </div>
+      </dl>
   )
 }
 

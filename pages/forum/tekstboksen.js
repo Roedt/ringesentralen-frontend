@@ -28,7 +28,7 @@ const Tekstboksen = ({ readOnly }) => {
     typeof window !== 'undefined' && <RichTextPlugin
       contentEditable={contentEditable}
       placeholder={<div />}
-    />
+                                     />
   )
 }
 
