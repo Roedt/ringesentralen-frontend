@@ -10,13 +10,8 @@ async function backendProxy (request, response) {
   const method = request.method.toLowerCase()
   const payload = await request.body
   const user = request.session.get('user')
-  if (!user) {
-    console.log('Finner ingen bruker, sender til innlogging')
-    response.status(401).json({ isAuthenticated: false })
-  } else {
-    const { token, aktivtModus, aktivtLokallag } = user
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`
-    const url = `${process.env.API_URL}/${remote.join('/')}?modus=${aktivtModus}&lokallag=${aktivtLokallag}`
+
+  async function kallBackend (url) {
     const config = {
       headers: {
         'User-Agent': `Ringesentralen ${pkg.version}`
@@ -37,6 +32,23 @@ async function backendProxy (request, response) {
         throw error
       }
     }
+  }
+
+  if (!user) {
+    const godkjenteUatoriserteEndepunkt = ['ping']
+    const remoteJoined = remote.join('/')
+    if (godkjenteUatoriserteEndepunkt.includes(remoteJoined)) {
+      await kallBackend(`${process.env.API_URL}/${remoteJoined}`)
+    }
+    else {
+      console.log('Finner ingen bruker, sender til innlogging')
+      response.status(401).json({ isAuthenticated: false })
+    }
+  } else {
+    const { token, aktivtModus, aktivtLokallag } = user
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    const url = `${process.env.API_URL}/${remote.join('/')}?modus=${aktivtModus}&lokallag=${aktivtLokallag}`
+    await kallBackend(url)
   }
 }
 
