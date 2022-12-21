@@ -13,8 +13,8 @@ async function login (request, response) {
     brukarnamn: encrypt(brukarnamn, ENCRYPTION_KEY),
     passord: encrypt(passord, ENCRYPTION_KEY),
     systembruker: systembruker || false,
-    engangskode: engangskode,
-    enhetsid: enhetsid,
+    engangskode: encrypt(engangskode, ENCRYPTION_KEY),
+    enhetsid: encrypt(enhetsid, ENCRYPTION_KEY),
     key: process.env.API_AUTH_KEY
   }
   try {
