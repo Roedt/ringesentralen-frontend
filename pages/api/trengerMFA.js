@@ -4,10 +4,11 @@ import { is401, is403, is503 } from '../../lib/utils'
 const tokenUrl = `${process.env.API_URL}/token/trengerMFA`
 
 async function trengerMFA (request, response) {
-  const { enhetsid } = await request.body
+  const { enhetsid, brukernavn } = await request.body
 
   const payload = {
-    enhetsid: enhetsid
+    enhetsid: enhetsid,
+    brukernavn: brukernavn
   }
   try {
     const { data: trengerMFA } = await axios.post(tokenUrl, payload)

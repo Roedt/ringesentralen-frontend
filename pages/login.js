@@ -20,6 +20,7 @@ function hentEnhetsid () {
 function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
+  const [trengerMFA, setTrengerMFA] = useState()
   const router = useRouter()
   const wakeupBackend = async () => {
     try {
@@ -29,9 +30,10 @@ function Login () {
     }
   }
 
-  const sjekkOmViTrengerMFA = async () => {
+  const sjekkOmViTrengerMFA = async (brukernavn) => {
     try {
-      await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid()})
+      const response = await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavn})
+      setTrengerMFA(response.data.trengerMFA)
     } catch (error) {
       console.error(error)
     }
@@ -43,7 +45,11 @@ function Login () {
     setLoading(true)
     const form = document.getElementById('login-form')
     try {
-      await axios.post('/api/login', generatePayload(form))
+      const payload = {
+        ...generatePayload(form),
+        enhetsid: hentEnhetsid()
+      }
+      await axios.post('/api/login', payload)
       setLoading(false)
       form.reset()
       const params = new URLSearchParams(router.asPath.replace('/login', ''))
@@ -67,7 +73,6 @@ function Login () {
 
   useEffect(async () => {
     await wakeupBackend()
-    await sjekkOmViTrengerMFA()
   }, [])
 
   return (
@@ -92,6 +97,7 @@ function Login () {
                 id='brukarnamn' type='email' name='brukarnamn' placeholder='E-postadresse' autoComplete='email'
                 className='block w-full py-3 px-1 mt-2 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
                 required
+                onBlur={(event) => sjekkOmViTrengerMFA(event.target.value)}
               />
               <label htmlFor='passord' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
                 Passord
@@ -101,6 +107,17 @@ function Login () {
                 className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
                 required
               />
+              {trengerMFA &&
+                <>
+                <label htmlFor='engangskode' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
+                  Engangskode
+                </label>
+                <input
+                id='engangskode' type='text' name='engangskode' placeholder='Engangskode'
+                className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
+                />
+                </>
+              }
               <Button
                 type='submit'
                 loading={loading}
