@@ -10,8 +10,7 @@ async function trengerMFA (request, response) {
     enhetsid: enhetsid
   }
   try {
-    console.log(payload)
-    const { data: trengerMFA } = await axios.post(tokenUrl, { enhetsid: enhetsid })
+    const { data: trengerMFA } = await axios.post(tokenUrl, payload)
     response.json({ trengerMFA: trengerMFA })
   } catch (error) {
     if (is401(error)) {
