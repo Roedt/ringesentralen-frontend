@@ -31,10 +31,13 @@ function Login () {
     }
   }
 
-  const sjekkOmViTrengerMFA = async (brukernavn) => {
-    setBrukernavn(brukernavn)
+  const sjekkOmViTrengerMFA = async (brukernavnFraInput) => {
+    if (!brukernavnFraInput || (brukernavn === brukernavnFraInput)) {
+      return
+    }
+    setBrukernavn(brukernavnFraInput)
     try {
-      const response = await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavn})
+      const response = await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavnFraInput})
       setTrengerMFA(response.data.trengerMFA)
     } catch (error) {
       setLoading(false)
