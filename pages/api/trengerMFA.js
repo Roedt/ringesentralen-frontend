@@ -1,14 +1,16 @@
 import axios from 'axios'
 import { is401, is403, is503 } from '../../lib/utils'
+import { encrypt } from '../../lib/crypto'
 
 const tokenUrl = `${process.env.API_URL}/token/trengerMFA`
 
 async function trengerMFA (request, response) {
   const { enhetsid, brukernavn } = await request.body
+  const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY
 
   const payload = {
-    enhetsid: enhetsid,
-    brukernavn: brukernavn
+    enhetsid: encrypt(enhetsid, ENCRYPTION_KEY),
+    brukernavn: encrypt(brukernavn, ENCRYPTION_KEY)
   }
   try {
     const { data: trengerMFA } = await axios.post(tokenUrl, payload)
