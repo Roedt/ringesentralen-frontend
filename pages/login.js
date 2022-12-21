@@ -8,6 +8,15 @@ import generatePayload from '../lib/generate-payload'
 import Button from '../components/ui/button'
 import { Warning } from '../components/ui/alerts'
 
+function hentEnhetsid () {
+  let enhetsid = localStorage.getItem('ringesentralen-enhetsid')
+  if (!enhetsid) {
+    enhetsid = crypto.randomUUID()
+    localStorage.setItem('ringesentralen-enhetsid', enhetsid)
+  }
+  return enhetsid
+}
+
 function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
@@ -15,6 +24,14 @@ function Login () {
   const wakeupBackend = async () => {
     try {
       await axios.get('/api/backend/ping')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const sjekkOmViTrengerMFA = async () => {
+    try {
+      await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid()})
     } catch (error) {
       console.error(error)
     }
@@ -48,8 +65,9 @@ function Login () {
     }
   }
 
-  useEffect(() => {
-    wakeupBackend()
+  useEffect(async () => {
+    await wakeupBackend()
+    await sjekkOmViTrengerMFA()
   }, [])
 
   return (
