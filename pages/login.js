@@ -21,6 +21,7 @@ function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
   const [trengerMFA, setTrengerMFA] = useState()
+  const [brukernavn, setBrukernavn] = useState()
   const router = useRouter()
   const wakeupBackend = async () => {
     try {
@@ -31,11 +32,34 @@ function Login () {
   }
 
   const sjekkOmViTrengerMFA = async (brukernavn) => {
+    setBrukernavn(brukernavn)
     try {
       const response = await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavn})
       setTrengerMFA(response.data.trengerMFA)
     } catch (error) {
-      console.error(error)
+      setLoading(false)
+      if (is401(error) || is403(error)) {
+        setErrors('Feil brukernavn og/eller passord. Sjekk om du er korrekt registrert i Hypersys eller kontakt oss på Slack.')
+      } else if (is503(error)) {
+        setErrors('Vi har problemer med å nå noen av baksystemene. Vennligst prøv igjen senere.')
+      } else {
+        console.error(error)
+      }
+    }
+  }
+
+  const sendMFA = async (brukernavn) => {
+    try {
+      await axios.post('/api/sendMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavn})
+    } catch (error) {
+      setLoading(false)
+      if (is401(error) || is403(error)) {
+        setErrors('Feil brukernavn og/eller passord. Sjekk om du er korrekt registrert i Hypersys eller kontakt oss på Slack.')
+      } else if (is503(error)) {
+        setErrors('Vi har problemer med å nå noen av baksystemene. Vennligst prøv igjen senere.')
+      } else {
+        console.error(error)
+      }
     }
   }
 
@@ -133,6 +157,13 @@ function Login () {
             <p className='mb-2'>
               Har du ikkje logga inn der før, eller har glemt passordet, <a href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>bruk gjenopprett passord</a>.
             </p>
+            {trengerMFA && <>
+              <p className='mb-1'>Du må verifisere at du er den du sier du er ved å skrive inn koden fra eposten du fikk fra oss.</p>
+              <p className='mb-1'>Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
+              <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny til {brukernavn}</button>.</p>
+              </>
+            }
+
             <p>
               Er det noko du lurer på, <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>still gjerne spørsmål på Slack</a>
             </p>
