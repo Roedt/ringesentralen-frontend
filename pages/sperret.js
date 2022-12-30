@@ -22,7 +22,7 @@ function Sperret () {
 
   async function sjekkNyeRoller () {
     try {
-      const { data: roller } = await axios.post(url, {},{ withCredentials: true })
+      const { data: roller } = await axios.get(url, { withCredentials: true })
       await axios.post('/api/sjekkNyeRoller', roller, { withCredentials: true })
       window.location.reload()
     } catch (error) {
