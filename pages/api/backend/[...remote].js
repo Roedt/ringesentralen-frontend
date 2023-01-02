@@ -39,8 +39,7 @@ async function backendProxy (request, response) {
     const remoteJoined = remote.join('/')
     if (godkjenteUatoriserteEndepunkt.includes(remoteJoined)) {
       await kallBackend(`${process.env.API_URL}/${remoteJoined}`)
-    }
-    else {
+    } else {
       console.log('Finner ingen bruker, sender til innlogging')
       response.status(401).json({ isAuthenticated: false })
     }

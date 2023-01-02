@@ -18,7 +18,7 @@ function Sperret () {
     }
   }, [user])
 
-  const url = `/api/backend/profil/roller`
+  const url = '/api/backend/profil/roller'
 
   async function sjekkNyeRoller () {
     try {
@@ -53,7 +53,8 @@ function Sperret () {
           Mener du dette er feil, eller har spørsmål så <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>kontakt oss på Slack</a>.
         </p>
         <p className='mb-2'>Du vil få ein epost når du har fått oppdatert tilgang. Da kan du bruke systemet ved å klikke på knappen under, eller logge ut og inn igjen.
-          <Button onClick={sjekkNyeRoller}>Sjekk om du har fått nye roller</Button></p>
+          <Button onClick={sjekkNyeRoller}>Sjekk om du har fått nye roller</Button>
+        </p>
       </div>
     </Layout>
   )
