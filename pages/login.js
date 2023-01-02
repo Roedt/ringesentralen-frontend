@@ -21,23 +21,25 @@ function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
   const [trengerMFA, setTrengerMFA] = useState()
+  const [mFAbehovSjekka, setMFAbehovSjekka] = useState(false)
+  const [engangskodesendt, setEngangskodesendt] = useState(false)
   const [brukernavn, setBrukernavn] = useState()
   const router = useRouter()
   const wakeupBackend = async () => {
     try {
-       axios.get('/api/backend/ping')
+      axios.get('/api/backend/ping')
     } catch (error) {
       console.error(error)
     }
   }
 
   const sjekkOmViTrengerMFA = async (brukernavnFraInput) => {
-    if (!brukernavnFraInput || (brukernavn === brukernavnFraInput)) {
+    if (!brukernavnFraInput) {
       return
     }
-    setBrukernavn(brukernavnFraInput)
+    setMFAbehovSjekka(true)
     try {
-      const response = await axios.post('/api/trengerMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavnFraInput})
+      const response = await axios.post('/api/trengerMFA', { enhetsid: hentEnhetsid(), brukernavn: brukernavnFraInput })
       setTrengerMFA(response.data.trengerMFA)
     } catch (error) {
       setLoading(false)
@@ -53,9 +55,11 @@ function Login () {
 
   const sendMFA = async (brukernavn) => {
     try {
+      setEngangskodesendt(false)
       setLoading(true)
-      await axios.post('/api/sendMFA', {enhetsid: hentEnhetsid(), brukernavn: brukernavn})
+      await axios.post('/api/sendMFA', { enhetsid: hentEnhetsid(), brukernavn: brukernavn })
       setLoading(false)
+      setEngangskodesendt(true)
     } catch (error) {
       setLoading(false)
       if (is401(error) || is403(error)) {
@@ -104,6 +108,18 @@ function Login () {
     await wakeupBackend()
   }, [])
 
+  async function handleSubmitMedMFAsjekk (event) {
+    if (mFAbehovSjekka && !trengerMFA) {
+      await handleSubmit(event)
+    } else {
+      event.preventDefault()
+      const trengerMFA = await sjekkOmViTrengerMFA(brukernavn)
+      if (!trengerMFA && mFAbehovSjekka) {
+        await handleSubmit(event)
+      }
+    }
+  }
+
   return (
     <div>
       <Head>
@@ -118,7 +134,7 @@ function Login () {
                 <img className='-ml-2 h-10 w-10' src='/logo.jpg' alt='Rødt logo' />
               </div>
             </div>
-            <form className='mt-10' id='login-form' onSubmit={handleSubmit}>
+            <form className='mt-10' id='login-form' onSubmit={handleSubmitMedMFAsjekk}>
               <label htmlFor='brukarnamn' className='block text-xs font-semibold text-gray-600 uppercase'>
                 E-postadresse
               </label>
@@ -126,6 +142,8 @@ function Login () {
                 id='brukarnamn' type='email' name='brukarnamn' placeholder='E-postadresse' autoComplete='email'
                 className='block w-full py-3 px-1 mt-2 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
                 required
+                value={brukernavn}
+                onInput={(event) => setBrukernavn(event.target.value)}
                 onBlur={(event) => sjekkOmViTrengerMFA(event.target.value)}
               />
               <label htmlFor='passord' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
@@ -138,24 +156,23 @@ function Login () {
               />
               {trengerMFA &&
                 <>
-                <label htmlFor='engangskode' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
-                  Engangskode
-                </label>
-                <input
-                id='engangskode' type='text' name='engangskode' placeholder='Engangskode'
-                className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
-                required
-                />
-                </>
-              }
+                  <label htmlFor='engangskode' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
+                    Engangskode
+                  </label>
+                  <input
+                    id='engangskode' type='text' name='engangskode' placeholder='Engangskode'
+                    className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
+                    required
+                  />
+                </>}
+              {engangskodesendt && <p><em>Engangskode er sendt på epost</em></p>}
               {trengerMFA && <>
                 <p className='mb-1 mt-2 '>
                   Du må verifisere at du er den du sier du er ved å skrive inn koden fra eposten du fikk fra oss.<br />
-                    Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
-                    <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny</button> (til {brukernavn})
+                  Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
+                  <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny</button> (til {brukernavn})
                 </p>
-              </>
-              }
+              </>}
               <Button
                 type='submit'
                 loading={loading}
