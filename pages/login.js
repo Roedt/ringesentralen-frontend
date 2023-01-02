@@ -35,12 +35,13 @@ function Login () {
 
   const sjekkOmViTrengerMFA = async (brukernavnFraInput) => {
     if (!brukernavnFraInput) {
-      return
+      return null
     }
     setMFAbehovSjekka(true)
     try {
       const response = await axios.post('/api/trengerMFA', { enhetsid: hentEnhetsid(), brukernavn: brukernavnFraInput })
       setTrengerMFA(response.data.trengerMFA)
+      return response.data.trengerMFA
     } catch (error) {
       setLoading(false)
       if (is401(error) || is403(error)) {
@@ -50,6 +51,7 @@ function Login () {
       } else {
         console.error(error)
       }
+      return null
     }
   }
 
@@ -109,12 +111,15 @@ function Login () {
   }, [])
 
   async function handleSubmitMedMFAsjekk (event) {
+    if (!brukernavn) {
+      return
+    }
     if (mFAbehovSjekka && !trengerMFA) {
       await handleSubmit(event)
     } else {
       event.preventDefault()
-      const trengerMFA = await sjekkOmViTrengerMFA(brukernavn)
-      if (!trengerMFA && mFAbehovSjekka) {
+      const maaHaMFA = await sjekkOmViTrengerMFA(brukernavn)
+      if (!maaHaMFA) {
         await handleSubmit(event)
       }
     }
