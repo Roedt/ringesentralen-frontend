@@ -148,6 +148,14 @@ function Login () {
                 />
                 </>
               }
+              {trengerMFA && <>
+                <p className='mb-1 mt-2 '>
+                  Du må verifisere at du er den du sier du er ved å skrive inn koden fra eposten du fikk fra oss.<br />
+                    Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
+                    <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny</button> (til {brukernavn})
+                </p>
+              </>
+              }
               <Button
                 type='submit'
                 loading={loading}
@@ -157,15 +165,6 @@ function Login () {
             </form>
           </div>
           <div className='w-11/12 mt-6 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 p-0'>
-            {trengerMFA && <>
-              <p className='mb-1 '>
-                <strong>Du må verifisere at du er den du sier du er ved å skrive inn koden fra eposten du fikk fra oss.
-                  Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
-                <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny</button> til {brukernavn}.
-                </strong>
-                </p>
-            </>
-            }
             <p className='mb-2'>
               Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem). <br />
             </p>
