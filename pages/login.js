@@ -17,11 +17,17 @@ function hentEnhetsid () {
   return enhetsid
 }
 
+const Tilstand = {
+  ikkeSjekka: "ikkeSjekka",
+  trengerIkkeMFA: "trengerIkkeMFA",
+  trengerMFA: "trengerMFA"
+}
+
 function Login () {
   const [loading, setLoading] = useState()
   const [errors, setErrors] = useState()
-  const [trengerMFA, setTrengerMFA] = useState()
-  const [mFAbehovSjekka, setMFAbehovSjekka] = useState(false)
+  const [tilstand, setTilstand] = useState(Tilstand.ikkeSjekka)
+  const [engangskode, setEngangskode]= useState()
   const [engangskodesendt, setEngangskodesendt] = useState(false)
   const [brukernavn, setBrukernavn] = useState()
   const router = useRouter()
@@ -35,13 +41,18 @@ function Login () {
 
   const sjekkOmViTrengerMFA = async (brukernavnFraInput) => {
     if (!brukernavnFraInput) {
-      return null
+      return Tilstand.ikkeSjekka
     }
-    setMFAbehovSjekka(true)
     try {
       const response = await axios.post('/api/trengerMFA', { enhetsid: hentEnhetsid(), brukernavn: brukernavnFraInput })
-      setTrengerMFA(response.data.trengerMFA)
-      return response.data.trengerMFA
+      const trenger = response.data.trengerMFA
+      if (trenger === true) {
+        setTilstand(Tilstand.trengerMFA)
+        return Tilstand.trengerMFA
+      } else {
+        setTilstand(Tilstand.trengerIkkeMFA)
+        return Tilstand.trengerIkkeMFA
+      }
     } catch (error) {
       setLoading(false)
       if (is401(error) || is403(error)) {
@@ -51,7 +62,7 @@ function Login () {
       } else {
         console.error(error)
       }
-      return null
+      return Tilstand.ikkeSjekka
     }
   }
 
@@ -114,12 +125,12 @@ function Login () {
     if (!brukernavn) {
       return
     }
-    if (mFAbehovSjekka && !trengerMFA) {
+    if (tilstand === Tilstand.trengerIkkeMFA) {
       await handleSubmit(event)
     } else {
       event.preventDefault()
       const maaHaMFA = await sjekkOmViTrengerMFA(brukernavn)
-      if (!maaHaMFA) {
+      if (maaHaMFA === Tilstand.trengerIkkeMFA || (engangskode && maaHaMFA === Tilstand.trengerMFA)) {
         await handleSubmit(event)
       }
     }
@@ -132,7 +143,8 @@ function Login () {
       </Head>
       <main className='flex flex-col h-screen bg-gray-100'>
         <div className='grid place-items-center mx-2 my-20 sm:my-auto'>
-          <div className='w-11/12 p-12 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 px-6 py-10 sm:px-10 sm:py-6 bg-white rounded-lg shadow-md lg:shadow-lg'>
+          <div
+            className='w-11/12 p-12 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 px-6 py-10 sm:px-10 sm:py-6 bg-white rounded-lg shadow-md lg:shadow-lg'>
             <div>
               <div className='flex flex-row justify-between'>
                 <h1 className='text-2xl font-semibold pt-1 pb-1'>Ringesentralen</h1>
@@ -159,7 +171,7 @@ function Login () {
                 className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
                 required
               />
-              {trengerMFA &&
+              {tilstand === Tilstand.trengerMFA &&
                 <>
                   <label htmlFor='engangskode' className='block mt-2 text-xs font-semibold text-gray-600 uppercase'>
                     Engangskode
@@ -167,15 +179,19 @@ function Login () {
                   <input
                     id='engangskode' type='text' name='engangskode' placeholder='Engangskode'
                     className='block w-full py-3 px-1 mt-2 mb-4 text-gray-800 appearance-none border-b-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200'
+                    value={engangskode}
+                    onInput={(event) => setEngangskode(event.target.value)}
                     required
                   />
                 </>}
               {engangskodesendt && <p><em>Engangskode er sendt på epost</em></p>}
-              {trengerMFA && <>
+              {tilstand === Tilstand.trengerMFA && <>
                 <p className='mb-1 mt-2 '>
                   Du må verifisere at du er den du sier du er ved å skrive inn koden fra eposten du fikk fra oss.<br />
                   Har du ikke fått epost? Skriv inn epostadressa di i e-post-feltet og
-                  <button onClick={() => sendMFA(brukernavn)} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk her for å få tilsendt ny</button> (til {brukernavn})
+                  <button onClick={() => sendMFA(brukernavn)}
+                          className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>trykk
+                    her for å få tilsendt ny</button> (til {brukernavn})
                 </p>
               </>}
               <Button
@@ -188,16 +204,24 @@ function Login () {
           </div>
           <div className='w-11/12 mt-6 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 p-0'>
             <p className='mb-2'>
-              Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets medlemssystem). <br />
+              Du loggar inn med samme brukarnamn og passord som du bruker for å logge inn på Hypersys (partiets
+              medlemssystem). <br />
             </p>
             <p className='mb-2'>
-              Har du ikkje logga inn der før, eller har glemt passordet, <a href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`} className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>bruk gjenopprett passord</a>.
+              Har du ikkje logga inn der før, eller har glemt passordet, <a
+              href={`${process.env.NEXT_PUBLIC_HYPERSYS_BASE_URL}/auth/reset/`}
+              className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'>bruk gjenopprett
+              passord</a>.
             </p>
             <p>
-              Er det noko du lurer på, <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>still gjerne spørsmål på Slack</a>
+              Er det noko du lurer på, <a
+              className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+              href='https://roedtorg.slack.com/archives/C01BNKD2RU0'>still gjerne spørsmål på Slack</a>
             </p>
             <p>
-              Om du ikke bruker Slack kan du <a className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900' href='https://roedt.no/slack'>få tilgang her</a>.
+              Om du ikke bruker Slack kan du <a
+              className='underline tracking-wide text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+              href='https://roedt.no/slack'>få tilgang her</a>.
             </p>
           </div>
           {errors && <Warning message={errors} />}
