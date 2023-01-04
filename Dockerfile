@@ -1,4 +1,6 @@
-FROM node:14-alpine AS base
+FROM node:14-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
 ARG AMPLITUDE_API_KEY
 ARG HYPERSYSURL
 ARG SENTRYURL
@@ -18,12 +20,15 @@ ARG TWILIO_API_KEY
 ARG TWILIO_API_SECRET
 ARG COOKIE_SECRET
 ARG ENCRYPTION_KEY
-WORKDIR /base
-COPY package*.json ./
-RUN npm install
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+FROM node:14-alpine as builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-FROM base AS build
 ARG AMPLITUDE_API_KEY
 ARG HYPERSYSURL
 ARG SENTRYURL
@@ -48,9 +53,6 @@ ENV NEXT_PUBLIC_HYPERSYS_BASE_URL=$HYPERSYSURL
 ENV NEXT_PUBLIC_SENTRY_DSN=$SENTRYURL
 ENV NEXT_PUBLIC_IS_PRODUCTION=$IS_PRODUCTION
 ENV NEXT_PUBLIC_RECAPTCHA_SITE_ID=$NEXT_PUBLIC_RECAPTCHA_SITE_ID
-ENV NODE_ENV=production
-WORKDIR /build
-COPY --from=base /base ./
 RUN npm run build
 
 FROM node:14-alpine AS production
@@ -85,11 +87,19 @@ ENV TWILIO_API_SECRET=${TWILIO_API_SECRET}
 ENV COOKIE_SECRET=${COOKIE_SECRET}
 ENV ENCRYPTION_KEY=${ENCRYPTION_KEY}
 WORKDIR /app
-COPY --from=build /build/package*.json ./
-COPY --from=build /build/next.config.js ./
-COPY --from=build /build/.next ./.next
-COPY --from=build /build/public ./public
-RUN npm install next
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+USER nextjs
 
 EXPOSE 3000
-CMD npm run start
+
+ENV PORT 3000
+
+CMD ["node_modules/.bin/next", "start"]
