@@ -5,10 +5,9 @@ import Underforum from './underforum'
 const Underforumlenke = ({ underforum }) => {
   const [visRad, setVisRad] = useState()
 
-  return (
-    !underforum
-      ? <></>
-      : <dl className='mt-2 space-y-2 divide-y divide-gray-200'>
+  const visUnderforumlenke = () => {
+    return (
+      <dl className='mt-2 space-y-2 divide-y divide-gray-200'>
         <div className='pt-6'>
           <dt className='text-lg'>
             <Ekspanderbar onClick={() => setVisRad(!visRad)} erEkspandert={visRad} tittel={underforum.id} />
@@ -20,6 +19,13 @@ const Underforumlenke = ({ underforum }) => {
           </dd>
         </div>
       </dl>
+    )
+  }
+
+  return (
+    !underforum
+      ? <></>
+      : visUnderforumlenke()
   )
 }
 

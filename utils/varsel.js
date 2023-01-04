@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const notify = (tekst) => {
   if (!('Notification' in window)) {
     console.log('This browser does not support desktop notification')

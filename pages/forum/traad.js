@@ -28,15 +28,22 @@ const Traad = ({ traadId }) => {
     }
   }, [traadId])
 
-  return (
-    !traadId
-      ? <></>
-      : <>
+  const visTraad = () => {
+    return (
+      <>
         <li className='mb-1 py-1' key={traadId.tittel}>
-          {traad && traad.innhold.innhold && <Editor readOnly listener={undefined} eksisterendeInnhold={traad.innhold.innhold} />}
+          {traad && traad.innhold.innhold &&
+            <Editor readOnly listener={undefined} eksisterendeInnhold={traad.innhold.innhold} />}
         </li>
         <hr />
       </>
+    )
+  }
+
+  return (
+    traadId
+      ? visTraad()
+      : <></>
   )
 }
 

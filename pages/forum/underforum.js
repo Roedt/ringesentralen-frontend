@@ -34,15 +34,22 @@ const Underforum = ({ underforum, visRad }) => {
       </div>
     )
   }
-  return (
-    !underforum
-      ? <></>
-      : <div className='pt-6'>
+
+  const visUnderforum = () => {
+    return (
+      <div className='pt-6'>
         <ul>
           {traader && traader.map(traadTittel)}
         </ul>
         <SkrivInnlegg key={'skrivInnlegg' + underforum.id} underforum={underforum.id} />
       </div>
+    )
+  }
+
+  return (
+    !underforum
+      ? <></>
+      : visUnderforum()
   )
 }
 

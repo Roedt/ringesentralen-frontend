@@ -37,21 +37,22 @@ const editorConfig = (innhold) => {
 
 const Editor = ({ listener, readOnly, eksisterendeInnhold }) => {
   return (
-    typeof window !== 'undefined' && <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
-      <div className='editor-container'>
-        {!readOnly && <ToolbarPlugin />}
-        <div className='editor-inner'>
-          <Tekstboksen readOnly={readOnly} />
-          {!readOnly && <HistoryPlugin />}
-          <AutoFocusPlugin />
-          {!readOnly && <OnChangePlugin onChange={listener} />}
-          <ListPlugin />
-          <LinkPlugin />
-          <PlaygroundAutoLinkPlugin />
-          <ListMaxIndentLevelPlugin maxDepth={7} />
+    typeof window !== 'undefined' &&
+      <LexicalComposer initialConfig={editorConfig(eksisterendeInnhold)}>
+        <div className='editor-container'>
+          {!readOnly && <ToolbarPlugin />}
+          <div className='editor-inner'>
+            <Tekstboksen readOnly={readOnly} />
+            {!readOnly && <HistoryPlugin />}
+            <AutoFocusPlugin />
+            {!readOnly && <OnChangePlugin onChange={listener} />}
+            <ListPlugin />
+            <LinkPlugin />
+            <PlaygroundAutoLinkPlugin />
+            <ListMaxIndentLevelPlugin maxDepth={7} />
+          </div>
         </div>
-      </div>
-    </LexicalComposer>
+      </LexicalComposer>
   )
 }
 
