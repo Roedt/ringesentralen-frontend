@@ -2,10 +2,10 @@ steps:
   # Create docker image
   - name: 'gcr.io/kaniko-project/executor:latest'
     args:
-      - --build-arg=HYPERSYSURL
-      - --build-arg=AMPLITUDE_API_KEY
-      - --build-arg=SENTRYURL
-      - --build-arg=IS_PRODUCTION
+      - --build-arg=$$HYPERSYSURL
+      - --build-arg=$$AMPLITUDE_API_KEY
+      - --build-arg=$$SENTRYURL
+      - --build-arg=$$IS_PRODUCTION
       - --build-arg=SYSTEMBRUKER
       - --build-arg=SYSTEMBRUKERPASSORD
       - --build-arg=FRONTENDTOKENKEY
@@ -25,10 +25,10 @@ steps:
       - --destination=gcr.io/$PROJECT_ID/ringesentralen-frontend
     secretEnv: ['SYSTEMBRUKER', 'SYSTEMBRUKERPASSORD', 'FRONTENDTOKENKEY', 'NEXT_PUBLIC_RECAPTCHA_SITE_ID', 'RECAPTCHA_SECRET', 'TWILIO_TWIML_APP_SID', 'TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN', 'TWILIO_CALLER_ID', 'TWILIO_SMS_ID', 'TWILIO_SMS_NUMMER', 'TWILIO_API_KEY', 'TWILIO_API_SECRET', 'COOKIE_SECRET', 'ENCRYPTION_KEY']
     env:
-      - 'HYPERSYSURL=$_HYPERSYSURL'
-      - 'AMPLITUDE_API_KEY=$_AMPLITUDE_API_KEY'
-      - 'IS_PRODUCTION=$_IS_PRODUCTION'
-      - 'SENTRYURL=$_SENTRYURL'
+      - 'HYPERSYSURL=${_HYPERSYSURL}'
+      - 'AMPLITUDE_API_KEY=${_AMPLITUDE_API_KEY}'
+      - 'IS_PRODUCTION=${_IS_PRODUCTION}'
+      - 'SENTRYURL=${_SENTRYURL}'
 
   # Start up a cloud instance
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -76,3 +76,6 @@ availableSecrets:
       env: 'COOKIE_SECRET'
     - versionName: projects/$PROJECT_ID/secrets/encryptionKey/versions/latest
       env: 'ENCRYPTION_KEY'
+
+options:
+  dynamic_substitutions: true
