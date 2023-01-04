@@ -5,7 +5,7 @@ steps:
       - --build-arg=HYPERSYSURL
       - --build-arg=AMPLITUDE_API_KEY
       - --build-arg=SENTRYURL
-      - --build-arg=IS_PRODUCTION
+      - --build-arg IS_PRODUCTION=${_IS_PRODUCTION}
       - --build-arg=SYSTEMBRUKER
       - --build-arg=SYSTEMBRUKERPASSORD
       - --build-arg=FRONTENDTOKENKEY
@@ -27,7 +27,6 @@ steps:
     env:
       - 'HYPERSYSURL=${_HYPERSYSURL}'
       - 'AMPLITUDE_API_KEY=${_AMPLITUDE_API_KEY}'
-      - 'IS_PRODUCTION=${_IS_PRODUCTION}'
       - 'SENTRYURL=${_SENTRYURL}'
 
   # Start up a cloud instance
