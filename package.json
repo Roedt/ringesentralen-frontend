@@ -39,7 +39,7 @@
     "@sentry/integrations": "6.17.4",
     "@sentry/node": "6.17.4",
     "@sentry/webpack-plugin": "1.18.5",
-    "@tailwindcss/typography": "0.5.1",
+    "@tailwindcss/typography": "0.5.8",
     "amplitude-js": "8.16.1",
     "axios": "0.25.0",
     "blob-polyfill": "6.0.20211015",
