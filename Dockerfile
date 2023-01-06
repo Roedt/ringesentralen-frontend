@@ -1,4 +1,4 @@
-FROM node:14-alpine AS deps
+FROM node:19-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 ARG AMPLITUDE_API_KEY
@@ -24,7 +24,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM node:14-alpine as builder
+FROM node:19-alpine as builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -56,7 +56,7 @@ ENV NEXT_PUBLIC_RECAPTCHA_SITE_ID=$NEXT_PUBLIC_RECAPTCHA_SITE_ID
 ENV NODE_ENV=production
 RUN npm run build
 
-FROM node:14-alpine AS production
+FROM node:19-alpine AS production
 
 ARG AMPLITUDE_API_KEY
 ARG HYPERSYSURL
