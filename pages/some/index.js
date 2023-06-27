@@ -26,10 +26,10 @@ function SoMeSkjema () {
                 Bli aktivist i sosiale medier
               </h1>
               <p className='mt-3 text-lg leading-6 text-white'>
-                Vil du hjelpe oss og spre et godt politisk budskap i sosiale medier frem mot valget?
+                Vil du hjelpe oss og spre et godt politisk budskap i sosiale medier?
               </p>
               <p className='mt-3 text-lg leading-6 text-white'>
-                Fyll ut skjemaet så sender vi deg sms når vi trenger ekstra hjelp til å dele.
+                Fyll ut skjemaet, så sender vi deg sms når vi trenger ekstra hjelp til å dele.
               </p>
             </div>
           </header>
