@@ -2,9 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { saveAs } from 'file-saver'
 import { Parser } from 'json2csv'
-import { Blob } from 'blob-polyfill'
 
 import { is401, is403 } from '../../lib/utils'
 import skrivUtPenDato from '../../lib/prettyprint-dato'
@@ -110,8 +108,6 @@ function Frivilligbasen () {
       kontaktLogg: skrivUtKontaktLogg(linje.kontakt) || ' '
     }))
     const csv = json2csvParser.parse(data)
-    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })
-    saveAs(blob, 'frivillige.csv')
   }
 
   async function hentFrivillige () {

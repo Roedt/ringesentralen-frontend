@@ -2,9 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { saveAs } from 'file-saver'
 import { Parser } from 'json2csv'
-import { Blob } from 'blob-polyfill'
 
 import useUser from '../lib/useUser'
 import Layout from '../components/layout'
@@ -71,8 +69,6 @@ function Dashboard ({ dashboard }) {
       ferdigRingte: linje.totaltInklRingte
     }))
     const csv = json2csvParser.parse(data)
-    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })
-    saveAs(blob, 'dashboard.csv')
   }
 
   if (!dashboard) return null
