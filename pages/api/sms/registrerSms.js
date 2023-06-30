@@ -4,7 +4,7 @@ import pkg from '../../../package.json'
 
 async function registrerSms (token, mottakere, melding) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
-  const url = `${process.env.API_URL}/sms/lagre`
+  const url = `${process.env.API_URL}/sms/lagreSMS`
   const config = {
     headers: {
       'User-Agent': `Ringesentralen ${pkg.version}`
