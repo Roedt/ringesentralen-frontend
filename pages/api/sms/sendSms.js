@@ -4,7 +4,7 @@ import oppdaterSms from './oppdaterSms'
 
 async function sendSms ({ smsId, telefonnummer, frivilligId, melding, token }) {
   try {
-    const result = await handleSMS(fixTelefonNummer(telefonnummer), melding)
+    const result = await handleSMS(token, fixTelefonNummer(telefonnummer), melding)
     await oppdaterSms({
       token,
       smsId,
