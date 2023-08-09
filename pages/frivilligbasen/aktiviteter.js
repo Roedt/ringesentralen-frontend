@@ -6,7 +6,8 @@ export const aktivitetNavn = {
   SMS: 'Sende tekstmeldinger til potensielle velgere',
   Postkasseutdeling: 'Dele ut materiell i postkasser',
   Morgenaksjon: 'Dele ut materiell ved knutepunkt på morgenen',
-  Bil: 'Har bil og kan bidra med kjøring'
+  Bil: 'Har bil og kan bidra med kjøring',
+  VarSome2021: 'Var SoMe-frivillig i 2021'
 }
 
 export function skrivUtBidrag (aktiviteter) {
