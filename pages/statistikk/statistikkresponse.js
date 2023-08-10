@@ -106,7 +106,7 @@ const StatistikkResponse = ({ statistikk, user }) => {
           </tr>
           </thead>
           <tbody className='bg-white divide-y divide-gray-200'>
-          {statistikk.ringteIValkampen2023.map(linje => <Linje {...linje} key={linje.lokallag.id} />)}
+          {statistikk.ringteIValkampen2023.map(linje => <Linje {...linje} key={linje.first} />)}
           </tbody>
         </table>
       </div>
