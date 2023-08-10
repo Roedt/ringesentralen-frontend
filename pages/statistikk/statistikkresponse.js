@@ -77,7 +77,7 @@ const StatistikkResponse = ({ statistikk, user }) => {
           <div className='flex items-center'>
             <div className='ml-4'>
               <div className='text-sm font-medium text-gray-900'>
-                {lokallag.navn}
+                {lokallag}
               </div>
             </div>
           </div>
