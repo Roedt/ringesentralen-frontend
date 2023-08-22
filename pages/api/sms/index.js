@@ -9,7 +9,7 @@ async function sms (request, response) {
     response.status(401).json({ isAuthenticated: false })
   } else {
     const payload = await request.body
-    const { token } = user
+    const { token, telefonnummer } = user
     const { mottakere, melding } = payload
     const frivillige = mottakere.map(mottaker => mottaker.frivilligId)
     const { smsId } = await registrerSms(token, frivillige, melding)
@@ -17,7 +17,8 @@ async function sms (request, response) {
       smsId,
       melding,
       token,
-      mottakere
+      mottakere,
+      telefonnummer
     })
     response.json(result)
   }

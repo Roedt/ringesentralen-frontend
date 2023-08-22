@@ -21,13 +21,14 @@ async function login (request, response) {
     const { data: token } = await axios.post(tokenUrl, payload)
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     const { data: profil } = await axios.get(profilUrl)
-    const { email, etternavn, fornavn, rolle, fylke, lokallag } = profil
+    const { email, etternavn, fornavn, rolle, fylke, lokallag, telefonnummer } = profil
 
     const user = {
       navn: `${fornavn} ${etternavn}`,
       email,
       rolle,
       fylke,
+      telefonnummer,
       lokallag,
       token,
       expires: new Date().getTime() + 36000000,
