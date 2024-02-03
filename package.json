@@ -48,7 +48,7 @@
     "handlebars": "4.7.8",
     "json2csv": "5.0.7",
     "lexical": "^0.7.0",
-    "markdown-it": "13.0.1",
+    "markdown-it": "13.0.2",
     "next": "12.3.4",
     "next-iron-session": "4.2.0",
     "node-cache": "5.1.2",
