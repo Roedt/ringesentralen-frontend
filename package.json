@@ -27,7 +27,7 @@
   "homepage": "https://github.com/Roedt/ringesentralen-frontend#readme",
   "dependencies": {
     "@headlessui/react": "1.7.18",
-    "@heroicons/react": "1.0.6",
+    "@heroicons/react": "2.1.1",
     "@lexical/link": "^0.13.1",
     "@lexical/list": "^0.13.1",
     "@lexical/react": "^0.13.1",

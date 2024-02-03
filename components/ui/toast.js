@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/outline'
-import { XIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { XIcon } from '@heroicons/react/20/solid'
 
 function Toast ({ melding }) {
   const [show, setShow] = useState(false)
