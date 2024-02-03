@@ -96,17 +96,17 @@ const StatistikkResponse = ({ statistikk, user }) => {
         <h2 className='text-xl font-semibold mt-12'>Ringte i valkampen 2023-statistikk</h2>
         <table className='min-w-full divide-y divide-gray-200'>
           <thead className='bg-gray-50'>
-          <tr>
-            <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-              Lokallag
-            </th>
-            <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-              Samtaler starta
-            </th>
-          </tr>
+            <tr>
+              <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                Lokallag
+              </th>
+              <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                Samtaler starta
+              </th>
+            </tr>
           </thead>
           <tbody className='bg-white divide-y divide-gray-200'>
-          {statistikk.ringteIValkampen2023.map(linje => <Linje {...linje} key={linje.first} />)}
+            {statistikk.ringteIValkampen2023.map(linje => <Linje {...linje} key={linje.first} />)}
           </tbody>
         </table>
       </div>

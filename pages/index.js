@@ -68,7 +68,7 @@ function Dashboard ({ dashboard }) {
       personerSomKanRinges: linje.personerSomKanRinges,
       ferdigRingte: linje.totaltInklRingte
     }))
-    const csv = json2csvParser.parse(data)
+    json2csvParser.parse(data)
   }
 
   if (!dashboard) return null
