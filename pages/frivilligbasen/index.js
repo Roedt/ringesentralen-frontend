@@ -107,7 +107,7 @@ function Frivilligbasen () {
       koronaTilbakemelding: skrivUtKoronaTilbakemeldinger(linje.frivilligKorona),
       kontaktLogg: skrivUtKontaktLogg(linje.kontakt) || ' '
     }))
-    const csv = json2csvParser.parse(data)
+    json2csvParser.parse(data)
   }
 
   async function hentFrivillige () {
