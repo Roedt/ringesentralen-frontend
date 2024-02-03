@@ -40,7 +40,7 @@
     "@sentry/node": "7.99.0",
     "@sentry/webpack-plugin": "2.13.0",
     "@tailwindcss/typography": "0.5.8",
-    "amplitude-js": "8.21.3",
+    "amplitude-js": "8.21.9",
     "axios": "0.27.2",
     "blob-polyfill": "7.0.20220408",
     "crypto-shuffle": "1.0.1",
