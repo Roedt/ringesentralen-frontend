@@ -6,8 +6,8 @@ function BurgerLink ({ href, title, pathname }) {
   const menuBurgerSelected = 'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'
   const menuBurger = 'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'
   return (
-    <Link href={href}>
-      <a className={pathname === href ? menuBurgerSelected : menuBurger}>{title}</a>
+    <Link href={href} className={pathname === href ? menuBurgerSelected : menuBurger}>
+      {title}
     </Link>
   )
 }
@@ -16,8 +16,8 @@ function MainLink ({ href, title, pathname }) {
   const menuMainSelected = 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
   const menuMain = 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
   return (
-    <Link href={href}>
-      <a className={pathname === href ? menuMainSelected : menuMain}>{title}</a>
+    <Link href={href} className={pathname === href ? menuMainSelected : menuMain}>
+      {title}
     </Link>
   )
 }

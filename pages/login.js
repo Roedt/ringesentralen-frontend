@@ -35,7 +35,7 @@ function Login () {
   const router = useRouter()
   const wakeupBackend = async () => {
     try {
-      axios.get('/api/backend/ping')
+      await axios.get('/api/backend/ping')
     } catch (error) {
       console.error(error)
     }
