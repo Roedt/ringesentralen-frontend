@@ -49,16 +49,14 @@ function Linje ({ text }) {
   )
 }
 
-function Oppfoelging ({ oppfoelging, className }) {
+function Oppfoelging ({ oppfoelging }) {
   if (!oppfoelging) return null
   const onsker = lagOnskeListe(oppfoelging)
   if (onsker.length === 0) return null
   return (
-    <div className={className}>
-      <ul className='list-disc'>
+      <ul className='list-disc text-sm text-gray-700'>
         {onsker.map((text, index) => <Linje text={text} key={`onskelinje-${index}`} />)}
       </ul>
-    </div>
   )
 }
 
