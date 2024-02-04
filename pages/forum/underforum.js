@@ -10,20 +10,23 @@ const Underforum = ({ underforum, visRad }) => {
   const [traader, setTraader] = useState()
   const [visTraad, setVisTraad] = useState()
 
-  useEffect(async () => {
-    if (!visRad || !underforum) {
-      return
-    }
-    try {
-      const { data } = await axios.get('/api/backend/forum/traader/' + underforum.id, { withCredentials: true })
-      setTraader(data)
-    } catch (error) {
-      if (is401(error)) {
-        router.push('/login')
-      } else {
-        console.error(error)
+  useEffect(() => {
+    async function hentTraader() {
+      if (!visRad || !underforum) {
+        return
+      }
+      try {
+        const { data } = await axios.get('/api/backend/forum/traader/' + underforum.id, { withCredentials: true })
+        setTraader(data)
+      } catch (error) {
+        if (is401(error)) {
+          router.push('/login')
+        } else {
+          console.error(error)
+        }
       }
     }
+    hentTraader()
   }, [visRad])
 
   const traadTittel = (traad) => {

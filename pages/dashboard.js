@@ -93,9 +93,9 @@ const Dashboard = () => {
         setDashboard(data)
       } catch (error) {
         if (is401(error)) {
-          router.push('/login')
+          await router.push('/login')
         } else if (is403(error)) {
-          router.push('/sperret')
+          await router.push('/sperret')
         } else {
           console.error(error)
         }

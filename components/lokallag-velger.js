@@ -29,13 +29,12 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
       setMineLokallag(data)
     } catch (error) {
       if (is401(error)) {
-        router.push('/login')
+        await router.push('/login')
       } else {
         console.error(error)
       }
     }
   }
-
   async function setLokallag (event) {
     const lokallag = event.target.value
     setAktivtLokallag(lokallag)
@@ -45,7 +44,7 @@ function LokallagVelger ({ user, callOnChange, noSessionUpdate, heading = 'Velg 
         await axios.post('/api/lokallag', { lokallag }, { withCredentials: true })
       } catch (error) {
         if (is401(error)) {
-          router.push('/login')
+          await router.push('/login')
         } else {
           console.error(error)
         }

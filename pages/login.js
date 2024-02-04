@@ -33,13 +33,6 @@ function Login () {
   const [engangskodesendt, setEngangskodesendt] = useState(false)
   const [brukernavn, setBrukernavn] = useState()
   const router = useRouter()
-  const wakeupBackend = async () => {
-    try {
-      await axios.get('/api/backend/ping')
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   const sjekkOmViTrengerMFA = async (brukernavnFraInput) => {
     if (!brukernavnFraInput) {
@@ -119,8 +112,15 @@ function Login () {
     }
   }
 
-  useEffect(async () => {
-    await wakeupBackend()
+  useEffect(() => {
+    const wakeupBackend = async () => {
+      try {
+        await axios.get('/api/backend/ping')
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    wakeupBackend()
   }, [])
 
   async function handleSubmitMedMFAsjekk (event) {
