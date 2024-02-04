@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import { XIcon } from '@heroicons/react/20/solid'
+import { XMarkIcon } from '@heroicons/react/20/solid'
 
 function Toast ({ melding }) {
   const [show, setShow] = useState(false)
@@ -44,7 +44,7 @@ function Toast ({ melding }) {
                   }}
                 >
                   <span className='sr-only'>Lukk</span>
-                  <XIcon className='h-5 w-5' aria-hidden='true' />
+                  <XMarkIcon className='h-5 w-5' aria-hidden='true' />
                 </button>
               </div>
             </div>
