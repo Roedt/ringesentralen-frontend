@@ -73,15 +73,6 @@ function Dashboard ({ dashboard }) {
 
   if (!dashboard) return null
   const { statusliste } = dashboard
-  /*
-  console.log(JSON.stringify(statusliste, null, 2))
-  const mergedData = statusliste.reduce((accumulator, current) => {
-    accumulator.igjenAaRinge += current.igjenAaRinge
-    accumulator.personerSomKanRinges += current.personerSomKanRinges
-    accumulator.totaltInklRingte += current.totaltInklRingte
-    return accumulator
-  }, { igjenAaRinge: 0, personerSomKanRinges: 0, totaltInklRingte: 0 })
-  */
   return (
     <>
       <div className='flex justify-end'>
