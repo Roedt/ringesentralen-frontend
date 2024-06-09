@@ -16,7 +16,7 @@ function twilioToken (request, response) {
     const identity = process.env.TWILIO_CALLER_ID
     // Grant som setter opp voice som denne brukeren
     const voiceGrant = new VoiceGrant({
-      outgoingApplicationSid: outgoingApplicationSid,
+      outgoingApplicationSid,
       incomingAllow: false
     })
     // Lager tokenet som skal bruker av klienten
@@ -24,7 +24,7 @@ function twilioToken (request, response) {
       twilioAccountSid,
       twilioApiKey,
       twilioApiSecret,
-      { identity: identity }
+      { identity }
     )
     token.addGrant(voiceGrant)
     // Serialize the token to a JWT string

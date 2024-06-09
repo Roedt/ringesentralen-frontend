@@ -14,7 +14,7 @@ async function trengerMFA (request, response) {
   }
   try {
     const { data: trengerMFA } = await axios.post(tokenUrl, payload)
-    response.json({ trengerMFA: trengerMFA })
+    response.json({ trengerMFA })
   } catch (error) {
     if (is401(error)) {
       response.status(401).send(error)
