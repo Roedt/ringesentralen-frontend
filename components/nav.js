@@ -37,7 +37,6 @@ function Nav ({ erAdmin }) {
             <div className='hidden md:block'>
               <div className='ml-10 flex items-baseline space-x-4'>
                 <MainLink href='/' title='Forsiden' pathname={router.pathname} />
-                {erAdmin && <MainLink href='/forum' title='Forum' pathname={router.pathname} />}
                 <MainLink href='/ring' title='Ring' pathname={router.pathname} />
                 <MainLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
                 <MainLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
@@ -68,7 +67,6 @@ function Nav ({ erAdmin }) {
       <div className={`${isOpen ? '' : 'hidden'} md:hidden`}>
         <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
           <BurgerLink href='/' title='Forsiden' pathname={router.pathname} />
-          {erAdmin && <BurgerLink href='/forum' title='Forum' pathname={router.pathname} />}
           <BurgerLink href='/ring' title='Ring' pathname={router.pathname} />
           <BurgerLink href='/minesamtaler' title='Mine samtaler' pathname={router.pathname} />
           <BurgerLink href='/hjelp' title='Hjelp' pathname={router.pathname} />
