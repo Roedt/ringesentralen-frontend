@@ -58,7 +58,7 @@ function Loggut () {
             </div>
           </div>
           <Tilbakemelding
-            tekst='Hvordan var opplevelsen din av Ringesentralen i dag?'
+            tekst='Hvordan var opplevelsen din av Rødt-sentralen i dag?'
             tema='utlogging'
           />
         </main>

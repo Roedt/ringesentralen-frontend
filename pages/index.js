@@ -2,11 +2,16 @@ import Head from 'next/head'
 
 import useUser from '../lib/useUser'
 import Layout from '../components/layout'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const HomePage = () => {
   const { user } = useUser()
   const router = useRouter()
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   function lenkerForOslo () {
     return (

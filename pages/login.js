@@ -184,7 +184,7 @@ function Login () {
   return (
     <div>
       <Head>
-        <title>Ringesentralen</title>
+        <title>Rødt-sentralen</title>
       </Head>
       <main className='flex flex-col h-screen bg-gray-100'>
         <div className='grid place-items-center mx-2 my-20 sm:my-auto'>
@@ -193,7 +193,7 @@ function Login () {
           >
             <div>
               <div className='flex flex-row justify-between'>
-                <h1 className='text-2xl font-semibold pt-1 pb-1'>Ringesentralen</h1>
+                <h1 className='text-2xl font-semibold pt-1 pb-1'>Rødt-sentralen</h1>
                 <img className='-ml-2 h-10 w-10' src='/logo.jpg' alt='Rødt logo' />
               </div>
             </div>
