@@ -71,21 +71,6 @@ const Dashboard = () => {
   const router = useRouter()
   const [dashboard, setDashboard] = useState()
 
-  async function getDashboard () {
-    try {
-      const { data } = await axios.get('/api/backend/dashboard', { withCredentials: true })
-      setDashboard(data)
-    } catch (error) {
-      if (is401(error)) {
-        router.push('/login')
-      } else if (is403(error)) {
-        router.push('/sperret')
-      } else {
-        console.error(error)
-      }
-    }
-  }
-
   useEffect(() => {
     async function getDashboard () {
       try {
