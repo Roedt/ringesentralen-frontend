@@ -11,7 +11,7 @@ const Underforum = ({ underforum, visRad }) => {
   const [visTraad, setVisTraad] = useState()
 
   useEffect(() => {
-    async function hentTraader() {
+    async function hentTraader () {
       if (!visRad || !underforum) {
         return
       }

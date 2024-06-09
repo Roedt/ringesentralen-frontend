@@ -54,9 +54,9 @@ function Oppfoelging ({ oppfoelging }) {
   const onsker = lagOnskeListe(oppfoelging)
   if (onsker.length === 0) return null
   return (
-      <ul className='list-disc text-sm text-gray-700'>
-        {onsker.map((text, index) => <Linje text={text} key={`onskelinje-${index}`} />)}
-      </ul>
+    <ul className='list-disc text-sm text-gray-700'>
+      {onsker.map((text, index) => <Linje text={text} key={`onskelinje-${index}`} />)}
+    </ul>
   )
 }
 
