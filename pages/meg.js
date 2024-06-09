@@ -107,7 +107,6 @@ function Meg () {
   async function hentMinProfil () {
     try {
       const { data } = await axios.get('/api/backend/profil', { withCredentials: true })
-      console.log(data)
       setMinProfil(data)
     } catch (error) {
       if (is401(error)) {
