@@ -13,6 +13,14 @@ const HomePage = () => {
     console.log(user)
   }, [user])
 
+  function lenkerForOslo () {
+    return (
+      <>
+        <li><a href='https://xn--verktykasse-kgb.eu/' className='underline'>Verktøykassa for Rødt Oslo</a></li>
+        <li><a href='https://calendar.google.com/calendar/u/0/embed?color=%23cca6ac&src=acfvhhb7plabhq1k3q1493gru4@group.calendar.google.com' className='underline'>Rødt Oslos kalender</a></li>
+      </>
+    )
+  }
 
   return (
     <Layout pageTitle='Rødt-sentralen'>
@@ -35,9 +43,7 @@ const HomePage = () => {
                 Informasjonen vi har lagret om deg i medlemssystemet
               </button>
             </li>
-            {user?.fylke === 3 ? <li><a href='https://xn--verktykasse-kgb.eu/' className='underline'>Verktøykassa for
-              Rødt Oslo</a></li> : <></>}
-            {user?.fylke === 3 ? <li><a href='https://calendar.google.com/calendar/u/0/embed?color=%23cca6ac&src=acfvhhb7plabhq1k3q1493gru4@group.calendar.google.com' className='underline'>Rødt Oslos kalender</a></li> : <></>}
+            {(user?.fylke === 3) ? lenkerForOslo() : <></>}
           </ul>
         </div>
       </div>
