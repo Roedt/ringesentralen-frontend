@@ -30,7 +30,7 @@ function ResultatSkjema ({ id, setPerson, modus, telefonnummer }) {
     const payload = generatePayload(form)
     const referat = {
       kommentar: payload.kommentar || '',
-      modus: modus,
+      modus,
       modusspesifikkeResultat: {
         type: 'Valg21SpesifikkeResultat',
         vilPolitikkLink: payload?.vilPolitikkLink === 'on',

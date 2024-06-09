@@ -4,6 +4,7 @@
 
 import { render, screen } from '@testing-library/react'
 import { Danger, Info, Success, Warning } from './alerts'
+import { describe, expect, test } from '@jest/globals'
 
 describe('Tester de ulike alert komponentene', () => {
   test('Danger viser teksten som sendes inn', () => {

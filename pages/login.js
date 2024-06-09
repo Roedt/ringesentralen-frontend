@@ -65,7 +65,7 @@ function Login () {
     try {
       setEngangskodesendt(false)
       setLoading(true)
-      await axios.post('/api/sendMFA', { enhetsid: hentEnhetsid(), brukernavn: brukernavn })
+      await axios.post('/api/sendMFA', { enhetsid: hentEnhetsid(), brukernavn })
       setLoading(false)
       setEngangskodesendt(true)
     } catch (error) {
